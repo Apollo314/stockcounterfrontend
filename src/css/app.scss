@@ -1,1 +1,7 @@
 // app global css in SCSS form
+
+.body--light {
+  background           : black;
+  background           : linear-gradient(hsl(209, 56%, 82%), hsl(187, 42%, 67%)); // background: hsl(160, 5%, 80%);
+  background-attachment: fixed;
+}
