@@ -1,0 +1,42 @@
+@import './quasar.variables.scss';
+
+
+body.desktop {
+
+  .compact-scrollbar {
+
+    &,
+    * {
+
+      scrollbar-width: thin;
+      scrollbar-color: $primary transparent;
+
+      &::-webkit-scrollbar {
+        transition: opacity 0.2s ease;
+        opacity   : 1;
+        width     : 4px;
+        height    : 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparentize($color: $primary, $amount: 0.8);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $primary;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: desaturate($color: $primary, $amount: 40%);
+      }
+
+      &::-webkit-scrollbar-thumb:focus {
+        background: desaturate($color: $primary, $amount: 80%);
+      }
+
+      &::-webkit-scrollbar-corner {
+        background: transparent;
+      }
+    }
+  }
+}
