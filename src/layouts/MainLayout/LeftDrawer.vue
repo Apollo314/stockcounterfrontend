@@ -18,6 +18,19 @@
         deleniti officiis, neque recusandae consectetur porro ad nesciunt eos
         illum omnis suscipit corporis!
       </div>
+      <template #action-bottom>
+        <div class="row full-width justify-end">
+          <div class="q-pa-sm">
+            <q-btn
+              flat
+              icon="settings"
+              :label="$t('settings.settings')"
+              no-caps
+              :to="{ name: 'settings' }"
+            />
+          </div>
+        </div>
+      </template>
     </adaptive-card>
   </q-drawer>
 </template>

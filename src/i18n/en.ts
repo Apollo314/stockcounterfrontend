@@ -1,10 +1,27 @@
-// This is just an example,
-// so you can safely delete all default props below
+/*eslint sort-keys: "error"*/
 
 export default {
   appName: 'Stock Counter',
+  failed: 'Action failed',
   fourofour: 'Oops. Nothing here...',
   gohome: 'Go home',
-  failed: 'Action failed',
+  settings: {
+    language: {
+      label: 'Language',
+    },
+    settings: 'Settings',
+    transitionAnimations: {
+      alternative: 'Alternative',
+      animationType: 'Transition Animation Type',
+      aroundCorner: 'Rotate Around Corners',
+      aroundX: 'Rotate Around X-Axis',
+      aroundY: 'Rotate Around Y-Axis',
+      aroundZ: 'Rotate Around Z-Axis',
+      checkboxLabel: 'Show Transition Animations',
+      standard: 'Standard',
+      swipeLeft: 'Swipe Left',
+      swipeRight: 'Swipe Right',
+    },
+  },
   success: 'Action was successful',
 };
