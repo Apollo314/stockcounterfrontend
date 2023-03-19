@@ -73,3 +73,16 @@ a {
     }
   }
 }
+
+
+// text color
+
+.auto-text-color {
+  .body--light & {
+    color: $dark;
+  }
+
+  .body--dark & {
+    color: $almost-white;
+  }
+}
