@@ -28,7 +28,7 @@
       style="display: grid; grid-template-columns: 100%"
     >
       <router-view v-slot="{ Component, route }">
-        <Transition name="rotate-around-corner">
+        <Transition name="zoom-out-in">
           <KeepAlive :max="10">
             <Component :is="Component" :key="getKey(route)" />
           </KeepAlive>
