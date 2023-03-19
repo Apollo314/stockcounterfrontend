@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh LpR fFf" class="overflow-hidden">
-    <q-header reveal class="transparent bg-blurred">
+    <q-header reveal class="transparent bg-blurred auto-text-color">
       <q-toolbar>
         <q-btn
           flat
@@ -10,7 +10,9 @@
           @click="toggleLeftDrawer"
         />
         <q-toolbar-title>
-          <RouterLink :to="{ name: 'home' }">{{ $t('appName') }}</RouterLink>
+          <RouterLink class="text-h6" :to="{ name: 'home' }">{{
+            $t('appName')
+          }}</RouterLink>
         </q-toolbar-title>
         <q-toggle
           :model-value="$q.dark.isActive"
@@ -28,7 +30,7 @@
       style="display: grid; grid-template-columns: 100%"
     >
       <router-view v-slot="{ Component, route }">
-        <Transition name="zoom-out-in">
+        <Transition :name="getTransition(route)">
           <KeepAlive :max="10">
             <Component :is="Component" :key="getKey(route)" />
           </KeepAlive>
@@ -43,9 +45,13 @@ import { useQuasar } from 'quasar';
 import { ref } from 'vue';
 import { RouteLocationNormalizedLoaded } from 'vue-router';
 
+import { useSettingsStore } from 'src/stores/settings-store';
+
 import LeftDrawer from './LeftDrawer.vue';
 
 const $q = useQuasar();
+
+const settings = useSettingsStore();
 
 $q.dark.set('auto');
 
@@ -71,6 +77,19 @@ const getKey = (
   } else {
     return Math.random();
   }
+};
+
+const getTransition = (
+  route: RouteLocationNormalizedLoaded
+): string | undefined => {
+  if (!settings.ui.showTransitionAnimations) return undefined;
+  let transition: string = settings.ui.genericAnimation;
+  if (route.meta.transition) {
+    transition = <string>route.meta.transition;
+  } else if (route.params.transition) {
+    transition = <string>route.params.transition;
+  }
+  return transition;
 };
 </script>
 
