@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh LpR fFf">
-    <q-header reveal class="transparent-blur">
+    <q-header reveal class="transparent bg-blurred">
       <q-toolbar>
         <q-btn
           flat
@@ -30,9 +30,14 @@
 </template>
 
 <script setup lang="ts">
+import { useQuasar } from 'quasar';
 import { ref } from 'vue';
 
 import LeftDrawer from './LeftDrawer.vue';
+
+const $q = useQuasar();
+
+$q.dark.set('auto');
 
 const leftDrawerOpen = ref(false);
 
@@ -41,9 +46,4 @@ function toggleLeftDrawer() {
 }
 </script>
 
-<style lang="scss">
-.transparent-blur {
-  background: transparent;
-  backdrop-filter: blur(10px);
-}
-</style>
+<style lang="scss"></style>

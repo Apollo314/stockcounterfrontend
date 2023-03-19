@@ -1,11 +1,5 @@
 <template>
-  <q-card
-    :class="{
-      'bg-transparent': transparent,
-      'shadow-0': transparent,
-    }"
-    class="adaptive-card"
-  >
+  <q-card class="adaptive-card">
     <q-card-actions
       v-if="$slots['action-top']"
       class="q-pa-none actions-container"
@@ -28,8 +22,4 @@
   </q-card>
 </template>
 
-<script setup lang="ts">
-defineProps<{
-  transparent?: boolean;
-}>();
-</script>
+<script setup lang="ts"></script>
