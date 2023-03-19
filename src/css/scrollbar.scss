@@ -27,12 +27,7 @@ body.desktop {
     *:hover {
       &::-webkit-scrollbar-thumb {
         background: $primary;
-        opacity   : 1;
-      }
-
-      &::-webkit-scrollbar-track {
-
-        background: transparentize($color: $primary, $amount: 0.85);
+        border-radius: 2px;
       }
     }
   }
