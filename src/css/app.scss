@@ -5,3 +5,68 @@
   background           : linear-gradient(hsl(209, 56%, 82%), hsl(187, 42%, 67%)); // background: hsl(160, 5%, 80%);
   background-attachment: fixed;
 }
+
+
+// links
+
+a {
+  text-decoration: none;
+  color          : inherit;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+// background
+
+.bg-blurred {
+  backdrop-filter: blur(10px);
+}
+
+.q-drawer {
+  .q-drawer__content {
+    overflow: initial;
+  }
+
+  background: transparent;
+
+  &.q-drawer--on-top {
+    background: transparentize($color: $primary, $amount: 0.85);
+  }
+}
+
+// q-card
+.q-card {
+
+  .body--dark & {
+    box-shadow: $coolshadow-dark;
+  }
+
+  .body--light & {
+    box-shadow      : $coolshadow;
+    background-color: $almost-white;
+  }
+}
+
+// adaptive-card
+
+.adaptive-card {
+  width         : 100%;
+  max-height    : max(100%, 200px);
+  display       : flex;
+  flex-direction: column;
+  overflow      : hidden;
+
+  .scroll-section {
+    overflow-y: auto;
+  }
+
+  .actions-row {
+    height: max-content;
+
+    .body--light & {
+      background: transparent;
+    }
+  }
+}

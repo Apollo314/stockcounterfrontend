@@ -1,6 +1,6 @@
 <template>
   <q-page padding style="height: 1px">
-    <AdaptiveCard transparent class="full-height">
+    <AdaptiveCard class="full-height">
       <div class="q-pa-md row q-col-gutter-md justify-center">
         <div class="full-width" v-for="i in 50" :key="i">Why hello there</div>
       </div>
