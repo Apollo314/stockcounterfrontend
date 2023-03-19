@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh LpR fFf">
+  <q-layout view="hHh LpR fFf" class="overflow-hidden">
     <q-header reveal class="transparent bg-blurred">
       <q-toolbar>
         <q-btn
@@ -23,8 +23,17 @@
     </q-header>
 
     <LeftDrawer v-model="leftDrawerOpen"></LeftDrawer>
-    <q-page-container>
-      <router-view />
+    <q-page-container
+      class="perspective"
+      style="display: grid; grid-template-columns: 100%"
+    >
+      <router-view v-slot="{ Component, route }">
+        <Transition name="rotate-around-corner">
+          <KeepAlive :max="10">
+            <Component :is="Component" :key="getKey(route)" />
+          </KeepAlive>
+        </Transition>
+      </router-view>
     </q-page-container>
   </q-layout>
 </template>
@@ -32,6 +41,7 @@
 <script setup lang="ts">
 import { useQuasar } from 'quasar';
 import { ref } from 'vue';
+import { RouteLocationNormalizedLoaded } from 'vue-router';
 
 import LeftDrawer from './LeftDrawer.vue';
 
@@ -44,6 +54,29 @@ const leftDrawerOpen = ref(false);
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
+
+const getKey = (
+  route: RouteLocationNormalizedLoaded
+): string | number | symbol => {
+  if (route.meta.key) {
+    return <string>route.meta.key;
+  } else if (route.meta.keyFunc) {
+    return (<(route: RouteLocationNormalizedLoaded) => string>(
+      route.meta.keyFunc
+    ))(route);
+  } else if (route.meta.pathAsKey) {
+    return route.path;
+  } else if (route.name) {
+    return route.name;
+  } else {
+    return Math.random();
+  }
+};
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+main.q-page {
+  grid-column: 1;
+  grid-row: 1;
+}
+</style>
