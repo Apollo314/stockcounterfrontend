@@ -52,6 +52,43 @@ a {
   }
 }
 
+// q-menu
+.q-menu {
+  box-shadow: $coolshadow;
+
+  .body--dark & {
+    box-shadow: $coolshadow-dark;
+  }
+
+  &>.q-virtual-scroll__content {
+
+    padding      : $generic-border-radius 0;
+    border-radius: $generic-border-radius;
+    background   : black;
+
+    .body--light & {
+      background: white;
+    }
+  }
+}
+
+// q-field
+.q-field {
+  &.q-field--standout {
+    &.q-field--highlighted {
+      .q-field__control {
+        color     : white;
+        background: $secondary;
+
+        .q-field__control-container>.q-field__native,
+        .q-field__append {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
 // adaptive-card
 
 .adaptive-card {
