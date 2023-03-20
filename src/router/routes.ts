@@ -19,6 +19,9 @@ const routes: RouteRecordRaw[] = [
         path: 'settings/',
         component: () => import('pages/Settings/SettingsPage.vue'),
         name: 'settings',
+        meta: {
+          hideHeader: true,
+        },
       },
     ],
   },

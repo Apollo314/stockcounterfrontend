@@ -13,6 +13,12 @@ export default {
       label: 'Language',
     },
     settings: 'Settings',
+    theme: {
+      dark: 'Dark',
+      device: 'Device Theme',
+      label: 'Theme',
+      light: 'Light',
+    },
     transitionAnimations: {
       alternative: 'Alternative',
       animationType: 'Transition Animation Type',

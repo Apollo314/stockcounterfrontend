@@ -1,6 +1,6 @@
 <template>
-  <MobilePage :padding="$q.screen.gt.xs" style="height: 1px; max-width: 650px">
-    <AdaptiveCard>
+  <FullHeightPage padding>
+    <AdaptiveCard style="max-width: 650px">
       <div class="q-pa-md q-gutter-md">
         <template v-for="(comp, i) in settingComponents" :key="i">
           <component
@@ -12,7 +12,7 @@
         </template>
       </div>
     </AdaptiveCard>
-  </MobilePage>
+  </FullHeightPage>
 </template>
 
 <script setup lang="ts">
@@ -25,7 +25,7 @@ import { useI18n } from 'vue-i18n';
 import AdaptiveCard from 'src/components/Card/AdaptiveCard.vue';
 import { useSettingsStore } from 'src/stores/settings-store';
 
-import MobilePage from '../../components/Page/MobilePage.vue';
+import FullHeightPage from '../../components/Page/FullHeightPage.vue';
 
 const settings = useSettingsStore();
 
@@ -74,6 +74,34 @@ const settingComponents = computed<SettingComponent[]>(() => {
       mutator: (_, value) => {
         locale.value = value as keyof typeof quasarLangMap;
         $q.lang.set(quasarLangMap[value as keyof typeof quasarLangMap]);
+      },
+      bind: 'modelValue',
+    },
+    {
+      component: QSelect,
+      props: {
+        standout: true,
+        label: $t('settings.theme.label'),
+        options: [
+          {
+            label: $t('settings.theme.dark'),
+            value: true,
+          },
+          {
+            label: $t('settings.theme.light'),
+            value: false,
+          },
+          {
+            label: $t('settings.theme.device'),
+            value: 'auto',
+          },
+        ],
+        mapOptions: true,
+        emitValue: true,
+      },
+      getter: () => $q.dark.mode,
+      mutator: (_, value) => {
+        $q.dark.set(value as boolean | 'auto');
       },
       bind: 'modelValue',
     },

@@ -1,5 +1,5 @@
 <template>
-  <q-page :padding="padding" :style-fn="styleFn">
+  <q-page :padding="padding" :style-fn="styleFn || defaultStlyeFn">
     <div class="flex column full-height">
       <div class="col-shrink q-pb-sm">
         <div class="row full-width">
@@ -35,6 +35,13 @@ defineProps<{
    */
   styleFn?: ((offset: number, height: number) => void) | undefined;
 }>();
+
+function defaultStlyeFn(offset: number, height: number) {
+  return {
+    minHeight: `${height - offset}px`,
+    height: `${height - offset}px`,
+  };
+}
 </script>
 
 <style scoped></style>

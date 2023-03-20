@@ -43,7 +43,7 @@ a {
 .q-card {
 
   .body--dark & {
-    box-shadow: $coolshadow-dark;
+    box-shadow: $coolshadow;
   }
 
   .body--light & {
@@ -57,7 +57,7 @@ a {
   box-shadow: $coolshadow;
 
   .body--dark & {
-    box-shadow: $coolshadow-dark;
+    box-shadow: $coolshadow;
   }
 
   &>.q-virtual-scroll__content {
@@ -93,7 +93,7 @@ a {
 
 .adaptive-card {
   width         : 100%;
-  max-height    : max(100%, 200px);
+  max-height    : 100%;
   display       : flex;
   flex-direction: column;
   overflow      : hidden;
@@ -111,6 +111,12 @@ a {
   }
 }
 
+// // q-page
+// .desktop {
+//   .mobile-friendly-page {
+//     height: 0px;
+//   }
+// }
 
 // text color
 

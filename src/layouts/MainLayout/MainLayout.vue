@@ -1,6 +1,9 @@
 <template>
   <q-layout view="hHh LpR fFf" class="overflow-hidden">
-    <q-header reveal class="transparent bg-blurred auto-text-color">
+    <q-header
+      v-if="!$q.screen.lt.sm || !$route.meta.hideHeader"
+      class="transparent bg-blurred auto-text-color"
+    >
       <q-toolbar>
         <q-btn
           flat
