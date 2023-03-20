@@ -4,7 +4,6 @@
       <div class="q-pa-md q-gutter-md">
         <template v-for="(comp, i) in settingComponents" :key="i">
           <component
-            standout
             :[comp.bind]="comp.getter(settings.$state)"
             @update:model-value="comp.mutator(settings.$state, $event)"
             :is="comp.component"
@@ -56,6 +55,7 @@ const settingComponents = computed<SettingComponent[]>(() => {
     {
       component: QSelect,
       props: {
+        standout: true,
         label: $t('settings.language.label'),
         options: [
           {
@@ -91,6 +91,7 @@ const settingComponents = computed<SettingComponent[]>(() => {
     {
       component: QSelect,
       props: {
+        standout: true,
         label: $t('settings.transitionAnimations.animationType'),
         options: [
           {
