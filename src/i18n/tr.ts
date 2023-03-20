@@ -2,6 +2,9 @@
 
 export default {
   appName: 'Stok Takibi',
+  buttons: {
+    back: 'Geri',
+  },
   failed: 'Başarısız',
   fourofour: 'Aradık bulamadık.',
   gohome: 'Anasayfaya dön',

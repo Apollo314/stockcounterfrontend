@@ -1,5 +1,5 @@
 <template>
-  <q-page :padding="$q.screen.gt.xs" style="height: 1px; max-width: 650px">
+  <MobilePage :padding="$q.screen.gt.xs" style="height: 1px; max-width: 650px">
     <AdaptiveCard>
       <div class="q-pa-md q-gutter-md">
         <template v-for="(comp, i) in settingComponents" :key="i">
@@ -13,7 +13,7 @@
         </template>
       </div>
     </AdaptiveCard>
-  </q-page>
+  </MobilePage>
 </template>
 
 <script setup lang="ts">
@@ -25,6 +25,8 @@ import { useI18n } from 'vue-i18n';
 
 import AdaptiveCard from 'src/components/Card/AdaptiveCard.vue';
 import { useSettingsStore } from 'src/stores/settings-store';
+
+import MobilePage from '../../components/Page/MobilePage.vue';
 
 const settings = useSettingsStore();
 
