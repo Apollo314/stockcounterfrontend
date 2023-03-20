@@ -2,6 +2,9 @@
 
 export default {
   appName: 'Stock Counter',
+  buttons: {
+    back: 'Back',
+  },
   failed: 'Action failed',
   fourofour: 'Oops. Nothing here...',
   gohome: 'Go home',
