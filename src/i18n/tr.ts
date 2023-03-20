@@ -13,6 +13,12 @@ export default {
       label: 'Dil',
     },
     settings: 'Ayarlar',
+    theme: {
+      dark: 'Karanlık',
+      device: 'Cihaz Teması',
+      label: 'Tema',
+      light: 'Aydınlık',
+    },
     transitionAnimations: {
       alternative: 'Alternatif',
       animationType: 'Geçiş Animasyonu Tipi',
