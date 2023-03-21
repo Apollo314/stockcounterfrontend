@@ -4,6 +4,8 @@ export default {
   appName: 'Stok Takibi',
   buttons: {
     back: 'Geri',
+    forgotmypassword: 'Şifremi unuttum',
+    login: 'Giriş yap',
   },
   commons: {
     fields: {
@@ -17,6 +19,11 @@ export default {
     search: 'Ara',
   },
   failed: 'Başarısız',
+  forms: {
+    password: 'Parola',
+    rememberMe: 'Beni hatırla',
+    username: 'Kullanıcı adı',
+  },
   fourofour: 'Aradık bulamadık.',
   gohome: 'Anasayfaya dön',
   menu: {
@@ -37,6 +44,11 @@ export default {
     supplier: 'Satıcı | Satıcılar',
     unit: 'Birim | Birimler',
     warehouse: 'Depo | Depolar',
+  },
+  messages: {
+    failedToLogIn: 'Giriş denemesi başarısız',
+    loggedIn: 'Giriş Yapıldı',
+    welcome: 'Hoşgeldin {0}!',
   },
   nav: {
     search: 'Menüde ara',
@@ -66,4 +78,7 @@ export default {
     },
   },
   success: 'Başarılı',
+  titles: {
+    login: 'Giriş',
+  },
 };
