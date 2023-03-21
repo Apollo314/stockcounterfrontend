@@ -15,10 +15,6 @@
 a {
   text-decoration: none;
   color          : inherit;
-
-  &:hover {
-    color: $primary;
-  }
 }
 
 // background
@@ -68,6 +64,68 @@ a {
 
     .body--light & {
       background: white;
+    }
+  }
+
+  // &.q-menu--square {
+  //   // quasar chooses to make it square for reasons like having a different
+  //   // standout mode. I dislike it. no thanks.
+  //   border-radius: $generic-border-radius;
+  // }
+}
+
+
+// menu and expansion-item
+$menu-item-height : 40px;
+
+.menu-navigation {
+
+  .q-expansion-item.border-radius {
+    .q-item {
+      border-radius: $generic-border-radius;
+    }
+  }
+
+  .active-menu-item {
+    background: rgba(darken($secondary, 10%), 0.2);
+
+    .body--light & {
+      background: rgba(lighten($secondary, 20%), 0.2);
+    }
+  }
+
+
+  .semi-compact-q-item {
+    .q-item {
+      min-height: $menu-item-height;
+    }
+  }
+
+  &.filled-menu-items {
+    .menu-link:hover {
+      background: $primary;
+    }
+
+    .q-item,
+    .menu-link {
+      background: black;
+
+      &.exact-active-menu-item {
+        background: darken($primary, 20%);
+
+        .body--light & {
+          background: lighten($warning, 20%);
+        }
+      }
+
+      .body--light & {
+        .menu-link:hover {
+          color     : white;
+          background: $primary
+        }
+
+        background: $almost-white;
+      }
     }
   }
 }
