@@ -4,6 +4,8 @@ export default {
   appName: 'Stock Counter',
   buttons: {
     back: 'Back',
+    forgotmypassword: 'Forgot my password',
+    login: 'Log in',
   },
   commons: {
     fields: {
@@ -17,6 +19,11 @@ export default {
     search: 'Search',
   },
   failed: 'Action failed',
+  forms: {
+    password: 'Password',
+    rememberMe: 'Remember me',
+    username: 'Username',
+  },
   fourofour: 'Oops. Nothing here...',
   gohome: 'Go home',
   menu: {
@@ -37,6 +44,11 @@ export default {
     supplier: 'Supplier | Suppliers',
     unit: 'Unit | Units',
     warehouse: 'Warehouse | Warehouses',
+  },
+  messages: {
+    failedToLogIn: 'Failed to log in',
+    loggedIn: 'Logged In',
+    welcome: 'Welcome {0}!',
   },
   nav: {
     search: 'Search in menu',
@@ -66,4 +78,7 @@ export default {
     },
   },
   success: 'Action was successful',
+  titles: {
+    login: 'Login',
+  },
 };

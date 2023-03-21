@@ -1,0 +1,90 @@
+<template>
+  <AdaptiveCard style="max-width: 400px">
+    <template #default>
+      <div class="q-pa-md" style="height: min(max-content, 100vh)">
+        <q-form
+          @submit.prevent="login()"
+          @reset="reset"
+          class="q-gutter-md"
+          greedy
+        >
+          <div class="text-h6 text-primary">{{ $t('titles.login') }}</div>
+          <q-input
+            tabindex="1"
+            :rules="[(val) => !!val]"
+            hide-bottom-space
+            standout
+            v-model="username"
+            type="text"
+            :placeholder="$t('forms.username')"
+          >
+            <template #prepend><q-icon name="person" /></template>
+          </q-input>
+          <q-input
+            tabindex="1"
+            :rules="[(val) => !!val]"
+            hide-bottom-space
+            standout
+            v-model="password"
+            type="password"
+            :placeholder="$t('forms.password')"
+          >
+            <template #prepend><q-icon name="lock" /></template>
+          </q-input>
+          <q-checkbox
+            v-model="authStore.rememberMe"
+            tabindex="1"
+            :label="$t('forms.rememberMe')"
+          />
+          <div>
+            <q-btn
+              :label="$t('buttons.login')"
+              icon="login"
+              size="md"
+              no-caps
+              tabindex="1"
+              class="full-width"
+              type="submit"
+              push
+              color="primary"
+            />
+          </div>
+        </q-form>
+        <div class="row full-width q-pt-md justify-end">
+          <RouterLink class="text-grey" tabindex="1" :to="'/'">
+            {{ $t('buttons.forgotmypassword') }}
+          </RouterLink>
+        </div>
+      </div>
+    </template>
+  </AdaptiveCard>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
+import { useAuthStore } from 'src/stores/auth-store';
+
+const emit = defineEmits<{
+  (e: 'success'): void;
+}>();
+
+const username = ref('');
+const password = ref('');
+const authStore = useAuthStore();
+
+const login = () => {
+  authStore.login(username.value, password.value, () => {
+    emit('success');
+  });
+};
+
+const reset = () => {
+  username.value = '';
+  password.value = '';
+  authStore.rememberMe = true;
+};
+</script>
+
+<style scoped></style>
