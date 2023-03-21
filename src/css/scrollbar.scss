@@ -1,18 +1,14 @@
 @import './quasar.variables.scss';
 
-
 body.desktop {
-
   .compact-scrollbar {
-
     &,
     * {
-
       scrollbar-width: thin;
       scrollbar-color: $primary transparent;
 
       &::-webkit-scrollbar {
-        width : 4px;
+        width: 4px;
         height: 4px;
       }
 
