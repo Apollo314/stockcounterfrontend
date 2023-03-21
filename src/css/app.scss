@@ -4,17 +4,19 @@
 // app global css in SCSS form
 
 .body--light {
-  background           : black;
-  background           : linear-gradient(hsl(209, 56%, 82%), hsl(187, 42%, 67%)); // background: hsl(160, 5%, 80%);
+  background: black;
+  background: linear-gradient(
+    hsl(209, 56%, 82%),
+    hsl(187, 42%, 67%)
+  ); // background: hsl(160, 5%, 80%);
   background-attachment: fixed;
 }
-
 
 // links
 
 a {
   text-decoration: none;
-  color          : inherit;
+  color: inherit;
 }
 
 // background
@@ -37,13 +39,12 @@ a {
 
 // q-card
 .q-card {
-
   .body--dark & {
     box-shadow: $coolshadow;
   }
 
   .body--light & {
-    box-shadow      : $coolshadow;
+    box-shadow: $coolshadow;
     background-color: $almost-white;
   }
 }
@@ -56,11 +57,10 @@ a {
     box-shadow: $coolshadow;
   }
 
-  &>.q-virtual-scroll__content {
-
-    padding      : $generic-border-radius 0;
+  & > .q-virtual-scroll__content {
+    padding: $generic-border-radius 0;
     border-radius: $generic-border-radius;
-    background   : black;
+    background: black;
 
     .body--light & {
       background: white;
@@ -74,12 +74,10 @@ a {
   // }
 }
 
-
 // menu and expansion-item
-$menu-item-height : 40px;
+$menu-item-height: 40px;
 
 .menu-navigation {
-
   .q-expansion-item.border-radius {
     .q-item {
       border-radius: $generic-border-radius;
@@ -93,7 +91,6 @@ $menu-item-height : 40px;
       background: rgba(lighten($secondary, 20%), 0.2);
     }
   }
-
 
   .semi-compact-q-item {
     .q-item {
@@ -120,8 +117,8 @@ $menu-item-height : 40px;
 
       .body--light & {
         .menu-link:hover {
-          color     : white;
-          background: $primary
+          color: white;
+          background: $primary;
         }
 
         background: $almost-white;
@@ -135,10 +132,10 @@ $menu-item-height : 40px;
   &.q-field--standout {
     &.q-field--highlighted {
       .q-field__control {
-        color     : white;
+        color: white;
         background: $secondary;
 
-        .q-field__control-container>.q-field__native,
+        .q-field__control-container > .q-field__native,
         .q-field__append {
           color: white;
         }
@@ -150,16 +147,15 @@ $menu-item-height : 40px;
 // adaptive-card
 
 .adaptive-card {
-  width         : 100%;
-  max-height    : 100%;
-  display       : flex;
+  width: 100%;
+  max-height: 100%;
+  display: flex;
   flex-direction: column;
-  overflow      : hidden;
+  overflow: hidden;
 
   .scroll-section {
     overflow-y: auto;
   }
-
   .actions-row {
     height: max-content;
 
@@ -168,13 +164,6 @@ $menu-item-height : 40px;
     }
   }
 }
-
-// // q-page
-// .desktop {
-//   .mobile-friendly-page {
-//     height: 0px;
-//   }
-// }
 
 // text color
 
@@ -186,4 +175,8 @@ $menu-item-height : 40px;
   .body--dark & {
     color: $almost-white;
   }
+}
+
+.q-drawer__backdrop {
+  background: transparent !important;
 }
