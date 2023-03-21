@@ -5,9 +5,42 @@ export default {
   buttons: {
     back: 'Back',
   },
+  commons: {
+    fields: {
+      created_at: 'Create Date',
+      created_by: 'Created By',
+      updated_at: 'Update Date',
+      updated_by: 'Updated By',
+    },
+    new: 'New @:{0}',
+    'no-result': 'No Result',
+    search: 'Search',
+  },
   failed: 'Action failed',
   fourofour: 'Oops. Nothing here...',
   gohome: 'Go home',
+  menu: {
+    'business-relations': 'Business Relations',
+    category: 'Category | Categories',
+    customer: 'Customer | Customers',
+    inventory: 'Inventory',
+    invoices: 'Invoices',
+    'item-service': 'Item/Service | Items/Services',
+    'new-purchase-invoice': 'New Purchase',
+    'new-refund-purchase-invoice': 'New Purchase Refund',
+    'new-refund-sale-invoice': 'New Sale Refund',
+    'new-sale-invoice': 'New Sales',
+    'purchase-invoices': 'Purchase Invoices',
+    'refund-purchase-invoices': 'Refund Purchase Invoices',
+    'refund-sale-invoices': 'Refund Sale Invoices',
+    'sale-invoices': 'Sale Invoices',
+    supplier: 'Supplier | Suppliers',
+    unit: 'Unit | Units',
+    warehouse: 'Warehouse | Warehouses',
+  },
+  nav: {
+    search: 'Search in menu',
+  },
   settings: {
     language: {
       label: 'Language',

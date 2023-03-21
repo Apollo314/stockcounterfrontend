@@ -1,5 +1,5 @@
 import { boot } from 'quasar/wrappers';
-import { createI18n } from 'vue-i18n';
+import { createI18n, ComposerTranslation } from 'vue-i18n';
 
 import en from 'src/i18n/en';
 import tr from 'src/i18n/tr';
@@ -26,14 +26,16 @@ declare module 'vue-i18n' {
   export interface DefineNumberFormat {}
 }
 /* eslint-enable @typescript-eslint/no-empty-interface */
-export default boot(({ app }) => {
-  const i18n = createI18n<[MessageSchema], MessageLanguages>({
-    locale: navigator.language.split('-')?.[0],
-    fallbackLocale: 'en',
-    legacy: false,
-    messages,
-  });
+const i18n = createI18n<[MessageSchema], MessageLanguages>({
+  locale: navigator.language.split('-')?.[0],
+  fallbackLocale: 'en',
+  legacy: false,
+  messages,
+});
 
+export const $t = i18n.global.t as ComposerTranslation;
+
+export default boot(({ app }) => {
   // Set i18n instance on app
   app.use(i18n);
 });
