@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 import { Notify } from 'quasar';
 
+import { api } from 'boot/axios';
 import { $t } from 'boot/i18n';
-import { api } from 'src/boot/axios';
 
 type State = {
   loggedIn: boolean;

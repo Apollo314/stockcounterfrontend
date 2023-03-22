@@ -69,9 +69,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import AdaptiveCard from '../../components/Card/AdaptiveCard.vue';
-import AccordionMenu from '../../components/DrawerMenu/AccordionMenu.vue';
-import { menuItems } from '../../stores/menu-store';
+import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
+import AccordionMenu from 'components/DrawerMenu/AccordionMenu.vue';
+import { menuItems } from 'stores/menu-store';
 
 defineProps<{
   modelValue: boolean;

@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { RouteLocationRaw, useRouter } from 'vue-router';
 
-import Login from 'src/components/Login/LoginComponent.vue';
+import Login from 'components/Login/LoginComponent.vue';
 
 const props = withDefaults(
   defineProps<{

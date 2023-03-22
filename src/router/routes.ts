@@ -3,7 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('src/layouts/MainLayout/MainLayout.vue'),
+    component: () => import('layouts/MainLayout/MainLayout.vue'),
     children: [
       {
         path: '',
@@ -40,7 +40,7 @@ const routes: RouteRecordRaw[] = [
   // but you can also remove it
   {
     path: '/:catchAll(.*)*',
-    component: () => import('src/pages/NotFound/ErrorNotFound.vue'),
+    component: () => import('pages/NotFound/ErrorNotFound.vue'),
   },
 ];
 
