@@ -14,7 +14,7 @@ export const menuItems = (): MenuItem[] => {
           title: $t('menu.sale-invoices'),
           shrinkable: true,
           icon: 'article',
-          to: { name: 'nest', params: { id: 1 } },
+          to: { name: 'invoices' },
           bgColor: 'green-8',
           children: [
             {

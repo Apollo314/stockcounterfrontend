@@ -4,5 +4,9 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "strict": true
+  },
+  "vueCompilerOptions": {
+    "jsxTemplates": true,
+    "experimentalRfc436": true
   }
 }
