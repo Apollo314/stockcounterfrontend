@@ -22,6 +22,7 @@ import type { BaseRow, BaseColumn } from 'components/DataTable/DataTable.vue';
 type Row = BaseRow & {
   test: string;
   test2: string;
+  info3: number;
 };
 
 type Column = BaseColumn<Row> & {
@@ -42,6 +43,12 @@ const typedColumns = (): Column[] => [
     field: (row) => row.test2,
     align: 'center',
   },
+  {
+    id: 'info3',
+    field: (row) => `${row.info3}`,
+    label: 'Info 3',
+    align: 'right',
+  },
 ];
 
 const data: Row[] = [
@@ -49,21 +56,25 @@ const data: Row[] = [
     id: 0,
     test: 'hello',
     test2: 'there',
+    info3: 5,
   },
   {
     id: 1,
     test: 'how you',
     test2: 'doin',
+    info3: 10,
   },
   {
     id: 2,
     test: 'good',
     test2: 'I hope',
+    info3: 10,
   },
   {
-    id: 2,
+    id: 3,
     test: 'I am',
     test2: 'fine',
+    info3: 10,
   },
 ];
 </script>
