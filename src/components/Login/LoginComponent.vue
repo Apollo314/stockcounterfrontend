@@ -64,7 +64,7 @@
 import { ref } from 'vue';
 
 import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
-import { useAuthStore } from 'src/stores/auth-store';
+import { useAuthStore } from 'stores/auth-store';
 
 const emit = defineEmits<{
   (e: 'success'): void;

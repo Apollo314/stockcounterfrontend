@@ -22,8 +22,8 @@ import quasarTR from 'quasar/lang/tr';
 import { computed, onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-import AdaptiveCard from 'src/components/Card/AdaptiveCard.vue';
-import { useSettingsStore } from 'src/stores/settings-store';
+import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
+import { useSettingsStore } from 'stores/settings-store';
 
 import FullHeightPage from '../../components/Page/FullHeightPage.vue';
 
