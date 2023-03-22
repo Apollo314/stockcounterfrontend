@@ -16,6 +16,11 @@ const routes: RouteRecordRaw[] = [
         name: 'home',
       },
       {
+        path: '/table',
+        component: () => import('pages/Invoices/InvoiceList.vue'),
+        name: 'invoices',
+      },
+      {
         path: '/:id(\\d+)',
         component: () => import('pages/Index/IndexPage.vue'),
         name: 'nest',

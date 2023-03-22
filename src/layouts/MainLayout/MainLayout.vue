@@ -68,11 +68,11 @@ const getKey = (
   route: RouteLocationNormalizedLoaded
 ): string | number | symbol => {
   if (route.meta.key) {
-    return <string>route.meta.key;
+    return route.meta.key as string;
   } else if (route.meta.keyFunc) {
-    return (<(route: RouteLocationNormalizedLoaded) => string>(
-      route.meta.keyFunc
-    ))(route);
+    return (
+      route.meta.keyFunc as (route: RouteLocationNormalizedLoaded) => string
+    )(route);
   } else if (route.meta.pathAsKey) {
     return route.path;
   } else if (route.name) {
@@ -88,9 +88,9 @@ const getTransition = (
   if (!settings.ui.showTransitionAnimations) return undefined;
   let transition: string = settings.ui.genericAnimation;
   if (route.meta.transition) {
-    transition = <string>route.meta.transition;
+    transition = route.meta.transition as string;
   } else if (route.params.transition) {
-    transition = <string>route.params.transition;
+    transition = route.params.transition as string;
   }
   return transition;
 };
