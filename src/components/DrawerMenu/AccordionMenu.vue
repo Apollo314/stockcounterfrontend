@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="menu-navigation q-pr-xs"
+    class="menu-navigation"
     :class="{
       'show-connectors': showConnectors,
       'bordered-menu-items': borderedMenuItems,
@@ -137,23 +137,23 @@ nav.menu-navigation {
         .menu-item {
           margin-top: $gutter;
         }
-        .menu-item:not(:last-child) {
-          position: relative;
-          &::after {
+        .menu-item:not(:first-child) {
+          .q-item::before {
             content: '';
             position: absolute;
-            height: calc(50% + #{$connector-border-radius});
+            height: calc(50% + #{$connector-border-radius} + #{$gutter});
             left: -$connector-depth;
-            top: calc(50% - #{$connector-border-radius});
+            top: calc(-50% - #{$connector-border-radius} - #{$gutter * 2});
             border-left: $border-width solid $border-color;
             transition: 0s;
           }
         }
-        .q-item::before {
+        .q-item::after {
           content: '';
           position: absolute;
           height: calc(50% + #{$gutter + $border-width});
           width: $connector-depth;
+          left: -$connector-depth;
           top: -$gutter - $border-width;
           border-left: $border-width solid $border-color;
           border-bottom: $border-width solid $border-color;
@@ -162,7 +162,7 @@ nav.menu-navigation {
       }
     }
     &.rounded-connectors {
-      .q-item::before {
+      .q-item::after {
         border-bottom-left-radius: $connector-border-radius;
       }
     }
@@ -171,13 +171,6 @@ nav.menu-navigation {
     .q-item {
       border: $border-width solid $border-color;
       transition: 0s;
-    }
-    &.show-connectors .q-expansion-item__container .q-list .q-item {
-      // selector needs to be either more specific to overrule or have !important.
-      // and I am too afraid to use !important
-      &::before {
-        left: -$connector-depth - $border-width;
-      }
     }
   }
 }
