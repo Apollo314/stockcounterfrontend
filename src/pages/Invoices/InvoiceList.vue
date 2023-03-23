@@ -1,15 +1,6 @@
 <template>
-  <FullHeightPage padding>
-    <DataTable :data="data" :columns="typedColumns">
-      <template v-slot:td-inner-sibling-test="{ row, column }">
-        <q-tooltip> {{ column.somethingelse?.(row) }} </q-tooltip>
-      </template>
-      <template v-slot:body-tr-inner="{ row }">
-        <q-tooltip>
-          {{ row.test }}
-        </q-tooltip>
-      </template>
-    </DataTable>
+  <FullHeightPage hide-back-button padding>
+    <DataTable :data="data" :columns="typedColumns"> </DataTable>
   </FullHeightPage>
 </template>
 
@@ -72,6 +63,102 @@ const data: Row[] = [
   },
   {
     id: 3,
+    test: 'I am',
+    test2: 'fine',
+    info3: 10,
+  },
+  {
+    id: 4,
+    test: 'hello',
+    test2: 'there',
+    info3: 5,
+  },
+  {
+    id: 5,
+    test: 'how you',
+    test2: 'doin',
+    info3: 10,
+  },
+  {
+    id: 6,
+    test: 'good',
+    test2: 'I hope',
+    info3: 10,
+  },
+  {
+    id: 7,
+    test: 'I am',
+    test2: 'fine',
+    info3: 10,
+  },
+  {
+    id: 8,
+    test: 'hello',
+    test2: 'there',
+    info3: 5,
+  },
+  {
+    id: 9,
+    test: 'how you',
+    test2: 'doin',
+    info3: 10,
+  },
+  {
+    id: 10,
+    test: 'good',
+    test2: 'I hope',
+    info3: 10,
+  },
+  {
+    id: 11,
+    test: 'I am',
+    test2: 'fine',
+    info3: 10,
+  },
+  {
+    id: 11,
+    test: 'hello',
+    test2: 'there',
+    info3: 5,
+  },
+  {
+    id: 12,
+    test: 'how you',
+    test2: 'doin',
+    info3: 10,
+  },
+  {
+    id: 13,
+    test: 'good',
+    test2: 'I hope',
+    info3: 10,
+  },
+  {
+    id: 14,
+    test: 'I am',
+    test2: 'fine',
+    info3: 10,
+  },
+  {
+    id: 15,
+    test: 'hello',
+    test2: 'there',
+    info3: 5,
+  },
+  {
+    id: 16,
+    test: 'how you',
+    test2: 'doin',
+    info3: 10,
+  },
+  {
+    id: 17,
+    test: 'good',
+    test2: 'I hope',
+    info3: 10,
+  },
+  {
+    id: 18,
     test: 'I am',
     test2: 'fine',
     info3: 10,

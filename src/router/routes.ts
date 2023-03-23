@@ -9,6 +9,7 @@ const routes: RouteRecordRaw[] = [
         path: '',
         component: () => import('pages/Index/IndexPage.vue'),
         name: 'home',
+        meta: { key: 'Index' },
       },
       {
         path: '/login',
@@ -19,6 +20,7 @@ const routes: RouteRecordRaw[] = [
         path: '/table',
         component: () => import('pages/Invoices/InvoiceList.vue'),
         name: 'invoices',
+        meta: { key: 'table' },
       },
       {
         path: '/:id(\\d+)',
