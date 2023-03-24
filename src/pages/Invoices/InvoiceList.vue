@@ -1,14 +1,25 @@
 <template>
   <FullHeightPage hide-back-button padding>
-    <DataTable :data="data" :columns="typedColumns"> </DataTable>
+    <DataTable
+      v-model:pagination="pagination"
+      :data="data"
+      :columns="typedColumns"
+    >
+    </DataTable>
   </FullHeightPage>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+
 import DataTable from 'components/DataTable/DataTable.vue';
 import FullHeightPage from 'components/Page/FullHeightPage.vue';
 
-import type { BaseRow, BaseColumn } from 'components/DataTable/DataTable.vue';
+import type {
+  BaseRow,
+  BaseColumn,
+  Pagination,
+} from 'components/DataTable/DataTable.vue';
 
 type Row = BaseRow & {
   test: string;
@@ -19,6 +30,15 @@ type Row = BaseRow & {
 type Column = BaseColumn<Row> & {
   somethingelse?: (row: Row) => string;
 };
+
+type Filters = Record<string, string>;
+
+const pagination = ref<Pagination<Filters>>({
+  count: 100,
+  filters: {},
+  limit: 10,
+  offset: 0,
+});
 
 const typedColumns = (): Column[] => [
   {
