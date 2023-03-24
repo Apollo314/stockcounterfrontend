@@ -4,66 +4,75 @@
       'sticky-header': stickyHeader,
       'sticky-caption': stickyCaption,
     }"
+    bordered
     no-width-scrollbar
     :compact-scrollbar="false"
   >
-    <table flat class="fit coolshadow data-table">
-      <caption class="table-caption" :class="captionClasses">
-        <slot name="caption" v-bind="{ selected, pagination }"></slot>
-      </caption>
-      <thead class="table-head text-white" :class="theadClasses">
-        <tr>
-          <th class="table-header-cell" @click.stop="toggleSelectionAll()">
-            <q-checkbox
-              dense
-              class="checkbox"
-              :model-value="selectAllButtonStatus"
-              @click="toggleSelectionAll()"
-            />
-          </th>
-          <th
-            class="table-header-cell"
-            v-for="column in computedcolumns"
-            :key="column.id"
-            :class="getAlignClass(column.align)"
+    <div class="table-parent">
+      <table flat class="fit coolshadow data-table">
+        <caption class="table-caption" :class="captionClasses">
+          <slot name="caption" v-bind="{ selected, pagination }"></slot>
+        </caption>
+        <thead class="table-head" :class="theadClasses">
+          <tr>
+            <th class="table-header-cell" @click.stop="toggleSelectionAll()">
+              <q-checkbox
+                dense
+                color="primary"
+                class="checkbox"
+                :model-value="selectAllButtonStatus"
+                @click="toggleSelectionAll()"
+              />
+            </th>
+            <th
+              class="table-header-cell"
+              v-for="column in computedcolumns"
+              :key="column.id"
+              :class="getAlignClass(column.align)"
+            >
+              <b>
+                {{ column.label }}
+              </b>
+              <slot
+                :name="`th-inner-sibling-${column.id}`"
+                v-bind="{ column }"
+              />
+            </th>
+            <slot name="head-tr-inner" />
+          </tr>
+        </thead>
+        <tbody class="table-body" :class="tbodyClasses">
+          <tr
+            v-for="row in data"
+            :class="{ 'selected-row': selected.indexOf(row) > -1 }"
+            :key="row.id"
           >
-            <b>
-              {{ column.label }}
-            </b>
-            <slot :name="`th-inner-sibling-${column.id}`" v-bind="{ column }" />
-          </th>
-          <slot name="head-tr-inner" />
-        </tr>
-      </thead>
-      <tbody class="table-body" :class="tbodyClasses">
-        <tr
-          v-for="row in data"
-          :class="{ 'selected-row': selected.indexOf(row) > -1 }"
-          :key="row.id"
-        >
-          <td @click.stop="toggleSelection(row, !(selected.indexOf(row) > -1))">
-            <q-checkbox
-              dense
-              class="checkbox"
-              :model-value="selected.indexOf(row) > -1"
-              @update:model-value="toggleSelection(row, $event)"
-            />
-          </td>
-          <td
-            :class="getAlignClass(column.align)"
-            v-for="column in computedcolumns"
-            :key="column.id"
-          >
-            {{ column.field(row) }}
-            <slot
-              :name="`td-inner-sibling-${column.id}`"
-              v-bind="{ row: row, column: column }"
-            />
-          </td>
-          <slot name="body-tr-inner" v-bind="{ row }" />
-        </tr>
-      </tbody>
-    </table>
+            <td
+              @click.stop="toggleSelection(row, !(selected.indexOf(row) > -1))"
+            >
+              <q-checkbox
+                dense
+                class="checkbox"
+                :model-value="selected.indexOf(row) > -1"
+                @update:model-value="toggleSelection(row, $event)"
+              />
+            </td>
+            <td
+              :class="getAlignClass(column.align)"
+              v-for="column in computedcolumns"
+              :key="column.id"
+            >
+              {{ column.field(row) }}
+              <slot
+                :name="`td-inner-sibling-${column.id}`"
+                v-bind="{ row: row, column: column }"
+              />
+            </td>
+            <slot name="body-tr-inner" v-bind="{ row }" />
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <template #action-bottom>
       <div class="row full-width q-pa-sm">
         <q-space />
@@ -212,23 +221,31 @@ $table-dark-border-color: $separator-dark-color !default;
 $table-dark-hover-background: hsla(197, 60%, 50%, 0.3);
 $table-dark-selected-background: darken($warning, 40%);
 
+.table-parent {
+  border-radius: 0 0 $generic-border-radius $generic-border-radius;
+  contain: paint;
+}
 .data-table {
-  // border-radius: $generic-border-radius;
+  position: relative;
   border-collapse: collapse;
   position: relative;
   .checkbox {
     padding: 4px;
   }
   thead.table-head {
+    // transition: box-shadow 0.2s ease;
+    // .q-card__section:not(.arrived-top) & {
+    //   box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.2);
+    // }
+    .sticky-header & {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    background-color: $secondary;
     th.table-header-cell {
-      background-color: $teal-8;
       border-collapse: collapse;
       border: none;
-      .sticky-header & {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
       .sticky-caption & {
         top: $captionheight;
       }
@@ -257,8 +274,9 @@ $table-dark-selected-background: darken($warning, 40%);
       background: $secondcolor-dark;
     }
     tr.selected-row {
-      position: relative;
-      background: $table-dark-selected-background;
+      td {
+        background: $table-dark-selected-background;
+      }
       // &::after {
       //   content: '';
       //   position: absolute;
@@ -288,7 +306,12 @@ $table-dark-selected-background: darken($warning, 40%);
   }
 
   .table-caption {
-    background: $secondary;
+    .body--dark & {
+      background: $dark;
+    }
+    .body--light & {
+      background: $almost-white;
+    }
     height: $captionheight;
     .sticky-caption & {
       position: sticky;
