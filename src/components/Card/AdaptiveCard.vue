@@ -1,5 +1,13 @@
 <template>
-  <q-card class="adaptive-card">
+  <q-card
+    class="adaptive-card"
+    :class="{
+      'arrived-top': arrivedState.top,
+      'arrived-right': arrivedState.right,
+      'arrived-bottom': arrivedState.bottom,
+      'arrived-left': arrivedState.left,
+    }"
+  >
     <q-card-actions
       v-if="$slots['action-top']"
       class="q-pa-none actions-container"
@@ -8,32 +16,40 @@
         <slot name="action-top" />
       </div>
     </q-card-actions>
-    <div class="relative"></div>
-    <q-card-section
-      ref="scrollElement"
-      class="col relative scroll-section q-pa-none"
-      :class="{
-        'no-width-scrollbar': noWidthScrollbar,
-        'compact-scrollbar': compactScrollbar,
-        'arrived-top': arrivedState.top,
-        'arrived-right': arrivedState.right,
-        'arrived-bottom': arrivedState.bottom,
-        'arrived-left': arrivedState.left,
-      }"
-    >
+    <div class="scrollparent">
       <div
         v-if="scrollbarProperties?.needsScrollbar"
-        class="virtual-scrollbar"
+        class="virtual-scrollbar vertical"
         :class="{
           'is-scrolling': isScrolling,
         }"
         :style="{
-          top: `${scrollbarProperties.scrollbarPosition}px`,
+          transform: `translateY(${scrollbarProperties.scrollbarPosition}px)`,
           height: `${scrollbarProperties.scrollbarHeight}px`,
         }"
       />
-      <slot />
-    </q-card-section>
+      <div
+        v-if="scrollbarProperties?.needsHScrollbar"
+        class="virtual-scrollbar horizontal"
+        :class="{
+          'is-scrolling': isScrolling,
+        }"
+        :style="{
+          transform: `translateX(${scrollbarProperties.hScrollbarPosition}px)`,
+          width: `${scrollbarProperties.hScrollbarWidth}px`,
+        }"
+      />
+      <div
+        ref="scrollElement"
+        class="scroll-section"
+        :class="{
+          'no-width-scrollbar': noWidthScrollbar,
+          'compact-scrollbar': compactScrollbar,
+        }"
+      >
+        <slot />
+      </div>
+    </div>
     <q-card-actions
       v-if="$slots['action-bottom']"
       class="q-pa-none actions-container"
@@ -47,7 +63,7 @@
 
 <script setup lang="ts">
 import { useScroll } from '@vueuse/core';
-import { QCardSection, useQuasar } from 'quasar';
+import { useQuasar } from 'quasar';
 import { ref, computed, onActivated } from 'vue';
 
 withDefaults(
@@ -60,12 +76,9 @@ withDefaults(
   }
 );
 
-const scrollElement = ref<InstanceType<typeof QCardSection>>();
-const scrollHtmlElement = computed(() => {
-  return scrollElement?.value?.$el;
-});
+const scrollElement = ref<HTMLElement>();
 
-const { x, y, isScrolling, arrivedState } = useScroll(scrollHtmlElement);
+const { x, y, isScrolling, arrivedState } = useScroll(scrollElement);
 const $q = useQuasar();
 
 onActivated(() => {
@@ -77,20 +90,30 @@ onActivated(() => {
 
 const scrollbarProperties = computed(() => {
   if ($q.platform.is.desktop) {
-    const scrollHeight = scrollHtmlElement.value?.scrollHeight;
-    const offsetHeight = scrollHtmlElement.value?.offsetHeight;
+    const scrollHeight = scrollElement.value?.scrollHeight || 0;
+    const offsetHeight = scrollElement.value?.offsetHeight || 0;
+    const scrollWidth = scrollElement.value?.scrollWidth || 0;
+    const offsetWidth = scrollElement.value?.offsetWidth || 0;
+
     const needsScrollbar = offsetHeight < scrollHeight;
     const scrollbarHeight = offsetHeight ** 2 / scrollHeight;
     const availableTrack = scrollHeight - offsetHeight;
     const scrollbarPosition =
-      y.value + (y.value / availableTrack) * (offsetHeight - scrollbarHeight);
+      (y.value / availableTrack) * (offsetHeight - scrollbarHeight);
+
+    const needsHScrollbar = offsetWidth < scrollWidth;
+    const hScrollbarWidth = offsetWidth ** 2 / scrollWidth;
+    const availableHTrack = scrollWidth - offsetWidth;
+    const hScrollbarPosition =
+      (x.value / availableHTrack) * (offsetWidth - hScrollbarWidth);
 
     return {
-      scrollHeight,
-      offsetHeight,
       scrollbarHeight,
       scrollbarPosition,
       needsScrollbar,
+      hScrollbarWidth,
+      hScrollbarPosition,
+      needsHScrollbar,
     };
   } else {
     return undefined;
@@ -100,17 +123,33 @@ const scrollbarProperties = computed(() => {
 <style lang="scss">
 .virtual-scrollbar {
   position: absolute;
-  width: 0px;
-  right: 0px;
+  &.vertical {
+    width: 0px;
+    right: 0px;
+    &.is-scrolling {
+      width: 4px;
+    }
+  }
+  &.horizontal {
+    height: 0px;
+    bottom: 0px;
+    &.is-scrolling {
+      height: 4px;
+    }
+  }
   background: $primary;
   border-radius: 2px;
   z-index: 10000;
   transition: width 0.1s ease-in;
-  &.is-scrolling {
-    width: 4px;
-  }
 }
 .scroll-section {
   transition: box-shadow 0.2s ease;
+}
+.scrollparent {
+  flex-grow: 1;
+  position: relative;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 </style>
