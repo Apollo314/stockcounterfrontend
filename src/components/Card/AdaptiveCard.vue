@@ -15,6 +15,10 @@
       :class="{
         'no-width-scrollbar': noWidthScrollbar,
         'compact-scrollbar': compactScrollbar,
+        'arrived-top': arrivedState.top,
+        'arrived-right': arrivedState.right,
+        'arrived-bottom': arrivedState.bottom,
+        'arrived-left': arrivedState.left,
       }"
     >
       <div
@@ -61,7 +65,7 @@ const scrollHtmlElement = computed(() => {
   return scrollElement?.value?.$el;
 });
 
-const { x, y, isScrolling } = useScroll(scrollHtmlElement);
+const { x, y, isScrolling, arrivedState } = useScroll(scrollHtmlElement);
 const $q = useQuasar();
 
 onActivated(() => {
@@ -105,5 +109,8 @@ const scrollbarProperties = computed(() => {
   &.is-scrolling {
     width: 4px;
   }
+}
+.scroll-section {
+  transition: box-shadow 0.2s ease;
 }
 </style>
