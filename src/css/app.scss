@@ -1,8 +1,6 @@
 @use './scrollbar.scss';
 @use './transition-animations.scss';
 
-// app global css in SCSS form
-
 .body--light {
   background: black;
   background: linear-gradient(
@@ -154,7 +152,7 @@ $menu-item-height: 40px;
   overflow: hidden;
 
   .scroll-section {
-    overflow-y: auto;
+    overflow: auto;
   }
   .actions-row {
     height: max-content;
