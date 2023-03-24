@@ -64,6 +64,19 @@
         </tr>
       </tbody>
     </table>
+    <template #action-bottom>
+      <div class="row full-width q-pa-sm">
+        <q-space />
+        <OffsetLimitPaginator
+          :model-value="pagination.offset"
+          :count="pagination.count"
+          :limit="pagination.limit"
+          @update:model-value="request({ offset: $event })"
+          :max-length="7"
+          direction-links
+        ></OffsetLimitPaginator>
+      </div>
+    </template>
   </adaptive-card>
 </template>
 
@@ -72,9 +85,10 @@
   lang="ts"
   generic="Row extends BaseRow, Column extends BaseColumn<Row>, Filters extends Object"
 >
-import { computed, ref, Ref } from 'vue';
+import { computed, ref, Ref, nextTick } from 'vue';
 
-import AdaptiveCard from '../Card/AdaptiveCard.vue';
+import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
+import OffsetLimitPaginator from 'components/Paginator/OffsetLimitPaginator.vue';
 
 export type BaseRow = {
   id: number | string;
@@ -99,7 +113,7 @@ const props = withDefaults(
   defineProps<{
     columns: Column[] | (() => Column[]);
     data: Row[];
-    pagination?: Pagination<Filters>;
+    pagination: Pagination<Filters>;
     stickyCaption?: boolean;
     stickyHeader?: boolean;
     captionClasses?: string;
@@ -110,6 +124,11 @@ const props = withDefaults(
     stickyHeader: true,
   }
 );
+
+const emit = defineEmits<{
+  (e: 'update:request', pagination: Pagination<Filters>): void;
+  (e: 'update:pagination', pagination: Pagination<Filters>): void;
+}>();
 
 const selected: Ref<Row[]> = ref([]);
 
@@ -162,6 +181,14 @@ const computedcolumns = computed(() => {
     return props.columns;
   }
 });
+
+function request(partialPagination: Partial<Pagination<Filters>>) {
+  const newPagination = { ...props.pagination, ...partialPagination };
+  emit('update:pagination', newPagination);
+  nextTick(() => {
+    emit('update:request', props.pagination);
+  });
+}
 </script>
 
 <style lang="scss">
