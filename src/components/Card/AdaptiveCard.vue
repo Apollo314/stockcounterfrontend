@@ -6,6 +6,7 @@
       'arrived-right': arrivedState.right,
       'arrived-bottom': arrivedState.bottom,
       'arrived-left': arrivedState.left,
+      'no-width-scrollbar': noWidthScrollbar,
     }"
   >
     <q-card-actions
@@ -20,9 +21,6 @@
       <div
         v-if="scrollbarProperties?.needsScrollbar"
         class="virtual-scrollbar vertical"
-        :class="{
-          'is-scrolling': isScrolling,
-        }"
         :style="{
           transform: `translateY(${scrollbarProperties.scrollbarPosition}px)`,
           height: `${scrollbarProperties.scrollbarHeight}px`,
@@ -31,9 +29,6 @@
       <div
         v-if="scrollbarProperties?.needsHScrollbar"
         class="virtual-scrollbar horizontal"
-        :class="{
-          'is-scrolling': isScrolling,
-        }"
         :style="{
           transform: `translateX(${scrollbarProperties.hScrollbarPosition}px)`,
           width: `${scrollbarProperties.hScrollbarWidth}px`,
@@ -42,10 +37,7 @@
       <div
         ref="scrollElement"
         class="scroll-section"
-        :class="{
-          'no-width-scrollbar': noWidthScrollbar,
-          'compact-scrollbar': compactScrollbar,
-        }"
+        v-touch-pan.mouse="handlePan"
       >
         <slot />
       </div>
@@ -64,12 +56,11 @@
 <script setup lang="ts">
 import { useScroll } from '@vueuse/core';
 import { useQuasar } from 'quasar';
-import { ref, computed, onActivated } from 'vue';
+import { computed, onActivated, ref } from 'vue';
 
 withDefaults(
   defineProps<{
     noWidthScrollbar?: boolean;
-    compactScrollbar?: boolean;
   }>(),
   {
     noWidthScrollbar: true,
@@ -78,14 +69,14 @@ withDefaults(
 
 const scrollElement = ref<HTMLElement>();
 
-const { x, y, isScrolling, arrivedState } = useScroll(scrollElement);
+const { x, y, arrivedState, directions } = useScroll(scrollElement);
 const $q = useQuasar();
 
 onActivated(() => {
-  // this is not a mistake.
-  // this returns the scroll position to where it was before.
-  y.value = y.value;
-  x.value = x.value;
+  scrollElement.value?.scrollTo({
+    left: x.value,
+    top: y.value,
+  });
 });
 
 const scrollbarProperties = computed(() => {
@@ -119,6 +110,55 @@ const scrollbarProperties = computed(() => {
     return undefined;
   }
 });
+
+const lastPan = ref<{ x: number; y: number }>({ x: x.value, y: y.value });
+
+type TouchPanEvent = {
+  // couldn't find it in quasar's types.
+  // They have an empty Interface where this should be.
+  evt: Event;
+  touch: boolean;
+  mouse: boolean;
+  position: {
+    top: number;
+    left: number;
+  };
+  direction: 'up' | 'right' | 'down' | 'top';
+  isFirst: boolean;
+  isFinal: boolean;
+  duration: number;
+  distance: {
+    x: number;
+    y: number;
+  };
+  offset: {
+    x: number;
+    y: number;
+  };
+  delta: {
+    x: number;
+    y: number;
+  };
+};
+
+function handlePan({ isFirst, offset }: TouchPanEvent) {
+  if (isFirst) {
+    lastPan.value = { x: x.value, y: y.value };
+  }
+  scrollElement.value?.scrollTo({
+    left: lastPan.value.x - offset.x,
+    top: lastPan.value.y - offset.y,
+  });
+}
+
+defineExpose({
+  scroller: {
+    x,
+    y,
+    arrivedState,
+    directions,
+  },
+});
 </script>
 <style lang="scss">
 .virtual-scrollbar {
@@ -126,21 +166,25 @@ const scrollbarProperties = computed(() => {
   &.vertical {
     width: 0px;
     right: 0px;
-    &.is-scrolling {
-      width: 4px;
-    }
   }
   &.horizontal {
     height: 0px;
     bottom: 0px;
-    &.is-scrolling {
+  }
+  .adaptive-card:hover & {
+    &.vertical {
+      width: 4px;
+    }
+    &.horizontal {
       height: 4px;
     }
   }
   background: $primary;
   border-radius: 2px;
   z-index: 10000;
-  transition: width 0.1s ease-in;
+  transition-property: width, height;
+  transition-duration: 0.1s;
+  transition-timing-function: ease;
 }
 .scroll-section {
   transition: box-shadow 0.2s ease;
