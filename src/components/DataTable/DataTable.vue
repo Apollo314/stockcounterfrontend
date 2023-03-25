@@ -4,11 +4,12 @@
       'sticky-header': stickyHeader,
       'sticky-caption': stickyCaption,
     }"
+    flushmobile
     bordered
     no-width-scrollbar
     :compact-scrollbar="false"
   >
-    <div class="table-parent">
+    <div class="table-parent" style="width: fit-content">
       <table flat class="fit coolshadow data-table">
         <caption class="table-caption" :class="captionClasses">
           <slot name="caption" v-bind="{ selected, pagination }"></slot>
@@ -31,7 +32,7 @@
               :class="getAlignClass(column.align)"
             >
               <b>
-                {{ column.label }}
+                {{ callOrGet(column.label) }}
               </b>
               <slot
                 :name="`th-inner-sibling-${column.id}`"
@@ -62,7 +63,7 @@
               v-for="column in computedcolumns"
               :key="column.id"
             >
-              {{ column.field(row) }}
+              {{ getColValue(column, row) }}
               <slot
                 :name="`td-inner-sibling-${column.id}`"
                 v-bind="{ row: row, column: column }"
@@ -104,9 +105,9 @@ export type BaseRow = {
 };
 
 export type BaseColumn<Row> = {
-  id: string | number;
+  id: keyof Row & (string | number);
+  field: keyof Row | ((row: Row) => string | number);
   label: string | (() => string);
-  field: (row: Row) => string;
   sortable?: boolean;
   align?: 'left' | 'center' | 'right';
 };
@@ -116,6 +117,14 @@ export type Pagination<Filters> = {
   limit: number;
   count: number;
   filters: Filters;
+};
+
+// requires every
+export type ColumnsOverride<
+  Column extends BaseColumn<Row>,
+  Row extends BaseRow
+> = {
+  [key in keyof Row]: Partial<Column>;
 };
 
 const props = withDefaults(
@@ -135,11 +144,19 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<{
-  (e: 'update:request', pagination: Pagination<Filters>): void;
+  (e: 'request', pagination: Pagination<Filters>): void;
   (e: 'update:pagination', pagination: Pagination<Filters>): void;
 }>();
 
 const selected: Ref<Row[]> = ref([]);
+
+function callOrGet<T>(value: T | (() => T)): T {
+  return value instanceof Function ? value() : value;
+}
+
+function getColValue(col: Column, row: Row) {
+  return col.field instanceof Function ? col.field(row) : row[col.field];
+}
 
 function toggleSelection(row: Row, value: boolean) {
   if (value) {
@@ -195,7 +212,7 @@ function request(partialPagination: Partial<Pagination<Filters>>) {
   const newPagination = { ...props.pagination, ...partialPagination };
   emit('update:pagination', newPagination);
   nextTick(() => {
-    emit('update:request', props.pagination);
+    emit('request', props.pagination);
   });
 }
 </script>
@@ -227,25 +244,20 @@ $table-dark-selected-background: darken($warning, 40%);
 }
 .data-table {
   position: relative;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   position: relative;
   .checkbox {
     padding: 4px;
   }
   thead.table-head {
-    // transition: box-shadow 0.2s ease;
-    // .q-card__section:not(.arrived-top) & {
-    //   box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.2);
-    // }
     .sticky-header & {
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 10;
     }
-    background-color: $secondary;
     th.table-header-cell {
-      border-collapse: collapse;
-      border: none;
+      background-color: $secondary;
       .sticky-caption & {
         top: $captionheight;
       }
@@ -261,6 +273,33 @@ $table-dark-selected-background: darken($warning, 40%);
       border: 1px solid $separator-color;
     }
     &:first-of-type {
+      .desktop .adaptive-card:not(.arrived-left) & {
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+        }
+      }
+      .desktop & {
+        position: sticky;
+        left: 0;
+      }
+      .body--dark & {
+        background: $dark;
+        &::before {
+          background: rgba(255, 255, 255, 0.1);
+        }
+      }
+      .body--light & {
+        &::before {
+          background: rgba($secondary, 0.5);
+        }
+        background: $almost-white;
+      }
       width: 1px;
       border-left: none;
     }
@@ -272,32 +311,31 @@ $table-dark-selected-background: darken($warning, 40%);
   .body--dark & {
     tr:nth-of-type(2n) {
       background: $secondcolor-dark;
+      td:first-of-type {
+        background: $secondcolor-dark;
+      }
     }
     tr.selected-row {
-      td {
+      td,
+      td:first-of-type {
         background: $table-dark-selected-background;
       }
-      // &::after {
-      //   content: '';
-      //   position: absolute;
-      //   left: 0;
-      //   top: 0;
-      //   height: 100%;
-      //   width: 100%;
-      //   background: $table-dark-selected-background;
-      //   pointer-events: none;
-      // }
-      // background: rgba($accent, 0.2);
     }
   }
 
   .body--light & {
     tr:nth-of-type(2n) {
       background: $secondcolor-light;
+      td:first-of-type {
+        background: $secondcolor-light;
+      }
     }
     tr.selected-row {
       position: relative;
-      background: $table-light-selected-background;
+      td,
+      td:first-of-type {
+        background: $table-light-selected-background;
+      }
     }
   }
 
@@ -316,7 +354,7 @@ $table-dark-selected-background: darken($warning, 40%);
     .sticky-caption & {
       position: sticky;
       top: 0;
-      z-index: 101;
+      z-index: 10;
     }
   }
 

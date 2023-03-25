@@ -1,37 +1,66 @@
 <template>
-  <FullHeightPage hide-back-button padding>
+  <FullHeightPage hide-back-button :padding="!$q.platform.is.mobile">
     <DataTable
       v-model:pagination="pagination"
-      :data="data"
-      :columns="typedColumns"
+      :data="data || []"
+      :columns="columns"
+      @request="log($event)"
     >
     </DataTable>
   </FullHeightPage>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onActivated } from 'vue';
+import { useI18n } from 'vue-i18n';
 
+import { api } from 'boot/axios';
 import DataTable from 'components/DataTable/DataTable.vue';
+import { ColumnsGenerator } from 'components/DataTable/datatableutilities';
 import FullHeightPage from 'components/Page/FullHeightPage.vue';
 
 import type {
   BaseRow,
   BaseColumn,
   Pagination,
+  ColumnsOverride,
 } from 'components/DataTable/DataTable.vue';
+import type { ItemOut } from 'src/client';
 
-type Row = BaseRow & {
-  test: string;
-  test2: string;
-  info3: number;
+type Row = BaseRow & ItemOut;
+
+type Column = BaseColumn<Row>;
+
+const { t: $t } = useI18n();
+
+const co: ColumnsOverride<Column, Row> = {
+  id: { label: () => $t('itemlabels.id') },
+  name: { label: () => $t('itemlabels.name') },
+  category: { label: () => $t('itemlabels.category') },
+  buyprice: { label: () => $t('itemlabels.buyprice') },
+  sellprice: { label: () => $t('itemlabels.sellprice') },
+  stock_unit: { label: () => $t('itemlabels.stock_unit') },
+  stocks: { label: () => $t('itemlabels.stocks') },
+  updated_at: { label: () => $t('itemlabels.updated_at') },
+  updated_by: { label: () => $t('itemlabels.updated_by') },
+  stock_code: { label: () => $t('itemlabels.stock_code') },
+  thumbnail: { label: () => $t('itemlabels.thumbnail') },
+  created_at: { label: () => $t('itemlabels.created_at') },
+  created_by: { label: () => $t('itemlabels.created_by') },
+  kdv: { label: () => $t('itemlabels.kdv') },
+  barcode: { label: () => $t('itemlabels.barcode') },
+  buycurrency: { label: () => $t('itemlabels.buycurrency') },
+  description: { label: () => $t('itemlabels.description') },
+  sellcurrency: { label: () => $t('itemlabels.sellcurrency') },
 };
 
-type Column = BaseColumn<Row> & {
-  somethingelse?: (row: Row) => string;
-};
+const columns = ColumnsGenerator(co);
 
 type Filters = Record<string, string>;
+
+const data = ref<ItemOut[]>();
+
+const log = console.log;
 
 const pagination = ref<Pagination<Filters>>({
   count: 100,
@@ -40,150 +69,11 @@ const pagination = ref<Pagination<Filters>>({
   offset: 0,
 });
 
-const typedColumns = (): Column[] => [
-  {
-    id: 'test',
-    label: 'test 1',
-    field: (row) => row.test,
-    align: 'left',
-    somethingelse: (row: Row) => row.test + ' ' + row.test2,
-  },
-  {
-    id: 'test2',
-    label: 'Test 2',
-    field: (row) => row.test2,
-    align: 'center',
-  },
-  {
-    id: 'info3',
-    field: (row) => `${row.info3}`,
-    label: 'Info 3',
-    align: 'right',
-  },
-];
-
-const data: Row[] = [
-  {
-    id: 0,
-    test: 'hello',
-    test2: 'there',
-    info3: 5,
-  },
-  {
-    id: 1,
-    test: 'how you',
-    test2: 'doin',
-    info3: 10,
-  },
-  {
-    id: 2,
-    test: 'good',
-    test2: 'I hope',
-    info3: 10,
-  },
-  {
-    id: 3,
-    test: 'I am',
-    test2: 'fine',
-    info3: 10,
-  },
-  {
-    id: 4,
-    test: 'hello',
-    test2: 'there',
-    info3: 5,
-  },
-  {
-    id: 5,
-    test: 'how you',
-    test2: 'doin',
-    info3: 10,
-  },
-  {
-    id: 6,
-    test: 'good',
-    test2: 'I hope',
-    info3: 10,
-  },
-  {
-    id: 7,
-    test: 'I am',
-    test2: 'fine',
-    info3: 10,
-  },
-  {
-    id: 8,
-    test: 'hello',
-    test2: 'there',
-    info3: 5,
-  },
-  {
-    id: 9,
-    test: 'how you',
-    test2: 'doin',
-    info3: 10,
-  },
-  {
-    id: 10,
-    test: 'good',
-    test2: 'I hope',
-    info3: 10,
-  },
-  {
-    id: 11,
-    test: 'I am',
-    test2: 'fine',
-    info3: 10,
-  },
-  {
-    id: 11,
-    test: 'hello',
-    test2: 'there',
-    info3: 5,
-  },
-  {
-    id: 12,
-    test: 'how you',
-    test2: 'doin',
-    info3: 10,
-  },
-  {
-    id: 13,
-    test: 'good',
-    test2: 'I hope',
-    info3: 10,
-  },
-  {
-    id: 14,
-    test: 'I am',
-    test2: 'fine',
-    info3: 10,
-  },
-  {
-    id: 15,
-    test: 'hello',
-    test2: 'there',
-    info3: 5,
-  },
-  {
-    id: 16,
-    test: 'how you',
-    test2: 'doin',
-    info3: 10,
-  },
-  {
-    id: 17,
-    test: 'good',
-    test2: 'I hope',
-    info3: 10,
-  },
-  {
-    id: 18,
-    test: 'I am',
-    test2: 'fine',
-    info3: 10,
-  },
-];
+onActivated(() => {
+  api.inventory
+    .inventoryItemList({})
+    .then((value) => (data.value = value.results));
+});
 </script>
 
 <style scoped></style>
