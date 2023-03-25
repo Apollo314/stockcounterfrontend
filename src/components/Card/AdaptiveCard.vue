@@ -7,6 +7,7 @@
       'arrived-bottom': arrivedState.bottom,
       'arrived-left': arrivedState.left,
       'no-width-scrollbar': noWidthScrollbar,
+      'is-scrolling': isScrolling,
     }"
   >
     <q-card-actions
@@ -17,7 +18,7 @@
         <slot name="action-top" />
       </div>
     </q-card-actions>
-    <div class="scrollparent">
+    <div ref="scrollParent" class="scrollparent">
       <div
         v-if="scrollbarProperties?.needsScrollbar"
         class="virtual-scrollbar vertical"
@@ -35,11 +36,13 @@
         }"
       />
       <div
-        ref="scrollElement"
-        class="scroll-section"
+        ref="scroller"
+        class="scroll-section flex"
         v-touch-pan.mouse="handlePan"
       >
-        <slot />
+        <div ref="scrolledContent" style="flex-grow: 1">
+          <slot />
+        </div>
       </div>
     </div>
     <q-card-actions
@@ -54,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import { useScroll } from '@vueuse/core';
+import { useScroll, useElementSize } from '@vueuse/core';
 import { useQuasar } from 'quasar';
 import { computed, onActivated, ref } from 'vue';
 
@@ -67,36 +70,61 @@ withDefaults(
   }
 );
 
-const scrollElement = ref<HTMLElement>();
+const scrollParent = ref<HTMLElement>();
+const scrolledContent = ref<HTMLElement>();
+const scroller = ref<HTMLElement>();
 
-const { x, y, arrivedState, directions } = useScroll(scrollElement);
+const { x, y, arrivedState, isScrolling, directions } = useScroll(scroller);
+
+const { height: scrollParentHeight, width: scrollParentWidth } =
+  useElementSize(scrollParent);
+
+const { height: scrolledContentHeight, width: scrolledContentWidth } =
+  useElementSize(scrolledContent);
+
 const $q = useQuasar();
 
+const setScroll = ({ x, y }: { x: number; y: number }): void => {
+  if (scroller.value !== undefined) {
+    console.log('settin scroll');
+    scroller.value.scrollTo({
+      left: x,
+      top: y,
+    });
+  } else {
+    setTimeout(() => {
+      setScroll({ x, y });
+    }, 100);
+  }
+};
+
 onActivated(() => {
-  scrollElement.value?.scrollTo({
-    left: x.value,
-    top: y.value,
-  });
+  setScroll({ x: x.value, y: y.value });
 });
 
+// onMounted(() => {
+//   setScroll({ x: x.value, y: y.value });
+// });
+
 const scrollbarProperties = computed(() => {
-  if ($q.platform.is.desktop) {
-    const scrollHeight = scrollElement.value?.scrollHeight || 0;
-    const offsetHeight = scrollElement.value?.offsetHeight || 0;
-    const scrollWidth = scrollElement.value?.scrollWidth || 0;
-    const offsetWidth = scrollElement.value?.offsetWidth || 0;
-
-    const needsScrollbar = offsetHeight < scrollHeight;
-    const scrollbarHeight = offsetHeight ** 2 / scrollHeight;
-    const availableTrack = scrollHeight - offsetHeight;
+  if ($q.platform.is.desktop && scroller.value) {
+    const needsScrollbar =
+      scrollParentHeight.value < scrolledContentHeight.value;
+    const scrollbarHeight =
+      scrollParentHeight.value ** 2 / scrolledContentHeight.value;
+    const availableTrack =
+      scrolledContentHeight.value - scrollParentHeight.value;
     const scrollbarPosition =
-      (y.value / availableTrack) * (offsetHeight - scrollbarHeight);
+      (y.value / availableTrack) * (scrollParentHeight.value - scrollbarHeight);
 
-    const needsHScrollbar = offsetWidth < scrollWidth;
-    const hScrollbarWidth = offsetWidth ** 2 / scrollWidth;
-    const availableHTrack = scrollWidth - offsetWidth;
+    const needsHScrollbar =
+      scrollParentWidth.value < scrolledContentWidth.value;
+    const hScrollbarWidth =
+      scrollParentWidth.value ** 2 / scrolledContentWidth.value;
+    const availableHTrack =
+      scrolledContentWidth.value - scrollParentWidth.value;
     const hScrollbarPosition =
-      (x.value / availableHTrack) * (offsetWidth - hScrollbarWidth);
+      (x.value / availableHTrack) * (scrollParentWidth.value - hScrollbarWidth);
 
     return {
       scrollbarHeight,
@@ -145,7 +173,7 @@ function handlePan({ isFirst, offset }: TouchPanEvent) {
   if (isFirst) {
     lastPan.value = { x: x.value, y: y.value };
   }
-  scrollElement.value?.scrollTo({
+  scroller.value?.scrollTo({
     left: lastPan.value.x - offset.x,
     top: lastPan.value.y - offset.y,
   });
@@ -171,7 +199,8 @@ defineExpose({
     height: 0px;
     bottom: 0px;
   }
-  .adaptive-card:hover & {
+  .adaptive-card:hover &,
+  .adaptive-card.is-scrolling & {
     &.vertical {
       width: 4px;
     }
