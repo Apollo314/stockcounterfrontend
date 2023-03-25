@@ -35,11 +35,7 @@
           width: `${scrollbarProperties.hScrollbarWidth}px`,
         }"
       />
-      <div
-        ref="scroller"
-        class="scroll-section flex"
-        v-touch-pan.mouse="handlePan"
-      >
+      <div ref="scroller" class="scroll-section flex no-user-select">
         <div ref="scrolledContent" style="flex-grow: 1">
           <slot />
         </div>
@@ -57,9 +53,16 @@
 </template>
 
 <script setup lang="ts">
-import { useScroll, useElementSize } from '@vueuse/core';
+import {
+  useScroll,
+  useElementSize,
+  useMouse,
+  useMousePressed,
+} from '@vueuse/core';
 import { useQuasar } from 'quasar';
 import { computed, onActivated, ref } from 'vue';
+
+import { useVTouch } from './useVTouch';
 
 withDefaults(
   defineProps<{
@@ -82,6 +85,21 @@ const { height: scrollParentHeight, width: scrollParentWidth } =
 const { height: scrolledContentHeight, width: scrolledContentWidth } =
   useElementSize(scrolledContent);
 
+const { pressed } = useVTouch({
+  mouse: { touch: false },
+  mousePressed: { target: scroller },
+  callback: ({ isFirst, offset }) => {
+    if (isFirst) {
+      lastPan.value = { x: x.value, y: y.value };
+    }
+    scroller.value?.scrollTo({
+      left: lastPan.value.x - offset.x,
+      top: lastPan.value.y - offset.y,
+    });
+  },
+  throttle: 20,
+});
+
 const $q = useQuasar();
 
 const setScroll = ({ x, y }: { x: number; y: number }): void => {
@@ -101,10 +119,6 @@ const setScroll = ({ x, y }: { x: number; y: number }): void => {
 onActivated(() => {
   setScroll({ x: x.value, y: y.value });
 });
-
-// onMounted(() => {
-//   setScroll({ x: x.value, y: y.value });
-// });
 
 const scrollbarProperties = computed(() => {
   if ($q.platform.is.desktop && scroller.value) {
@@ -140,44 +154,6 @@ const scrollbarProperties = computed(() => {
 });
 
 const lastPan = ref<{ x: number; y: number }>({ x: x.value, y: y.value });
-
-type TouchPanEvent = {
-  // couldn't find it in quasar's types.
-  // They have an empty Interface where this should be.
-  evt: Event;
-  touch: boolean;
-  mouse: boolean;
-  position: {
-    top: number;
-    left: number;
-  };
-  direction: 'up' | 'right' | 'down' | 'top';
-  isFirst: boolean;
-  isFinal: boolean;
-  duration: number;
-  distance: {
-    x: number;
-    y: number;
-  };
-  offset: {
-    x: number;
-    y: number;
-  };
-  delta: {
-    x: number;
-    y: number;
-  };
-};
-
-function handlePan({ isFirst, offset }: TouchPanEvent) {
-  if (isFirst) {
-    lastPan.value = { x: x.value, y: y.value };
-  }
-  scroller.value?.scrollTo({
-    left: lastPan.value.x - offset.x,
-    top: lastPan.value.y - offset.y,
-  });
-}
 
 defineExpose({
   scroller: {
