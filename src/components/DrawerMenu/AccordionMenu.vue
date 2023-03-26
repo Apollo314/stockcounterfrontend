@@ -125,36 +125,55 @@ $border-width: 3px;
 
 $border-color: desaturate($primary, 80%);
 
-$gutter: 4px;
+$gutter: 10px;
 
 nav.menu-navigation {
+  padding: $border-width;
   .menu-item:not(:first-child) {
     margin-top: $gutter;
   }
   &.show-connectors {
     .q-expansion-item__container {
+      // background: red !important;
+    }
+    .q-expansion-item__content {
       .q-list {
         .menu-item {
           margin-top: $gutter;
         }
-        .menu-item:not(:first-child) {
-          .q-item::before {
+        .accordion-item {
+          margin-top: $gutter;
+        }
+        &
+          > .accordion-item.q-expansion-item:not(:last-child)
+          > .q-expansion-item__container {
+          &::before {
             content: '';
             position: absolute;
-            height: calc(50% + #{$connector-border-radius} + #{$gutter});
+            height: calc(100% + #{$gutter * 2});
+            width: $border-width;
             left: -$connector-depth;
-            top: calc(-50% - #{$connector-border-radius} - #{$gutter * 2});
+            top: -$gutter / 2;
             border-left: $border-width solid $border-color;
             transition: 0s;
           }
         }
+        & > .menu-item:not(.accordion-item):not(:last-child)::before {
+          content: '';
+          position: absolute;
+          height: calc(100% + #{$gutter * 2});
+          left: -$connector-depth;
+          top: -$gutter / 2;
+          border-left: $border-width solid $border-color;
+          transition: 0s;
+        }
         .q-item::after {
           content: '';
           position: absolute;
-          height: calc(50% + #{$gutter + $border-width});
+          height: calc(50% + #{$gutter});
           width: $connector-depth;
           left: -$connector-depth;
-          top: -$gutter - $border-width;
+          top: -$gutter;
           border-left: $border-width solid $border-color;
           border-bottom: $border-width solid $border-color;
           transition: 0s;
@@ -169,7 +188,7 @@ nav.menu-navigation {
   }
   &.bordered-menu-items {
     .q-item {
-      border: $border-width solid $border-color;
+      outline: $border-width solid $border-color;
       transition: 0s;
     }
   }
