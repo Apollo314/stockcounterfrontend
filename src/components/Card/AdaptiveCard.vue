@@ -53,16 +53,11 @@
 </template>
 
 <script setup lang="ts">
-import {
-  useScroll,
-  useElementSize,
-  useMouse,
-  useMousePressed,
-} from '@vueuse/core';
+import { useElementSize, useScroll } from '@vueuse/core';
 import { useQuasar } from 'quasar';
 import { computed, onActivated, ref } from 'vue';
 
-import { useVTouch } from './useVTouch';
+import { useVPan } from 'src/composables/useVPan';
 
 withDefaults(
   defineProps<{
@@ -85,9 +80,9 @@ const { height: scrollParentHeight, width: scrollParentWidth } =
 const { height: scrolledContentHeight, width: scrolledContentWidth } =
   useElementSize(scrolledContent);
 
-const { pressed } = useVTouch({
+const {} = useVPan({
+  target: scroller,
   mouse: { touch: false },
-  mousePressed: { target: scroller },
   callback: ({ isFirst, offset }) => {
     if (isFirst) {
       lastPan.value = { x: x.value, y: y.value };

@@ -133,9 +133,6 @@ nav.menu-navigation {
     margin-top: $gutter;
   }
   &.show-connectors {
-    .q-expansion-item__container {
-      // background: red !important;
-    }
     .q-expansion-item__content {
       .q-list {
         .menu-item {
