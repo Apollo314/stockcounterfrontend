@@ -21,6 +21,7 @@ declare module '@vue/runtime-core' {
 
 const api = new AppClient({
   BASE: process.env.BASE ?? `http://${window.location.hostname}:8000`,
+  WITH_CREDENTIALS: true,
 });
 
 axios.interceptors.response.use(

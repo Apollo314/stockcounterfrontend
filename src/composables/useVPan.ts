@@ -13,17 +13,17 @@ import type {
   UseMouseOptions,
 } from '@vueuse/core';
 
-type Offset = {
+type XY = {
   x: number;
   y: number;
 };
 
-type VTouchEvent = {
+export type VTouchEvent = {
   isFirst: boolean;
-  offset: Offset;
+  offset: XY;
 };
 
-type VTouchOptions = {
+export type VPanOptions = {
   target: MaybeElementRef;
   /**
    * threshold to prevent click event in terms of pixel.
@@ -35,7 +35,7 @@ type VTouchOptions = {
   throttle?: MaybeComputedRef<number>;
 };
 
-export function useVPan(options: VTouchOptions) {
+export function useVPan(options: VPanOptions) {
   const { x, y } = useMouse(options.mouse);
   const isFirst = ref<boolean>(true);
   const threshold = computed(() => unref(options.threshold) || 10);
@@ -67,8 +67,8 @@ export function useVPan(options: VTouchOptions) {
     }
   }
 
-  useEventListener(target, 'mousedown', onPressed, { capture: true });
-  useEventListener(window, 'mouseup', onReleased, { capture: true });
+  useEventListener(target, 'mousedown', onPressed, {});
+  useEventListener(window, 'mouseup', onReleased, {});
   useEventListener(target, 'click', onClick, { capture: true });
 
   watchThrottled(

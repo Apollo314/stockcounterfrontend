@@ -1,5 +1,28 @@
 /*eslint sort-keys: "error"*/
 
+import { ItemOut } from 'src/client';
+
+const itemLabels: Record<keyof ItemOut, string> = {
+  barcode: 'Barcode',
+  buycurrency: 'Buy currency',
+  buyprice: 'Buy price',
+  category: 'Category',
+  created_at: 'Created at',
+  created_by: 'Created by',
+  description: 'Description',
+  id: 'ID',
+  kdv: 'Tax(KDV)',
+  name: 'Item/Service name',
+  sellcurrency: 'Sell currency',
+  sellprice: 'Sell crice',
+  stock_code: 'Stock code',
+  stock_unit: 'Stock unit',
+  stocks: 'Stocks',
+  thumbnail: 'Thumbnail',
+  updated_at: 'Updated at',
+  updated_by: 'Updated by',
+};
+
 export default {
   appName: 'Stock Counter',
   buttons: {
@@ -16,6 +39,7 @@ export default {
     },
     new: 'New @:{0}',
     'no-result': 'No Result',
+    percentage: '{0}%',
     search: 'Search',
   },
   failed: 'Action failed',
@@ -26,6 +50,7 @@ export default {
   },
   fourofour: 'Oops. Nothing here...',
   gohome: 'Go home',
+  itemlabels: itemLabels,
   menu: {
     'business-relations': 'Business Relations',
     category: 'Category | Categories',

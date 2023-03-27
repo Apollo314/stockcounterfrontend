@@ -33,6 +33,7 @@
               :key="column.id"
               :class="getAlignClass(column.align)"
               style="position: relative"
+              :style="getTHStyle(column)"
             >
               <b class="column-label">
                 {{ callOrGet(column.label) }}
@@ -41,6 +42,7 @@
                 :name="`th-inner-sibling-${column.id}`"
                 v-bind="{ column }"
               />
+              <ColumnResizer :column="column"></ColumnResizer>
             </th>
             <slot name="head-tr-inner" />
           </tr>
@@ -105,11 +107,14 @@
   lang="ts"
   generic="Row extends BaseRow, Column extends BaseColumn<Row>, Filters extends Object"
 >
-import { computed, ref, Ref, nextTick } from 'vue';
+import { computed, ref, Ref, nextTick, provide } from 'vue';
 
 import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
 import OffsetLimitPaginator from 'components/Paginator/OffsetLimitPaginator.vue';
 import { callOrGet } from 'src/composables/utilities';
+
+import ColumnResizer from './ColumnResizer.vue';
+
 export type BaseRow = {
   id: number | string;
 };
@@ -120,6 +125,10 @@ export type BaseColumn<Row> = {
   label: string | (() => string);
   sortable?: boolean;
   align?: 'left' | 'center' | 'right';
+  /**
+   * width of the column in pixel
+   */
+  width?: number;
   /**
    * whether or not column is hidden.
    * they can still be unhidden by the end user.
@@ -141,6 +150,13 @@ export type ColumnsOverride<
   [key in keyof Partial<Row>]: Partial<Column>;
 };
 
+export type ColumnsWidthGenerator<
+  Column extends BaseColumn<Row>,
+  Row extends BaseRow
+> = {
+  [key in keyof ColumnsOverride<Column, Row>]?: number;
+};
+
 const props = withDefaults(
   defineProps<{
     columns: Column[] | (() => Column[]);
@@ -156,6 +172,21 @@ const props = withDefaults(
     stickyHeader: true,
   }
 );
+
+type ColumnWidths = {
+  [key in keyof Row]?: number;
+};
+const columnWidths = ref<ColumnWidths>({});
+
+const getTHStyle = (column: Column) => {
+  if (columnWidths.value[column.id] || column.width) {
+    const width = columnWidths.value[column.id];
+    return {
+      width: width !== undefined ? `${width}px` : `${column.width}px`,
+      minWidth: width !== undefined ? `${width}px` : `${column.width}px`,
+    };
+  }
+};
 
 const emit = defineEmits<{
   (e: 'request', pagination: Pagination<Filters>): void;
@@ -204,7 +235,7 @@ const selectAllButtonStatus = computed(() => {
 
 function getAlignClass(align?: 'left' | 'center' | 'right') {
   return {
-    'text-left': align === 'left',
+    'text-left': align === 'left' || align === undefined,
     'text-right': align === 'right',
     'text-center': align === 'center',
   };
@@ -225,6 +256,8 @@ function request(partialPagination: Partial<Pagination<Filters>>) {
     emit('request', props.pagination);
   });
 }
+
+provide('columnWidths', columnWidths);
 </script>
 
 <style lang="scss">
@@ -275,6 +308,9 @@ $table-dark-selected-background: darken($warning, 40%);
   }
   .column-label {
     position: sticky;
+    .desktop & {
+      left: 60px;
+    }
     left: 10px;
     right: 10px;
     min-width: max-content;
