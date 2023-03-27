@@ -1,5 +1,28 @@
 /*eslint sort-keys: "error"*/
 
+import { ItemOut } from 'src/client';
+
+const itemLabels: Record<keyof ItemOut, string> = {
+  barcode: 'Barkod',
+  buycurrency: 'Alış para birimi',
+  buyprice: 'Alış fiyatı',
+  category: 'Kategori',
+  created_at: 'Oluşturulma tarihi',
+  created_by: 'Oluşturan',
+  description: 'Tanım',
+  id: 'ID',
+  kdv: 'KDV',
+  name: 'Ürün/Hizmet adı',
+  sellcurrency: 'Satış para birimi',
+  sellprice: 'Satış fiyatı',
+  stock_code: 'Stok kodu',
+  stock_unit: 'Stok birimi',
+  stocks: 'Stoklar',
+  thumbnail: 'Önizleme Resmi',
+  updated_at: 'Güncelleme tarihi',
+  updated_by: 'Güncelleyen',
+};
+
 export default {
   appName: 'Stok Takibi',
   buttons: {
@@ -16,6 +39,7 @@ export default {
     },
     new: 'Yeni @:{0}',
     'no-result': 'Sonuç Yok',
+    percentage: '%{0}',
     search: 'Ara',
   },
   failed: 'Başarısız',
@@ -26,6 +50,7 @@ export default {
   },
   fourofour: 'Aradık bulamadık.',
   gohome: 'Anasayfaya dön',
+  itemlabels: itemLabels,
   menu: {
     'business-relations': 'İş İlişkileri',
     category: 'Kategori | Kategoriler',
