@@ -4,13 +4,14 @@
       'sticky-header': stickyHeader,
       'sticky-caption': stickyCaption,
     }"
+    class="full-height"
     flushmobile
     bordered
     no-width-scrollbar
     :compact-scrollbar="false"
   >
-    <div class="table-parent" style="width: fit-content">
-      <table flat class="fit coolshadow data-table">
+    <div class="table-parent">
+      <table flat class="coolshadow data-table">
         <caption class="table-caption" :class="captionClasses">
           <slot name="caption" v-bind="{ selected, pagination }"></slot>
         </caption>
@@ -28,10 +29,12 @@
             <th
               class="table-header-cell"
               v-for="column in computedcolumns"
+              v-show="!column.hidden"
               :key="column.id"
               :class="getAlignClass(column.align)"
+              style="position: relative"
             >
-              <b>
+              <b class="column-label">
                 {{ callOrGet(column.label) }}
               </b>
               <slot
@@ -42,7 +45,11 @@
             <slot name="head-tr-inner" />
           </tr>
         </thead>
-        <tbody class="table-body" :class="tbodyClasses">
+        <tbody
+          class="table-body"
+          :class="tbodyClasses"
+          style="position: relative"
+        >
           <tr
             v-for="row in data"
             :class="{ 'selected-row': selected.indexOf(row) > -1 }"
@@ -61,9 +68,12 @@
             <td
               :class="getAlignClass(column.align)"
               v-for="column in computedcolumns"
+              v-show="!column.hidden"
               :key="column.id"
             >
-              {{ getColValue(column, row) }}
+              <div class="cell">
+                {{ getColValue(column, row) }}
+              </div>
               <slot
                 :name="`td-inner-sibling-${column.id}`"
                 v-bind="{ row: row, column: column }"
@@ -75,7 +85,7 @@
       </table>
     </div>
     <template #action-bottom>
-      <div class="row full-width q-pa-sm">
+      <div class="row full-width q-pa-sm" style="position: sticky; bottom: 0">
         <q-space />
         <OffsetLimitPaginator
           :model-value="pagination.offset"
@@ -99,17 +109,22 @@ import { computed, ref, Ref, nextTick } from 'vue';
 
 import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
 import OffsetLimitPaginator from 'components/Paginator/OffsetLimitPaginator.vue';
-
+import { callOrGet } from 'src/composables/utilities';
 export type BaseRow = {
   id: number | string;
 };
 
 export type BaseColumn<Row> = {
   id: keyof Row & (string | number);
-  field: keyof Row | ((row: Row) => string | number);
+  field: keyof Row | ((row: Row) => string | number | undefined | null);
   label: string | (() => string);
   sortable?: boolean;
   align?: 'left' | 'center' | 'right';
+  /**
+   * whether or not column is hidden.
+   * they can still be unhidden by the end user.
+   */
+  hidden?: boolean;
 };
 
 export type Pagination<Filters> = {
@@ -119,12 +134,11 @@ export type Pagination<Filters> = {
   filters: Filters;
 };
 
-// requires every
 export type ColumnsOverride<
   Column extends BaseColumn<Row>,
   Row extends BaseRow
 > = {
-  [key in keyof Row]: Partial<Column>;
+  [key in keyof Partial<Row>]: Partial<Column>;
 };
 
 const props = withDefaults(
@@ -149,10 +163,6 @@ const emit = defineEmits<{
 }>();
 
 const selected: Ref<Row[]> = ref([]);
-
-function callOrGet<T>(value: T | (() => T)): T {
-  return value instanceof Function ? value() : value;
-}
 
 function getColValue(col: Column, row: Row) {
   return col.field instanceof Function ? col.field(row) : row[col.field];
@@ -218,8 +228,12 @@ function request(partialPagination: Partial<Pagination<Filters>>) {
 </script>
 
 <style lang="scss">
-$cellpadding: 12px;
+$cellpadding-vertical: 8px;
+$cellpadding-horizontal: 15px;
+$cellpadding: $cellpadding-vertical $cellpadding-horizontal;
 $captionheight: 50px;
+$rowheight: calc(2em + #{$cellpadding-vertical * 2});
+$lineheight: 1em;
 
 $secondcolor-dark: #162429;
 
@@ -239,16 +253,34 @@ $table-dark-hover-background: hsla(197, 60%, 50%, 0.3);
 $table-dark-selected-background: darken($warning, 40%);
 
 .table-parent {
-  border-radius: 0 0 $generic-border-radius $generic-border-radius;
+  border-radius: $generic-border-radius;
   contain: paint;
+  .body--dark & {
+    border-bottom: 3px solid $separator-dark-color;
+  }
+  .body--light & {
+    border-bottom: 3px solid $separator-color;
+  }
+  min-width: 100%;
+  // width: fit-content !important;
 }
+
 .data-table {
-  position: relative;
-  border-collapse: separate;
+  min-width: 100%;
+  table-layout: fixed;
   border-spacing: 0;
   position: relative;
   .checkbox {
     padding: 4px;
+  }
+  .column-label {
+    position: sticky;
+    left: 10px;
+    right: 10px;
+    min-width: max-content;
+    white-space: nowrap;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   thead.table-head {
     .sticky-header & {
@@ -257,7 +289,12 @@ $table-dark-selected-background: darken($warning, 40%);
       z-index: 10;
     }
     th.table-header-cell {
-      background-color: $secondary;
+      .body--dark & {
+        background-color: #073a44;
+      }
+      .body--light & {
+        background-color: lighten($secondary, 20%);
+      }
       .sticky-caption & {
         top: $captionheight;
       }
@@ -265,12 +302,25 @@ $table-dark-selected-background: darken($warning, 40%);
   }
   th,
   td {
+    div.cell {
+      white-space: normal;
+      display: -webkit-box;
+      overflow: hidden;
+      max-height: 2 * $lineheight;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
+      line-height: $lineheight;
+    }
+    width: max-content;
     padding: $cellpadding;
     .body--dark & {
-      border: 1px solid $separator-dark-color;
+      border-right: 1px solid $separator-dark-color;
+      border-top: 1px solid $separator-dark-color;
     }
     .body--light & {
-      border: 1px solid $separator-color;
+      border-right: 1px solid $separator-color;
+      border-top: 1px solid $separator-color;
     }
     &:first-of-type {
       .desktop .adaptive-card:not(.arrived-left) & {
@@ -285,20 +335,23 @@ $table-dark-selected-background: darken($warning, 40%);
         }
       }
       .desktop & {
+        &.table-header-cell {
+          z-index: 10;
+        }
         position: sticky;
         left: 0;
       }
       .body--dark & {
-        background: $dark;
+        background-color: $dark;
         &::before {
-          background: rgba(255, 255, 255, 0.1);
+          background-color: rgba(255, 255, 255, 0.1);
         }
       }
       .body--light & {
         &::before {
-          background: rgba($secondary, 0.5);
+          background-color: rgba($secondary, 0.5);
         }
-        background: $almost-white;
+        background-color: $almost-white;
       }
       width: 1px;
       border-left: none;
@@ -310,31 +363,31 @@ $table-dark-selected-background: darken($warning, 40%);
 
   .body--dark & {
     tr:nth-of-type(2n) {
-      background: $secondcolor-dark;
+      background-color: $secondcolor-dark;
       td:first-of-type {
-        background: $secondcolor-dark;
+        background-color: $secondcolor-dark;
       }
     }
     tr.selected-row {
       td,
       td:first-of-type {
-        background: $table-dark-selected-background;
+        background-color: $table-dark-selected-background;
       }
     }
   }
 
   .body--light & {
     tr:nth-of-type(2n) {
-      background: $secondcolor-light;
+      background-color: $secondcolor-light;
       td:first-of-type {
-        background: $secondcolor-light;
+        background-color: $secondcolor-light;
       }
     }
     tr.selected-row {
       position: relative;
       td,
       td:first-of-type {
-        background: $table-light-selected-background;
+        background-color: $table-light-selected-background;
       }
     }
   }
@@ -342,13 +395,19 @@ $table-dark-selected-background: darken($warning, 40%);
   tr:last-of-type td {
     border-bottom: none;
   }
+  th {
+    border-top: none !important;
+  }
+  tr {
+    height: $rowheight;
+  }
 
   .table-caption {
     .body--dark & {
-      background: $dark;
+      background-color: $dark;
     }
     .body--light & {
-      background: $almost-white;
+      background-color: $almost-white;
     }
     height: $captionheight;
     .sticky-caption & {

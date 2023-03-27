@@ -6,18 +6,14 @@ export function ColumnsGenerator<
 >(columnsOverride: ColumnsOverride<Column, Row>) {
   const columns = [];
   for (const key in columnsOverride) {
-    if (Object.prototype.hasOwnProperty.call(columnsOverride, key)) {
-      const co = columnsOverride[key];
-      const column: Column = {
-        field: key as string,
-        id: key as string,
-        label: key as string,
-      } as Column;
-      column.label = co.label || column.label;
-      console.log(column.label, typeof column.label);
-      // Object.assign(column, co);
-      columns.push(column);
-    }
+    const co = columnsOverride[key];
+    const column: Column = {
+      field: key as string,
+      id: key as string,
+      label: key as string,
+    } as Column;
+    Object.assign(column, co);
+    columns.push(column);
   }
   return columns;
 }
