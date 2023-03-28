@@ -30,7 +30,7 @@ export type ItemDetail = {
   created_by: ConciseUser;
   updated_by: ConciseUser;
   description?: string | null;
-  category: Category;
+  category?: Category;
   readonly previous_id: number | null;
   readonly next_id: number | null;
 };

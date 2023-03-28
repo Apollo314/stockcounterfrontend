@@ -5834,7 +5834,6 @@
         },
         "required": [
           "buyprice",
-          "category",
           "created_at",
           "created_by",
           "id",
@@ -6400,7 +6399,6 @@
         },
         "required": [
           "buyprice",
-          "category",
           "created_at",
           "created_by",
           "id",
