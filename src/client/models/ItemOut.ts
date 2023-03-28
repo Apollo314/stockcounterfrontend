@@ -27,5 +27,5 @@ export type ItemOut = {
   created_by: ConciseUser;
   updated_by: ConciseUser;
   description?: string | null;
-  category: Category;
+  category?: Category;
 };
