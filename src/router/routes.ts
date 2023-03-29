@@ -1,6 +1,28 @@
-import { RouteRecordRaw } from 'vue-router';
+import { RouteRecordRaw, RouteLocationNormalizedLoaded } from 'vue-router';
 
-const routes: RouteRecordRaw[] = [
+type RouteRecordRawExtended = RouteRecordRaw & {
+  meta?: {
+    /**
+     * whether or not the layout should hide the header.
+     */
+    hideHeader?: boolean;
+    key?: string | number | symbol;
+    /**
+     * a function that will return the key to use in <router-view>'s
+     * <Component>
+     */
+    keyFunc?: (
+      route: RouteLocationNormalizedLoaded
+    ) => string | number | symbol;
+    /**
+     * key in <router-view>'s <Component> will be route.path
+     */
+    pathAsKey?: boolean;
+  };
+  children?: RouteRecordRawExtended[];
+};
+
+const routes: RouteRecordRawExtended[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout/MainLayout.vue'),
@@ -15,6 +37,7 @@ const routes: RouteRecordRaw[] = [
         path: '/login',
         component: () => import('pages/Login/LoginPage.vue'),
         name: 'home',
+        meta: { hideHeader: true },
       },
       {
         path: '/table',
@@ -26,11 +49,13 @@ const routes: RouteRecordRaw[] = [
         path: '/:id(\\d+)',
         component: () => import('pages/Index/IndexPage.vue'),
         name: 'nest',
+        meta: { hideHeader: true },
       },
       {
         path: 'another/',
         component: () => import('pages/Index/IndexPage2.vue'),
         name: 'another',
+        meta: { hideHeader: true },
       },
       {
         path: 'settings/',

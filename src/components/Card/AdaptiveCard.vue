@@ -7,7 +7,6 @@
       'arrived-bottom': arrivedState.bottom,
       'arrived-left': arrivedState.left,
       'no-width-scrollbar': noWidthScrollbar,
-      'is-scrolling': isScrolling,
     }"
   >
     <q-card-actions
@@ -20,7 +19,7 @@
     </q-card-actions>
     <div ref="scrollParent" class="scrollparent">
       <div
-        v-if="scrollbarProperties?.needsScrollbar"
+        v-if="scrollbarProperties.needsScrollbar"
         class="virtual-scrollbar vertical"
         :style="{
           transform: `translateY(${scrollbarProperties.scrollbarPosition}px)`,
@@ -28,7 +27,7 @@
         }"
       />
       <div
-        v-if="scrollbarProperties?.needsHScrollbar"
+        v-if="scrollbarProperties.needsHScrollbar"
         class="virtual-scrollbar horizontal"
         :style="{
           transform: `translateX(${scrollbarProperties.hScrollbarPosition}px)`,
@@ -55,7 +54,7 @@
 <script setup lang="ts">
 import { useElementSize, useScroll } from '@vueuse/core';
 import { useQuasar } from 'quasar';
-import { computed, onActivated, ref } from 'vue';
+import { watch, onActivated, ref, Ref, inject } from 'vue';
 
 import { useVPan } from 'src/composables/useVPan';
 
@@ -68,11 +67,31 @@ withDefaults(
   }
 );
 
+const showHeader = inject<Ref<boolean>>('showHeader');
 const scrollParent = ref<HTMLElement>();
 const scrolledContent = ref<HTMLElement>();
 const scroller = ref<HTMLElement>();
 
-const { x, y, arrivedState, isScrolling, directions } = useScroll(scroller);
+const { x, y, arrivedState, directions } = useScroll(scroller);
+
+watch(
+  () => [directions.bottom, directions.top],
+  () => {
+    if ($q.platform.is.mobile) {
+      if (directions.bottom) {
+        console.log('goin bottom yooo');
+        if (showHeader !== undefined) {
+          showHeader.value = false;
+        }
+      } else if (directions.top) {
+        if (showHeader !== undefined) {
+          showHeader.value = true;
+        }
+        console.log('going top');
+      }
+    }
+  }
+);
 
 const { height: scrollParentHeight, width: scrollParentWidth } =
   useElementSize(scrollParent);
@@ -80,19 +99,46 @@ const { height: scrollParentHeight, width: scrollParentWidth } =
 const { height: scrolledContentHeight, width: scrolledContentWidth } =
   useElementSize(scrolledContent);
 
+const scrollbarProperties = ref({
+  scrollbarHeight: 0,
+  scrollbarPosition: 0,
+  needsScrollbar: false,
+  hScrollbarWidth: 0,
+  hScrollbarPosition: 0,
+  needsHScrollbar: false,
+});
+
+const updateScrollbar = () => {
+  console.log(scrollParentHeight.value);
+  scrollbarProperties.value.needsScrollbar =
+    scrollParentHeight.value < scrolledContentHeight.value;
+  scrollbarProperties.value.scrollbarHeight =
+    scrollParentHeight.value ** 2 / scrolledContentHeight.value;
+  const availableTrack = scrolledContentHeight.value - scrollParentHeight.value;
+  scrollbarProperties.value.scrollbarPosition =
+    (y.value / availableTrack) *
+    (scrollParentHeight.value - scrollbarProperties.value.scrollbarHeight);
+  scrollbarProperties.value.needsHScrollbar =
+    scrollParentWidth.value < scrolledContentWidth.value;
+  scrollbarProperties.value.hScrollbarWidth =
+    scrollParentWidth.value ** 2 / scrolledContentWidth.value;
+  const availableHTrack = scrolledContentWidth.value - scrollParentWidth.value;
+  scrollbarProperties.value.hScrollbarPosition =
+    (x.value / availableHTrack) *
+    (scrollParentWidth.value - scrollbarProperties.value.hScrollbarWidth);
+};
+
 const {} = useVPan({
   target: scroller,
   mouse: { touch: false },
-  callback: ({ isFirst, offset }) => {
-    if (isFirst) {
-      lastPan.value = { x: x.value, y: y.value };
-    }
-    scroller.value?.scrollTo({
-      left: lastPan.value.x - offset.x,
-      top: lastPan.value.y - offset.y,
+  callback: ({ delta }) => {
+    scroller.value?.scrollBy({
+      left: -delta.x,
+      top: -delta.y,
     });
+    updateScrollbar();
   },
-  throttle: 20,
+  throttle: 50,
 });
 
 const $q = useQuasar();
@@ -114,50 +160,6 @@ const setScroll = ({ x, y }: { x: number; y: number }): void => {
 onActivated(() => {
   setScroll({ x: x.value, y: y.value });
 });
-
-const scrollbarProperties = computed(() => {
-  if ($q.platform.is.desktop && scroller.value) {
-    const needsScrollbar =
-      scrollParentHeight.value < scrolledContentHeight.value;
-    const scrollbarHeight =
-      scrollParentHeight.value ** 2 / scrolledContentHeight.value;
-    const availableTrack =
-      scrolledContentHeight.value - scrollParentHeight.value;
-    const scrollbarPosition =
-      (y.value / availableTrack) * (scrollParentHeight.value - scrollbarHeight);
-
-    const needsHScrollbar =
-      scrollParentWidth.value < scrolledContentWidth.value;
-    const hScrollbarWidth =
-      scrollParentWidth.value ** 2 / scrolledContentWidth.value;
-    const availableHTrack =
-      scrolledContentWidth.value - scrollParentWidth.value;
-    const hScrollbarPosition =
-      (x.value / availableHTrack) * (scrollParentWidth.value - hScrollbarWidth);
-
-    return {
-      scrollbarHeight,
-      scrollbarPosition,
-      needsScrollbar,
-      hScrollbarWidth,
-      hScrollbarPosition,
-      needsHScrollbar,
-    };
-  } else {
-    return undefined;
-  }
-});
-
-const lastPan = ref<{ x: number; y: number }>({ x: x.value, y: y.value });
-
-defineExpose({
-  scroller: {
-    x,
-    y,
-    arrivedState,
-    directions,
-  },
-});
 </script>
 <style lang="scss">
 .virtual-scrollbar {
@@ -170,8 +172,7 @@ defineExpose({
     height: 0px;
     bottom: 0px;
   }
-  .adaptive-card:hover &,
-  .adaptive-card.is-scrolling & {
+  .adaptive-card:hover & {
     &.vertical {
       width: 4px;
     }

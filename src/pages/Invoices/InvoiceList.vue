@@ -1,19 +1,11 @@
 <template>
-  <FullHeightPage hide-back-button :padding="!$q.platform.is.mobile">
+  <FullHeightPage hide-back-button padding>
     <DataTable
       v-model:pagination="pagination"
       :data="data || []"
       :columns="columns"
       @request="fetcher($event)"
     >
-      <template #caption>
-        <q-btn
-          color="primary"
-          icon="delete"
-          label="delete"
-          @click="deleteIndex(1)"
-        />
-      </template>
     </DataTable>
   </FullHeightPage>
 </template>
@@ -97,7 +89,7 @@ const data = ref<ItemOut[]>();
 const pagination = ref<Pagination<Filters>>({
   count: 100,
   filters: {},
-  limit: 15,
+  limit: 25,
   offset: 0,
 });
 

@@ -1,8 +1,10 @@
 <template>
-  <q-layout view="hHh LpR fFf" class="overflow-hidden">
+  <q-layout view="hHh LpR fFf" class="overflow-clip">
     <q-header
       v-if="!$q.screen.lt.sm || !$route.meta.hideHeader"
       class="transparent bg-blurred auto-text-color"
+      v-model="showHeader"
+      reveal
     >
       <q-toolbar>
         <q-btn
@@ -26,7 +28,6 @@
         />
       </q-toolbar>
     </q-header>
-
     <LeftDrawer v-model="leftDrawerOpen"></LeftDrawer>
     <q-page-container
       class="perspective"
@@ -45,7 +46,7 @@
 
 <script setup lang="ts">
 import { useQuasar } from 'quasar';
-import { ref } from 'vue';
+import { ref, provide, Ref } from 'vue';
 import { RouteLocationNormalizedLoaded } from 'vue-router';
 
 import { useSettingsStore } from 'src/stores/settings-store';
@@ -59,6 +60,8 @@ const settings = useSettingsStore();
 $q.dark.set('auto');
 
 const leftDrawerOpen = ref(false);
+
+const showHeader = ref(true);
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
@@ -94,6 +97,8 @@ const getTransition = (
   }
   return transition;
 };
+
+provide<Ref<boolean>>('showHeader', showHeader);
 </script>
 
 <style lang="scss">

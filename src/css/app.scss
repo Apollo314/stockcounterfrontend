@@ -3,11 +3,26 @@
 
 .body--light {
   background: black;
-  background: linear-gradient(
-    hsl(209, 56%, 82%),
-    hsl(187, 42%, 67%)
-  ); // background: hsl(160, 5%, 80%);
-  background-attachment: fixed;
+  background: linear-gradient(hsl(209, 56%, 82%), hsl(187, 42%, 67%));
+  // background-attachment: fixed;
+}
+
+@media (max-width: 599.98px) {
+  .q-page.q-layout-padding {
+    padding: 0;
+  }
+  .adaptive-card {
+    border-radius: 0;
+  }
+}
+
+.mobile {
+  .q-page.q-layout-padding {
+    padding: 0;
+  }
+  .adaptive-card {
+    border-radius: 0;
+  }
 }
 
 // links
@@ -189,4 +204,8 @@ $menu-item-height: 40px;
     -webkit-user-select: none;
     -ms-user-select: none;
   }
+}
+
+.overflow-clip {
+  overflow: clip;
 }
