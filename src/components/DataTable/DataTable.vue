@@ -10,11 +10,16 @@
     no-width-scrollbar
     :compact-scrollbar="false"
   >
+    <template #action-top>
+      <q-toolbar style="overflow: scroll; width: 100%">
+        <q-btn flat round dense icon="assignment_ind" />
+        <q-toolbar-title> Toolbar </q-toolbar-title>
+        <q-btn flat round dense icon="apps" class="q-mr-xs" />
+        <q-btn flat round dense icon="more_vert" />
+      </q-toolbar>
+    </template>
     <div class="table-parent">
       <table flat class="coolshadow data-table">
-        <caption class="table-caption" :class="captionClasses">
-          <slot name="caption" v-bind="{ selected, pagination }"></slot>
-        </caption>
         <thead class="table-head" :class="theadClasses">
           <tr>
             <th class="table-header-cell" @click.stop="toggleSelectionAll()">
@@ -286,8 +291,8 @@ $table-dark-hover-background: hsla(197, 60%, 50%, 0.3);
 $table-dark-selected-background: darken($warning, 40%);
 
 .table-parent {
-  border-radius: $generic-border-radius;
-  contain: paint;
+  border-radius: 0 0 $generic-border-radius $generic-border-radius;
+  overflow: clip;
   .body--dark & {
     border-bottom: 3px solid $separator-dark-color;
   }
@@ -325,6 +330,7 @@ $table-dark-selected-background: darken($warning, 40%);
       z-index: 10;
     }
     th.table-header-cell {
+      // overflow: clip;
       .body--dark & {
         background-color: #073a44;
       }
@@ -454,8 +460,8 @@ $table-dark-selected-background: darken($warning, 40%);
   }
 
   .table-body {
-    height: 100%;
-    overflow: auto;
+    // height: 100%;
+    // overflow: auto;
   }
 }
 </style>
