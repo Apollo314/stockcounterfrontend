@@ -14,7 +14,7 @@ const itemLabels: Record<keyof ItemOut, string> = {
   kdv: 'Tax(KDV)',
   name: 'Item/Service name',
   sellcurrency: 'Sell currency',
-  sellprice: 'Sell crice',
+  sellprice: 'Sell price',
   stock_code: 'Stock code',
   stock_unit: 'Stock unit',
   stocks: 'Stocks',
@@ -104,6 +104,7 @@ export default {
   },
   success: 'Action was successful',
   titles: {
+    activeColumns: 'Active columns',
     login: 'Login',
   },
 };

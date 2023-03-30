@@ -4,7 +4,7 @@ import {
   useMouse,
   watchThrottled,
 } from '@vueuse/core';
-import { computed, ref, unref } from 'vue';
+import { computed, nextTick, ref, unref } from 'vue';
 
 import type {
   MaybeComputedRef,
@@ -20,7 +20,7 @@ type XY = {
 
 export type VTouchEvent = {
   isFirst: boolean;
-  offset: XY;
+  delta: XY;
 };
 
 export type VPanOptions = {
@@ -41,20 +41,30 @@ export function useVPan(options: VPanOptions) {
   const threshold = computed(() => unref(options.threshold) || 10);
   const target = computed(() => unrefElement(options.target));
   const pressed = ref<boolean>(false);
+  let pressType: 'left' | 'right' | null = null;
 
   const startpos = ref<{ x: number; y: number }>({
-    x: options.mouse.initialValue?.x || 0,
-    y: options.mouse.initialValue?.y || 0,
+    x: 0,
+    y: 0,
   });
 
-  function onPressed() {
+  const deltastartpos = ref<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
+
+  function onPressed(evt: MouseEvent) {
+    console.log('pressed');
+    pressType = evt.button === 0 ? 'left' : 'right';
     pressed.value = true;
     isFirst.value = true;
     startpos.value.x = x.value;
     startpos.value.y = y.value;
+    deltastartpos.value.x = x.value;
+    deltastartpos.value.y = y.value;
   }
 
-  function onReleased() {
+  function onReleased(evt: MouseEvent) {
     pressed.value = false;
   }
 
@@ -74,15 +84,21 @@ export function useVPan(options: VPanOptions) {
   watchThrottled(
     () => [x.value, y.value],
     (xy) => {
-      if (pressed.value) {
-        options.callback({
-          isFirst: isFirst.value,
-          offset: {
-            x: xy[0] - startpos.value.x,
-            y: xy[1] - startpos.value.y,
-          },
+      if (pressed.value && pressType === 'left') {
+        nextTick(() => {
+          console.log('calback');
+          console.log(pressType, xy, x.value, y.value, deltastartpos.value);
+          options.callback({
+            isFirst: isFirst.value,
+            delta: {
+              x: x.value - deltastartpos.value.x,
+              y: y.value - deltastartpos.value.y,
+            },
+          });
+          isFirst.value = false;
+          deltastartpos.value.x = xy[0];
+          deltastartpos.value.y = xy[1];
         });
-        isFirst.value = false;
       }
     },
     { throttle: options.throttle }

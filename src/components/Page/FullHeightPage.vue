@@ -1,14 +1,13 @@
 <template>
   <q-page :padding="padding" :style-fn="styleFn || defaultStlyeFn">
-    <div class="flex column full-height">
-      <div class="col-shrink q-pb-sm">
+    <div :class="{ 'full-height': fit }" class="flex column">
+      <div v-if="!hideBackButton" class="col-shrink q-pa-sm">
         <div class="row full-width">
           <q-btn
             flat
             icon="chevron_left"
             :label="$t('buttons.back')"
             no-caps
-            v-if="!hideBackButton"
             @click="$router.back()"
           />
           <q-space />
@@ -23,8 +22,12 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   hideBackButton?: boolean;
+  /**
+   * whether or not fit the whole page to viewport
+   */
+  fit?: boolean;
   padding?: boolean;
   /**
    * Override default CSS style applied to the component (sets minHeight); Function(offset: Number) => CSS props/value: Object; For best performance, reference it from your scope and do not define it inline
@@ -37,10 +40,12 @@ defineProps<{
 }>();
 
 function defaultStlyeFn(offset: number, height: number) {
-  return {
-    minHeight: `${height - offset}px`,
-    height: `${height - offset}px`,
-  };
+  if (props.fit) {
+    return {
+      minHeight: `${height - offset}px`,
+      height: `${height - offset}px`,
+    };
+  }
 }
 </script>
 

@@ -1,33 +1,41 @@
 <template>
-  <q-layout view="hHh LpR fFf" class="overflow-clip">
-    <q-header
-      v-if="!$q.screen.lt.sm || !$route.meta.hideHeader"
-      class="transparent bg-blurred auto-text-color"
-      v-model="showHeader"
-      reveal
-    >
-      <q-toolbar>
-        <q-btn
-          flat
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-        <q-toolbar-title>
-          <RouterLink class="text-h6" :to="{ name: 'home' }">{{
-            $t('appName')
-          }}</RouterLink>
-        </q-toolbar-title>
-        <q-toggle
-          :model-value="$q.dark.isActive"
-          @update:model-value="$q.dark.set($event)"
-          checked-icon="dark_mode"
-          color="grey-8"
-          unchecked-icon="light_mode"
-        />
-      </q-toolbar>
-    </q-header>
+  <q-layout view="lhr LpR lfr" class="overflow-clip">
+    <StickyHeader>
+      <div class="q-layout-padding q-pb-sm">
+        <q-toolbar
+          style="border-radius: 10px; min-height: 40px"
+          class="semi-transparent"
+        >
+          <q-btn
+            flat
+            round
+            dense
+            icon="menu"
+            aria-label="Menu"
+            @click="toggleLeftDrawer"
+          />
+          <div class="row full-width items-center" ref="replacementHeaderRef">
+            <template v-if="!uiStore.replaceHeader">
+              <q-toolbar-title>
+                <RouterLink class="text-h6" :to="{ name: 'home' }">{{
+                  $t('appName')
+                }}</RouterLink>
+              </q-toolbar-title>
+              <q-toggle
+                :model-value="$q.dark.isActive"
+                @update:model-value="$q.dark.set($event)"
+                checked-icon="dark_mode"
+                color="grey-8"
+                unchecked-icon="light_mode"
+              />
+            </template>
+          </div>
+        </q-toolbar>
+      </div>
+    </StickyHeader>
+    <q-footer reveal class="semi-transparent-accent">
+      <div ref="replacementFooterRef" class="row full-width items-center"></div>
+    </q-footer>
     <LeftDrawer v-model="leftDrawerOpen"></LeftDrawer>
     <q-page-container
       class="perspective"
@@ -46,14 +54,34 @@
 
 <script setup lang="ts">
 import { useQuasar } from 'quasar';
-import { ref, provide, Ref } from 'vue';
+import { watch, ref, provide, Ref } from 'vue';
 import { RouteLocationNormalizedLoaded } from 'vue-router';
 
 import { useSettingsStore } from 'src/stores/settings-store';
+import { useUIStore } from 'stores/ui-store';
+
+import StickyHeader from '../../components/Header/StickyHeader.vue';
 
 import LeftDrawer from './LeftDrawer.vue';
 
 const $q = useQuasar();
+const uiStore = useUIStore();
+const replacementHeaderRef = ref();
+const replacementFooterRef = ref();
+
+watch(
+  () => replacementHeaderRef.value,
+  () => {
+    uiStore.replacementHeaderRef = replacementHeaderRef.value;
+  }
+);
+
+watch(
+  () => replacementFooterRef.value,
+  () => {
+    uiStore.replacementFooterRef = replacementFooterRef.value;
+  }
+);
 
 const settings = useSettingsStore();
 

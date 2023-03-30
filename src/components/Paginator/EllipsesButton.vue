@@ -3,6 +3,7 @@
     <q-btn
       v-if="!showInput"
       flat
+      dense
       style="padding: 3px 2px; min-width: 2em; min-height: 0px"
       :color="color"
       label="..."
