@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import { useThrottleFn } from '@vueuse/shared';
 import { inject, Ref, ref } from 'vue';
 
 import { TouchPanEvent } from 'src/types/quasarmissingtypes';
@@ -38,22 +39,31 @@ const props = defineProps<{
 
 const resizerRef = ref<HTMLElement>();
 const panning = ref<boolean>(false);
+const startpos = ref<{ x: number; y: number }>({ x: 0, y: 0 });
 
 const columnWidths = inject<Ref<FakeColumnWidths>>('columnWidths', ref({}));
 
-function panHandler(evt: TouchPanEvent) {
+const panHandler = useThrottleFn(async (evt: TouchPanEvent) => {
   if (evt.isFirst) {
+    startpos.value.x = evt.offset.x;
+    startpos.value.y = evt.offset.y;
     panning.value = true;
     columnWidths.value[props.column.id] =
       (resizerRef.value?.parentElement?.offsetWidth || 0) + evt.delta.x;
   } else {
+    const delta = {
+      x: evt.offset.x - startpos.value.x,
+      y: evt.offset.y - startpos.value.y,
+    };
     columnWidths.value[props.column.id] =
-      evt.delta.x + columnWidths.value[props.column.id];
+      delta.x + columnWidths.value[props.column.id];
+    startpos.value.x = evt.offset.x;
+    startpos.value.y = evt.offset.y;
   }
   if (evt.isFinal) {
     panning.value = false;
   }
-}
+}, 50);
 </script>
 
 <style scoped lang="scss">
