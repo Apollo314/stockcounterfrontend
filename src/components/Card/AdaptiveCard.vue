@@ -6,7 +6,7 @@
       'arrived-right': arrivedState.right,
       'arrived-bottom': arrivedState.bottom,
       'arrived-left': arrivedState.left,
-      'no-width-scrollbar': noWidthScrollbar,
+      'compact-scrollbar': noWidthScrollbar,
     }"
   >
     <q-card-actions
@@ -18,22 +18,6 @@
       </div>
     </q-card-actions>
     <div ref="scrollParent" class="scrollparent">
-      <div
-        v-if="scrollbarProperties.needsScrollbar"
-        class="virtual-scrollbar vertical"
-        :style="{
-          transform: `translateY(${scrollbarProperties.scrollbarPosition}px)`,
-          height: `${scrollbarProperties.scrollbarHeight}px`,
-        }"
-      />
-      <div
-        v-if="scrollbarProperties.needsHScrollbar"
-        class="virtual-scrollbar horizontal"
-        :style="{
-          transform: `translateX(${scrollbarProperties.hScrollbarPosition}px)`,
-          width: `${scrollbarProperties.hScrollbarWidth}px`,
-        }"
-      />
       <div ref="scroller" class="scroll-section flex no-user-select">
         <div ref="scrolledContent" style="flex-grow: 1">
           <slot />
@@ -52,11 +36,8 @@
 </template>
 
 <script setup lang="ts">
-import { useElementSize, useScroll } from '@vueuse/core';
-import { useQuasar } from 'quasar';
-import { watch, onActivated, ref, Ref, inject } from 'vue';
-
-import { useVPan } from 'src/composables/useVPan';
+import { useScroll } from '@vueuse/core';
+import { onActivated, ref } from 'vue';
 
 withDefaults(
   defineProps<{
@@ -67,85 +48,14 @@ withDefaults(
   }
 );
 
-const showHeader = inject<Ref<boolean>>('showHeader');
 const scrollParent = ref<HTMLElement>();
 const scrolledContent = ref<HTMLElement>();
 const scroller = ref<HTMLElement>();
 
-const { x, y, arrivedState, directions } = useScroll(scroller);
-
-watch(
-  () => [directions.bottom, directions.top],
-  () => {
-    if ($q.platform.is.mobile) {
-      if (directions.bottom) {
-        console.log('goin bottom yooo');
-        if (showHeader !== undefined) {
-          showHeader.value = false;
-        }
-      } else if (directions.top) {
-        if (showHeader !== undefined) {
-          showHeader.value = true;
-        }
-        console.log('going top');
-      }
-    }
-  }
-);
-
-const { height: scrollParentHeight, width: scrollParentWidth } =
-  useElementSize(scrollParent);
-
-const { height: scrolledContentHeight, width: scrolledContentWidth } =
-  useElementSize(scrolledContent);
-
-const scrollbarProperties = ref({
-  scrollbarHeight: 0,
-  scrollbarPosition: 0,
-  needsScrollbar: false,
-  hScrollbarWidth: 0,
-  hScrollbarPosition: 0,
-  needsHScrollbar: false,
-});
-
-const updateScrollbar = () => {
-  console.log(scrollParentHeight.value);
-  scrollbarProperties.value.needsScrollbar =
-    scrollParentHeight.value < scrolledContentHeight.value;
-  scrollbarProperties.value.scrollbarHeight =
-    scrollParentHeight.value ** 2 / scrolledContentHeight.value;
-  const availableTrack = scrolledContentHeight.value - scrollParentHeight.value;
-  scrollbarProperties.value.scrollbarPosition =
-    (y.value / availableTrack) *
-    (scrollParentHeight.value - scrollbarProperties.value.scrollbarHeight);
-  scrollbarProperties.value.needsHScrollbar =
-    scrollParentWidth.value < scrolledContentWidth.value;
-  scrollbarProperties.value.hScrollbarWidth =
-    scrollParentWidth.value ** 2 / scrolledContentWidth.value;
-  const availableHTrack = scrolledContentWidth.value - scrollParentWidth.value;
-  scrollbarProperties.value.hScrollbarPosition =
-    (x.value / availableHTrack) *
-    (scrollParentWidth.value - scrollbarProperties.value.hScrollbarWidth);
-};
-
-const {} = useVPan({
-  target: scroller,
-  mouse: { touch: false },
-  callback: ({ delta }) => {
-    scroller.value?.scrollBy({
-      left: -delta.x,
-      top: -delta.y,
-    });
-    updateScrollbar();
-  },
-  throttle: 50,
-});
-
-const $q = useQuasar();
+const { x, y, arrivedState } = useScroll(scroller);
 
 const setScroll = ({ x, y }: { x: number; y: number }): void => {
   if (scroller.value !== undefined) {
-    console.log('settin scroll');
     scroller.value.scrollTo({
       left: x,
       top: y,
