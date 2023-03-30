@@ -3,6 +3,7 @@
     <q-btn
       :color="color"
       flat
+      dense
       v-if="directionLinks"
       icon="chevron_left"
       @click="updatePage(Math.max(currentPage - 1, minPage))"
@@ -10,6 +11,7 @@
     />
     <template v-for="page in pages" :key="page">
       <q-btn
+        dense
         :color="color"
         :flat="currentPage !== page.number"
         push
@@ -27,6 +29,7 @@
     </template>
     <q-btn
       :color="color"
+      dense
       flat
       v-if="directionLinks"
       icon="chevron_right"

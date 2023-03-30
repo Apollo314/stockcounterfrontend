@@ -104,6 +104,7 @@ export default {
   },
   success: 'Başarılı',
   titles: {
+    activeColumns: 'Aktif kolonlar',
     login: 'Giriş',
   },
 };

@@ -1,10 +1,11 @@
 <template>
-  <FullHeightPage hide-back-button padding>
+  <FullHeightPage hide-back-button padding :fit="$q.screen.gt.xs">
     <DataTable
       v-model:pagination="pagination"
       :data="data || []"
       :columns="columns"
       @request="fetcher($event)"
+      :card="$q.screen.lt.sm"
     >
     </DataTable>
   </FullHeightPage>
@@ -38,10 +39,24 @@ function deleteIndex(index: number) {
 const { t: $t, n: $n, d: $d } = useI18n();
 
 const co: ColumnsOverride<Column, Row> = {
-  id: { label: () => $t('itemlabels.id') },
+  id: { label: () => $t('itemlabels.id'), hidden: true },
   name: { width: 400, label: () => $t('itemlabels.name') },
-  buyprice: { label: () => $t('itemlabels.buyprice') },
-  sellprice: { label: () => $t('itemlabels.sellprice') },
+  buyprice: {
+    label: () => $t('itemlabels.buyprice'),
+    field: (row) =>
+      `${$n(parseFloat(row.buyprice), {
+        style: 'currency',
+        currency: row.buycurrency,
+      })}`,
+  },
+  sellprice: {
+    label: () => $t('itemlabels.sellprice'),
+    field: (row) =>
+      `${$n(parseFloat(row.sellprice), {
+        style: 'currency',
+        currency: row.sellcurrency,
+      })}`,
+  },
   stocks: {
     field: (row) =>
       `${row.stocks.reduce(
@@ -59,7 +74,7 @@ const co: ColumnsOverride<Column, Row> = {
     field: (row) => row.updated_by.username,
     label: () => $t('itemlabels.updated_by'),
   },
-  stock_code: {},
+  stock_code: { label: () => $t('itemlabels.stock_code') },
   created_at: {
     field: (row) => $d(row.created_at || ''),
     label: () => $t('itemlabels.created_at'),
@@ -80,7 +95,7 @@ const co: ColumnsOverride<Column, Row> = {
   // sellcurrency: { label: () => $t('itemlabels.sellcurrency') },
 };
 
-const columns = ColumnsGenerator(co);
+const columns = ColumnsGenerator<Column, Row>(co);
 
 type Filters = Record<string, string>;
 

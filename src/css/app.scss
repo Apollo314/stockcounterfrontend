@@ -15,6 +15,20 @@
     border-radius: 0;
   }
 }
+@media (min-width: 1440px) {
+  .q-layout-padding {
+    padding: 12px;
+  }
+}
+@media (min-width: 600px) and (max-width: 1439.98px) {
+  .q-layout-padding {
+    padding: 10px;
+  }
+}
+
+.q-page.q-layout-padding {
+  padding-top: 0 !important;
+}
 
 .mobile {
   .q-page.q-layout-padding {
@@ -167,6 +181,7 @@ $menu-item-height: 40px;
   overflow: hidden;
 
   .scroll-section {
+    overscroll-behavior-inline: contain;
     overflow: auto;
   }
   .actions-row {
@@ -208,4 +223,24 @@ $menu-item-height: 40px;
 
 .overflow-clip {
   overflow: clip;
+}
+
+.semi-transparent {
+  .body--dark & {
+    background: desaturate(rgba($primary, 0.5), 50%);
+  }
+  .body--light & {
+    background: desaturate(rgba($primary, 0.5), 50%);
+  }
+  backdrop-filter: blur(8px);
+}
+
+.semi-transparent-accent {
+  .body--dark & {
+    background: desaturate(rgba($accent, 0.5), 50%);
+  }
+  .body--light & {
+    background: desaturate(rgba($accent, 0.5), 50%);
+  }
+  backdrop-filter: blur(8px);
 }

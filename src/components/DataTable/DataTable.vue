@@ -1,26 +1,37 @@
 <template>
   <adaptive-card
+    ref="adaptiveCardRef"
     :class="{
       'sticky-header': stickyHeader,
       'sticky-caption': stickyCaption,
+      'bg-transparent': $q.screen.lt.sm,
     }"
     class="full-height"
     flushmobile
-    bordered
+    :bordered="$q.screen.gt.xs"
     no-width-scrollbar
     :compact-scrollbar="false"
   >
-    <template #action-top>
-      <q-toolbar style="overflow: scroll; width: 100%">
-        <q-btn flat round dense icon="assignment_ind" />
-        <q-toolbar-title> Toolbar </q-toolbar-title>
-        <q-btn flat round dense icon="apps" class="q-mr-xs" />
-        <q-btn flat round dense icon="more_vert" />
-      </q-toolbar>
-    </template>
     <div class="table-parent">
-      <table flat class="coolshadow data-table">
+      <Teleport
+        :to="uiStore.replacementHeaderRef"
+        :disabled="
+          !uiStore.replacementHeaderRef ||
+          !uiStore.replaceHeader ||
+          $q.screen.gt.xs
+        "
+      >
+        <div class="row q-pa-xs items-center full-width">
+          <ActiveColumns></ActiveColumns>
+          <q-btn flat round dense icon="assignment_ind" />
+          <q-toolbar-title> Toolbar </q-toolbar-title>
+          <q-btn flat round dense icon="apps" class="q-mr-xs" />
+          <q-btn flat round dense icon="more_vert" />
+        </div>
+      </Teleport>
+      <table v-if="!card" flat class="coolshadow data-table">
         <thead class="table-head" :class="theadClasses">
+          <ActiveColumns></ActiveColumns>
           <tr>
             <th class="table-header-cell" @click.stop="toggleSelectionAll()">
               <q-checkbox
@@ -90,19 +101,81 @@
           </tr>
         </tbody>
       </table>
+      <div v-else>
+        <div
+          v-for="row in data"
+          :class="{ selected: selected.indexOf(row) > -1 }"
+          :key="row.id"
+          class="data-card-container q-pa-sm col-xs-12 col-sm-6 col-md-4 col-lg-3"
+          @dblclick="toggleSelection(row, !(selected.indexOf(row) > -1))"
+        >
+          <div
+            class="data-card-parent"
+            :style="selected.indexOf(row) > -1 ? 'transform: scale(0.95);' : ''"
+            style="width: 100%; height: 100%"
+          >
+            <q-card class="data-card" style="width: 100%; overflow: hidden">
+              <q-card-section horizontal class="q-pa-md">
+                <q-checkbox
+                  dense
+                  class="checkbox"
+                  :model-value="selected.indexOf(row) > -1"
+                  @update:model-value="toggleSelection(row, $event)"
+                />
+                <q-space />
+                <slot name="card-buttons" v-bind="{ row: row }"></slot>
+              </q-card-section>
+              <q-list dense separator style="z-index: 1">
+                <q-item
+                  v-for="column in computedcolumns"
+                  v-show="!column.hidden"
+                  :key="column.id"
+                >
+                  <q-item-section style="min-width: unset !important">
+                    <q-item-label>{{ callOrGet(column.label) }}</q-item-label>
+                  </q-item-section>
+                  <q-item-section
+                    side
+                    style="color: inherit !important; font-weight: 900"
+                  >
+                    <slot
+                      v-if="$slots[`row-slot-${column.id}`]"
+                      v-bind="{ row, column }"
+                      :name="`row-slot-${column.id}`"
+                    ></slot>
+                    <div v-else>
+                      {{ getColValue(column, row) }}
+                    </div>
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-card>
+          </div>
+          <slot></slot>
+        </div>
+      </div>
     </div>
     <template #action-bottom>
-      <div class="row full-width q-pa-sm" style="position: sticky; bottom: 0">
-        <q-space />
-        <OffsetLimitPaginator
-          :model-value="pagination.offset"
-          :count="pagination.count"
-          :limit="pagination.limit"
-          @update:model-value="request({ offset: $event })"
-          :max-length="7"
-          direction-links
-        ></OffsetLimitPaginator>
-      </div>
+      <Teleport
+        :to="uiStore.replacementFooterRef"
+        :disabled="
+          !uiStore.replaceHeader ||
+          !uiStore.replacementFooterRef ||
+          $q.screen.gt.xs
+        "
+      >
+        <div class="row full-width q-pa-sm" style="position: sticky; bottom: 0">
+          <q-space />
+          <OffsetLimitPaginator
+            :model-value="pagination.offset"
+            :count="pagination.count"
+            :limit="pagination.limit"
+            @update:model-value="request({ offset: $event })"
+            :max-length="7"
+            direction-links
+          ></OffsetLimitPaginator>
+        </div>
+      </Teleport>
     </template>
   </adaptive-card>
 </template>
@@ -112,11 +185,26 @@
   lang="ts"
   generic="Row extends BaseRow, Column extends BaseColumn<Row>, Filters extends Object"
 >
-import { computed, ref, Ref, nextTick, provide } from 'vue';
+import { useQuasar } from 'quasar';
+import {
+  onUnmounted,
+  onMounted,
+  onActivated,
+  onDeactivated,
+  computed,
+  watch,
+  ref,
+  Ref,
+  nextTick,
+  provide,
+} from 'vue';
 
 import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
 import OffsetLimitPaginator from 'components/Paginator/OffsetLimitPaginator.vue';
 import { callOrGet } from 'src/composables/utilities';
+import { useUIStore } from 'stores/ui-store';
+
+import ActiveColumns from '../DataTable/ActiveColumns.vue';
 
 import ColumnResizer from './ColumnResizer.vue';
 
@@ -172,9 +260,39 @@ const props = withDefaults(
     captionClasses?: string;
     theadClasses?: string;
     tbodyClasses?: string;
+    /**
+     * whether or not to show the data as cards.
+     */
+    card?: boolean;
   }>(),
   {
     stickyHeader: true,
+  }
+);
+
+const $q = useQuasar();
+const uiStore = useUIStore();
+const adaptiveCardRef = ref();
+
+onActivated(() => {
+  uiStore.replaceHeader = !$q.screen.gt.xs;
+});
+onMounted(() => {
+  uiStore.replaceHeader = !$q.screen.gt.xs;
+});
+onUnmounted(() => {
+  uiStore.replaceHeader = false;
+});
+onDeactivated(() => {
+  uiStore.replaceHeader = false;
+});
+
+watch(
+  () => $q.screen.gt.xs,
+  () => {
+    if (!!uiStore.replacementHeaderRef) {
+      uiStore.replaceHeader = !$q.screen.gt.xs;
+    }
   }
 );
 
@@ -259,10 +377,13 @@ function request(partialPagination: Partial<Pagination<Filters>>) {
   emit('update:pagination', newPagination);
   nextTick(() => {
     emit('request', props.pagination);
+  }).then(() => {
+    adaptiveCardRef.value.scrollTo({ x: 0, y: 0 });
   });
 }
 
 provide('columnWidths', columnWidths);
+provide('columns', props.columns);
 </script>
 
 <style lang="scss">
@@ -458,10 +579,75 @@ $table-dark-selected-background: darken($warning, 40%);
       z-index: 10;
     }
   }
+}
 
-  .table-body {
-    // height: 100%;
-    // overflow: auto;
+// card styles
+.data-card-container {
+  &:hover .background-image {
+    filter: blur(0);
   }
+}
+
+.data-card-parent {
+  transition: all 0.2s ease;
+}
+
+.data-card {
+  .body--dark & {
+    border: 1px solid $separator-dark-color;
+  }
+  .body--light & {
+    border: 1px solid $separator-color;
+  }
+  border-bottom: 0 !important;
+
+  .q-item {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  box-shadow: $coolshadow,
+    0px -10px 0px -5px rgba(darken($primary, 20%), 1) inset !important;
+}
+
+.data-card-container.selected .data-card {
+  background: $table-light-selected-background;
+  &.q-dark {
+    background: rgba($table-dark-selected-background, 0.5);
+  }
+}
+
+.image-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden !important;
+  mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 7) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.background-image {
+  bottom: 0;
+  position: absolute !important;
+  left: 50%;
+  transform: translate(-50%);
+  max-width: 200%;
+  width: auto;
+  height: auto;
+  opacity: 0.2;
+  transition: all 0.15s ease;
+  filter: blur(20px);
+  background-repeat: no-repeat;
+  background-size: contain !important;
+  mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 20%,
+    rgba(0, 0, 0, 0.5) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
 }
 </style>

@@ -54,7 +54,8 @@ const scroller = ref<HTMLElement>();
 
 const { x, y, arrivedState } = useScroll(scroller);
 
-const setScroll = ({ x, y }: { x: number; y: number }): void => {
+const scrollTo = ({ x, y }: { x: number; y: number }): void => {
+  window.scrollTo({ top: y, left: x });
   if (scroller.value !== undefined) {
     scroller.value.scrollTo({
       left: x,
@@ -62,13 +63,17 @@ const setScroll = ({ x, y }: { x: number; y: number }): void => {
     });
   } else {
     setTimeout(() => {
-      setScroll({ x, y });
+      scrollTo({ x, y });
     }, 100);
   }
 };
 
 onActivated(() => {
-  setScroll({ x: x.value, y: y.value });
+  scrollTo({ x: x.value, y: y.value });
+});
+
+defineExpose({
+  scrollTo,
 });
 </script>
 <style lang="scss">
