@@ -1,15 +1,13 @@
 <template>
-  <Teleport v-if="visible" to="body">
-    <div class="sticky-header-container" :style="style">
-      <div
-        ref="innerRef"
-        class="header-parent"
-        style="position: sticky; z-index: 1000; top: 0"
-      >
-        <slot></slot>
-      </div>
+  <div class="sticky-header-container" :style="style">
+    <div
+      ref="innerRef"
+      class="header-parent"
+      style="position: sticky; z-index: 1000; top: 0"
+    >
+      <slot></slot>
     </div>
-  </Teleport>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -88,7 +86,6 @@ watch(
 
 const style = computed(() => {
   return {
-    left: `${$layout.left.offset}px`,
     height: `${headerContainerHeight.value}px !important`,
   };
 });

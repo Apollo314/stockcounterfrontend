@@ -50,7 +50,7 @@
 }
 
 .perspective {
-  perspective: max(100vw, 100vh);
+  perspective: 1600px;
   transform-style: preserve-3d;
 }
 
@@ -91,11 +91,11 @@
 
   &-corner {
     &-enter-from {
-      transform: rotate3d(1, 1, 0, 180deg);
+      transform: rotate3d(-1, 1, 0, 180deg);
     }
 
     &-leave-to {
-      transform: rotate3d(-1, -1, 0, 180deg);
+      transform: rotate3d(1, -1, 0, 180deg);
     }
   }
 }
