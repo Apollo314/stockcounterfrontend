@@ -21,7 +21,7 @@
             round
             icon="menu"
             aria-label="Menu"
-            @click="$emit('update:modelValue', !modelValue)"
+            @click="$emit('update:model-value', !modelValue)"
           />
           <div class="col">
             <q-input

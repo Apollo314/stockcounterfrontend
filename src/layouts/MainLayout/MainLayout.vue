@@ -1,48 +1,52 @@
 <template>
-  <q-layout view="lhr LpR lfr" class="overflow-clip">
+  <q-layout view="hhr LpR lfr">
     <StickyHeader>
-      <div class="q-layout-padding q-pb-sm">
-        <q-toolbar
-          style="border-radius: 10px; min-height: 40px"
-          class="semi-transparent"
-        >
+      <div
+        class="row full-width items-center semi-transparent bg-primary"
+        ref="subHeader"
+      >
+        <q-toolbar style="min-height: 40px" class="q-pb-xs q-pt-sm">
           <q-btn
             flat
             round
             dense
             icon="menu"
             aria-label="Menu"
-            @click="toggleLeftDrawer"
+            @click="toggleLeftDrawer()"
           />
-          <div class="row full-width items-center" ref="replacementHeaderRef">
-            <template v-if="!uiStore.replaceHeader">
-              <q-toolbar-title>
-                <RouterLink class="text-h6" :to="{ name: 'home' }">{{
-                  $t('appName')
-                }}</RouterLink>
-              </q-toolbar-title>
-              <q-toggle
-                :model-value="$q.dark.isActive"
-                @update:model-value="$q.dark.set($event)"
-                checked-icon="dark_mode"
-                color="grey-8"
-                unchecked-icon="light_mode"
-              />
-            </template>
-          </div>
+          <q-toolbar-title>
+            <RouterLink class="text-h6" :to="{ name: 'home' }">{{
+              $t('appName')
+            }}</RouterLink>
+          </q-toolbar-title>
+          <q-toggle
+            :model-value="$q.dark.isActive"
+            @update:model-value="$q.dark.set($event)"
+            checked-icon="dark_mode"
+            color="black"
+            unchecked-icon="light_mode"
+          />
         </q-toolbar>
       </div>
     </StickyHeader>
-    <q-footer reveal class="semi-transparent-accent">
-      <div ref="replacementFooterRef" class="row full-width items-center"></div>
-    </q-footer>
     <LeftDrawer v-model="leftDrawerOpen"></LeftDrawer>
     <q-page-container
       class="perspective"
       style="display: grid; grid-template-columns: 100%"
+      :class="{
+        'page-in-transition': !transitioned || transitioning,
+      }"
     >
       <router-view v-slot="{ Component, route }">
-        <Transition :name="getTransition(route)">
+        <Transition
+          @before-enter="transitioning = true"
+          @enter="transitioning = true"
+          @after-enter="transitioning = false"
+          @before-leave="transitioned = false"
+          @leave="transitioned = false"
+          @after-leave="transitioned = true"
+          :name="getTransition(route)"
+        >
           <KeepAlive :max="10">
             <Component :is="Component" :key="getKey(route)" />
           </KeepAlive>
@@ -57,31 +61,16 @@ import { useQuasar } from 'quasar';
 import { watch, ref, provide, Ref } from 'vue';
 import { RouteLocationNormalizedLoaded } from 'vue-router';
 
+import StickyHeader from 'components/Header/StickyHeader.vue';
 import { useSettingsStore } from 'src/stores/settings-store';
 import { useUIStore } from 'stores/ui-store';
-
-import StickyHeader from '../../components/Header/StickyHeader.vue';
 
 import LeftDrawer from './LeftDrawer.vue';
 
 const $q = useQuasar();
 const uiStore = useUIStore();
-const replacementHeaderRef = ref();
+const subHeader = ref();
 const replacementFooterRef = ref();
-
-watch(
-  () => replacementHeaderRef.value,
-  () => {
-    uiStore.replacementHeaderRef = replacementHeaderRef.value;
-  }
-);
-
-watch(
-  () => replacementFooterRef.value,
-  () => {
-    uiStore.replacementFooterRef = replacementFooterRef.value;
-  }
-);
 
 const settings = useSettingsStore();
 
@@ -90,6 +79,12 @@ $q.dark.set('auto');
 const leftDrawerOpen = ref(false);
 
 const showHeader = ref(true);
+
+// the one that gets in, ex @enter
+const transitioning = ref(false);
+
+// the one that goes away, ex @leave
+const transitioned = ref(true);
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
@@ -127,11 +122,19 @@ const getTransition = (
 };
 
 provide<Ref<boolean>>('showHeader', showHeader);
+provide<Ref<HTMLElement>>('replacementFooterRef', replacementFooterRef);
+provide<Ref<HTMLElement>>('subHeader', subHeader);
 </script>
 
 <style lang="scss">
 main.q-page {
   grid-column: 1;
   grid-row: 1;
+}
+
+.page-in-transition {
+  height: 100vh;
+  width: 100vw;
+  overflow: clip;
 }
 </style>

@@ -26,10 +26,6 @@
   }
 }
 
-.q-page.q-layout-padding {
-  padding-top: 0 !important;
-}
-
 .mobile {
   .q-page.q-layout-padding {
     padding: 0;
@@ -225,22 +221,23 @@ $menu-item-height: 40px;
   overflow: clip;
 }
 
-.semi-transparent {
-  .body--dark & {
-    background: desaturate(rgba($primary, 0.5), 50%);
-  }
-  .body--light & {
-    background: desaturate(rgba($primary, 0.5), 50%);
-  }
-  backdrop-filter: blur(8px);
-}
+$bg-colors: (
+  'primary': $primary,
+  'secondary': $secondary,
+  'accent': $accent,
+  'dark': $dark,
+  'dark-page': $dark-page,
+  'positive': $positive,
+  'negative': $negative,
+  'info': $info,
+  'warning': $warning,
+);
 
-.semi-transparent-accent {
-  .body--dark & {
-    background: desaturate(rgba($accent, 0.5), 50%);
-  }
-  .body--light & {
-    background: desaturate(rgba($accent, 0.5), 50%);
-  }
+.semi-transparent {
   backdrop-filter: blur(8px);
+  @each $name, $color in $bg-colors {
+    &.bg-#{$name} {
+      background: rgba($color, 0.7) !important;
+    }
+  }
 }

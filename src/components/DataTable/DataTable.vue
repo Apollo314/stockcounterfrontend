@@ -4,7 +4,8 @@
     :class="{
       'sticky-header': stickyHeader,
       'sticky-caption': stickyCaption,
-      'bg-transparent': $q.screen.lt.sm,
+      'bg-transparent': card && !$q.screen.gt.xs,
+      cards: card,
     }"
     class="full-height"
     flushmobile
@@ -12,23 +13,19 @@
     no-width-scrollbar
     :compact-scrollbar="false"
   >
-    <div class="table-parent">
+    <template #action-top>
       <Teleport
-        :to="uiStore.replacementHeaderRef"
-        :disabled="
-          !uiStore.replacementHeaderRef ||
-          !uiStore.replaceHeader ||
-          $q.screen.gt.xs
-        "
+        :to="subHeader"
+        v-if="subHeader"
+        :disabled="!card || $q.screen.gt.sm || isFullscreen"
       >
-        <div class="row q-pa-xs items-center full-width">
+        <q-toolbar>
           <ActiveColumns></ActiveColumns>
-          <q-btn flat round dense icon="assignment_ind" />
-          <q-toolbar-title> Toolbar </q-toolbar-title>
-          <q-btn flat round dense icon="apps" class="q-mr-xs" />
-          <q-btn flat round dense icon="more_vert" />
-        </div>
+          <TableTop></TableTop>
+        </q-toolbar>
       </Teleport>
+    </template>
+    <div class="table-parent">
       <table v-if="!card" flat class="coolshadow data-table">
         <thead class="table-head" :class="theadClasses">
           <ActiveColumns></ActiveColumns>
@@ -101,7 +98,7 @@
           </tr>
         </tbody>
       </table>
-      <div v-else>
+      <div v-else class="row">
         <div
           v-for="row in data"
           :class="{ selected: selected.indexOf(row) > -1 }"
@@ -156,26 +153,20 @@
       </div>
     </div>
     <template #action-bottom>
-      <Teleport
-        :to="uiStore.replacementFooterRef"
-        :disabled="
-          !uiStore.replaceHeader ||
-          !uiStore.replacementFooterRef ||
-          $q.screen.gt.xs
-        "
-      >
-        <div class="row full-width q-pa-sm" style="position: sticky; bottom: 0">
-          <q-space />
-          <OffsetLimitPaginator
-            :model-value="pagination.offset"
-            :count="pagination.count"
-            :limit="pagination.limit"
-            @update:model-value="request({ offset: $event })"
-            :max-length="7"
-            direction-links
-          ></OffsetLimitPaginator>
+      <div class="row full-width q-pa-sm" style="position: sticky; bottom: 0">
+        <div style="margin: auto" v-if="selected.length">
+          {{ $t('data_table.xitems_selected', [selected.length]) }}
         </div>
-      </Teleport>
+        <q-space />
+        <OffsetLimitPaginator
+          :model-value="pagination.offset"
+          :count="pagination.count"
+          :limit="pagination.limit"
+          @update:model-value="request({ offset: $event })"
+          :max-length="7"
+          direction-links
+        ></OffsetLimitPaginator>
+      </div>
     </template>
   </adaptive-card>
 </template>
@@ -185,18 +176,21 @@
   lang="ts"
   generic="Row extends BaseRow, Column extends BaseColumn<Row>, Filters extends Object"
 >
+import { useFullscreen } from '@vueuse/core';
 import { useQuasar } from 'quasar';
 import {
-  onUnmounted,
-  onMounted,
+  Ref,
+  computed,
+  inject,
+  nextTick,
   onActivated,
   onDeactivated,
-  computed,
-  watch,
-  ref,
-  Ref,
-  nextTick,
+  onMounted,
+  onUnmounted,
   provide,
+  ref,
+  toRef,
+  watch,
 } from 'vue';
 
 import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
@@ -204,9 +198,9 @@ import OffsetLimitPaginator from 'components/Paginator/OffsetLimitPaginator.vue'
 import { callOrGet } from 'src/composables/utilities';
 import { useUIStore } from 'stores/ui-store';
 
-import ActiveColumns from '../DataTable/ActiveColumns.vue';
-
+import ActiveColumns from './ActiveColumns.vue';
 import ColumnResizer from './ColumnResizer.vue';
+import TableTop from './TableTop.vue';
 
 export type BaseRow = {
   id: number | string;
@@ -240,7 +234,7 @@ export type ColumnsOverride<
   Column extends BaseColumn<Row>,
   Row extends BaseRow
 > = {
-  [key in keyof Partial<Row>]: Partial<Column>;
+  [key in keyof Row]?: Partial<Column>;
 };
 
 export type ColumnsWidthGenerator<
@@ -249,6 +243,10 @@ export type ColumnsWidthGenerator<
 > = {
   [key in keyof ColumnsOverride<Column, Row>]?: number;
 };
+
+export type RequestFunction<Filters> = (
+  partialPagination: Partial<Pagination<Filters>>
+) => void;
 
 const props = withDefaults(
   defineProps<{
@@ -263,16 +261,31 @@ const props = withDefaults(
     /**
      * whether or not to show the data as cards.
      */
-    card?: boolean;
+    card: boolean;
   }>(),
   {
     stickyHeader: true,
   }
 );
 
+const subHeader = inject<Ref<HTMLElement>>('subHeader');
+
 const $q = useQuasar();
 const uiStore = useUIStore();
 const adaptiveCardRef = ref();
+
+const toggleCardView = (val?: boolean) => {
+  // it doesn't work any other way than setTimeout
+  // nextTick doesn't work.
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 100);
+  if (val !== undefined) {
+    emit('update:card', val);
+  } else {
+    emit('update:card', !props.card);
+  }
+};
 
 onActivated(() => {
   uiStore.replaceHeader = !$q.screen.gt.xs;
@@ -290,11 +303,12 @@ onDeactivated(() => {
 watch(
   () => $q.screen.gt.xs,
   () => {
-    if (!!uiStore.replacementHeaderRef) {
-      uiStore.replaceHeader = !$q.screen.gt.xs;
-    }
+    uiStore.replaceHeader = !$q.screen.gt.xs;
+    uiStore.replaceFooter = !$q.screen.gt.xs;
   }
 );
+
+const { isFullscreen, toggle } = useFullscreen(adaptiveCardRef);
 
 type ColumnWidths = {
   [key in keyof Row]?: number;
@@ -312,8 +326,12 @@ const getTHStyle = (column: Column) => {
 };
 
 const emit = defineEmits<{
-  (e: 'request', pagination: Pagination<Filters>): void;
+  (
+    e: 'request',
+    value: { pagination: Pagination<Filters>; done: () => void }
+  ): void;
   (e: 'update:pagination', pagination: Pagination<Filters>): void;
+  (e: 'update:card', value: boolean): void;
 }>();
 
 const selected: Ref<Row[]> = ref([]);
@@ -346,6 +364,10 @@ function toggleSelectionAll() {
   }
 }
 
+function deselectAll() {
+  selected.value = [];
+}
+
 const selectAllButtonStatus = computed(() => {
   if (selected.value.length === 0) {
     return false;
@@ -372,16 +394,35 @@ const computedcolumns = computed(() => {
   }
 });
 
-function request(partialPagination: Partial<Pagination<Filters>>) {
-  const newPagination = { ...props.pagination, ...partialPagination };
-  emit('update:pagination', newPagination);
-  nextTick(() => {
-    emit('request', props.pagination);
-  }).then(() => {
-    adaptiveCardRef.value.scrollTo({ x: 0, y: 0 });
-  });
-}
+const requestDone = ref(true);
 
+const request: RequestFunction<Filters> = (partialPagination) => {
+  const done = () => {
+    requestDone.value = true;
+    // set it as done anyway
+    setTimeout(() => {
+      requestDone.value = true;
+    }, 2500);
+    deselectAll();
+  };
+  if (requestDone.value) {
+    requestDone.value = false;
+    const newPagination = { ...props.pagination, ...partialPagination };
+    emit('update:pagination', newPagination);
+    nextTick(() => {
+      emit('request', { pagination: props.pagination, done });
+    }).then(() => {
+      adaptiveCardRef.value.scrollTo({ x: 0, y: 0 });
+    });
+  }
+};
+
+provide('toggle', toggle);
+provide('isFullscreen', isFullscreen);
+provide('card', toRef(props, 'card'));
+provide('toggleCardView', toggleCardView);
+provide('request', request);
+provide('requestDone', requestDone);
 provide('columnWidths', columnWidths);
 provide('columns', props.columns);
 </script>
@@ -414,11 +455,17 @@ $table-dark-selected-background: darken($warning, 40%);
 .table-parent {
   border-radius: 0 0 $generic-border-radius $generic-border-radius;
   overflow: clip;
+  .cards & {
+    border: none !important;
+  }
   .body--dark & {
     border-bottom: 3px solid $separator-dark-color;
   }
   .body--light & {
     border-bottom: 3px solid $separator-color;
+    .cards & {
+      border: none;
+    }
   }
   min-width: 100%;
   // width: fit-content !important;
