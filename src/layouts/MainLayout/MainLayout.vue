@@ -5,7 +5,7 @@
         class="row full-width items-center semi-transparent bg-primary"
         ref="subHeader"
       >
-        <q-toolbar style="min-height: 40px" class="q-pb-xs q-pt-sm">
+        <q-toolbar style="min-height: 40px" class="q-py-xs">
           <q-btn
             flat
             round
@@ -58,17 +58,15 @@
 
 <script setup lang="ts">
 import { useQuasar } from 'quasar';
-import { watch, ref, provide, Ref } from 'vue';
+import { Ref, provide, ref } from 'vue';
 import { RouteLocationNormalizedLoaded } from 'vue-router';
 
 import StickyHeader from 'components/Header/StickyHeader.vue';
 import { useSettingsStore } from 'src/stores/settings-store';
-import { useUIStore } from 'stores/ui-store';
 
 import LeftDrawer from './LeftDrawer.vue';
 
 const $q = useQuasar();
-const uiStore = useUIStore();
 const subHeader = ref();
 const replacementFooterRef = ref();
 

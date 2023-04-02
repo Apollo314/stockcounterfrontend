@@ -39,8 +39,27 @@ export default {
     },
     new: 'Yeni @:{0}',
     'no-result': 'Sonuç Yok',
-    percentage: '%{0}',
+    refresh: 'Yenile',
     search: 'Ara',
+  },
+  data_table: {
+    cards: 'Kart görünümü',
+    exitfullscreen: 'Tam Ekrandan Çık',
+    file: 'Dosya',
+    filter: 'Filtrele',
+    gofullscreen: 'Tam Ekran Yap',
+    order: 'Sıralama',
+    ordering: {
+      buttons: {
+        decreasing: 'Azalan sıralama',
+        increasing: 'Artan sıralama',
+      },
+    },
+    refresh: 'Yenile',
+    rows: 'Satır görünümü',
+    table_type: 'Tablo Tipi',
+    view: 'Görünüm',
+    xitems_selected: '{0} öğe seçildi',
   },
   failed: 'Başarısız',
   forms: {

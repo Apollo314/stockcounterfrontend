@@ -19,3 +19,11 @@ export function ColumnsGenerator<
   }
   return columns;
 }
+
+export function getAlignClass(align?: 'left' | 'center' | 'right') {
+  return {
+    'text-left': align === 'left' || align === undefined,
+    'text-right': align === 'right',
+    'text-center': align === 'center',
+  };
+}
