@@ -1,5 +1,7 @@
 @use './scrollbar.scss';
 @use './transition-animations.scss';
+@use './datatable-styles.scss';
+
 
 .body--light {
   background: black;
@@ -236,8 +238,11 @@ $bg-colors: (
 .semi-transparent {
   backdrop-filter: blur(8px);
   @each $name, $color in $bg-colors {
-    &.bg-#{$name} {
-      background: rgba($color, 0.7) !important;
+    .body--dark &.bg-#{$name} {
+      background: rgba(darken($color, 10%), 0.7) !important;
+    }
+    .body--light &.bg-#{$name} {
+      background: rgba(lighten($color, 10%), 0.7) !important;
     }
   }
 }

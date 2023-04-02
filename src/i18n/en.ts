@@ -39,8 +39,27 @@ export default {
     },
     new: 'New @:{0}',
     'no-result': 'No Result',
-    percentage: '{0}%',
+    refresh: 'Refresh',
     search: 'Search',
+  },
+  data_table: {
+    cards: 'Cards view',
+    exitfullscreen: 'Exit Fullscreen',
+    file: 'File',
+    filter: 'Filter',
+    gofullscreen: 'Go Fullscreen',
+    order: 'Ordering',
+    ordering: {
+      buttons: {
+        decreasing: 'Decreasing order',
+        increasing: 'Increasing order',
+      },
+    },
+    refresh: 'Refresh',
+    rows: 'Rows view',
+    table_type: 'Table Type',
+    view: 'View',
+    xitems_selected: '{0} items selected',
   },
   failed: 'Action failed',
   forms: {

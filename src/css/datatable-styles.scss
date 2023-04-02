@@ -1,0 +1,271 @@
+@import './quasar.variables.scss';
+
+$cellpadding-vertical: 8px;
+$cellpadding-horizontal: 15px;
+$cellpadding: $cellpadding-vertical $cellpadding-horizontal;
+$captionheight: 50px;
+$rowheight: calc(2em + #{$cellpadding-vertical * 2});
+$lineheight: 1em;
+
+$secondcolor-dark: #162429;
+
+$secondcolor-light: #e1eff4;
+
+$separator-color: rgba(0, 0, 0, 0.14) !default;
+$separator-dark-color: rgba(255, 255, 255, 0.14) !default;
+
+// table
+$table-light-background: $almost-white; // custom
+$table-border-color: $separator-color !default;
+$table-hover-background: hsla(197, 60%, 50%, 0.3);
+$table-light-selected-background: lighten($warning, 20%);
+
+$table-dark-border-color: $separator-dark-color !default;
+$table-dark-hover-background: hsla(197, 60%, 50%, 0.3);
+$table-dark-selected-background: darken($warning, 40%);
+
+.table-parent {
+  border-radius: 0 0 $generic-border-radius $generic-border-radius;
+  overflow: clip;
+  .cards & {
+    border: none !important;
+  }
+  .body--dark & {
+    border-bottom: 3px solid $separator-dark-color;
+  }
+  .body--light & {
+    border-bottom: 3px solid $separator-color;
+    .cards & {
+      border: none;
+    }
+  }
+  min-width: 100%;
+  // width: fit-content !important;
+}
+
+.data-table {
+  min-width: 100%;
+  table-layout: fixed;
+  border-spacing: 0;
+  position: relative;
+  .checkbox {
+    padding: 4px;
+  }
+  th > span {
+    position: sticky;
+    .desktop & {
+      left: 60px;
+    }
+    left: 10px;
+    right: 10px;
+    min-width: max-content;
+    white-space: nowrap;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  thead.table-head {
+    .sticky-header & {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    th.table-header-cell {
+      // overflow: clip;
+      .body--dark & {
+        background-color: #073a44;
+      }
+      .body--light & {
+        background-color: lighten($secondary, 20%);
+      }
+      .sticky-caption & {
+        top: $captionheight;
+      }
+    }
+  }
+  th,
+  td {
+    div.cell {
+      white-space: normal;
+      display: -webkit-box;
+      overflow: hidden;
+      max-height: 2 * $lineheight;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
+      line-height: $lineheight;
+    }
+    width: max-content;
+    padding: $cellpadding;
+    .body--dark & {
+      border-right: 1px solid $separator-dark-color;
+      border-top: 1px solid $separator-dark-color;
+    }
+    .body--light & {
+      border-right: 1px solid $separator-color;
+      border-top: 1px solid $separator-color;
+    }
+    &:first-of-type {
+      .desktop .adaptive-card:not(.arrived-left) & {
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+        }
+      }
+      .desktop & {
+        &.table-header-cell {
+          z-index: 10;
+        }
+        position: sticky;
+        left: 0;
+      }
+      .body--dark & {
+        background-color: $dark;
+        &::before {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+      .body--light & {
+        &::before {
+          background-color: rgba($secondary, 0.5);
+        }
+        background-color: $almost-white;
+      }
+      width: 1px;
+      border-left: none;
+    }
+    &:last-of-type {
+      border-right: none;
+    }
+  }
+
+  .body--dark & {
+    tr:nth-of-type(2n) {
+      background-color: $secondcolor-dark;
+      td:first-of-type {
+        background-color: $secondcolor-dark;
+      }
+    }
+    tr.selected-row {
+      td,
+      td:first-of-type {
+        background-color: $table-dark-selected-background;
+      }
+    }
+  }
+
+  .body--light & {
+    tr:nth-of-type(2n) {
+      background-color: $secondcolor-light;
+      td:first-of-type {
+        background-color: $secondcolor-light;
+      }
+    }
+    tr.selected-row {
+      position: relative;
+      td,
+      td:first-of-type {
+        background-color: $table-light-selected-background;
+      }
+    }
+  }
+
+  tr:last-of-type td {
+    border-bottom: none;
+  }
+  th {
+    border-top: none !important;
+  }
+  tr {
+    height: $rowheight;
+  }
+
+  .table-caption {
+    .body--dark & {
+      background-color: $dark;
+    }
+    .body--light & {
+      background-color: $almost-white;
+    }
+    height: $captionheight;
+    .sticky-caption & {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+  }
+}
+
+// card styles
+.data-card-container {
+  &:hover .background-image {
+    filter: blur(0);
+  }
+}
+
+.data-card-parent {
+  transition: all 0.2s ease;
+}
+
+.data-card {
+  .body--dark & {
+    border: 1px solid $separator-dark-color;
+  }
+  .body--light & {
+    border: 1px solid $separator-color;
+  }
+  border-bottom: 0 !important;
+
+  .q-item {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  box-shadow: $coolshadow,
+    0px -10px 0px -5px rgba(darken($primary, 20%), 1) inset !important;
+}
+
+.data-card-container.selected .data-card {
+  background: $table-light-selected-background;
+  &.q-dark {
+    background: rgba($table-dark-selected-background, 0.5);
+  }
+}
+
+.image-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden !important;
+  mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 7) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.background-image {
+  bottom: 0;
+  position: absolute !important;
+  left: 50%;
+  transform: translate(-50%);
+  max-width: 200%;
+  width: auto;
+  height: auto;
+  opacity: 0.2;
+  transition: all 0.15s ease;
+  filter: blur(20px);
+  background-repeat: no-repeat;
+  background-size: contain !important;
+  mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 20%,
+    rgba(0, 0, 0, 0.5) 60%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+}

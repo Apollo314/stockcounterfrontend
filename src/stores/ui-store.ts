@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia';
-import { VNodeRef, ref } from 'vue';
+import { VNodeRef } from 'vue';
 
 export const useUIStore = defineStore<
   string,
   {
+    replaceFooter: boolean;
     replaceHeader: boolean;
     headerTargetReady: boolean;
     replacementHeaderRef: VNodeRef | undefined;
@@ -11,6 +12,7 @@ export const useUIStore = defineStore<
   }
 >('UIStore', {
   state: () => ({
+    replaceFooter: false,
     replaceHeader: false,
     headerTargetReady: false,
     replacementHeaderRef: undefined,
