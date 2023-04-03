@@ -598,12 +598,12 @@
             "in": "query",
             "description": "buyprice__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "money-range",
-              "props": {
-                "label": "Alış Fiyatı"
+              "type": "string",
+              "x-components": {
+                "component": "money-range",
+                "props": {
+                  "label": "Alış Fiyatı"
+                }
               }
             }
           },
@@ -613,12 +613,12 @@
             "in": "query",
             "description": "category__in",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "multi-category-selector",
-              "props": {
-                "label": "Kategoriler"
+              "type": "string",
+              "x-components": {
+                "component": "multi-category-selector",
+                "props": {
+                  "label": "Kategoriler"
+                }
               }
             }
           },
@@ -628,13 +628,13 @@
             "in": "query",
             "description": "category__isnull",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "checkbox",
-              "props": {
-                "label": "Kategorisiz",
-                "toggleIndeterminate": true
+              "type": "string",
+              "x-components": {
+                "component": "checkbox",
+                "props": {
+                  "label": "Kategorisiz",
+                  "toggleIndeterminate": true
+                }
               }
             }
           },
@@ -644,12 +644,12 @@
             "in": "query",
             "description": "created_at__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "date-time-range",
-              "props": {
-                "label": "Oluşturma tarihi"
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Oluşturma tarihi"
+                }
               }
             }
           },
@@ -659,12 +659,12 @@
             "in": "query",
             "description": "created_by",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "user-select",
-              "props": {
-                "label": "Oluşturan kullanıcı"
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Oluşturan kullanıcı"
+                }
               }
             }
           },
@@ -674,13 +674,13 @@
             "in": "query",
             "description": "inactivated",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "checkbox",
-              "props": {
-                "label": "Gizlenmiş Öğeleri Göster",
-                "toggleIndeterminate": true
+              "type": "string",
+              "x-components": {
+                "component": "checkbox",
+                "props": {
+                  "label": "Gizlenmiş Öğeleri Göster",
+                  "toggleIndeterminate": true
+                }
               }
             }
           },
@@ -742,12 +742,12 @@
             "in": "query",
             "description": "sellprice__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "money-range",
-              "props": {
-                "label": "Satış Fiyatı"
+              "type": "string",
+              "x-components": {
+                "component": "money-range",
+                "props": {
+                  "label": "Satış Fiyatı"
+                }
               }
             }
           },
@@ -757,12 +757,12 @@
             "in": "query",
             "description": "updated_at__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "date-time-range",
-              "props": {
-                "label": "Güncellenme tarihi"
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Güncellenme tarihi"
+                }
               }
             }
           },
@@ -772,12 +772,12 @@
             "in": "query",
             "description": "updated_by",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "user-select",
-              "props": {
-                "label": "Güncelleyen kullanıcı"
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Güncelleyen kullanıcı"
+                }
               }
             }
           }
@@ -808,12 +808,12 @@
               "in": "query",
               "description": "category__in",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "multi-category-selector",
-                "props": {
-                  "label": "Kategoriler"
+                "type": "string",
+                "x-components": {
+                  "component": "multi-category-selector",
+                  "props": {
+                    "label": "Kategoriler"
+                  }
                 }
               }
             },
@@ -823,13 +823,13 @@
               "in": "query",
               "description": "category__isnull",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "checkbox",
-                "props": {
-                  "label": "Kategorisiz",
-                  "toggleIndeterminate": true
+                "type": "string",
+                "x-components": {
+                  "component": "checkbox",
+                  "props": {
+                    "label": "Kategorisiz",
+                    "toggleIndeterminate": true
+                  }
                 }
               }
             },
@@ -839,12 +839,12 @@
               "in": "query",
               "description": "buyprice__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "money-range",
-                "props": {
-                  "label": "Alış Fiyatı"
+                "type": "string",
+                "x-components": {
+                  "component": "money-range",
+                  "props": {
+                    "label": "Alış Fiyatı"
+                  }
                 }
               }
             },
@@ -854,12 +854,12 @@
               "in": "query",
               "description": "sellprice__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "money-range",
-                "props": {
-                  "label": "Satış Fiyatı"
+                "type": "string",
+                "x-components": {
+                  "component": "money-range",
+                  "props": {
+                    "label": "Satış Fiyatı"
+                  }
                 }
               }
             },
@@ -869,12 +869,12 @@
               "in": "query",
               "description": "created_at__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Oluşturma tarihi"
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Oluşturma tarihi"
+                  }
                 }
               }
             },
@@ -884,12 +884,12 @@
               "in": "query",
               "description": "updated_at__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Güncellenme tarihi"
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Güncellenme tarihi"
+                  }
                 }
               }
             },
@@ -899,12 +899,12 @@
               "in": "query",
               "description": "created_by",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "user-select",
-                "props": {
-                  "label": "Oluşturan kullanıcı"
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Oluşturan kullanıcı"
+                  }
                 }
               }
             },
@@ -914,12 +914,12 @@
               "in": "query",
               "description": "updated_by",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "user-select",
-                "props": {
-                  "label": "Güncelleyen kullanıcı"
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Güncelleyen kullanıcı"
+                  }
                 }
               }
             },
@@ -929,13 +929,13 @@
               "in": "query",
               "description": "inactivated",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "checkbox",
-                "props": {
-                  "label": "Gizlenmiş Öğeleri Göster",
-                  "toggleIndeterminate": true
+                "type": "string",
+                "x-components": {
+                  "component": "checkbox",
+                  "props": {
+                    "label": "Gizlenmiş Öğeleri Göster",
+                    "toggleIndeterminate": true
+                  }
                 }
               }
             }
@@ -1022,12 +1022,12 @@
             "in": "query",
             "description": "buyprice__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "money-range",
-              "props": {
-                "label": "Alış Fiyatı"
+              "type": "string",
+              "x-components": {
+                "component": "money-range",
+                "props": {
+                  "label": "Alış Fiyatı"
+                }
               }
             }
           },
@@ -1037,12 +1037,12 @@
             "in": "query",
             "description": "category__in",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "multi-category-selector",
-              "props": {
-                "label": "Kategoriler"
+              "type": "string",
+              "x-components": {
+                "component": "multi-category-selector",
+                "props": {
+                  "label": "Kategoriler"
+                }
               }
             }
           },
@@ -1052,13 +1052,13 @@
             "in": "query",
             "description": "category__isnull",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "checkbox",
-              "props": {
-                "label": "Kategorisiz",
-                "toggleIndeterminate": true
+              "type": "string",
+              "x-components": {
+                "component": "checkbox",
+                "props": {
+                  "label": "Kategorisiz",
+                  "toggleIndeterminate": true
+                }
               }
             }
           },
@@ -1068,12 +1068,12 @@
             "in": "query",
             "description": "created_at__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "date-time-range",
-              "props": {
-                "label": "Oluşturma tarihi"
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Oluşturma tarihi"
+                }
               }
             }
           },
@@ -1083,12 +1083,12 @@
             "in": "query",
             "description": "created_by",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "user-select",
-              "props": {
-                "label": "Oluşturan kullanıcı"
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Oluşturan kullanıcı"
+                }
               }
             }
           },
@@ -1098,13 +1098,13 @@
             "in": "query",
             "description": "inactivated",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "checkbox",
-              "props": {
-                "label": "Gizlenmiş Öğeleri Göster",
-                "toggleIndeterminate": true
+              "type": "string",
+              "x-components": {
+                "component": "checkbox",
+                "props": {
+                  "label": "Gizlenmiş Öğeleri Göster",
+                  "toggleIndeterminate": true
+                }
               }
             }
           },
@@ -1166,12 +1166,12 @@
             "in": "query",
             "description": "sellprice__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "money-range",
-              "props": {
-                "label": "Satış Fiyatı"
+              "type": "string",
+              "x-components": {
+                "component": "money-range",
+                "props": {
+                  "label": "Satış Fiyatı"
+                }
               }
             }
           },
@@ -1181,12 +1181,12 @@
             "in": "query",
             "description": "updated_at__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "date-time-range",
-              "props": {
-                "label": "Güncellenme tarihi"
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Güncellenme tarihi"
+                }
               }
             }
           },
@@ -1196,12 +1196,12 @@
             "in": "query",
             "description": "updated_by",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "user-select",
-              "props": {
-                "label": "Güncelleyen kullanıcı"
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Güncelleyen kullanıcı"
+                }
               }
             }
           }
@@ -1232,12 +1232,12 @@
               "in": "query",
               "description": "category__in",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "multi-category-selector",
-                "props": {
-                  "label": "Kategoriler"
+                "type": "string",
+                "x-components": {
+                  "component": "multi-category-selector",
+                  "props": {
+                    "label": "Kategoriler"
+                  }
                 }
               }
             },
@@ -1247,13 +1247,13 @@
               "in": "query",
               "description": "category__isnull",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "checkbox",
-                "props": {
-                  "label": "Kategorisiz",
-                  "toggleIndeterminate": true
+                "type": "string",
+                "x-components": {
+                  "component": "checkbox",
+                  "props": {
+                    "label": "Kategorisiz",
+                    "toggleIndeterminate": true
+                  }
                 }
               }
             },
@@ -1263,12 +1263,12 @@
               "in": "query",
               "description": "buyprice__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "money-range",
-                "props": {
-                  "label": "Alış Fiyatı"
+                "type": "string",
+                "x-components": {
+                  "component": "money-range",
+                  "props": {
+                    "label": "Alış Fiyatı"
+                  }
                 }
               }
             },
@@ -1278,12 +1278,12 @@
               "in": "query",
               "description": "sellprice__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "money-range",
-                "props": {
-                  "label": "Satış Fiyatı"
+                "type": "string",
+                "x-components": {
+                  "component": "money-range",
+                  "props": {
+                    "label": "Satış Fiyatı"
+                  }
                 }
               }
             },
@@ -1293,12 +1293,12 @@
               "in": "query",
               "description": "created_at__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Oluşturma tarihi"
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Oluşturma tarihi"
+                  }
                 }
               }
             },
@@ -1308,12 +1308,12 @@
               "in": "query",
               "description": "updated_at__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Güncellenme tarihi"
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Güncellenme tarihi"
+                  }
                 }
               }
             },
@@ -1323,12 +1323,12 @@
               "in": "query",
               "description": "created_by",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "user-select",
-                "props": {
-                  "label": "Oluşturan kullanıcı"
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Oluşturan kullanıcı"
+                  }
                 }
               }
             },
@@ -1338,12 +1338,12 @@
               "in": "query",
               "description": "updated_by",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "user-select",
-                "props": {
-                  "label": "Güncelleyen kullanıcı"
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Güncelleyen kullanıcı"
+                  }
                 }
               }
             },
@@ -1353,13 +1353,13 @@
               "in": "query",
               "description": "inactivated",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "checkbox",
-                "props": {
-                  "label": "Gizlenmiş Öğeleri Göster",
-                  "toggleIndeterminate": true
+                "type": "string",
+                "x-components": {
+                  "component": "checkbox",
+                  "props": {
+                    "label": "Gizlenmiş Öğeleri Göster",
+                    "toggleIndeterminate": true
+                  }
                 }
               }
             }
@@ -1730,12 +1730,12 @@
             "in": "query",
             "description": "created_at__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "date-time-range",
-              "props": {
-                "label": "Oluşturma tarihi"
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Oluşturma tarihi"
+                }
               }
             }
           },
@@ -1745,12 +1745,12 @@
             "in": "query",
             "description": "created_by",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "user-select",
-              "props": {
-                "label": "Oluşturan kullanıcı"
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Oluşturan kullanıcı"
+                }
               }
             }
           },
@@ -1808,12 +1808,12 @@
             "in": "query",
             "description": "updated_at__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "date-time-range",
-              "props": {
-                "label": "Güncellenme tarihi"
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Güncellenme tarihi"
+                }
               }
             }
           },
@@ -1823,12 +1823,12 @@
             "in": "query",
             "description": "updated_by",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "user-select",
-              "props": {
-                "label": "Güncelleyen kullanıcı"
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Güncelleyen kullanıcı"
+                }
               }
             }
           },
@@ -1838,12 +1838,12 @@
             "in": "query",
             "description": "warehouse_item_stock__item__id",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "item-select",
-              "props": {
-                "label": "item"
+              "type": "string",
+              "x-components": {
+                "component": "item-select",
+                "props": {
+                  "label": "item"
+                }
               }
             }
           }
@@ -1874,12 +1874,12 @@
               "in": "query",
               "description": "created_at__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Oluşturma tarihi"
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Oluşturma tarihi"
+                  }
                 }
               }
             },
@@ -1889,12 +1889,12 @@
               "in": "query",
               "description": "updated_at__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Güncellenme tarihi"
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Güncellenme tarihi"
+                  }
                 }
               }
             },
@@ -1904,12 +1904,12 @@
               "in": "query",
               "description": "created_by",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "user-select",
-                "props": {
-                  "label": "Oluşturan kullanıcı"
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Oluşturan kullanıcı"
+                  }
                 }
               }
             },
@@ -1919,12 +1919,12 @@
               "in": "query",
               "description": "updated_by",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "user-select",
-                "props": {
-                  "label": "Güncelleyen kullanıcı"
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Güncelleyen kullanıcı"
+                  }
                 }
               }
             },
@@ -1934,12 +1934,12 @@
               "in": "query",
               "description": "warehouse_item_stock__item__id",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "item-select",
-                "props": {
-                  "label": "item"
+                "type": "string",
+                "x-components": {
+                  "component": "item-select",
+                  "props": {
+                    "label": "item"
+                  }
                 }
               }
             }
@@ -2791,12 +2791,12 @@
             "in": "query",
             "description": "created_at__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "date-time-range",
-              "props": {
-                "label": "Oluşturma tarihi"
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Oluşturma tarihi"
+                }
               }
             }
           },
@@ -2806,12 +2806,12 @@
             "in": "query",
             "description": "created_by",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "user-select",
-              "props": {
-                "label": "Oluşturan kullanıcı"
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Oluşturan kullanıcı"
+                }
               }
             }
           },
@@ -2822,10 +2822,10 @@
             "description": "invoice_type",
             "schema": {
               "type": "string",
+              "x-components": {
+                "component": "hidden"
+              },
               "enum": ["purchase", "sale", "refund-purchase", "refund-sale"]
-            },
-            "x-component": {
-              "component": "hidden"
             }
           },
           {
@@ -2834,12 +2834,12 @@
             "in": "query",
             "description": "items__stock_movement__warehouse_item_stock__item__id",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "item-select",
-              "props": {
-                "label": "item"
+              "type": "string",
+              "x-components": {
+                "component": "item-select",
+                "props": {
+                  "label": "item"
+                }
               }
             }
           },
@@ -2901,12 +2901,12 @@
             "in": "query",
             "description": "updated_at__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "date-time-range",
-              "props": {
-                "label": "Güncellenme tarihi"
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Güncellenme tarihi"
+                }
               }
             }
           },
@@ -2916,12 +2916,12 @@
             "in": "query",
             "description": "updated_by",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "user-select",
-              "props": {
-                "label": "Güncelleyen kullanıcı"
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Güncelleyen kullanıcı"
+                }
               }
             }
           }
@@ -2952,12 +2952,12 @@
               "in": "query",
               "description": "created_at__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Oluşturma tarihi"
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Oluşturma tarihi"
+                  }
                 }
               }
             },
@@ -2967,12 +2967,12 @@
               "in": "query",
               "description": "updated_at__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Güncellenme tarihi"
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Güncellenme tarihi"
+                  }
                 }
               }
             },
@@ -2982,12 +2982,12 @@
               "in": "query",
               "description": "created_by",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "user-select",
-                "props": {
-                  "label": "Oluşturan kullanıcı"
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Oluşturan kullanıcı"
+                  }
                 }
               }
             },
@@ -2997,12 +2997,12 @@
               "in": "query",
               "description": "updated_by",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "user-select",
-                "props": {
-                  "label": "Güncelleyen kullanıcı"
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Güncelleyen kullanıcı"
+                  }
                 }
               }
             },
@@ -3013,10 +3013,10 @@
               "description": "invoice_type",
               "schema": {
                 "type": "string",
+                "x-components": {
+                  "component": "hidden"
+                },
                 "enum": ["purchase", "sale", "refund-purchase", "refund-sale"]
-              },
-              "x-component": {
-                "component": "hidden"
               }
             },
             {
@@ -3025,12 +3025,12 @@
               "in": "query",
               "description": "items__stock_movement__warehouse_item_stock__item__id",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "item-select",
-                "props": {
-                  "label": "item"
+                "type": "string",
+                "x-components": {
+                  "component": "item-select",
+                  "props": {
+                    "label": "item"
+                  }
                 }
               }
             }
@@ -3288,12 +3288,12 @@
             "in": "query",
             "description": "email__icontains",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "text-input",
-              "props": {
-                "label": "E-Posta"
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "E-Posta"
+                }
               }
             }
           },
@@ -3321,12 +3321,12 @@
             "in": "query",
             "description": "phone__icontains",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "text-input",
-              "props": {
-                "label": "Telefon"
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Telefon"
+                }
               }
             }
           },
@@ -3345,12 +3345,12 @@
             "in": "query",
             "description": "shortname__icontains",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "text-input",
-              "props": {
-                "label": "Kısa Adı"
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Kısa Adı"
+                }
               }
             }
           },
@@ -3360,12 +3360,12 @@
             "in": "query",
             "description": "vkntckn__icontains",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "text-input",
-              "props": {
-                "label": "VKN/TCKN"
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "VKN/TCKN"
+                }
               }
             }
           }
@@ -3407,12 +3407,12 @@
               "in": "query",
               "description": "shortname__icontains",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "text-input",
-                "props": {
-                  "label": "Kısa Adı"
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "Kısa Adı"
+                  }
                 }
               }
             },
@@ -3422,12 +3422,12 @@
               "in": "query",
               "description": "vkntckn__icontains",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "text-input",
-                "props": {
-                  "label": "VKN/TCKN"
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "VKN/TCKN"
+                  }
                 }
               }
             },
@@ -3437,12 +3437,12 @@
               "in": "query",
               "description": "email__icontains",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "text-input",
-                "props": {
-                  "label": "E-Posta"
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "E-Posta"
+                  }
                 }
               }
             },
@@ -3452,12 +3452,12 @@
               "in": "query",
               "description": "phone__icontains",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "text-input",
-                "props": {
-                  "label": "Telefon"
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "Telefon"
+                  }
                 }
               }
             }
@@ -3887,12 +3887,12 @@
             "in": "query",
             "description": "email__icontains",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "text-input",
-              "props": {
-                "label": "E-Posta"
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "E-Posta"
+                }
               }
             }
           },
@@ -3920,12 +3920,12 @@
             "in": "query",
             "description": "phone__icontains",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "text-input",
-              "props": {
-                "label": "Telefon"
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Telefon"
+                }
               }
             }
           },
@@ -3944,12 +3944,12 @@
             "in": "query",
             "description": "shortname__icontains",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "text-input",
-              "props": {
-                "label": "Kısa Adı"
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Kısa Adı"
+                }
               }
             }
           },
@@ -3959,12 +3959,12 @@
             "in": "query",
             "description": "vkntckn__icontains",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "text-input",
-              "props": {
-                "label": "VKN/TCKN"
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "VKN/TCKN"
+                }
               }
             }
           }
@@ -4006,12 +4006,12 @@
               "in": "query",
               "description": "shortname__icontains",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "text-input",
-                "props": {
-                  "label": "Kısa Adı"
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "Kısa Adı"
+                  }
                 }
               }
             },
@@ -4021,12 +4021,12 @@
               "in": "query",
               "description": "vkntckn__icontains",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "text-input",
-                "props": {
-                  "label": "VKN/TCKN"
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "VKN/TCKN"
+                  }
                 }
               }
             },
@@ -4036,12 +4036,12 @@
               "in": "query",
               "description": "email__icontains",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "text-input",
-                "props": {
-                  "label": "E-Posta"
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "E-Posta"
+                  }
                 }
               }
             },
@@ -4051,12 +4051,12 @@
               "in": "query",
               "description": "phone__icontains",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "text-input",
-                "props": {
-                  "label": "Telefon"
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "Telefon"
+                  }
                 }
               }
             }
@@ -4247,12 +4247,12 @@
             "in": "query",
             "description": "date_joined__range",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "date-time-range",
-              "props": {
-                "label": "Kayıt Tarihi"
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Kayıt Tarihi"
+                }
               }
             }
           },
@@ -4262,13 +4262,13 @@
             "in": "query",
             "description": "first_name__icontains",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "text-input",
-              "props": {
-                "label": "Soy İsim",
-                "placeholder": "Soy İsim"
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Soy İsim",
+                  "placeholder": "Soy İsim"
+                }
               }
             }
           },
@@ -4278,12 +4278,12 @@
             "in": "query",
             "description": "groups__in",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "user-group-selector",
-              "props": {
-                "label": "Kullanıcı Grubu"
+              "type": "string",
+              "x-components": {
+                "component": "user-group-selector",
+                "props": {
+                  "label": "Kullanıcı Grubu"
+                }
               }
             }
           },
@@ -4293,12 +4293,12 @@
             "in": "query",
             "description": "is_active",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "checkbox",
-              "props": {
-                "label": "Etkin"
+              "type": "string",
+              "x-components": {
+                "component": "checkbox",
+                "props": {
+                  "label": "Etkin"
+                }
               }
             }
           },
@@ -4308,12 +4308,12 @@
             "in": "query",
             "description": "is_staff",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "checkbox",
-              "props": {
-                "label": "Yetkili Çalışan"
+              "type": "string",
+              "x-components": {
+                "component": "checkbox",
+                "props": {
+                  "label": "Yetkili Çalışan"
+                }
               }
             }
           },
@@ -4323,12 +4323,12 @@
             "in": "query",
             "description": "is_superuser",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "checkbox",
-              "props": {
-                "label": "Admin"
+              "type": "string",
+              "x-components": {
+                "component": "checkbox",
+                "props": {
+                  "label": "Admin"
+                }
               }
             }
           },
@@ -4365,13 +4365,13 @@
             "in": "query",
             "description": "username__icontains",
             "schema": {
-              "type": "string"
-            },
-            "x-component": {
-              "component": "text-input",
-              "props": {
-                "label": "Kullanıcı Adı",
-                "placeholder": "Kullanıcı Adı"
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Kullanıcı Adı",
+                  "placeholder": "Kullanıcı Adı"
+                }
               }
             }
           }
@@ -4413,13 +4413,13 @@
               "in": "query",
               "description": "username__icontains",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "text-input",
-                "props": {
-                  "label": "Kullanıcı Adı",
-                  "placeholder": "Kullanıcı Adı"
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "Kullanıcı Adı",
+                    "placeholder": "Kullanıcı Adı"
+                  }
                 }
               }
             },
@@ -4429,13 +4429,13 @@
               "in": "query",
               "description": "first_name__icontains",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "text-input",
-                "props": {
-                  "label": "Soy İsim",
-                  "placeholder": "Soy İsim"
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "Soy İsim",
+                    "placeholder": "Soy İsim"
+                  }
                 }
               }
             },
@@ -4445,12 +4445,12 @@
               "in": "query",
               "description": "groups__in",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "user-group-selector",
-                "props": {
-                  "label": "Kullanıcı Grubu"
+                "type": "string",
+                "x-components": {
+                  "component": "user-group-selector",
+                  "props": {
+                    "label": "Kullanıcı Grubu"
+                  }
                 }
               }
             },
@@ -4460,12 +4460,12 @@
               "in": "query",
               "description": "is_staff",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "checkbox",
-                "props": {
-                  "label": "Yetkili Çalışan"
+                "type": "string",
+                "x-components": {
+                  "component": "checkbox",
+                  "props": {
+                    "label": "Yetkili Çalışan"
+                  }
                 }
               }
             },
@@ -4475,12 +4475,12 @@
               "in": "query",
               "description": "is_superuser",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "checkbox",
-                "props": {
-                  "label": "Admin"
+                "type": "string",
+                "x-components": {
+                  "component": "checkbox",
+                  "props": {
+                    "label": "Admin"
+                  }
                 }
               }
             },
@@ -4490,12 +4490,12 @@
               "in": "query",
               "description": "is_active",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "checkbox",
-                "props": {
-                  "label": "Etkin"
+                "type": "string",
+                "x-components": {
+                  "component": "checkbox",
+                  "props": {
+                    "label": "Etkin"
+                  }
                 }
               }
             },
@@ -4505,12 +4505,12 @@
               "in": "query",
               "description": "date_joined__range",
               "schema": {
-                "type": "string"
-              },
-              "x-component": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Kayıt Tarihi"
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Kayıt Tarihi"
+                  }
                 }
               }
             }
@@ -4850,12 +4850,7 @@
             "title": "Üst Kategori"
           }
         },
-        "required": ["id", "name"],
-        "x-components": {
-          "parent": {
-            "component": "category-selector"
-          }
-        }
+        "required": ["id", "name"]
       },
       "CategoryRequest": {
         "type": "object",
@@ -4872,12 +4867,7 @@
             "title": "Üst Kategori"
           }
         },
-        "required": ["name"],
-        "x-components": {
-          "parent": {
-            "component": "category-selector"
-          }
-        }
+        "required": ["name"]
       },
       "ConciseUser": {
         "type": "object",
@@ -5729,16 +5719,25 @@
             "type": "string",
             "format": "uri",
             "nullable": true,
-            "title": "Önizleme Fotoğraf"
+            "title": "Önizleme Fotoğraf",
+            "x-components": {
+              "component": "single-image-selector"
+            }
           },
           "stock_unit": {
-            "$ref": "#/components/schemas/StockUnit"
+            "$ref": "#/components/schemas/StockUnit",
+            "x-components": {
+              "component": "unit-selector"
+            }
           },
           "buyprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Alış Fiyatı"
+            "title": "Alış Fiyatı",
+            "x-components": {
+              "component": "money-input"
+            }
           },
           "buycurrency": {
             "allOf": [
@@ -5753,7 +5752,10 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Satış Fiyatı"
+            "title": "Satış Fiyatı",
+            "x-components": {
+              "component": "money-input"
+            }
           },
           "sellcurrency": {
             "allOf": [
@@ -5791,7 +5793,10 @@
             "type": "string",
             "nullable": true,
             "title": "Barkod",
-            "maxLength": 20
+            "maxLength": 20,
+            "x-components": {
+              "component": "barcode-scanner"
+            }
           },
           "created_at": {
             "type": "string",
@@ -5819,7 +5824,10 @@
             "maxLength": 2000
           },
           "category": {
-            "$ref": "#/components/schemas/Category"
+            "$ref": "#/components/schemas/Category",
+            "x-components": {
+              "component": "category-selector"
+            }
           },
           "previous_id": {
             "type": "integer",
@@ -5846,27 +5854,7 @@
           "stocks",
           "updated_at",
           "updated_by"
-        ],
-        "x-components": {
-          "stock_unit": {
-            "component": "unit-selector"
-          },
-          "barcode": {
-            "component": "barcode-scanner"
-          },
-          "thumbnail": {
-            "component": "single-image-selector"
-          },
-          "category": {
-            "component": "category-selector"
-          },
-          "buyprice": {
-            "component": "money-input"
-          },
-          "sellprice": {
-            "component": "money-input"
-          }
-        }
+        ]
       },
       "ItemIn": {
         "type": "object",
@@ -5884,17 +5872,26 @@
             "type": "string",
             "format": "uri",
             "nullable": true,
-            "title": "Önizleme Fotoğraf"
+            "title": "Önizleme Fotoğraf",
+            "x-components": {
+              "component": "single-image-selector"
+            }
           },
           "stock_unit": {
             "type": "integer",
-            "title": "Stok Birimi"
+            "title": "Stok Birimi",
+            "x-components": {
+              "component": "unit-selector"
+            }
           },
           "buyprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Alış Fiyatı"
+            "title": "Alış Fiyatı",
+            "x-components": {
+              "component": "money-input"
+            }
           },
           "buycurrency": {
             "allOf": [
@@ -5909,7 +5906,10 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Satış Fiyatı"
+            "title": "Satış Fiyatı",
+            "x-components": {
+              "component": "money-input"
+            }
           },
           "sellcurrency": {
             "allOf": [
@@ -5947,7 +5947,10 @@
             "type": "string",
             "nullable": true,
             "title": "Barkod",
-            "maxLength": 20
+            "maxLength": 20,
+            "x-components": {
+              "component": "barcode-scanner"
+            }
           },
           "created_at": {
             "type": "string",
@@ -5971,7 +5974,10 @@
           "category": {
             "type": "integer",
             "nullable": true,
-            "title": "Kategori"
+            "title": "Kategori",
+            "x-components": {
+              "component": "category-selector"
+            }
           }
         },
         "required": [
@@ -5984,27 +5990,7 @@
           "stock_unit",
           "stocks",
           "updated_at"
-        ],
-        "x-components": {
-          "stock_unit": {
-            "component": "unit-selector"
-          },
-          "barcode": {
-            "component": "barcode-scanner"
-          },
-          "thumbnail": {
-            "component": "single-image-selector"
-          },
-          "category": {
-            "component": "category-selector"
-          },
-          "buyprice": {
-            "component": "money-input"
-          },
-          "sellprice": {
-            "component": "money-input"
-          }
-        }
+        ]
       },
       "ItemInRequest": {
         "type": "object",
@@ -6019,17 +6005,26 @@
             "type": "string",
             "format": "binary",
             "nullable": true,
-            "title": "Önizleme Fotoğraf"
+            "title": "Önizleme Fotoğraf",
+            "x-components": {
+              "component": "single-image-selector"
+            }
           },
           "stock_unit": {
             "type": "integer",
-            "title": "Stok Birimi"
+            "title": "Stok Birimi",
+            "x-components": {
+              "component": "unit-selector"
+            }
           },
           "buyprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Alış Fiyatı"
+            "title": "Alış Fiyatı",
+            "x-components": {
+              "component": "money-input"
+            }
           },
           "buycurrency": {
             "allOf": [
@@ -6044,7 +6039,10 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Satış Fiyatı"
+            "title": "Satış Fiyatı",
+            "x-components": {
+              "component": "money-input"
+            }
           },
           "sellcurrency": {
             "allOf": [
@@ -6075,7 +6073,10 @@
             "type": "string",
             "nullable": true,
             "title": "Barkod",
-            "maxLength": 20
+            "maxLength": 20,
+            "x-components": {
+              "component": "barcode-scanner"
+            }
           },
           "description": {
             "type": "string",
@@ -6086,30 +6087,13 @@
           "category": {
             "type": "integer",
             "nullable": true,
-            "title": "Kategori"
+            "title": "Kategori",
+            "x-components": {
+              "component": "category-selector"
+            }
           }
         },
-        "required": ["buyprice", "kdv", "name", "sellprice", "stock_unit"],
-        "x-components": {
-          "stock_unit": {
-            "component": "unit-selector"
-          },
-          "barcode": {
-            "component": "barcode-scanner"
-          },
-          "thumbnail": {
-            "component": "single-image-selector"
-          },
-          "category": {
-            "component": "category-selector"
-          },
-          "buyprice": {
-            "component": "money-input"
-          },
-          "sellprice": {
-            "component": "money-input"
-          }
-        }
+        "required": ["buyprice", "kdv", "name", "sellprice", "stock_unit"]
       },
       "ItemNested": {
         "type": "object",
@@ -6304,16 +6288,25 @@
             "type": "string",
             "format": "uri",
             "nullable": true,
-            "title": "Önizleme Fotoğraf"
+            "title": "Önizleme Fotoğraf",
+            "x-components": {
+              "component": "single-image-selector"
+            }
           },
           "stock_unit": {
-            "$ref": "#/components/schemas/StockUnit"
+            "$ref": "#/components/schemas/StockUnit",
+            "x-components": {
+              "component": "unit-selector"
+            }
           },
           "buyprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Alış Fiyatı"
+            "title": "Alış Fiyatı",
+            "x-components": {
+              "component": "money-input"
+            }
           },
           "buycurrency": {
             "allOf": [
@@ -6328,7 +6321,10 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Satış Fiyatı"
+            "title": "Satış Fiyatı",
+            "x-components": {
+              "component": "money-input"
+            }
           },
           "sellcurrency": {
             "allOf": [
@@ -6366,7 +6362,10 @@
             "type": "string",
             "nullable": true,
             "title": "Barkod",
-            "maxLength": 20
+            "maxLength": 20,
+            "x-components": {
+              "component": "barcode-scanner"
+            }
           },
           "created_at": {
             "type": "string",
@@ -6394,7 +6393,10 @@
             "maxLength": 2000
           },
           "category": {
-            "$ref": "#/components/schemas/Category"
+            "$ref": "#/components/schemas/Category",
+            "x-components": {
+              "component": "category-selector"
+            }
           }
         },
         "required": [
@@ -6409,27 +6411,7 @@
           "stocks",
           "updated_at",
           "updated_by"
-        ],
-        "x-components": {
-          "stock_unit": {
-            "component": "unit-selector"
-          },
-          "barcode": {
-            "component": "barcode-scanner"
-          },
-          "thumbnail": {
-            "component": "single-image-selector"
-          },
-          "category": {
-            "component": "category-selector"
-          },
-          "buyprice": {
-            "component": "money-input"
-          },
-          "sellprice": {
-            "component": "money-input"
-          }
-        }
+        ]
       },
       "KdvEnum": {
         "enum": [0, 1, 8, 18],
@@ -6789,11 +6771,6 @@
             "nullable": true,
             "title": "Üst Kategori"
           }
-        },
-        "x-components": {
-          "parent": {
-            "component": "category-selector"
-          }
         }
       },
       "PatchedInvoiceListRequest": {
@@ -6882,17 +6859,26 @@
             "type": "string",
             "format": "binary",
             "nullable": true,
-            "title": "Önizleme Fotoğraf"
+            "title": "Önizleme Fotoğraf",
+            "x-components": {
+              "component": "single-image-selector"
+            }
           },
           "stock_unit": {
             "type": "integer",
-            "title": "Stok Birimi"
+            "title": "Stok Birimi",
+            "x-components": {
+              "component": "unit-selector"
+            }
           },
           "buyprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Alış Fiyatı"
+            "title": "Alış Fiyatı",
+            "x-components": {
+              "component": "money-input"
+            }
           },
           "buycurrency": {
             "allOf": [
@@ -6907,7 +6893,10 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Satış Fiyatı"
+            "title": "Satış Fiyatı",
+            "x-components": {
+              "component": "money-input"
+            }
           },
           "sellcurrency": {
             "allOf": [
@@ -6938,7 +6927,10 @@
             "type": "string",
             "nullable": true,
             "title": "Barkod",
-            "maxLength": 20
+            "maxLength": 20,
+            "x-components": {
+              "component": "barcode-scanner"
+            }
           },
           "description": {
             "type": "string",
@@ -6949,27 +6941,10 @@
           "category": {
             "type": "integer",
             "nullable": true,
-            "title": "Kategori"
-          }
-        },
-        "x-components": {
-          "stock_unit": {
-            "component": "unit-selector"
-          },
-          "barcode": {
-            "component": "barcode-scanner"
-          },
-          "thumbnail": {
-            "component": "single-image-selector"
-          },
-          "category": {
-            "component": "category-selector"
-          },
-          "buyprice": {
-            "component": "money-input"
-          },
-          "sellprice": {
-            "component": "money-input"
+            "title": "Kategori",
+            "x-components": {
+              "component": "category-selector"
+            }
           }
         }
       },
