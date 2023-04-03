@@ -1,4 +1,6 @@
-import {
+import { components, paths } from 'src/client/schema.json';
+
+import type {
   DiscriminatorObject,
   ExternalDocumentationObject,
   MediaTypeObject,
@@ -8,8 +10,6 @@ import {
   XMLObject,
   ParameterObject,
 } from 'openapi-typescript';
-
-import { components, paths } from 'src/client/schema.json';
 
 type XComponent = {
   component: string;
@@ -21,7 +21,7 @@ type XComponent = {
 // this supports type: 'string', pattern?: string
 // the openapi-typescript currently does that wrong.
 // also I extended it a bit for my needs.
-type SchemaObject = {
+export type SchemaObject = {
   discriminator?: DiscriminatorObject;
   xml?: XMLObject;
   externalDocs?: ExternalDocumentationObject;
@@ -37,7 +37,7 @@ type SchemaObject = {
   default?: unknown;
   format?: string;
   nullable?: boolean;
-  'x-components': XComponent;
+  'x-components'?: XComponent;
   [key: `x-${string}`]: unknown;
 } & (
   | {
@@ -265,4 +265,63 @@ export function get_operation<
   O extends keyof (typeof paths)[P]
 >(path_name: P, operation: O) {
   return paths[path_name][operation] as OperationObject;
+}
+
+type ComponentProps = {
+  label: string;
+} & {
+  [key: string]: unknown;
+};
+
+export type FormComponent = {
+  componentString: string;
+  props: ComponentProps;
+};
+
+export function create_filters(operation: OperationObject) {
+  const filterComponents: Record<string, FormComponent> = {};
+  if (operation.parameters) {
+    for (const parameter of operation.parameters as ExtendedParameterObject[]) {
+      const xcomp = parameter.schema?.['x-components'];
+      const props: ComponentProps = {
+        label: parameter.schema?.title || parameter.name,
+        ...parameter.schema,
+        ...xcomp?.props,
+      };
+      const component = xcomp?.component || 'text-input';
+      filterComponents[parameter.name] = {
+        componentString: component,
+        props: props,
+      };
+    }
+  }
+  return filterComponents;
+}
+
+export function create_form(component: SchemaObject) {
+  if (isObject(component) && component.properties !== undefined) {
+    const formComponents: Record<string, FormComponent> = {};
+    for (const propertyKey in component.properties) {
+      const property = component.properties[propertyKey] as SchemaObject;
+      const xcomp = property['x-components'];
+      const props: ComponentProps = {
+        label: property.title || propertyKey,
+        ...property,
+        ...xcomp?.props,
+      };
+      const comp = xcomp?.component || 'text-input';
+      formComponents[propertyKey] = {
+        componentString: comp,
+        props: props,
+      };
+    }
+    return formComponents;
+  }
+}
+
+/**
+ * shortcut for create_form(dereference(get_component(component_name)))
+ */
+export function get_form(component_name: keyof typeof components.schemas) {
+  return create_form(dereference(get_component(component_name)));
 }

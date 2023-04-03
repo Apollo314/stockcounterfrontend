@@ -54,7 +54,6 @@ export function useVPan(options: VPanOptions) {
   });
 
   function onPressed(evt: MouseEvent) {
-    console.log('pressed');
     pressType = evt.button === 0 ? 'left' : 'right';
     pressed.value = true;
     isFirst.value = true;
@@ -86,8 +85,6 @@ export function useVPan(options: VPanOptions) {
     (xy) => {
       if (pressed.value && pressType === 'left') {
         nextTick(() => {
-          console.log('calback');
-          console.log(pressType, xy, x.value, y.value, deltastartpos.value);
           options.callback({
             isFirst: isFirst.value,
             delta: {
