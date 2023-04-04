@@ -1,12 +1,13 @@
 <template>
   <q-card
+    :bordered="bordered"
     class="adaptive-card"
     :class="{
       'arrived-top': arrivedState.top,
       'arrived-right': arrivedState.right,
       'arrived-bottom': arrivedState.bottom,
       'arrived-left': arrivedState.left,
-      'compact-scrollbar': noWidthScrollbar,
+      'compact-scrollbar': compactScrollbar,
     }"
   >
     <q-card-actions
@@ -41,10 +42,11 @@ import { onActivated, ref } from 'vue';
 
 withDefaults(
   defineProps<{
-    noWidthScrollbar?: boolean;
+    bordered?: boolean;
+    compactScrollbar?: boolean;
   }>(),
   {
-    noWidthScrollbar: true,
+    compactScrollbar: true,
   }
 );
 
