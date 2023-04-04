@@ -5,7 +5,7 @@
     :key="column.id"
     :class="getAlignClass(column.align)"
     style="position: relative; min-width: max-content"
-    :style="getTHStyle(column)"
+    :style="thStyle"
   >
     <span>
       <b class="column-label col">
@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts" generic="Row extends BaseRow">
-import { PropType, provide, ref } from 'vue';
+import { PropType, computed, provide, ref } from 'vue';
 
 import { callOrGet } from 'src/composables/utilities';
 
@@ -51,38 +51,34 @@ import ColumnResizer from './ColumnResizer.vue';
 import { BaseColumn, BaseRow } from './DataTable.vue';
 import { getAlignClass } from './datatableutilities';
 
-defineProps({
+const props = defineProps({
   column: {
-    type: Object as PropType<BaseColumn<BaseRow>>,
+    type: Object as PropType<BaseColumn<Row>>,
     required: true,
   },
 });
 
-type ColumnWidths = {
-  [key in keyof Row]?: number;
-};
+const columnWidth = ref<number | undefined>(props.column.width);
 
-const columnWidths = ref<ColumnWidths>({});
-
-const getTHStyle = (column: BaseColumn<BaseRow>) => {
-  if (columnWidths.value[column.id] || column.width) {
-    const width = columnWidths.value[column.id];
+const thStyle = computed(() => {
+  if (columnWidth.value || props.column.width) {
+    const width = columnWidth.value;
     return {
-      width: width !== undefined ? `${width}px` : `${column.width}px`,
-      minWidth: width !== undefined ? `${width}px` : `${column.width}px`,
+      width: width !== undefined ? `${width}px` : `${props.column.width}px`,
+      minWidth: width !== undefined ? `${width}px` : `${props.column.width}px`,
     };
+  } else {
+    return {};
   }
-};
+});
 
-// TODO Implement filterable and sortable based on openapi schema
-const filterable = (column: BaseColumn<BaseRow>) => {
-  console.log(column);
+// TODO: Implement filterable and sortable based on openapi schema
+const filterable = (column: BaseColumn<Row>) => {
   return true;
 };
-const sortable = (column: BaseColumn<BaseRow>) => {
-  console.log(column);
+const sortable = (column: BaseColumn<Row>) => {
   return true;
 };
 
-provide('columnWidths', columnWidths);
+provide('columnWidth', columnWidth);
 </script>

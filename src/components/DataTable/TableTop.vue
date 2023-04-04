@@ -100,7 +100,7 @@
       no-caps
       flat
     >
-      <!-- TODO <sorting></sorting> -->
+      <!-- TODO: <sorting></sorting> -->
     </q-btn>
     <q-btn flat icon="fullscreen" @click="toggle()" />
     <q-space />
