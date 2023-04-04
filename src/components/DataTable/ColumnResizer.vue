@@ -29,10 +29,6 @@ type FakeColumn = {
   id: number | string;
 };
 
-type FakeColumnWidths = {
-  [key: string | number]: number;
-};
-
 const props = defineProps<{
   column: FakeColumn;
 }>();
@@ -41,29 +37,28 @@ const resizerRef = ref<HTMLElement>();
 const panning = ref<boolean>(false);
 const startpos = ref<{ x: number; y: number }>({ x: 0, y: 0 });
 
-const columnWidths = inject<Ref<FakeColumnWidths>>('columnWidths', ref({}));
+const columnWidth = inject('columnWidth', ref(0));
 
 const panHandler = useThrottleFn(async (evt: TouchPanEvent) => {
   if (evt.isFirst) {
     startpos.value.x = evt.offset.x;
     startpos.value.y = evt.offset.y;
     panning.value = true;
-    columnWidths.value[props.column.id] =
+    columnWidth.value =
       (resizerRef.value?.parentElement?.offsetWidth || 0) + evt.delta.x;
   } else {
     const delta = {
       x: evt.offset.x - startpos.value.x,
       y: evt.offset.y - startpos.value.y,
     };
-    columnWidths.value[props.column.id] =
-      delta.x + columnWidths.value[props.column.id];
+    columnWidth.value = delta.x + columnWidth.value;
     startpos.value.x = evt.offset.x;
     startpos.value.y = evt.offset.y;
   }
   if (evt.isFinal) {
     panning.value = false;
   }
-}, 50);
+}, 20);
 </script>
 
 <style scoped lang="scss">
