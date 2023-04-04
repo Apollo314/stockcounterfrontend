@@ -1,6 +1,4 @@
 <template>
-  {{ value }}
-  {{ typeof value }}
   <q-input
     ref="inputRef"
     :label="label"
@@ -35,7 +33,7 @@
 <script setup lang="ts">
 import { QInput } from 'quasar';
 import { useField } from 'vee-validate';
-import { computed, nextTick, ref, toRef, watch } from 'vue';
+import { computed, nextTick, ref, toRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const props = withDefaults(
@@ -63,15 +61,17 @@ defineEmits<{
 }>();
 
 const inputRef = ref<QInput>();
-const realNumber = ref(0);
 
 const { n: $n, locale } = useI18n();
 
-const { value, errorMessage, validate } = useField<string | null>(
+const { value, errorMessage, validate } = useField<string | undefined>(
   toRef(props, 'name')
 );
 
-const countSeparator = (strnumber: string, seperator: string) => {
+const countSeparator = (strnumber: string | undefined, seperator: string) => {
+  if (strnumber === undefined) {
+    return 0;
+  }
   let sum = 0;
   for (const digit of strnumber) {
     if (digit == seperator) {
@@ -96,7 +96,7 @@ const get_seperators = () => {
 };
 
 const parseNumber = (strnumber: string) => {
-  if (strnumber.length === 0) return 0;
+  if (strnumber.length === 0) return NaN;
   const { thousandsSep, decimalSep } = get_seperators();
   let cleaned_number = strnumber.replaceAll(thousandsSep, '');
   cleaned_number = cleaned_number.replace(decimalSep, '.');
@@ -109,21 +109,16 @@ const parseNumber = (strnumber: string) => {
   return 0;
 };
 
-// const formattedModel = ref('');
-
-watch(realNumber, () => {
-  value.value = $n(realNumber.value, {
-    minimumFractionDigits: 4,
-    locale: 'en',
-    useGrouping: false,
-  });
-});
-
 const formattedModel = computed(() => {
-  return $n(realNumber.value, {
-    maximumFractionDigits: 4,
-    locale: locale.value === 'tr' ? 'tr' : 'en',
-  });
+  const realnumber = parseFloat(value.value || '');
+  if (!Number.isNaN(realnumber)) {
+    return $n(realnumber, {
+      maximumFractionDigits: 4,
+      locale: locale.value === 'tr' ? 'tr' : 'en',
+    });
+  } else {
+    return undefined;
+  }
 });
 
 const update = (val: string | null) => {
@@ -131,7 +126,16 @@ const update = (val: string | null) => {
   const inputEl = inputRef.value?.getNativeElement();
   const prevSelectionStart = inputEl?.selectionStart || 0;
   const prevSepCount = countSeparator(formattedModel.value, thousandsSep);
-  realNumber.value = parseNumber(val || '');
+  const realnumber = parseNumber(val || '');
+  if (!Number.isNaN(realnumber))
+    value.value = $n(realnumber, {
+      minimumFractionDigits: 4,
+      locale: 'en',
+      useGrouping: false,
+    });
+  else {
+    value.value = undefined;
+  }
   nextTick(() => {
     const currentSepCount = countSeparator(formattedModel.value, thousandsSep);
     const newSelection = Math.max(
