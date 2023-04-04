@@ -1,4 +1,6 @@
 <template>
+  {{ value }}
+  {{ typeof value }}
   <q-input
     ref="inputRef"
     :label="label"
@@ -24,6 +26,9 @@
     <template #before><slot name="before"></slot></template>
     <template #append><slot name="append"></slot></template>
     <template #prepend><slot name="prepend"></slot></template>
+    <template #hint><slot name="hint"></slot></template>
+    <template #loading><slot name="loading"></slot></template>
+    <template #counter><slot name="counter"></slot></template>
   </q-input>
 </template>
 
@@ -110,6 +115,7 @@ watch(realNumber, () => {
   value.value = $n(realNumber.value, {
     minimumFractionDigits: 4,
     locale: 'en',
+    useGrouping: false,
   });
 });
 
