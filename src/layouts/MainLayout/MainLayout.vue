@@ -1,10 +1,7 @@
 <template>
-  <q-layout view="hhr LpR lfr">
+  <q-layout view="hhh LpR lfr">
     <StickyHeader>
-      <div
-        class="row full-width items-center semi-transparent bg-primary"
-        ref="subHeader"
-      >
+      <div class="row full-width items-center bg-page" ref="subHeader">
         <q-toolbar style="min-height: 40px" class="q-py-xs">
           <q-btn
             flat
@@ -23,7 +20,6 @@
             :model-value="$q.dark.isActive"
             @update:model-value="$q.dark.set($event)"
             checked-icon="dark_mode"
-            color="black"
             unchecked-icon="light_mode"
           />
         </q-toolbar>
