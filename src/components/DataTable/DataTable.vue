@@ -1,164 +1,175 @@
 <template>
-  <adaptive-card
-    ref="adaptiveCardRef"
-    :class="{
-      'sticky-header': stickyHeader,
-      'sticky-caption': stickyCaption,
-      'bg-transparent': card && !$q.screen.gt.xs,
-      cards: card,
-    }"
-    class="full-height"
-    flushmobile
-    :bordered="$q.screen.gt.xs"
-    no-width-scrollbar
-    :compact-scrollbar="false"
-  >
-    <template #action-top>
-      <Teleport
-        :to="subHeader"
-        v-if="subHeader"
-        :disabled="!card || $q.screen.gt.sm || isFullscreen"
-      >
-        <q-toolbar>
-          <ActiveColumns></ActiveColumns>
-          <TableTop></TableTop>
-        </q-toolbar>
-      </Teleport>
-    </template>
-    <div class="table-parent">
-      <table v-if="!card" flat class="coolshadow data-table">
-        <thead class="table-head" :class="theadClasses">
-          <ActiveColumns></ActiveColumns>
-          <tr>
-            <th class="table-header-cell" @click.stop="toggleSelectionAll()">
-              <q-checkbox
-                dense
-                color="primary"
-                class="checkbox"
-                :model-value="selectAllButtonStatus"
-                @click="toggleSelectionAll()"
-              />
-            </th>
-            <template v-for="column in columns" :key="column.id">
-              <HeaderCell :column="column">
-                <slot
-                  :name="`th-inner-sibling-${column.id}`"
-                  v-bind="{ column }"
+  <div ref="tableRef" class="row fit">
+    <adaptive-card
+      :class="{
+        'sticky-header': stickyHeader,
+        'sticky-caption': stickyCaption,
+        'bg-transparent': card && !$q.screen.gt.xs && !isFullscreen,
+        cards: card,
+      }"
+      class="full-height col"
+      :bordered="$q.screen.gt.xs"
+    >
+      <template #action-top>
+        <Teleport
+          :to="subHeader"
+          v-if="subHeader"
+          :disabled="!card || $q.screen.gt.sm || isFullscreen"
+        >
+          <q-toolbar>
+            <ActiveColumns></ActiveColumns>
+            <TableTop></TableTop>
+          </q-toolbar>
+        </Teleport>
+      </template>
+      <div class="table-parent">
+        <table v-if="!card" flat class="coolshadow data-table">
+          <thead class="table-head" :class="theadClasses">
+            <ActiveColumns></ActiveColumns>
+            <tr>
+              <th class="table-header-cell" @click.stop="toggleSelectionAll()">
+                <q-checkbox
+                  dense
+                  color="primary"
+                  class="checkbox"
+                  :model-value="selectAllButtonStatus"
+                  @click="toggleSelectionAll()"
                 />
-              </HeaderCell>
-            </template>
-            <slot name="head-tr-inner" />
-          </tr>
-        </thead>
-        <tbody
-          class="table-body"
-          :class="tbodyClasses"
-          style="position: relative"
-        >
-          <tr
-            v-for="row in data"
-            :class="{ 'selected-row': selected.indexOf(row) > -1 }"
-            :key="row.id"
+              </th>
+              <template v-for="column in computedcolumns" :key="column.id">
+                <HeaderCell :column="column">
+                  <slot
+                    :name="`th-inner-sibling-${column.id}`"
+                    v-bind="{ column }"
+                  />
+                </HeaderCell>
+              </template>
+              <slot name="head-tr-inner" />
+            </tr>
+          </thead>
+          <tbody
+            class="table-body"
+            :class="tbodyClasses"
+            style="position: relative"
           >
-            <td
-              @click.stop="toggleSelection(row, !(selected.indexOf(row) > -1))"
+            <tr
+              v-for="row in data"
+              :class="{ 'selected-row': selected.indexOf(row) > -1 }"
+              :key="row.id"
             >
-              <q-checkbox
-                dense
-                class="checkbox"
-                :model-value="selected.indexOf(row) > -1"
-                @update:model-value="toggleSelection(row, $event)"
-              />
-            </td>
-            <td
-              :class="getAlignClass(column.align)"
-              v-for="column in computedcolumns"
-              v-show="!column.hidden"
-              :key="column.id"
-            >
-              <div class="cell">
-                {{ getColValue(column, row) }}
-              </div>
-              <slot
-                :name="`td-inner-sibling-${column.id}`"
-                v-bind="{ row: row, column: column }"
-              />
-            </td>
-            <slot name="body-tr-inner" v-bind="{ row }" />
-          </tr>
-        </tbody>
-      </table>
-      <div v-else class="row">
-        <div
-          v-for="row in data"
-          :class="{ selected: selected.indexOf(row) > -1 }"
-          :key="row.id"
-          class="data-card-container q-pa-sm col-xs-12 col-sm-6 col-md-4 col-lg-3"
-          @dblclick="toggleSelection(row, !(selected.indexOf(row) > -1))"
-        >
-          <div
-            class="data-card-parent"
-            :style="selected.indexOf(row) > -1 ? 'transform: scale(0.95);' : ''"
-            style="width: 100%; height: 100%"
-          >
-            <q-card class="data-card" style="width: 100%; overflow: hidden">
-              <q-card-section horizontal class="q-pa-md">
+              <td
+                @click.stop="
+                  toggleSelection(row, !(selected.indexOf(row) > -1))
+                "
+              >
                 <q-checkbox
                   dense
                   class="checkbox"
                   :model-value="selected.indexOf(row) > -1"
                   @update:model-value="toggleSelection(row, $event)"
                 />
-                <q-space />
-                <slot name="card-buttons" v-bind="{ row: row }"></slot>
-              </q-card-section>
-              <q-list dense separator style="z-index: 1">
-                <q-item
-                  v-for="column in computedcolumns"
-                  v-show="!column.hidden"
-                  :key="column.id"
-                >
-                  <q-item-section style="min-width: unset !important">
-                    <q-item-label>{{ callOrGet(column.label) }}</q-item-label>
-                  </q-item-section>
-                  <q-item-section
-                    side
-                    style="color: inherit !important; font-weight: 900"
+              </td>
+              <td
+                :class="getAlignClass(column.align)"
+                v-for="column in computedcolumns"
+                v-show="!column.hidden"
+                :key="column.id"
+              >
+                <div class="cell">
+                  {{ getColValue(column, row) }}
+                </div>
+                <slot
+                  :name="`td-inner-sibling-${column.id}`"
+                  v-bind="{ row: row, column: column }"
+                />
+              </td>
+              <slot name="body-tr-inner" v-bind="{ row }" />
+            </tr>
+          </tbody>
+        </table>
+        <div v-else class="row">
+          <div
+            v-for="row in data"
+            :class="{ selected: selected.indexOf(row) > -1 }"
+            :key="row.id"
+            class="data-card-container q-pa-sm col-xs-12 col-sm-6 col-md-4 col-lg-3"
+            @dblclick="toggleSelection(row, !(selected.indexOf(row) > -1))"
+          >
+            <div
+              class="data-card-parent"
+              :style="
+                selected.indexOf(row) > -1 ? 'transform: scale(0.95);' : ''
+              "
+              style="width: 100%; height: 100%"
+            >
+              <q-card class="data-card" style="width: 100%; overflow: hidden">
+                <q-card-section horizontal class="q-pa-md">
+                  <q-checkbox
+                    dense
+                    class="checkbox"
+                    :model-value="selected.indexOf(row) > -1"
+                    @update:model-value="toggleSelection(row, $event)"
+                  />
+                  <q-space />
+                  <slot name="card-buttons" v-bind="{ row: row }"></slot>
+                </q-card-section>
+                <q-list dense separator style="z-index: 1">
+                  <q-item
+                    v-for="column in computedcolumns"
+                    v-show="!column.hidden"
+                    :key="column.id"
                   >
-                    <slot
-                      v-if="$slots[`row-slot-${column.id}`]"
-                      v-bind="{ row, column }"
-                      :name="`row-slot-${column.id}`"
-                    ></slot>
-                    <div v-else>
-                      {{ getColValue(column, row) }}
-                    </div>
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-card>
+                    <q-item-section style="min-width: unset !important">
+                      <q-item-label>{{ callOrGet(column.label) }}</q-item-label>
+                    </q-item-section>
+                    <q-item-section
+                      side
+                      style="color: inherit !important; font-weight: 900"
+                    >
+                      <slot
+                        v-if="$slots[`row-slot-${column.id}`]"
+                        v-bind="{ row, column }"
+                        :name="`row-slot-${column.id}`"
+                      ></slot>
+                      <div v-else>
+                        {{ getColValue(column, row) }}
+                      </div>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-card>
+            </div>
           </div>
-          <slot></slot>
         </div>
       </div>
-    </div>
-    <template #action-bottom>
-      <div class="row full-width q-pa-sm" style="position: sticky; bottom: 0">
-        <div style="margin: auto" v-if="selected.length">
-          {{ $t('data_table.xitems_selected', [selected.length]) }}
+      <template #action-bottom>
+        <div class="row full-width q-pa-sm" style="position: sticky; bottom: 0">
+          <div style="margin: auto" v-if="selected.length">
+            {{ $t('data_table.xitems_selected', [selected.length]) }}
+          </div>
+          <q-space />
+          <OffsetLimitPaginator
+            :model-value="pagination.offset"
+            :count="pagination.count"
+            :limit="pagination.limit"
+            @update:model-value="request({ offset: $event })"
+            :max-length="7"
+            direction-links
+          ></OffsetLimitPaginator>
         </div>
-        <q-space />
-        <OffsetLimitPaginator
-          :model-value="pagination.offset"
-          :count="pagination.count"
-          :limit="pagination.limit"
-          @update:model-value="request({ offset: $event })"
-          :max-length="7"
-          direction-links
-        ></OffsetLimitPaginator>
-      </div>
-    </template>
-  </adaptive-card>
+      </template>
+    </adaptive-card>
+    <InlineDrawer
+      v-model="showFilter"
+      style="max-height: 100%"
+      :width="300"
+      :overlay="width < 700"
+      bordered
+      :class="{ 'q-ml-sm': showFilter && !(width < 700) }"
+    >
+      <slot name="table-filter"></slot>
+    </InlineDrawer>
+  </div>
 </template>
 
 <script
@@ -166,7 +177,7 @@
   lang="ts"
   generic="Row extends BaseRow, Column extends BaseColumn<Row>, Filters extends Object"
 >
-import { useFullscreen } from '@vueuse/core';
+import { useElementSize, useFullscreen } from '@vueuse/core';
 import { useQuasar } from 'quasar';
 import {
   Ref,
@@ -188,9 +199,12 @@ import OffsetLimitPaginator from 'components/Paginator/OffsetLimitPaginator.vue'
 import { callOrGet } from 'src/composables/utilities';
 import { useUIStore } from 'stores/ui-store';
 
+import InlineDrawer from '../Drawer/InlineDrawer.vue';
+
 import ActiveColumns from './ActiveColumns.vue';
 import { getAlignClass } from './datatableutilities';
 import HeaderCell from './HeaderCell.vue';
+import TableFilter from './TableFilter.vue';
 import TableTop from './TableTop.vue';
 
 export type BaseRow = {
@@ -263,7 +277,8 @@ const subHeader = inject<Ref<HTMLElement>>('subHeader');
 
 const $q = useQuasar();
 const uiStore = useUIStore();
-const adaptiveCardRef = ref();
+const tableRef = ref();
+const { width } = useElementSize(tableRef);
 
 const toggleCardView = (val?: boolean) => {
   // it doesn't work any other way than setTimeout
@@ -299,7 +314,7 @@ watch(
   }
 );
 
-const { isFullscreen, toggle } = useFullscreen(adaptiveCardRef);
+const { isFullscreen, toggle } = useFullscreen(tableRef);
 
 const emit = defineEmits<{
   (
@@ -380,11 +395,14 @@ const request: RequestFunction<Filters> = (partialPagination) => {
     nextTick(() => {
       emit('request', { pagination: props.pagination, done });
     }).then(() => {
-      adaptiveCardRef.value.scrollTo({ x: 0, y: 0 });
+      tableRef.value.scrollTo({ x: 0, y: 0 });
     });
   }
 };
 
+const showFilter = ref($q.screen.gt.sm);
+
+provide('showFilter', showFilter);
 provide('toggle', toggle);
 provide('isFullscreen', isFullscreen);
 provide('card', toRef(props, 'card'));
@@ -393,3 +411,11 @@ provide('request', request);
 provide('requestDone', requestDone);
 provide('columns', props.columns);
 </script>
+
+<style lang="scss">
+.hide-filter {
+  max-width: 0 !important;
+  margin-left: 0 !important;
+  transition: all 0.3s ease;
+}
+</style>
