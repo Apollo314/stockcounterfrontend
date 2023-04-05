@@ -205,7 +205,6 @@ import InlineDrawer from '../Drawer/InlineDrawer.vue';
 import ActiveColumns from './ActiveColumns.vue';
 import { getAlignClass } from './datatableutilities';
 import HeaderCell from './HeaderCell.vue';
-import TableFilter from './TableFilter.vue';
 import TableTop from './TableTop.vue';
 
 export type BaseRow = {
@@ -389,6 +388,9 @@ const request: RequestFunction<Filters> = (partialPagination) => {
       requestDone.value = true;
     }, 2500);
     deselectAll();
+    if (tableCardRef.value) {
+      tableCardRef.value.scrollTo({ x: 0, y: 0 });
+    }
   };
   if (requestDone.value) {
     requestDone.value = false;
@@ -396,10 +398,6 @@ const request: RequestFunction<Filters> = (partialPagination) => {
     emit('update:pagination', newPagination);
     nextTick(() => {
       emit('request', { pagination: props.pagination, done });
-    }).then(() => {
-      if (tableCardRef.value) {
-        tableCardRef.value.scrollTo({ x: 0, y: 0 });
-      }
     });
   }
 };
