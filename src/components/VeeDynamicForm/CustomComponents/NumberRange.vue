@@ -7,6 +7,7 @@
           @blur="lowerRangeBlur"
           :label="leftLabel"
           name="rangeLow"
+          :standout="standout"
         />
       </div>
       <div
@@ -23,6 +24,7 @@
           @blur="higherRangeBlur"
           :label="rightLabel"
           name="rangeHigh"
+          :standout="standout"
         />
       </div>
     </div>
@@ -44,6 +46,7 @@ const props = withDefaults(
     /**
      * string shown on top of the range
      */
+    standout?: boolean;
     title?: string;
     leftLabel: string;
     rightLabel: string;
@@ -51,6 +54,7 @@ const props = withDefaults(
     outputFunc?: (lowerValue?: string, higherValue?: string) => unknown;
   }>(),
   {
+    standout: true,
     outputFunc: (lowerValue, higherValue) =>
       `${lowerValue || 0},${higherValue || 2147483647}`,
   }
