@@ -20,13 +20,27 @@
       $emit('blur');
     "
   >
-    <template #after><slot name="after"></slot></template>
-    <template #before><slot name="before"></slot></template>
-    <template #append><slot name="append"></slot></template>
-    <template #prepend><slot name="prepend"></slot></template>
-    <template #hint><slot name="hint"></slot></template>
-    <template #loading><slot name="loading"></slot></template>
-    <template #counter><slot name="counter"></slot></template>
+    <template v-if="$slots['after']" #after>
+      <slot name="after"></slot>
+    </template>
+    <template v-if="$slots['before']" #before>
+      <slot name="before"></slot>
+    </template>
+    <template v-if="$slots['append']" #append>
+      <slot name="append"></slot>
+    </template>
+    <template v-if="$slots['prepend']" #prepend>
+      <slot name="prepend"></slot>
+    </template>
+    <template v-if="$slots['hint']" #hint>
+      <slot name="hint"></slot>
+    </template>
+    <template v-if="$slots['loading']" #loading>
+      <slot name="loading"></slot>
+    </template>
+    <template v-if="$slots['counter']" #counter>
+      <slot name="counter"></slot>
+    </template>
   </q-input>
 </template>
 
@@ -52,7 +66,7 @@ const props = withDefaults(
     prefix: undefined,
     suffix: undefined,
     class: '',
-    standout: 'bg-teal text-white',
+    standout: true,
   }
 );
 
