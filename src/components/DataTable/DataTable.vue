@@ -15,7 +15,9 @@
         <Teleport
           :to="subHeader"
           v-if="subHeader"
-          :disabled="!card || $q.screen.gt.sm || isFullscreen"
+          :disabled="
+            !card || $q.screen.gt.sm || isFullscreen || !mountedToDataTable
+          "
         >
           <q-toolbar>
             <ActiveColumns></ActiveColumns>
@@ -192,13 +194,11 @@ import {
   provide,
   ref,
   toRef,
-  watch,
 } from 'vue';
 
 import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
 import OffsetLimitPaginator from 'components/Paginator/OffsetLimitPaginator.vue';
 import { callOrGet } from 'src/composables/utilities';
-import { useUIStore } from 'stores/ui-store';
 
 import InlineDrawer from '../Drawer/InlineDrawer.vue';
 
@@ -274,11 +274,10 @@ const props = withDefaults(
 );
 
 const subHeader = inject<Ref<HTMLElement>>('subHeader');
-
 const $q = useQuasar();
-const uiStore = useUIStore();
 const tableParentRef = ref<HTMLElement>();
 const tableCardRef = ref<InstanceType<typeof AdaptiveCard>>();
+const mountedToDataTable = ref(false);
 const { width } = useElementSize(tableParentRef);
 
 const toggleCardView = (val?: boolean) => {
@@ -295,25 +294,17 @@ const toggleCardView = (val?: boolean) => {
 };
 
 onActivated(() => {
-  uiStore.replaceHeader = !$q.screen.gt.xs;
+  mountedToDataTable.value = true;
 });
 onMounted(() => {
-  uiStore.replaceHeader = !$q.screen.gt.xs;
+  mountedToDataTable.value = true;
 });
 onUnmounted(() => {
-  uiStore.replaceHeader = false;
+  mountedToDataTable.value = false;
 });
 onDeactivated(() => {
-  uiStore.replaceHeader = false;
+  mountedToDataTable.value = false;
 });
-
-watch(
-  () => $q.screen.gt.xs,
-  () => {
-    uiStore.replaceHeader = !$q.screen.gt.xs;
-    uiStore.replaceFooter = !$q.screen.gt.xs;
-  }
-);
 
 const { isFullscreen, toggle } = useFullscreen(tableParentRef);
 
