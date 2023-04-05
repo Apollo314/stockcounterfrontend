@@ -65,7 +65,6 @@ const updatePage = () => {
   .q-field__control {
     height: initial !important;
   }
-  // TODO replace with .hide-number-spin-buttons
   input[type='number'] {
     align-self: center;
     text-align: center;

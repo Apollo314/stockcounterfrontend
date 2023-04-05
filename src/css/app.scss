@@ -2,7 +2,6 @@
 @use './transition-animations.scss';
 @use './datatable-styles.scss';
 
-
 .body--light {
   background: black;
   background: linear-gradient(hsl(209, 56%, 82%), hsl(187, 42%, 67%));
@@ -12,9 +11,6 @@
 @media (max-width: 599.98px) {
   .q-page.q-layout-padding {
     padding: 0;
-  }
-  .adaptive-card {
-    border-radius: 0;
   }
 }
 @media (min-width: 1440px) {
@@ -31,9 +27,6 @@
 .mobile {
   .q-page.q-layout-padding {
     padding: 0;
-  }
-  .adaptive-card {
-    border-radius: 0;
   }
 }
 
@@ -244,5 +237,14 @@ $bg-colors: (
     .body--light &.bg-#{$name} {
       background: rgba(lighten($color, 10%), 0.7) !important;
     }
+  }
+}
+
+.bg-page {
+  .body--dark & {
+    background: $dark-page;
+  }
+  .body--light & {
+    background: hsl(209, 56%, 82%);
   }
 }
