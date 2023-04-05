@@ -104,6 +104,7 @@
     </q-btn>
     <q-btn flat icon="fullscreen" @click="toggle()" />
     <q-space />
+    <q-btn flat icon="filter_list" @click="showFilter = !showFilter" />
     <slot name="top-right"></slot>
   </q-tabs>
 </template>
@@ -123,6 +124,7 @@ const card = inject('card') as boolean;
 const toggle = inject('toggle') as () => void;
 
 const showMenu = ref(false);
+const showFilter = inject<boolean>('showFilter');
 const { t: $t } = useI18n();
 
 const tableTypes = computed(() => {
