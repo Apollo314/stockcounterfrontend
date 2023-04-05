@@ -6,7 +6,7 @@
     :standout="standout"
     class="label-top limit-max-height-input"
     v-model="value"
-    @update:model-value="(val: any) => $emit('select', val)"
+    @update:model-value="$emit('select', $event)"
     :options="options"
     @filter="onFilter"
     :loading="loading"
@@ -164,7 +164,7 @@ const onFilter: QSelectProps['onFilter'] = (val, update, abort) => {
           options.value = response.results;
         });
       },
-      (reason: any) => {
+      (reason: unknown) => {
         console.error(reason);
         abort();
       }
