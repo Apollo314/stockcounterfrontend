@@ -1,5 +1,5 @@
 <template>
-  <div ref="tableRef" class="row fit">
+  <div ref="tableParentRef" class="row fit">
     <adaptive-card
       :class="{
         'sticky-header': stickyHeader,
@@ -7,6 +7,7 @@
         'bg-transparent': card && !$q.screen.gt.xs && !isFullscreen,
         cards: card,
       }"
+      ref="tableCardRef"
       class="full-height col"
       :bordered="$q.screen.gt.xs"
     >
@@ -277,8 +278,9 @@ const subHeader = inject<Ref<HTMLElement>>('subHeader');
 
 const $q = useQuasar();
 const uiStore = useUIStore();
-const tableRef = ref();
-const { width } = useElementSize(tableRef);
+const tableParentRef = ref<HTMLElement>();
+const tableCardRef = ref<InstanceType<typeof AdaptiveCard>>();
+const { width } = useElementSize(tableParentRef);
 
 const toggleCardView = (val?: boolean) => {
   // it doesn't work any other way than setTimeout
@@ -314,7 +316,7 @@ watch(
   }
 );
 
-const { isFullscreen, toggle } = useFullscreen(tableRef);
+const { isFullscreen, toggle } = useFullscreen(tableParentRef);
 
 const emit = defineEmits<{
   (
@@ -395,7 +397,9 @@ const request: RequestFunction<Filters> = (partialPagination) => {
     nextTick(() => {
       emit('request', { pagination: props.pagination, done });
     }).then(() => {
-      tableRef.value.scrollTo({ x: 0, y: 0 });
+      if (tableCardRef.value) {
+        tableCardRef.value.scrollTo({ x: 0, y: 0 });
+      }
     });
   }
 };
