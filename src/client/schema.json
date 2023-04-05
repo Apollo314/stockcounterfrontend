@@ -333,6 +333,25 @@
         "operationId": "inventory_category_list",
         "parameters": [
           {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Ara: Kategori",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string",
+              "enum": ["id", "name", "-id", "-name"]
+            }
+          },
+          {
             "name": "limit",
             "required": false,
             "in": "query",
@@ -348,25 +367,6 @@
             "description": "The initial index from which to return the results.",
             "schema": {
               "type": "integer"
-            }
-          },
-          {
-            "name": "ordering",
-            "required": false,
-            "in": "query",
-            "description": "Which field to use when ordering the results.",
-            "schema": {
-              "type": "string",
-              "enum": ["id", "name", "-id", "-name"]
-            }
-          },
-          {
-            "name": "search",
-            "required": false,
-            "in": "query",
-            "description": "Ara: Kategori",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -593,21 +593,6 @@
         "operationId": "inventory_item_list",
         "parameters": [
           {
-            "name": "buyprice__range",
-            "required": false,
-            "in": "query",
-            "description": "buyprice__range",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "money-range",
-                "props": {
-                  "label": "Alış Fiyatı"
-                }
-              }
-            }
-          },
-          {
             "name": "category__in",
             "required": false,
             "in": "query",
@@ -639,6 +624,36 @@
             }
           },
           {
+            "name": "buyprice__range",
+            "required": false,
+            "in": "query",
+            "description": "buyprice__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "money-range",
+                "props": {
+                  "label": "Alış Fiyatı"
+                }
+              }
+            }
+          },
+          {
+            "name": "sellprice__range",
+            "required": false,
+            "in": "query",
+            "description": "sellprice__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "money-range",
+                "props": {
+                  "label": "Satış Fiyatı"
+                }
+              }
+            }
+          },
+          {
             "name": "created_at__range",
             "required": false,
             "in": "query",
@@ -649,6 +664,21 @@
                 "component": "date-time-range",
                 "props": {
                   "label": "Oluşturma tarihi"
+                }
+              }
+            }
+          },
+          {
+            "name": "updated_at__range",
+            "required": false,
+            "in": "query",
+            "description": "updated_at__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Güncellenme tarihi"
                 }
               }
             }
@@ -669,6 +699,21 @@
             }
           },
           {
+            "name": "updated_by",
+            "required": false,
+            "in": "query",
+            "description": "updated_by",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Güncelleyen kullanıcı"
+                }
+              }
+            }
+          },
+          {
             "name": "inactivated",
             "required": false,
             "in": "query",
@@ -682,24 +727,6 @@
                   "toggleIndeterminate": true
                 }
               }
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "required": false,
-            "in": "query",
-            "description": "The initial index from which to return the results.",
-            "schema": {
-              "type": "integer"
             }
           },
           {
@@ -737,48 +764,21 @@
             }
           },
           {
-            "name": "sellprice__range",
+            "name": "limit",
             "required": false,
             "in": "query",
-            "description": "sellprice__range",
+            "description": "Number of results to return per page.",
             "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "money-range",
-                "props": {
-                  "label": "Satış Fiyatı"
-                }
-              }
+              "type": "integer"
             }
           },
           {
-            "name": "updated_at__range",
+            "name": "offset",
             "required": false,
             "in": "query",
-            "description": "updated_at__range",
+            "description": "The initial index from which to return the results.",
             "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Güncellenme tarihi"
-                }
-              }
-            }
-          },
-          {
-            "name": "updated_by",
-            "required": false,
-            "in": "query",
-            "description": "updated_by",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "user-select",
-                "props": {
-                  "label": "Güncelleyen kullanıcı"
-                }
-              }
+              "type": "integer"
             }
           }
         ],
@@ -1017,21 +1017,6 @@
         "operationId": "inventory_item_history_list",
         "parameters": [
           {
-            "name": "buyprice__range",
-            "required": false,
-            "in": "query",
-            "description": "buyprice__range",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "money-range",
-                "props": {
-                  "label": "Alış Fiyatı"
-                }
-              }
-            }
-          },
-          {
             "name": "category__in",
             "required": false,
             "in": "query",
@@ -1063,6 +1048,36 @@
             }
           },
           {
+            "name": "buyprice__range",
+            "required": false,
+            "in": "query",
+            "description": "buyprice__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "money-range",
+                "props": {
+                  "label": "Alış Fiyatı"
+                }
+              }
+            }
+          },
+          {
+            "name": "sellprice__range",
+            "required": false,
+            "in": "query",
+            "description": "sellprice__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "money-range",
+                "props": {
+                  "label": "Satış Fiyatı"
+                }
+              }
+            }
+          },
+          {
             "name": "created_at__range",
             "required": false,
             "in": "query",
@@ -1073,6 +1088,21 @@
                 "component": "date-time-range",
                 "props": {
                   "label": "Oluşturma tarihi"
+                }
+              }
+            }
+          },
+          {
+            "name": "updated_at__range",
+            "required": false,
+            "in": "query",
+            "description": "updated_at__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Güncellenme tarihi"
                 }
               }
             }
@@ -1093,6 +1123,21 @@
             }
           },
           {
+            "name": "updated_by",
+            "required": false,
+            "in": "query",
+            "description": "updated_by",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Güncelleyen kullanıcı"
+                }
+              }
+            }
+          },
+          {
             "name": "inactivated",
             "required": false,
             "in": "query",
@@ -1106,24 +1151,6 @@
                   "toggleIndeterminate": true
                 }
               }
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "required": false,
-            "in": "query",
-            "description": "The initial index from which to return the results.",
-            "schema": {
-              "type": "integer"
             }
           },
           {
@@ -1161,48 +1188,21 @@
             }
           },
           {
-            "name": "sellprice__range",
+            "name": "limit",
             "required": false,
             "in": "query",
-            "description": "sellprice__range",
+            "description": "Number of results to return per page.",
             "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "money-range",
-                "props": {
-                  "label": "Satış Fiyatı"
-                }
-              }
+              "type": "integer"
             }
           },
           {
-            "name": "updated_at__range",
+            "name": "offset",
             "required": false,
             "in": "query",
-            "description": "updated_at__range",
+            "description": "The initial index from which to return the results.",
             "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Güncellenme tarihi"
-                }
-              }
-            }
-          },
-          {
-            "name": "updated_by",
-            "required": false,
-            "in": "query",
-            "description": "updated_by",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "user-select",
-                "props": {
-                  "label": "Güncelleyen kullanıcı"
-                }
-              }
+              "type": "integer"
             }
           }
         ],
@@ -1740,6 +1740,21 @@
             }
           },
           {
+            "name": "updated_at__range",
+            "required": false,
+            "in": "query",
+            "description": "updated_at__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Güncellenme tarihi"
+                }
+              }
+            }
+          },
+          {
             "name": "created_by",
             "required": false,
             "in": "query",
@@ -1755,21 +1770,33 @@
             }
           },
           {
-            "name": "limit",
+            "name": "updated_by",
             "required": false,
             "in": "query",
-            "description": "Number of results to return per page.",
+            "description": "updated_by",
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Güncelleyen kullanıcı"
+                }
+              }
             }
           },
           {
-            "name": "offset",
+            "name": "warehouse_item_stock__item__id",
             "required": false,
             "in": "query",
-            "description": "The initial index from which to return the results.",
+            "description": "warehouse_item_stock__item__id",
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "x-components": {
+                "component": "item-select",
+                "props": {
+                  "label": "item"
+                }
+              }
             }
           },
           {
@@ -1803,48 +1830,21 @@
             }
           },
           {
-            "name": "updated_at__range",
+            "name": "limit",
             "required": false,
             "in": "query",
-            "description": "updated_at__range",
+            "description": "Number of results to return per page.",
             "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Güncellenme tarihi"
-                }
-              }
+              "type": "integer"
             }
           },
           {
-            "name": "updated_by",
+            "name": "offset",
             "required": false,
             "in": "query",
-            "description": "updated_by",
+            "description": "The initial index from which to return the results.",
             "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "user-select",
-                "props": {
-                  "label": "Güncelleyen kullanıcı"
-                }
-              }
-            }
-          },
-          {
-            "name": "warehouse_item_stock__item__id",
-            "required": false,
-            "in": "query",
-            "description": "warehouse_item_stock__item__id",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "item-select",
-                "props": {
-                  "label": "item"
-                }
-              }
+              "type": "integer"
             }
           }
         ],
@@ -2159,6 +2159,25 @@
         "operationId": "inventory_stock_unit_list",
         "parameters": [
           {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Ara: Birim",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string",
+              "enum": ["id", "name", "-id", "-name"]
+            }
+          },
+          {
             "name": "limit",
             "required": false,
             "in": "query",
@@ -2174,25 +2193,6 @@
             "description": "The initial index from which to return the results.",
             "schema": {
               "type": "integer"
-            }
-          },
-          {
-            "name": "ordering",
-            "required": false,
-            "in": "query",
-            "description": "Which field to use when ordering the results.",
-            "schema": {
-              "type": "string",
-              "enum": ["id", "name", "-id", "-name"]
-            }
-          },
-          {
-            "name": "search",
-            "required": false,
-            "in": "query",
-            "description": "Ara: Birim",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -2419,6 +2419,15 @@
         "operationId": "inventory_warehouse_list",
         "parameters": [
           {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Ara: Depo adı, Adress (varsa), Telefon, Plaka (varsa)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "required": false,
             "in": "query",
@@ -2434,15 +2443,6 @@
             "description": "The initial index from which to return the results.",
             "schema": {
               "type": "integer"
-            }
-          },
-          {
-            "name": "search",
-            "required": false,
-            "in": "query",
-            "description": "Ara: Depo adı, Adress (varsa), Telefon, Plaka (varsa)",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -2515,6 +2515,15 @@
         "operationId": "inventory_warehouse_item_stock_list",
         "parameters": [
           {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Ara: Ürün/Hizmet",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "required": false,
             "in": "query",
@@ -2530,15 +2539,6 @@
             "description": "The initial index from which to return the results.",
             "schema": {
               "type": "integer"
-            }
-          },
-          {
-            "name": "search",
-            "required": false,
-            "in": "query",
-            "description": "Ara: Ürün/Hizmet",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -2801,6 +2801,21 @@
             }
           },
           {
+            "name": "updated_at__range",
+            "required": false,
+            "in": "query",
+            "description": "updated_at__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Güncellenme tarihi"
+                }
+              }
+            }
+          },
+          {
             "name": "created_by",
             "required": false,
             "in": "query",
@@ -2811,6 +2826,21 @@
                 "component": "user-select",
                 "props": {
                   "label": "Oluşturan kullanıcı"
+                }
+              }
+            }
+          },
+          {
+            "name": "updated_by",
+            "required": false,
+            "in": "query",
+            "description": "updated_by",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Güncelleyen kullanıcı"
                 }
               }
             }
@@ -2841,24 +2871,6 @@
                   "label": "item"
                 }
               }
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "required": false,
-            "in": "query",
-            "description": "The initial index from which to return the results.",
-            "schema": {
-              "type": "integer"
             }
           },
           {
@@ -2896,33 +2908,21 @@
             }
           },
           {
-            "name": "updated_at__range",
+            "name": "limit",
             "required": false,
             "in": "query",
-            "description": "updated_at__range",
+            "description": "Number of results to return per page.",
             "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Güncellenme tarihi"
-                }
-              }
+              "type": "integer"
             }
           },
           {
-            "name": "updated_by",
+            "name": "offset",
             "required": false,
             "in": "query",
-            "description": "updated_by",
+            "description": "The initial index from which to return the results.",
             "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "user-select",
-                "props": {
-                  "label": "Güncelleyen kullanıcı"
-                }
-              }
+              "type": "integer"
             }
           }
         ],
@@ -3283,54 +3283,6 @@
         "operationId": "stakeholder_customers_list",
         "parameters": [
           {
-            "name": "email__icontains",
-            "required": false,
-            "in": "query",
-            "description": "email__icontains",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "text-input",
-                "props": {
-                  "label": "E-Posta"
-                }
-              }
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "required": false,
-            "in": "query",
-            "description": "The initial index from which to return the results.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "phone__icontains",
-            "required": false,
-            "in": "query",
-            "description": "phone__icontains",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "text-input",
-                "props": {
-                  "label": "Telefon"
-                }
-              }
-            }
-          },
-          {
             "name": "search",
             "required": false,
             "in": "query",
@@ -3367,6 +3319,54 @@
                   "label": "VKN/TCKN"
                 }
               }
+            }
+          },
+          {
+            "name": "email__icontains",
+            "required": false,
+            "in": "query",
+            "description": "email__icontains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "E-Posta"
+                }
+              }
+            }
+          },
+          {
+            "name": "phone__icontains",
+            "required": false,
+            "in": "query",
+            "description": "phone__icontains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Telefon"
+                }
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "schema": {
+              "type": "integer"
             }
           }
         ],
@@ -3643,6 +3643,15 @@
         "operationId": "stakeholder_stakeholder_employee_list",
         "parameters": [
           {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "required": false,
             "in": "query",
@@ -3658,15 +3667,6 @@
             "description": "The initial index from which to return the results.",
             "schema": {
               "type": "integer"
-            }
-          },
-          {
-            "name": "search",
-            "required": false,
-            "in": "query",
-            "description": "A search term.",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -3882,54 +3882,6 @@
         "operationId": "stakeholder_suppliers_list",
         "parameters": [
           {
-            "name": "email__icontains",
-            "required": false,
-            "in": "query",
-            "description": "email__icontains",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "text-input",
-                "props": {
-                  "label": "E-Posta"
-                }
-              }
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "description": "Number of results to return per page.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "offset",
-            "required": false,
-            "in": "query",
-            "description": "The initial index from which to return the results.",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "phone__icontains",
-            "required": false,
-            "in": "query",
-            "description": "phone__icontains",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "text-input",
-                "props": {
-                  "label": "Telefon"
-                }
-              }
-            }
-          },
-          {
             "name": "search",
             "required": false,
             "in": "query",
@@ -3966,6 +3918,54 @@
                   "label": "VKN/TCKN"
                 }
               }
+            }
+          },
+          {
+            "name": "email__icontains",
+            "required": false,
+            "in": "query",
+            "description": "email__icontains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "E-Posta"
+                }
+              }
+            }
+          },
+          {
+            "name": "phone__icontains",
+            "required": false,
+            "in": "query",
+            "description": "phone__icontains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Telefon"
+                }
+              }
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "schema": {
+              "type": "integer"
             }
           }
         ],
@@ -4242,16 +4242,26 @@
         "operationId": "user_accounts_list",
         "parameters": [
           {
-            "name": "date_joined__range",
+            "name": "search",
             "required": false,
             "in": "query",
-            "description": "date_joined__range",
+            "description": "Ara: adı, soyadı, e-posta adresi, kullanıcı adı",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username__icontains",
+            "required": false,
+            "in": "query",
+            "description": "username__icontains",
             "schema": {
               "type": "string",
               "x-components": {
-                "component": "date-time-range",
+                "component": "text-input",
                 "props": {
-                  "label": "Kayıt Tarihi"
+                  "label": "Kullanıcı Adı",
+                  "placeholder": "Kullanıcı Adı"
                 }
               }
             }
@@ -4288,21 +4298,6 @@
             }
           },
           {
-            "name": "is_active",
-            "required": false,
-            "in": "query",
-            "description": "is_active",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "checkbox",
-                "props": {
-                  "label": "Etkin"
-                }
-              }
-            }
-          },
-          {
             "name": "is_staff",
             "required": false,
             "in": "query",
@@ -4333,6 +4328,36 @@
             }
           },
           {
+            "name": "is_active",
+            "required": false,
+            "in": "query",
+            "description": "is_active",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "checkbox",
+                "props": {
+                  "label": "Etkin"
+                }
+              }
+            }
+          },
+          {
+            "name": "date_joined__range",
+            "required": false,
+            "in": "query",
+            "description": "date_joined__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Kayıt Tarihi"
+                }
+              }
+            }
+          },
+          {
             "name": "limit",
             "required": false,
             "in": "query",
@@ -4348,31 +4373,6 @@
             "description": "The initial index from which to return the results.",
             "schema": {
               "type": "integer"
-            }
-          },
-          {
-            "name": "search",
-            "required": false,
-            "in": "query",
-            "description": "Ara: adı, soyadı, e-posta adresi, kullanıcı adı",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "username__icontains",
-            "required": false,
-            "in": "query",
-            "description": "username__icontains",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "text-input",
-                "props": {
-                  "label": "Kullanıcı Adı",
-                  "placeholder": "Kullanıcı Adı"
-                }
-              }
             }
           }
         ],
@@ -4847,7 +4847,10 @@
           "parent": {
             "type": "integer",
             "nullable": true,
-            "title": "Üst Kategori"
+            "title": "Üst Kategori",
+            "x-components": {
+              "component": "category-selector"
+            }
           }
         },
         "required": ["id", "name"]
@@ -4864,7 +4867,10 @@
           "parent": {
             "type": "integer",
             "nullable": true,
-            "title": "Üst Kategori"
+            "title": "Üst Kategori",
+            "x-components": {
+              "component": "category-selector"
+            }
           }
         },
         "required": ["name"]
@@ -6769,7 +6775,10 @@
           "parent": {
             "type": "integer",
             "nullable": true,
-            "title": "Üst Kategori"
+            "title": "Üst Kategori",
+            "x-components": {
+              "component": "category-selector"
+            }
           }
         }
       },
@@ -7889,7 +7898,6 @@
       },
       "WarehouseItemStockINFO_ONLY": {
         "type": "object",
-        "description": "this exists so that warehouseitemstock is available in ItemNestedSerializer has access\nto warehouseitemstock if it exists, so there won't be an unnecessary query to database\nto get the warehouseitemstock",
         "properties": {
           "id": {
             "type": "integer"
@@ -7899,7 +7907,6 @@
       },
       "WarehouseItemStockINFO_ONLYRequest": {
         "type": "object",
-        "description": "this exists so that warehouseitemstock is available in ItemNestedSerializer has access\nto warehouseitemstock if it exists, so there won't be an unnecessary query to database\nto get the warehouseitemstock",
         "properties": {
           "id": {
             "type": "integer"
