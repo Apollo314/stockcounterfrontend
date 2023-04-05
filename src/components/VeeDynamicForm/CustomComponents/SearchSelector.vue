@@ -79,6 +79,7 @@ const props = defineProps({
   standout: {
     type: [String, Boolean],
     required: false,
+    default: true,
   },
   multiple: {
     type: Boolean,
