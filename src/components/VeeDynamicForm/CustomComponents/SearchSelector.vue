@@ -58,7 +58,7 @@ const props = defineProps({
     required: true,
   },
   queryService: {
-    type: Object as PropType<QueryService>,
+    type: Function as PropType<QueryService>,
     required: true,
   },
   primaryKeyField: {
@@ -67,7 +67,9 @@ const props = defineProps({
     default: 'id',
   },
   optionLabel: {
-    type: String as PropType<QSelectProps['optionLabel']>,
+    type: [String, Function] as PropType<
+      string | ((option: Record<string, unknown>) => string)
+    >,
     required: false,
     default: 'label',
   },
