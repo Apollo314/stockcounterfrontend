@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-bold text-center q-pt-xs">{{ title }}</div>
+    <div class="text-bold text-center q-pt-xs">{{ label }}</div>
     <div class="row q-gutter-sm hide-number-spin-buttons">
       <div class="col">
         <NumberInput
@@ -47,7 +47,7 @@ const props = withDefaults(
      * string shown on top of the range
      */
     standout?: boolean;
-    title?: string;
+    label?: string;
     leftLabel: string;
     rightLabel: string;
     dense?: boolean;
