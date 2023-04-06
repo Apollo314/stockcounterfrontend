@@ -2,12 +2,21 @@
   <q-checkbox
     :toggle-indeterminate="toggleIndeterminate"
     :left-label="leftLabel"
-    :label="label"
     v-model="value"
     :name="name"
     :error="!!errorMessage"
     :error-message="errorMessage"
-  />
+  >
+    <template #default>
+      <div
+        class="text-bold q-pa-xs"
+        style="border-radius: 5px"
+        :class="{ 'bg-primary': highlight }"
+      >
+        {{ label }}
+      </div>
+    </template>
+  </q-checkbox>
 </template>
 
 <script setup lang="ts">
@@ -22,6 +31,7 @@ const props = withDefaults(
     leftLabel?: boolean;
     dense?: boolean;
     default?: boolean | undefined;
+    highlight?: boolean;
   }>(),
   { toggleIndeterminate: false, default: undefined }
 );

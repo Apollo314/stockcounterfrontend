@@ -15,6 +15,7 @@
     :dense="dense"
     :prefix="prefix"
     :suffix="suffix"
+    :bg-color="highlight ? 'primary' : undefined"
     @blur="
       validate();
       $emit('blur');
@@ -61,6 +62,7 @@ const props = withDefaults(
     dense?: boolean;
     prefix?: string;
     suffix?: string;
+    highlight?: boolean;
   }>(),
   {
     prefix: undefined,

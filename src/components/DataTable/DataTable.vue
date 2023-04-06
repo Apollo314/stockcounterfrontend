@@ -40,7 +40,10 @@
                 />
               </th>
               <template v-for="column in computedcolumns" :key="column.id">
-                <HeaderCell :column="column">
+                <HeaderCell
+                  @requestFocusOnFilter="requestFocusOnFilter($event)"
+                  :column="column"
+                >
                   <slot
                     :name="`th-inner-sibling-${column.id}`"
                     v-bind="{ column }"
@@ -178,7 +181,10 @@
       >
         <div class="q-pa-sm">
           <div class="text-h6">{{ $t('titles.filter') }}</div>
-          <TableFilter :form-components="filterComponents"></TableFilter>
+          <TableFilter
+            ref="tableFilterRef"
+            :form-components="filterComponents"
+          ></TableFilter>
         </div>
         <template #action-bottom>
           <div class="row full-width q-pa-md items-center justify-between">
@@ -313,6 +319,17 @@ const tableParentRef = ref<HTMLElement>();
 const tableCardRef = ref<InstanceType<typeof AdaptiveCard>>();
 const mountedToDataTable = ref(false);
 const { width } = useElementSize(tableParentRef);
+
+// can't use InstanceType<typeof TableFilter<Filters>>
+// maybe they don't support for genericly typed components as of now.
+// eitherway, the function signature I'm trying to get is simple.
+const tableFilterRef = ref<{
+  highlightComponentsByField: (field: string) => void;
+}>();
+
+const requestFocusOnFilter = (field: string) => {
+  tableFilterRef.value?.highlightComponentsByField(field);
+};
 
 const toggleCardView = (val?: boolean) => {
   // it doesn't work any other way than setTimeout

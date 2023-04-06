@@ -32,7 +32,12 @@
             $t('data_table.ordering.buttons.decreasing')
           }}</q-tooltip>
         </q-btn>
-        <q-btn push icon="filter_list" v-if="filterable(column)">
+        <q-btn
+          push
+          icon="filter_list"
+          @click="$emit('requestFocusOnFilter', column.id)"
+          v-if="filterable(column)"
+        >
           <q-tooltip>{{ $t('data_table.filter') }}</q-tooltip>
         </q-btn>
       </q-btn-group>
@@ -57,6 +62,10 @@ const props = defineProps({
     required: true,
   },
 });
+
+defineEmits<{
+  (e: 'requestFocusOnFilter', value: string): void;
+}>();
 
 const columnWidth = ref<number | undefined>(props.column.width);
 
