@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { useField, useForm } from 'vee-validate';
-import { watchEffect } from 'vue';
+import { watch, watchEffect } from 'vue';
 
 import NumberInput from './NumberInput.vue';
 
@@ -51,6 +51,10 @@ const props = withDefaults(
     leftLabel: string;
     rightLabel: string;
     dense?: boolean;
+    /**
+     * watch change in value deeply
+     */
+    watchDeep?: boolean;
     outputFunc?: (lowerValue?: string, higherValue?: string) => unknown;
   }>(),
   {
@@ -60,7 +64,18 @@ const props = withDefaults(
   }
 );
 
-const { setValue } = useField(props.name);
+const { setValue, value } = useField(props.name);
+
+watch(
+  () => value.value,
+  () => {
+    if (value.value === undefined) {
+      rangeLow.value = undefined;
+      rangeHigh.value = undefined;
+    }
+  },
+  { deep: props.watchDeep }
+);
 
 const { useFieldModel } = useForm();
 
