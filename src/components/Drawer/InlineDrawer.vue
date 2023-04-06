@@ -39,11 +39,11 @@
       }"
       class="full-height inline-drawer-slider"
     >
-      <adaptive-card :bordered="bordered">
-        <template #action-top>
+      <adaptive-card class="full-height" :bordered="bordered">
+        <template v-if="$slots['action-bottom']" #action-top>
           <slot name="action-top"></slot>
         </template>
-        <template #action-bottom>
+        <template v-if="$slots['action-bottom']" #action-bottom>
           <slot name="action-bottom"></slot>
         </template>
         <slot></slot>
