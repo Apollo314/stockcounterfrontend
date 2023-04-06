@@ -162,26 +162,53 @@
         </div>
       </template>
     </adaptive-card>
-    <InlineDrawer
-      v-model="showFilter"
-      style="max-height: 100%"
-      :width="300"
-      :overlay="width < 700"
-      bordered
-      :class="{ 'q-ml-sm': showFilter && !(width < 700) }"
+    <Form
+      class="full-height"
+      @submit="request({ offset: 0, filters: $event as Filters })"
+      @reset="request({ offset: 0 })"
     >
-      <slot name="table-filter"></slot>
-    </InlineDrawer>
+      <InlineDrawer
+        v-model="showFilter"
+        style="max-height: 100%"
+        :width="300"
+        :overlay="width < 700"
+        bordered
+        v-if="filterComponents && mountedToDataTable"
+        :class="{ 'q-ml-md': showFilter && !(width < 700) }"
+      >
+        <div class="q-pa-sm">
+          <div class="text-h6">{{ $t('titles.filter') }}</div>
+          <TableFilter :form-components="filterComponents"></TableFilter>
+        </div>
+        <template #action-bottom>
+          <div class="row full-width q-pa-md items-center justify-between">
+            <q-btn
+              color="primary"
+              icon="search"
+              :label="$t('commons.dofilter')"
+              type="submit"
+            />
+            <q-btn
+              color="negative"
+              icon="clear"
+              :label="$t('commons.reset')"
+              type="reset"
+            />
+          </div>
+        </template>
+      </InlineDrawer>
+    </Form>
   </div>
 </template>
 
 <script
   setup
   lang="ts"
-  generic="Row extends BaseRow, Column extends BaseColumn<Row>, Filters extends Object"
+  generic="Row extends BaseRow, Column extends BaseColumn<Row>, Filters extends Record<string, string>"
 >
 import { useElementSize, useFullscreen } from '@vueuse/core';
 import { useQuasar } from 'quasar';
+import { Form } from 'vee-validate';
 import {
   Ref,
   computed,
@@ -197,14 +224,20 @@ import {
 } from 'vue';
 
 import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
+import InlineDrawer from 'components/Drawer/InlineDrawer.vue';
 import OffsetLimitPaginator from 'components/Paginator/OffsetLimitPaginator.vue';
+import { paths } from 'src/client/schema.json';
+import {
+  create_filters,
+  FormComponent,
+  get_operation,
+} from 'src/composables/openapihelpers';
 import { callOrGet } from 'src/composables/utilities';
-
-import InlineDrawer from '../Drawer/InlineDrawer.vue';
 
 import ActiveColumns from './ActiveColumns.vue';
 import { getAlignClass } from './datatableutilities';
 import HeaderCell from './HeaderCell.vue';
+import TableFilter from './TableFilter.vue';
 import TableTop from './TableTop.vue';
 
 export type BaseRow = {
@@ -258,6 +291,7 @@ const props = withDefaults(
     columns: Column[] | (() => Column[]);
     data: Row[];
     pagination: Pagination<Filters>;
+    filterComponents?: Record<string, FormComponent>;
     stickyCaption?: boolean;
     stickyHeader?: boolean;
     captionClasses?: string;
@@ -374,10 +408,6 @@ const requestDone = ref(true);
 const request: RequestFunction<Filters> = (partialPagination) => {
   const done = () => {
     requestDone.value = true;
-    // set it as done anyway
-    setTimeout(() => {
-      requestDone.value = true;
-    }, 2500);
     deselectAll();
     if (tableCardRef.value) {
       tableCardRef.value.scrollTo({ x: 0, y: 0 });
