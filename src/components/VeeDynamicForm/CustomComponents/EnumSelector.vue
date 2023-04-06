@@ -20,6 +20,7 @@
       :clearable="clearable"
       clear-icon="clear"
       :dense="dense"
+      :bg-color="highlight ? 'primary' : undefined"
     >
     </q-select>
   </div>
@@ -40,6 +41,7 @@ const props = withDefaults(
     standout?: string | boolean;
     clearable?: boolean;
     dense?: boolean;
+    highlight?: boolean;
   }>(),
   { standout: true }
 );

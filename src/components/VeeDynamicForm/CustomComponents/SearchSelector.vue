@@ -23,6 +23,7 @@
     :dense="dense"
     @blur="validate()"
     :hide-bottom-space="hideBottomSpace"
+    :bg-color="highlight ? 'primary' : undefined"
   >
     <template #after-options>
       <div
@@ -109,6 +110,11 @@ const props = defineProps({
     default: false,
   },
   emitFullObject: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  highlight: {
     type: Boolean,
     required: false,
     default: false,

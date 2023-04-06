@@ -11,6 +11,7 @@
         ...getComponent(formComponent).props,
         ...formComponent.props,
       }"
+      :highlight="highlightedComponents[key]"
       :name="camelCaseNames ? camelCase(key) : key"
     ></component>
   </div>
@@ -18,12 +19,12 @@
 
 <script setup lang="ts" generic="Filters extends Record<string, unknown>">
 import camelCase from 'camelcase';
-import { PropType } from 'vue';
+import { PropType, ref } from 'vue';
 
 import { componentMap } from 'components/VeeDynamicForm/componentMap';
 import { FormComponent } from 'src/composables/openapihelpers';
 
-defineProps({
+const props = defineProps({
   formComponents: {
     type: Object as PropType<Record<string, FormComponent>>,
     required: true,
@@ -57,6 +58,62 @@ const keyIsntForPagination = (key: string) => {
   }
   return true;
 };
+
+const FILTER_SUFFIXES = [
+  'iexact',
+  'contains',
+  'icontains',
+  'in',
+  'gt',
+  'gte',
+  'lt',
+  'lte',
+  'startswith',
+  'istartswith',
+  'endswith',
+  'iendswith',
+  'date',
+  'year',
+  'iso_year',
+  'month',
+  'day',
+  'week',
+  'week_day',
+  'iso_week_day',
+  'quarter',
+  'time',
+  'hour',
+  'minute',
+  'second',
+  'regex',
+  'iregex',
+  'range',
+  'isnull',
+];
+
+const highlightedComponents = ref<Record<string, boolean>>({});
+
+const highlightComponentsByField = (field: string) => {
+  for (const key in props.formComponents) {
+    if (key.startsWith(field)) {
+      if (
+        key.slice(field.length + 2).length === 0 ||
+        FILTER_SUFFIXES.includes(key.slice(field.length + 2))
+      ) {
+        highlightedComponents.value[key] = true;
+        setTimeout(() => {
+          try {
+            delete highlightedComponents.value[key];
+          } catch (error) {}
+        }, 4000);
+      }
+    }
+  }
+};
+
+defineExpose({
+  highlightComponentsByField,
+});
 </script>
 
 <style scoped></style>

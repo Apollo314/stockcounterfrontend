@@ -13,6 +13,7 @@
       type="text"
       clearable
       clear-icon="clear"
+      :bg-color="highlight ? 'primary' : undefined"
     >
       <template #prepend>
         <q-icon name="event" class="cursor-pointer">
@@ -87,6 +88,7 @@ const props = withDefaults(
     label: string;
     standout?: string | boolean;
     outlined?: boolean;
+    highlight?: boolean;
   }>(),
   {
     standout: true,

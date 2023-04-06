@@ -8,6 +8,7 @@
           :label="leftLabel"
           name="rangeLow"
           :standout="standout"
+          :highlight="highlight"
         />
       </div>
       <q-icon
@@ -21,6 +22,7 @@
           :label="rightLabel"
           name="rangeHigh"
           :standout="standout"
+          :highlight="highlight"
         />
       </div>
     </div>
@@ -52,11 +54,16 @@ const props = withDefaults(
      */
     watchDeep?: boolean;
     outputFunc?: (lowerValue?: string, higherValue?: string) => unknown;
+    highlight?: boolean;
   }>(),
   {
     standout: true,
-    outputFunc: (lowerValue, higherValue) =>
-      `${lowerValue || 0},${higherValue || 2147483647}`,
+    outputFunc: (lowerValue, higherValue) => {
+      if (lowerValue === undefined && higherValue === undefined) {
+        return undefined;
+      }
+      return `${lowerValue || 0},${higherValue || 2147483647}`;
+    },
   }
 );
 

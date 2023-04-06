@@ -13,6 +13,7 @@
       clear-icon="clear"
       :dense="dense"
       autocomplete="new-password"
+      :bg-color="highlight ? 'primary' : undefined"
     />
   </div>
 </template>
@@ -29,6 +30,7 @@ const props = withDefaults(
     outlined?: boolean;
     clearable?: boolean;
     dense?: boolean;
+    highlight?: boolean;
     type?:
       | 'number'
       | 'text'
