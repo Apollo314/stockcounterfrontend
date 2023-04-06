@@ -10,15 +10,11 @@
           :standout="standout"
         />
       </div>
-      <div
-        class="col-shrink self-center"
-        style="
-          border-bottom: 1px solid currentColor;
-          padding-top: 8px;
-          width: 5px;
-          height: 0;
-        "
-      ></div>
+      <q-icon
+        name="vertical_align_center"
+        size="20px"
+        class="self-center rotate-90"
+      />
       <div class="col">
         <NumberInput
           @blur="higherRangeBlur"
