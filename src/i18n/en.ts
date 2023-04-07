@@ -31,6 +31,7 @@ export default {
     login: 'Log in',
   },
   commons: {
+    dofilter: 'Filter',
     fields: {
       created_at: 'Create Date',
       created_by: 'Created By',
@@ -40,6 +41,7 @@ export default {
     new: 'New @:{0}',
     'no-result': 'No Result',
     refresh: 'Refresh',
+    reset: 'Reset',
     search: 'Search',
   },
   data_table: {
@@ -61,6 +63,14 @@ export default {
     view: 'View',
     xitems_selected: '{0} items selected',
   },
+  date: {
+    inthreemonths: 'In three months',
+    nextmonth: 'Next month',
+    nextweek: 'Next week',
+    thismonth: 'This month',
+    thisweek: 'This week',
+    today: 'Today',
+  },
   failed: 'Action failed',
   forms: {
     password: 'Password',
@@ -70,6 +80,10 @@ export default {
   fourofour: 'Oops. Nothing here...',
   gohome: 'Go home',
   itemlabels: itemLabels,
+  labels: {
+    maximum: 'Maximum',
+    minimum: 'Minimum',
+  },
   menu: {
     'business-relations': 'Business Relations',
     category: 'Category | Categories',
@@ -124,6 +138,7 @@ export default {
   success: 'Action was successful',
   titles: {
     activeColumns: 'Active columns',
+    filter: 'Filter',
     login: 'Login',
   },
 };

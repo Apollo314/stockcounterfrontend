@@ -38,24 +38,32 @@ export class InvoiceService {
    */
   public invoiceInvoiceList({
     createdAtRange,
+    updatedAtRange,
     createdBy,
+    updatedBy,
     invoiceType,
     itemsStockMovementWarehouseItemStockItemId,
-    limit,
-    offset,
     ordering,
     search,
-    updatedAtRange,
-    updatedBy,
+    limit,
+    offset,
   }: {
     /**
      * created_at__range
      */
     createdAtRange?: string;
     /**
+     * updated_at__range
+     */
+    updatedAtRange?: string;
+    /**
      * created_by
      */
     createdBy?: string;
+    /**
+     * updated_by
+     */
+    updatedBy?: string;
     /**
      * invoice_type
      */
@@ -64,14 +72,6 @@ export class InvoiceService {
      * items__stock_movement__warehouse_item_stock__item__id
      */
     itemsStockMovementWarehouseItemStockItemId?: string;
-    /**
-     * Number of results to return per page.
-     */
-    limit?: number;
-    /**
-     * The initial index from which to return the results.
-     */
-    offset?: number;
     /**
      * Which field to use when ordering the results.
      */
@@ -95,29 +95,29 @@ export class InvoiceService {
      */
     search?: string;
     /**
-     * updated_at__range
+     * Number of results to return per page.
      */
-    updatedAtRange?: string;
+    limit?: number;
     /**
-     * updated_by
+     * The initial index from which to return the results.
      */
-    updatedBy?: string;
+    offset?: number;
   }): CancelablePromise<PaginatedInvoiceListList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/invoice/invoice/',
       query: {
         created_at__range: createdAtRange,
+        updated_at__range: updatedAtRange,
         created_by: createdBy,
+        updated_by: updatedBy,
         invoice_type: invoiceType,
         items__stock_movement__warehouse_item_stock__item__id:
           itemsStockMovementWarehouseItemStockItemId,
-        limit: limit,
-        offset: offset,
         ordering: ordering,
         search: search,
-        updated_at__range: updatedAtRange,
-        updated_by: updatedBy,
+        limit: limit,
+        offset: offset,
       },
     });
   }

@@ -31,6 +31,7 @@ export default {
     login: 'Giriş yap',
   },
   commons: {
+    dofilter: 'Filtrele',
     fields: {
       created_at: 'Oluşturma Tarihi',
       created_by: 'Oluşturan',
@@ -40,6 +41,7 @@ export default {
     new: 'Yeni @:{0}',
     'no-result': 'Sonuç Yok',
     refresh: 'Yenile',
+    reset: 'Sıfırla',
     search: 'Ara',
   },
   data_table: {
@@ -61,6 +63,14 @@ export default {
     view: 'Görünüm',
     xitems_selected: '{0} öğe seçildi',
   },
+  date: {
+    inthreemonths: 'Üç ay içinde',
+    nextmonth: 'Sonraki ay',
+    nextweek: 'Sonraki hafta',
+    thismonth: 'Bu ay',
+    thisweek: 'Bu hafta',
+    today: 'Bugün',
+  },
   failed: 'Başarısız',
   forms: {
     password: 'Parola',
@@ -70,6 +80,10 @@ export default {
   fourofour: 'Aradık bulamadık.',
   gohome: 'Anasayfaya dön',
   itemlabels: itemLabels,
+  labels: {
+    maximum: 'Maksimum',
+    minimum: 'Minimum',
+  },
   menu: {
     'business-relations': 'İş İlişkileri',
     category: 'Kategori | Kategoriler',
@@ -124,6 +138,7 @@ export default {
   success: 'Başarılı',
   titles: {
     activeColumns: 'Aktif kolonlar',
+    filter: 'Filtre',
     login: 'Giriş',
   },
 };

@@ -22,21 +22,25 @@ export class UserService {
    * @throws ApiError
    */
   public userAccountsList({
-    dateJoinedRange,
-    firstNameIcontains,
-    groupsIn,
-    isActive,
-    isStaff,
-    isSuperuser,
-    limit,
-    offset,
     search,
     usernameIcontains,
+    firstNameIcontains,
+    groupsIn,
+    isStaff,
+    isSuperuser,
+    isActive,
+    dateJoinedRange,
+    limit,
+    offset,
   }: {
     /**
-     * date_joined__range
+     * Ara: adı, soyadı, e-posta adresi, kullanıcı adı
      */
-    dateJoinedRange?: string;
+    search?: string;
+    /**
+     * username__icontains
+     */
+    usernameIcontains?: string;
     /**
      * first_name__icontains
      */
@@ -46,10 +50,6 @@ export class UserService {
      */
     groupsIn?: string;
     /**
-     * is_active
-     */
-    isActive?: string;
-    /**
      * is_staff
      */
     isStaff?: string;
@@ -58,6 +58,14 @@ export class UserService {
      */
     isSuperuser?: string;
     /**
+     * is_active
+     */
+    isActive?: string;
+    /**
+     * date_joined__range
+     */
+    dateJoinedRange?: string;
+    /**
      * Number of results to return per page.
      */
     limit?: number;
@@ -65,29 +73,21 @@ export class UserService {
      * The initial index from which to return the results.
      */
     offset?: number;
-    /**
-     * Ara: adı, soyadı, e-posta adresi, kullanıcı adı
-     */
-    search?: string;
-    /**
-     * username__icontains
-     */
-    usernameIcontains?: string;
   }): CancelablePromise<PaginatedUserList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/user/accounts/',
       query: {
-        date_joined__range: dateJoinedRange,
-        first_name__icontains: firstNameIcontains,
-        groups__in: groupsIn,
-        is_active: isActive,
-        is_staff: isStaff,
-        is_superuser: isSuperuser,
-        limit: limit,
-        offset: offset,
         search: search,
         username__icontains: usernameIcontains,
+        first_name__icontains: firstNameIcontains,
+        groups__in: groupsIn,
+        is_staff: isStaff,
+        is_superuser: isSuperuser,
+        is_active: isActive,
+        date_joined__range: dateJoinedRange,
+        limit: limit,
+        offset: offset,
       },
     });
   }

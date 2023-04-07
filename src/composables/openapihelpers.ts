@@ -1,3 +1,4 @@
+import { ComponentStrings } from 'components/VeeDynamicForm/componentMap';
 import { components, paths } from 'src/client/schema.json';
 
 import type {
@@ -274,7 +275,7 @@ type ComponentProps = {
 };
 
 export type FormComponent = {
-  componentString: string;
+  componentString: ComponentStrings;
   props: ComponentProps;
 };
 
@@ -290,7 +291,7 @@ export function create_filters(operation: OperationObject) {
       };
       const component = xcomp?.component || 'text-input';
       filterComponents[parameter.name] = {
-        componentString: component,
+        componentString: component as ComponentStrings,
         props: props,
       };
     }
@@ -311,7 +312,7 @@ export function create_form(component: SchemaObject) {
       };
       const comp = xcomp?.component || 'text-input';
       formComponents[propertyKey] = {
-        componentString: comp,
+        componentString: comp as ComponentStrings,
         props: props,
       };
     }

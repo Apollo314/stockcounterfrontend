@@ -1,7 +1,6 @@
-import { api } from 'src/boot/axios';
-
-import { $t } from '../../boot/i18n';
-import { CancelablePromise } from '../../client';
+import { api } from 'boot/axios';
+import { $t } from 'boot/i18n';
+import { CancelablePromise } from 'src/client';
 
 import CheckBox from './CustomComponents/CheckBox.vue';
 import DateRange from './CustomComponents/DateRange.vue';
@@ -123,7 +122,6 @@ export const componentMap: ComponentMap = {
     props: {
       leftLabel: $t('labels.minimum'),
       rightLabel: $t('labels.maximum'),
-      title: $t('labels.money-range'),
     },
   },
   'date-time-range': {

@@ -39,30 +39,14 @@ export class StakeholderService {
    * @throws ApiError
    */
   public stakeholderCustomersList({
-    emailIcontains,
-    limit,
-    offset,
-    phoneIcontains,
     search,
     shortnameIcontains,
     vkntcknIcontains,
+    emailIcontains,
+    phoneIcontains,
+    limit,
+    offset,
   }: {
-    /**
-     * email__icontains
-     */
-    emailIcontains?: string;
-    /**
-     * Number of results to return per page.
-     */
-    limit?: number;
-    /**
-     * The initial index from which to return the results.
-     */
-    offset?: number;
-    /**
-     * phone__icontains
-     */
-    phoneIcontains?: string;
     /**
      * Ara: Tam Adı, Telefon, E-Posta, VKN/TCKN
      */
@@ -75,18 +59,34 @@ export class StakeholderService {
      * vkntckn__icontains
      */
     vkntcknIcontains?: string;
+    /**
+     * email__icontains
+     */
+    emailIcontains?: string;
+    /**
+     * phone__icontains
+     */
+    phoneIcontains?: string;
+    /**
+     * Number of results to return per page.
+     */
+    limit?: number;
+    /**
+     * The initial index from which to return the results.
+     */
+    offset?: number;
   }): CancelablePromise<PaginatedStakeholderList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/stakeholder/customers/',
       query: {
-        email__icontains: emailIcontains,
-        limit: limit,
-        offset: offset,
-        phone__icontains: phoneIcontains,
         search: search,
         shortname__icontains: shortnameIcontains,
         vkntckn__icontains: vkntcknIcontains,
+        email__icontains: emailIcontains,
+        phone__icontains: phoneIcontains,
+        limit: limit,
+        offset: offset,
       },
     });
   }
@@ -205,10 +205,14 @@ export class StakeholderService {
    * @throws ApiError
    */
   public stakeholderStakeholderEmployeeList({
+    search,
     limit,
     offset,
-    search,
   }: {
+    /**
+     * A search term.
+     */
+    search?: string;
     /**
      * Number of results to return per page.
      */
@@ -217,18 +221,14 @@ export class StakeholderService {
      * The initial index from which to return the results.
      */
     offset?: number;
-    /**
-     * A search term.
-     */
-    search?: string;
   }): CancelablePromise<PaginatedStakeholderEmployeeList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/stakeholder/stakeholder-employee/',
       query: {
+        search: search,
         limit: limit,
         offset: offset,
-        search: search,
       },
     });
   }
@@ -347,30 +347,14 @@ export class StakeholderService {
    * @throws ApiError
    */
   public stakeholderSuppliersList({
-    emailIcontains,
-    limit,
-    offset,
-    phoneIcontains,
     search,
     shortnameIcontains,
     vkntcknIcontains,
+    emailIcontains,
+    phoneIcontains,
+    limit,
+    offset,
   }: {
-    /**
-     * email__icontains
-     */
-    emailIcontains?: string;
-    /**
-     * Number of results to return per page.
-     */
-    limit?: number;
-    /**
-     * The initial index from which to return the results.
-     */
-    offset?: number;
-    /**
-     * phone__icontains
-     */
-    phoneIcontains?: string;
     /**
      * Ara: Tam Adı, Telefon, E-Posta, VKN/TCKN
      */
@@ -383,18 +367,34 @@ export class StakeholderService {
      * vkntckn__icontains
      */
     vkntcknIcontains?: string;
+    /**
+     * email__icontains
+     */
+    emailIcontains?: string;
+    /**
+     * phone__icontains
+     */
+    phoneIcontains?: string;
+    /**
+     * Number of results to return per page.
+     */
+    limit?: number;
+    /**
+     * The initial index from which to return the results.
+     */
+    offset?: number;
   }): CancelablePromise<PaginatedStakeholderList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/stakeholder/suppliers/',
       query: {
-        email__icontains: emailIcontains,
-        limit: limit,
-        offset: offset,
-        phone__icontains: phoneIcontains,
         search: search,
         shortname__icontains: shortnameIcontains,
         vkntckn__icontains: vkntcknIcontains,
+        email__icontains: emailIcontains,
+        phone__icontains: phoneIcontains,
+        limit: limit,
+        offset: offset,
       },
     });
   }

@@ -130,11 +130,19 @@ export class InventoryService {
    * @throws ApiError
    */
   public inventoryCategoryList({
+    search,
+    ordering,
     limit,
     offset,
-    ordering,
-    search,
   }: {
+    /**
+     * Ara: Kategori
+     */
+    search?: string;
+    /**
+     * Which field to use when ordering the results.
+     */
+    ordering?: 'id' | 'name' | '-id' | '-name';
     /**
      * Number of results to return per page.
      */
@@ -143,23 +151,15 @@ export class InventoryService {
      * The initial index from which to return the results.
      */
     offset?: number;
-    /**
-     * Which field to use when ordering the results.
-     */
-    ordering?: 'id' | 'name' | '-id' | '-name';
-    /**
-     * Ara: Kategori
-     */
-    search?: string;
   }): CancelablePromise<PaginatedCategoryList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/inventory/category/',
       query: {
+        search: search,
+        ordering: ordering,
         limit: limit,
         offset: offset,
-        ordering: ordering,
-        search: search,
       },
     });
   }
@@ -266,24 +266,22 @@ export class InventoryService {
    * @throws ApiError
    */
   public inventoryItemList({
-    buypriceRange,
     categoryIn,
     categoryIsnull,
+    buypriceRange,
+    sellpriceRange,
+    barcode,
+    stockUnitIn,
     createdAtRange,
+    updatedAtRange,
     createdBy,
+    updatedBy,
     inactivated,
-    limit,
-    offset,
     ordering,
     search,
-    sellpriceRange,
-    updatedAtRange,
-    updatedBy,
+    limit,
+    offset,
   }: {
-    /**
-     * buyprice__range
-     */
-    buypriceRange?: string;
     /**
      * category__in
      */
@@ -293,25 +291,41 @@ export class InventoryService {
      */
     categoryIsnull?: string;
     /**
+     * buyprice__range
+     */
+    buypriceRange?: string;
+    /**
+     * sellprice__range
+     */
+    sellpriceRange?: string;
+    /**
+     * barcode
+     */
+    barcode?: string;
+    /**
+     * stock_unit__in
+     */
+    stockUnitIn?: string;
+    /**
      * created_at__range
      */
     createdAtRange?: string;
+    /**
+     * updated_at__range
+     */
+    updatedAtRange?: string;
     /**
      * created_by
      */
     createdBy?: string;
     /**
+     * updated_by
+     */
+    updatedBy?: string;
+    /**
      * inactivated
      */
     inactivated?: string;
-    /**
-     * Number of results to return per page.
-     */
-    limit?: number;
-    /**
-     * The initial index from which to return the results.
-     */
-    offset?: number;
     /**
      * Which field to use when ordering the results.
      */
@@ -335,35 +349,33 @@ export class InventoryService {
      */
     search?: string;
     /**
-     * sellprice__range
+     * Number of results to return per page.
      */
-    sellpriceRange?: string;
+    limit?: number;
     /**
-     * updated_at__range
+     * The initial index from which to return the results.
      */
-    updatedAtRange?: string;
-    /**
-     * updated_by
-     */
-    updatedBy?: string;
+    offset?: number;
   }): CancelablePromise<PaginatedItemOutList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/inventory/item/',
       query: {
-        buyprice__range: buypriceRange,
         category__in: categoryIn,
         category__isnull: categoryIsnull,
+        buyprice__range: buypriceRange,
+        sellprice__range: sellpriceRange,
+        barcode: barcode,
+        stock_unit__in: stockUnitIn,
         created_at__range: createdAtRange,
+        updated_at__range: updatedAtRange,
         created_by: createdBy,
+        updated_by: updatedBy,
         inactivated: inactivated,
-        limit: limit,
-        offset: offset,
         ordering: ordering,
         search: search,
-        sellprice__range: sellpriceRange,
-        updated_at__range: updatedAtRange,
-        updated_by: updatedBy,
+        limit: limit,
+        offset: offset,
       },
     });
   }
@@ -390,24 +402,22 @@ export class InventoryService {
    * @throws ApiError
    */
   public inventoryItemHistoryList({
-    buypriceRange,
     categoryIn,
     categoryIsnull,
+    buypriceRange,
+    sellpriceRange,
+    barcode,
+    stockUnitIn,
     createdAtRange,
+    updatedAtRange,
     createdBy,
+    updatedBy,
     inactivated,
-    limit,
-    offset,
     ordering,
     search,
-    sellpriceRange,
-    updatedAtRange,
-    updatedBy,
+    limit,
+    offset,
   }: {
-    /**
-     * buyprice__range
-     */
-    buypriceRange?: string;
     /**
      * category__in
      */
@@ -417,25 +427,41 @@ export class InventoryService {
      */
     categoryIsnull?: string;
     /**
+     * buyprice__range
+     */
+    buypriceRange?: string;
+    /**
+     * sellprice__range
+     */
+    sellpriceRange?: string;
+    /**
+     * barcode
+     */
+    barcode?: string;
+    /**
+     * stock_unit__in
+     */
+    stockUnitIn?: string;
+    /**
      * created_at__range
      */
     createdAtRange?: string;
+    /**
+     * updated_at__range
+     */
+    updatedAtRange?: string;
     /**
      * created_by
      */
     createdBy?: string;
     /**
+     * updated_by
+     */
+    updatedBy?: string;
+    /**
      * inactivated
      */
     inactivated?: string;
-    /**
-     * Number of results to return per page.
-     */
-    limit?: number;
-    /**
-     * The initial index from which to return the results.
-     */
-    offset?: number;
     /**
      * Which field to use when ordering the results.
      */
@@ -459,35 +485,33 @@ export class InventoryService {
      */
     search?: string;
     /**
-     * sellprice__range
+     * Number of results to return per page.
      */
-    sellpriceRange?: string;
+    limit?: number;
     /**
-     * updated_at__range
+     * The initial index from which to return the results.
      */
-    updatedAtRange?: string;
-    /**
-     * updated_by
-     */
-    updatedBy?: string;
+    offset?: number;
   }): CancelablePromise<PaginatedItemOutList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/inventory/item-history/',
       query: {
-        buyprice__range: buypriceRange,
         category__in: categoryIn,
         category__isnull: categoryIsnull,
+        buyprice__range: buypriceRange,
+        sellprice__range: sellpriceRange,
+        barcode: barcode,
+        stock_unit__in: stockUnitIn,
         created_at__range: createdAtRange,
+        updated_at__range: updatedAtRange,
         created_by: createdBy,
+        updated_by: updatedBy,
         inactivated: inactivated,
-        limit: limit,
-        offset: offset,
         ordering: ordering,
         search: search,
-        sellprice__range: sellpriceRange,
-        updated_at__range: updatedAtRange,
-        updated_by: updatedBy,
+        limit: limit,
+        offset: offset,
       },
     });
   }
@@ -699,31 +723,35 @@ export class InventoryService {
    */
   public inventoryStockMovementList({
     createdAtRange,
-    createdBy,
-    limit,
-    offset,
-    ordering,
-    search,
     updatedAtRange,
+    createdBy,
     updatedBy,
     warehouseItemStockItemId,
+    ordering,
+    search,
+    limit,
+    offset,
   }: {
     /**
      * created_at__range
      */
     createdAtRange?: string;
     /**
+     * updated_at__range
+     */
+    updatedAtRange?: string;
+    /**
      * created_by
      */
     createdBy?: string;
     /**
-     * Number of results to return per page.
+     * updated_by
      */
-    limit?: number;
+    updatedBy?: string;
     /**
-     * The initial index from which to return the results.
+     * warehouse_item_stock__item__id
      */
-    offset?: number;
+    warehouseItemStockItemId?: string;
     /**
      * Which field to use when ordering the results.
      */
@@ -743,31 +771,27 @@ export class InventoryService {
      */
     search?: string;
     /**
-     * updated_at__range
+     * Number of results to return per page.
      */
-    updatedAtRange?: string;
+    limit?: number;
     /**
-     * updated_by
+     * The initial index from which to return the results.
      */
-    updatedBy?: string;
-    /**
-     * warehouse_item_stock__item__id
-     */
-    warehouseItemStockItemId?: string;
+    offset?: number;
   }): CancelablePromise<PaginatedStockMovementWithoutItemList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/inventory/stock-movement/',
       query: {
         created_at__range: createdAtRange,
-        created_by: createdBy,
-        limit: limit,
-        offset: offset,
-        ordering: ordering,
-        search: search,
         updated_at__range: updatedAtRange,
+        created_by: createdBy,
         updated_by: updatedBy,
         warehouse_item_stock__item__id: warehouseItemStockItemId,
+        ordering: ordering,
+        search: search,
+        limit: limit,
+        offset: offset,
       },
     });
   }
@@ -886,11 +910,19 @@ export class InventoryService {
    * @throws ApiError
    */
   public inventoryStockUnitList({
+    search,
+    ordering,
     limit,
     offset,
-    ordering,
-    search,
   }: {
+    /**
+     * Ara: Birim
+     */
+    search?: string;
+    /**
+     * Which field to use when ordering the results.
+     */
+    ordering?: 'id' | 'name' | '-id' | '-name';
     /**
      * Number of results to return per page.
      */
@@ -899,23 +931,15 @@ export class InventoryService {
      * The initial index from which to return the results.
      */
     offset?: number;
-    /**
-     * Which field to use when ordering the results.
-     */
-    ordering?: 'id' | 'name' | '-id' | '-name';
-    /**
-     * Ara: Birim
-     */
-    search?: string;
   }): CancelablePromise<PaginatedStockUnitList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/inventory/stock_unit/',
       query: {
+        search: search,
+        ordering: ordering,
         limit: limit,
         offset: offset,
-        ordering: ordering,
-        search: search,
       },
     });
   }
@@ -1022,10 +1046,14 @@ export class InventoryService {
    * @throws ApiError
    */
   public inventoryWarehouseList({
+    search,
     limit,
     offset,
-    search,
   }: {
+    /**
+     * Ara: Depo adı, Adress (varsa), Telefon, Plaka (varsa)
+     */
+    search?: string;
     /**
      * Number of results to return per page.
      */
@@ -1034,18 +1062,14 @@ export class InventoryService {
      * The initial index from which to return the results.
      */
     offset?: number;
-    /**
-     * Ara: Depo adı, Adress (varsa), Telefon, Plaka (varsa)
-     */
-    search?: string;
   }): CancelablePromise<PaginatedWarehouseList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/inventory/warehouse/',
       query: {
+        search: search,
         limit: limit,
         offset: offset,
-        search: search,
       },
     });
   }
@@ -1072,10 +1096,14 @@ export class InventoryService {
    * @throws ApiError
    */
   public inventoryWarehouseItemStockList({
+    search,
     limit,
     offset,
-    search,
   }: {
+    /**
+     * Ara: Ürün/Hizmet
+     */
+    search?: string;
     /**
      * Number of results to return per page.
      */
@@ -1084,18 +1112,14 @@ export class InventoryService {
      * The initial index from which to return the results.
      */
     offset?: number;
-    /**
-     * Ara: Ürün/Hizmet
-     */
-    search?: string;
   }): CancelablePromise<PaginatedWarehouseItemStockInfoList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/inventory/warehouse-item-stock/',
       query: {
+        search: search,
         limit: limit,
         offset: offset,
-        search: search,
       },
     });
   }
