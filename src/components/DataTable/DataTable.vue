@@ -62,7 +62,19 @@
               v-for="row in data"
               :class="{ 'selected-row': selected.indexOf(row) > -1 }"
               :key="row.id"
+              @dbclick="toggleSelection(row, !(selected.indexOf(row) > -1))"
             >
+              <context-menu
+                :actions="contextmenuactions"
+                :selected-rows="selected"
+                @contextRequest="
+                  () => {
+                    if (!(selected.indexOf(row) > -1)) {
+                      selected = [row];
+                    }
+                  }
+                "
+              />
               <td
                 @click.stop="
                   toggleSelection(row, !(selected.indexOf(row) > -1))
@@ -108,6 +120,17 @@
               "
               style="width: 100%; height: 100%"
             >
+              <context-menu
+                :actions="contextmenuactions"
+                :selected-rows="selected"
+                @contextRequest="
+                  () => {
+                    if (!(selected.indexOf(row) > -1)) {
+                      selected = [row];
+                    }
+                  }
+                "
+              />
               <q-card class="data-card" style="width: 100%; overflow: hidden">
                 <q-card-section horizontal class="q-pa-md">
                   <q-checkbox
@@ -245,15 +268,11 @@ import {
 import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
 import InlineDrawer from 'components/Drawer/InlineDrawer.vue';
 import OffsetLimitPaginator from 'components/Paginator/OffsetLimitPaginator.vue';
-import { paths } from 'src/client/schema.json';
-import {
-  create_filters,
-  FormComponent,
-  get_operation,
-} from 'src/composables/openapihelpers';
+import { FormComponent } from 'src/composables/openapihelpers';
 import { callOrGet } from 'src/composables/utilities';
 
 import ActiveColumns from './ActiveColumns.vue';
+import ContextMenu from './ContextMenu.vue';
 import { getAlignClass } from './datatableutilities';
 import HeaderCell from './HeaderCell.vue';
 import TableFilter from './TableFilter.vue';
@@ -305,6 +324,18 @@ export type RequestFunction<Filters> = (
   partialPagination: Partial<Pagination<Filters>>
 ) => void;
 
+export type ContextMenuAction<Row> = {
+  label: string;
+  color?: string;
+  icon?: string;
+  can_handle_multiple?: boolean;
+  can_handle_single?: boolean;
+  callback: (rows: Row[], done: (deselect: boolean) => void) => void;
+  hide?: boolean;
+};
+
+export type ContextMenuGroup<Row> = ContextMenuAction<Row>[];
+
 const props = withDefaults(
   defineProps<{
     columns: Column[] | (() => Column[]);
@@ -320,13 +351,13 @@ const props = withDefaults(
      * whether or not to show the data as cards.
      */
     card: boolean;
+    contextmenuactions: ContextMenuGroup<Row>[];
   }>(),
   {
     stickyHeader: true,
   }
 );
 
-const log = console.log;
 const subHeader = inject<Ref<HTMLElement>>('subHeader');
 const $q = useQuasar();
 const tableParentRef = ref<HTMLElement>();
@@ -389,6 +420,8 @@ const selected: Ref<Row[]> = ref([]);
 function getColValue(col: Column, row: Row) {
   return col.field instanceof Function ? col.field(row) : row[col.field];
 }
+
+const log = console.log;
 
 function toggleSelection(row: Row, value: boolean) {
   if (value) {
