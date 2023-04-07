@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { useField, useForm } from 'vee-validate';
-import { onActivated, onMounted, toRef, watch } from 'vue';
+import { onMounted, toRef, watch } from 'vue';
 
 import NumberInput from './NumberInput.vue';
 
