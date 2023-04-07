@@ -123,6 +123,7 @@
               <context-menu
                 :actions="contextmenuactions"
                 :selected-rows="selected"
+                v-model="contextMenus[row.id]"
                 @contextRequest="
                   () => {
                     if (!(selected.indexOf(row) > -1)) {
@@ -141,6 +142,12 @@
                   />
                   <q-space />
                   <slot name="card-buttons" v-bind="{ row: row }"></slot>
+                  <q-btn
+                    flat
+                    dense
+                    icon="more_vert"
+                    @click="contextMenus[row.id] = true"
+                  />
                 </q-card-section>
                 <q-list dense separator style="z-index: 1">
                   <q-item
@@ -416,12 +423,11 @@ const emit = defineEmits<{
 }>();
 
 const selected: Ref<Row[]> = ref([]);
+const contextMenus = ref<Record<string | number, boolean>>({});
 
 function getColValue(col: Column, row: Row) {
   return col.field instanceof Function ? col.field(row) : row[col.field];
 }
-
-const log = console.log;
 
 function toggleSelection(row: Row, value: boolean) {
   if (value) {

@@ -3,7 +3,9 @@
     class="unselectable"
     ref="popupRef"
     @before-show="handleShow"
-    context-menu
+    :context-menu="contextMenu"
+    :model-value="modelValue"
+    @update:model-value="emit('update:model-value', $event)"
     transition-show="jump-down"
     transition-hide="jump-up"
   >
@@ -61,10 +63,21 @@ defineProps({
     type: Array as PropType<ContextMenuGroup<Row>[]>,
     required: true,
   },
+  modelValue: {
+    type: Boolean,
+    required: false,
+    default: undefined,
+  },
+  contextMenu: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
 });
 
 const emit = defineEmits<{
   (e: 'contextRequest'): void;
+  (e: 'update:model-value', value: boolean): void;
 }>();
 
 const handleShow = () => {
