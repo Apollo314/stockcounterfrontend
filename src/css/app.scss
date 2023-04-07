@@ -2,10 +2,12 @@
 @use './transition-animations.scss';
 @use './datatable-styles.scss';
 
+$light-page: lighten($primary, 35%);
+
 .body--light {
   background: black;
-  background: linear-gradient(hsl(209, 56%, 82%), hsl(187, 42%, 67%));
-  // background-attachment: fixed;
+  background: linear-gradient($light-page, darken($light-page, 10%));
+  background-attachment: fixed;
 }
 
 @media (max-width: 599.98px) {
@@ -59,10 +61,11 @@ a {
 .q-card {
   .body--dark & {
     box-shadow: $coolshadow;
+    background-color: $dark;
   }
 
   .body--light & {
-    box-shadow: $coolshadow;
+    box-shadow: 2px 2px #ddd, 4px 4px #ddd;
     background-color: $almost-white;
   }
 }
@@ -70,6 +73,7 @@ a {
 // q-menu
 .q-menu {
   box-shadow: $coolshadow;
+  box-shadow: 2px 2px #ddd, 4px 4px #ddd;
 
   .body--dark & {
     box-shadow: $coolshadow;
@@ -245,6 +249,6 @@ $bg-colors: (
     background: $dark-page;
   }
   .body--light & {
-    background: hsl(209, 56%, 82%);
+    background: $light-page;
   }
 }

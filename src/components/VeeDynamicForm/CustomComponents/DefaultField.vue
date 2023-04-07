@@ -10,6 +10,7 @@
       :clearable="clearable"
       :error="!!errorMessage"
       :error-message="errorMessage"
+      :hide-bottom-space="!errorMessage"
       clear-icon="clear"
       :dense="dense"
       autocomplete="new-password"

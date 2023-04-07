@@ -602,7 +602,7 @@
               "x-components": {
                 "component": "multi-category-selector",
                 "props": {
-                  "label": "Kategoriler"
+                  "label": "category"
                 }
               }
             }
@@ -617,7 +617,9 @@
               "x-components": {
                 "component": "checkbox",
                 "props": {
-                  "label": "Kategorisiz",
+                  "true_label": "only_categoryless",
+                  "false_label": "only_categorized",
+                  "indetermined_label": "with_or_without_cateogory",
                   "toggleIndeterminate": true
                 }
               }
@@ -633,7 +635,7 @@
               "x-components": {
                 "component": "money-range",
                 "props": {
-                  "label": "Alış Fiyatı"
+                  "label": "buyprice"
                 }
               }
             }
@@ -648,7 +650,37 @@
               "x-components": {
                 "component": "money-range",
                 "props": {
-                  "label": "Satış Fiyatı"
+                  "label": "sellprice"
+                }
+              }
+            }
+          },
+          {
+            "name": "barcode",
+            "required": false,
+            "in": "query",
+            "description": "barcode",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "barcode"
+                }
+              }
+            }
+          },
+          {
+            "name": "stock_unit__in",
+            "required": false,
+            "in": "query",
+            "description": "stock_unit__in",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "multi-stockunit-selector",
+                "props": {
+                  "label": "stockunit"
                 }
               }
             }
@@ -663,7 +695,7 @@
               "x-components": {
                 "component": "date-time-range",
                 "props": {
-                  "label": "Oluşturma tarihi"
+                  "label": "created_at"
                 }
               }
             }
@@ -678,7 +710,7 @@
               "x-components": {
                 "component": "date-time-range",
                 "props": {
-                  "label": "Güncellenme tarihi"
+                  "label": "updated_at"
                 }
               }
             }
@@ -693,7 +725,7 @@
               "x-components": {
                 "component": "user-select",
                 "props": {
-                  "label": "Oluşturan kullanıcı"
+                  "label": "created_by"
                 }
               }
             }
@@ -708,7 +740,7 @@
               "x-components": {
                 "component": "user-select",
                 "props": {
-                  "label": "Güncelleyen kullanıcı"
+                  "label": "updated_by"
                 }
               }
             }
@@ -723,7 +755,7 @@
               "x-components": {
                 "component": "checkbox",
                 "props": {
-                  "label": "Gizlenmiş Öğeleri Göster",
+                  "label": "inactivated",
                   "toggleIndeterminate": true
                 }
               }
@@ -812,7 +844,7 @@
                 "x-components": {
                   "component": "multi-category-selector",
                   "props": {
-                    "label": "Kategoriler"
+                    "label": "category"
                   }
                 }
               }
@@ -827,7 +859,9 @@
                 "x-components": {
                   "component": "checkbox",
                   "props": {
-                    "label": "Kategorisiz",
+                    "true_label": "only_categoryless",
+                    "false_label": "only_categorized",
+                    "indetermined_label": "with_or_without_cateogory",
                     "toggleIndeterminate": true
                   }
                 }
@@ -843,7 +877,7 @@
                 "x-components": {
                   "component": "money-range",
                   "props": {
-                    "label": "Alış Fiyatı"
+                    "label": "buyprice"
                   }
                 }
               }
@@ -858,7 +892,37 @@
                 "x-components": {
                   "component": "money-range",
                   "props": {
-                    "label": "Satış Fiyatı"
+                    "label": "sellprice"
+                  }
+                }
+              }
+            },
+            {
+              "name": "barcode",
+              "required": false,
+              "in": "query",
+              "description": "barcode",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "barcode"
+                  }
+                }
+              }
+            },
+            {
+              "name": "stock_unit__in",
+              "required": false,
+              "in": "query",
+              "description": "stock_unit__in",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "multi-stockunit-selector",
+                  "props": {
+                    "label": "stockunit"
                   }
                 }
               }
@@ -873,7 +937,7 @@
                 "x-components": {
                   "component": "date-time-range",
                   "props": {
-                    "label": "Oluşturma tarihi"
+                    "label": "created_at"
                   }
                 }
               }
@@ -888,7 +952,7 @@
                 "x-components": {
                   "component": "date-time-range",
                   "props": {
-                    "label": "Güncellenme tarihi"
+                    "label": "updated_at"
                   }
                 }
               }
@@ -903,7 +967,7 @@
                 "x-components": {
                   "component": "user-select",
                   "props": {
-                    "label": "Oluşturan kullanıcı"
+                    "label": "created_by"
                   }
                 }
               }
@@ -918,7 +982,7 @@
                 "x-components": {
                   "component": "user-select",
                   "props": {
-                    "label": "Güncelleyen kullanıcı"
+                    "label": "updated_by"
                   }
                 }
               }
@@ -933,7 +997,7 @@
                 "x-components": {
                   "component": "checkbox",
                   "props": {
-                    "label": "Gizlenmiş Öğeleri Göster",
+                    "label": "inactivated",
                     "toggleIndeterminate": true
                   }
                 }
@@ -1026,7 +1090,7 @@
               "x-components": {
                 "component": "multi-category-selector",
                 "props": {
-                  "label": "Kategoriler"
+                  "label": "category"
                 }
               }
             }
@@ -1041,7 +1105,9 @@
               "x-components": {
                 "component": "checkbox",
                 "props": {
-                  "label": "Kategorisiz",
+                  "true_label": "only_categoryless",
+                  "false_label": "only_categorized",
+                  "indetermined_label": "with_or_without_cateogory",
                   "toggleIndeterminate": true
                 }
               }
@@ -1057,7 +1123,7 @@
               "x-components": {
                 "component": "money-range",
                 "props": {
-                  "label": "Alış Fiyatı"
+                  "label": "buyprice"
                 }
               }
             }
@@ -1072,7 +1138,37 @@
               "x-components": {
                 "component": "money-range",
                 "props": {
-                  "label": "Satış Fiyatı"
+                  "label": "sellprice"
+                }
+              }
+            }
+          },
+          {
+            "name": "barcode",
+            "required": false,
+            "in": "query",
+            "description": "barcode",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "barcode"
+                }
+              }
+            }
+          },
+          {
+            "name": "stock_unit__in",
+            "required": false,
+            "in": "query",
+            "description": "stock_unit__in",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "multi-stockunit-selector",
+                "props": {
+                  "label": "stockunit"
                 }
               }
             }
@@ -1087,7 +1183,7 @@
               "x-components": {
                 "component": "date-time-range",
                 "props": {
-                  "label": "Oluşturma tarihi"
+                  "label": "created_at"
                 }
               }
             }
@@ -1102,7 +1198,7 @@
               "x-components": {
                 "component": "date-time-range",
                 "props": {
-                  "label": "Güncellenme tarihi"
+                  "label": "updated_at"
                 }
               }
             }
@@ -1117,7 +1213,7 @@
               "x-components": {
                 "component": "user-select",
                 "props": {
-                  "label": "Oluşturan kullanıcı"
+                  "label": "created_by"
                 }
               }
             }
@@ -1132,7 +1228,7 @@
               "x-components": {
                 "component": "user-select",
                 "props": {
-                  "label": "Güncelleyen kullanıcı"
+                  "label": "updated_by"
                 }
               }
             }
@@ -1147,7 +1243,7 @@
               "x-components": {
                 "component": "checkbox",
                 "props": {
-                  "label": "Gizlenmiş Öğeleri Göster",
+                  "label": "inactivated",
                   "toggleIndeterminate": true
                 }
               }
@@ -1236,7 +1332,7 @@
                 "x-components": {
                   "component": "multi-category-selector",
                   "props": {
-                    "label": "Kategoriler"
+                    "label": "category"
                   }
                 }
               }
@@ -1251,7 +1347,9 @@
                 "x-components": {
                   "component": "checkbox",
                   "props": {
-                    "label": "Kategorisiz",
+                    "true_label": "only_categoryless",
+                    "false_label": "only_categorized",
+                    "indetermined_label": "with_or_without_cateogory",
                     "toggleIndeterminate": true
                   }
                 }
@@ -1267,7 +1365,7 @@
                 "x-components": {
                   "component": "money-range",
                   "props": {
-                    "label": "Alış Fiyatı"
+                    "label": "buyprice"
                   }
                 }
               }
@@ -1282,7 +1380,37 @@
                 "x-components": {
                   "component": "money-range",
                   "props": {
-                    "label": "Satış Fiyatı"
+                    "label": "sellprice"
+                  }
+                }
+              }
+            },
+            {
+              "name": "barcode",
+              "required": false,
+              "in": "query",
+              "description": "barcode",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "barcode"
+                  }
+                }
+              }
+            },
+            {
+              "name": "stock_unit__in",
+              "required": false,
+              "in": "query",
+              "description": "stock_unit__in",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "multi-stockunit-selector",
+                  "props": {
+                    "label": "stockunit"
                   }
                 }
               }
@@ -1297,7 +1425,7 @@
                 "x-components": {
                   "component": "date-time-range",
                   "props": {
-                    "label": "Oluşturma tarihi"
+                    "label": "created_at"
                   }
                 }
               }
@@ -1312,7 +1440,7 @@
                 "x-components": {
                   "component": "date-time-range",
                   "props": {
-                    "label": "Güncellenme tarihi"
+                    "label": "updated_at"
                   }
                 }
               }
@@ -1327,7 +1455,7 @@
                 "x-components": {
                   "component": "user-select",
                   "props": {
-                    "label": "Oluşturan kullanıcı"
+                    "label": "created_by"
                   }
                 }
               }
@@ -1342,7 +1470,7 @@
                 "x-components": {
                   "component": "user-select",
                   "props": {
-                    "label": "Güncelleyen kullanıcı"
+                    "label": "updated_by"
                   }
                 }
               }
@@ -1357,7 +1485,7 @@
                 "x-components": {
                   "component": "checkbox",
                   "props": {
-                    "label": "Gizlenmiş Öğeleri Göster",
+                    "label": "inactivated",
                     "toggleIndeterminate": true
                   }
                 }
