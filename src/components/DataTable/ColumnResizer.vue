@@ -32,10 +32,10 @@ const startpos = ref<{ x: number; y: number }>({ x: 0, y: 0 });
 const columnWidth = inject<Ref<number | undefined>>('columnWidth', ref());
 
 const resizeHandler = useThrottleFn((evt: TouchPanEvent) => {
-  if (columnWidth.value === undefined) {
+  if (evt.isFirst) {
     columnWidth.value =
       (resizerRef.value?.parentElement?.offsetWidth || 0) + evt.delta.x;
-  } else {
+  } else if (columnWidth.value !== undefined) {
     const deltax = evt.offset.x - startpos.value.x;
     columnWidth.value += deltax;
     startpos.value.x = evt.offset.x;
@@ -97,7 +97,7 @@ $col-resize-width: 20px;
   &.panning {
     i {
       opacity: 1;
-      text-shadow: 3px 3px 8px #00000080;
+      text-shadow: 5px 5px 8px #000000d0;
       &:first-of-type {
         animation: backandforthleft 0.5s ease infinite alternate;
       }
