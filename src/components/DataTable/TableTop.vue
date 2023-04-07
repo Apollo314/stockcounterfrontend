@@ -87,7 +87,6 @@
                   </q-card>
                 </q-popup-proxy>
               </q-item>
-              <q-separator />
             </q-list>
           </q-card-section>
         </q-card>
