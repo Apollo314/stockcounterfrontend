@@ -77,7 +77,7 @@ const props = defineProps({
   hideBottomSpace: {
     type: Boolean,
     required: false,
-    default: false,
+    default: true,
   },
   standout: {
     type: [String, Boolean],
