@@ -134,6 +134,7 @@ nav.menu-navigation {
   }
   &.show-connectors {
     .q-expansion-item__content {
+      padding-right: $border-width;
       .q-list {
         .menu-item {
           margin-top: $gutter;

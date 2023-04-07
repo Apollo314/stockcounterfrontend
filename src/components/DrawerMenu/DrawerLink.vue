@@ -10,7 +10,6 @@
     :clickable="item.to !== undefined"
     :content-inset-level="0.77"
     :default-opened="!item.defaultClosed || !item.shrinkable"
-    expand-icon-toggle
     switch-toggle-side
     expanded-icon="arrow_drop_down"
   >
