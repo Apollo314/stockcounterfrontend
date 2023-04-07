@@ -21,27 +21,6 @@
       $emit('blur');
     "
   >
-    <template v-if="$slots['after']" #after>
-      <slot name="after"></slot>
-    </template>
-    <template v-if="$slots['before']" #before>
-      <slot name="before"></slot>
-    </template>
-    <template v-if="$slots['append']" #append>
-      <slot name="append"></slot>
-    </template>
-    <template v-if="$slots['prepend']" #prepend>
-      <slot name="prepend"></slot>
-    </template>
-    <template v-if="$slots['hint']" #hint>
-      <slot name="hint"></slot>
-    </template>
-    <template v-if="$slots['loading']" #loading>
-      <slot name="loading"></slot>
-    </template>
-    <template v-if="$slots['counter']" #counter>
-      <slot name="counter"></slot>
-    </template>
   </q-input>
 </template>
 
