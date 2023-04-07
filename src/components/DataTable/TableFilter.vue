@@ -1,20 +1,17 @@
 <template>
-  <div
-    class="full-height q-py-xs"
-    v-for="(formComponent, key) in formComponents"
-    :key="key"
-  >
-    <component
-      v-if="keyIsntForPagination(key)"
-      :is="getComponent(formComponent).component"
-      v-bind="{
-        ...getComponent(formComponent).props,
-        ...formComponent.props,
-      }"
-      :highlight="highlightedComponents[key]"
-      :name="camelCaseNames ? camelCase(key) : key"
-    ></component>
-  </div>
+  <template v-for="(formComponent, key) in formComponents" :key="key">
+    <div v-if="keyIsntForPagination(key)" class="full-height q-py-xs">
+      <component
+        :is="getComponent(formComponent).component"
+        v-bind="{
+          ...getComponent(formComponent).props,
+          ...formComponent.props,
+        }"
+        :highlight="highlightedComponents[key]"
+        :name="camelCaseNames ? camelCase(key) : key"
+      ></component>
+    </div>
+  </template>
 </template>
 
 <script setup lang="ts" generic="Filters extends Record<string, unknown>">

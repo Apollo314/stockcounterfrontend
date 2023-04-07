@@ -167,8 +167,9 @@
     </adaptive-card>
     <Form
       class="full-height"
-      @submit="request({ offset: 0, filters: $event as Filters })"
-      @reset="request({ offset: 0 })"
+      :keep-values="true"
+      ref="filterFormRef"
+      v-slot="{ handleSubmit, handleReset, values }"
     >
       <InlineDrawer
         v-model="showFilter"
@@ -179,29 +180,41 @@
         v-if="filterComponents && mountedToDataTable"
         :class="{ 'q-ml-md': showFilter && !(width < 700) }"
       >
-        <div class="q-pa-sm">
-          <div class="text-h6">{{ $t('titles.filter') }}</div>
-          <TableFilter
-            ref="tableFilterRef"
-            :form-components="filterComponents"
-          ></TableFilter>
-        </div>
-        <template #action-bottom>
-          <div class="row full-width q-pa-md items-center justify-between">
-            <q-btn
-              color="primary"
-              icon="search"
-              :label="$t('commons.dofilter')"
-              type="submit"
-            />
-            <q-btn
-              color="negative"
-              icon="clear"
-              :label="$t('commons.reset')"
-              type="reset"
-            />
-          </div>
-        </template>
+        <form
+          @submit="
+            handleSubmit($event, () =>
+              request({ offset: -1, filters: values as Filters })
+            )
+          "
+          @reset="handleReset"
+          class="full-height"
+        >
+          <AdaptiveCard class="bg-transparent shadow-0 full-height">
+            <div class="q-pa-sm">
+              <div class="text-h6">{{ $t('titles.filter') }}</div>
+              <TableFilter
+                ref="tableFilterRef"
+                :form-components="filterComponents"
+              ></TableFilter>
+            </div>
+            <template #action-bottom>
+              <div class="row full-width justify-between q-pa-sm">
+                <q-btn
+                  color="primary"
+                  icon="search"
+                  :label="$t('commons.dofilter')"
+                  type="submit"
+                />
+                <q-btn
+                  color="negative"
+                  icon="clear"
+                  :label="$t('commons.reset')"
+                  type="reset"
+                />
+              </div>
+            </template>
+          </AdaptiveCard>
+        </form>
       </InlineDrawer>
     </Form>
   </div>
@@ -313,6 +326,7 @@ const props = withDefaults(
   }
 );
 
+const log = console.log;
 const subHeader = inject<Ref<HTMLElement>>('subHeader');
 const $q = useQuasar();
 const tableParentRef = ref<HTMLElement>();
@@ -358,6 +372,8 @@ onDeactivated(() => {
 });
 
 const { isFullscreen, toggle } = useFullscreen(tableParentRef);
+
+const filterFormRef = ref();
 
 const emit = defineEmits<{
   (

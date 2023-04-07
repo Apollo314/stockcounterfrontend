@@ -16,21 +16,17 @@
         ref="drawerCardRef"
         :bordered="bordered"
       >
-        <template #action-top>
-          <slot name="action-top"></slot>
-        </template>
-        <template #action-bottom>
-          <slot name="action-bottom"></slot>
-        </template>
         <slot></slot>
       </adaptive-card>
     </div>
   </q-dialog>
-  <div
+  <q-card
     v-else
     :style="{
       width: `${(modelValue ? 1 : 0) * width}px`,
     }"
+    :bordered="bordered && modelValue"
+    v-show="width > 0"
     class="full-height inline-drawer-parent"
   >
     <div
@@ -39,17 +35,9 @@
       }"
       class="full-height inline-drawer-slider"
     >
-      <adaptive-card class="full-height" :bordered="bordered">
-        <template v-if="$slots['action-bottom']" #action-top>
-          <slot name="action-top"></slot>
-        </template>
-        <template v-if="$slots['action-bottom']" #action-bottom>
-          <slot name="action-bottom"></slot>
-        </template>
-        <slot></slot>
-      </adaptive-card>
+      <slot></slot>
     </div>
-  </div>
+  </q-card>
 </template>
 
 <script setup lang="ts">
@@ -81,7 +69,7 @@ const closeIfOverlay = () => {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .inline-drawer-parent {
   transition: width 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
   will-change: width;
