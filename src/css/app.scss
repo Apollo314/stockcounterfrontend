@@ -60,23 +60,22 @@ a {
 // q-card
 .q-card {
   .body--dark & {
-    box-shadow: $coolshadow;
+    box-shadow: $coolshadowmore;
     background-color: $dark;
   }
 
   .body--light & {
-    box-shadow: 2px 2px #ddd, 4px 4px #ddd;
+    box-shadow: 2px 2px #ddd, 4px 4px #ddd, 5px 5px 4px rgba(0, 0, 0, 25%);
     background-color: $almost-white;
   }
 }
 
 // q-menu
 .q-menu {
-  box-shadow: $coolshadow;
-  box-shadow: 2px 2px #ddd, 4px 4px #ddd;
+  box-shadow: 2px 2px #ddd, 4px 4px #ddd, 5px 5px 4px rgba(0, 0, 0, 25%);
 
   .body--dark & {
-    box-shadow: $coolshadow;
+    box-shadow: $coolshadowmore;
   }
 
   & > .q-virtual-scroll__content {
