@@ -31,7 +31,7 @@
 
 <script setup lang="ts">
 import { useField, useForm } from 'vee-validate';
-import { watch, watchEffect } from 'vue';
+import { onActivated, onMounted, toRef, watch } from 'vue';
 
 import NumberInput from './NumberInput.vue';
 
@@ -54,6 +54,7 @@ const props = withDefaults(
      */
     watchDeep?: boolean;
     outputFunc?: (lowerValue?: string, higherValue?: string) => unknown;
+    inputFunc?: (range: unknown) => [string | undefined, string | undefined];
     highlight?: boolean;
   }>(),
   {
@@ -64,18 +65,41 @@ const props = withDefaults(
       }
       return `${lowerValue || 0},${higherValue || 2147483647}`;
     },
+    inputFunc: (range: unknown) => {
+      if (range !== undefined) {
+        let low: string | undefined;
+        let high: string | undefined;
+        [low, high] = (range as string).split(',');
+        if (low.trim() === '0') {
+          low = undefined;
+        }
+        if (high.trim() === '2147483647') {
+          high = undefined;
+        }
+        return [low, high] as [string | undefined, string | undefined];
+      } else {
+        return [undefined, undefined] as [undefined, undefined];
+      }
+    },
   }
 );
 
-const { setValue, value } = useField(props.name);
+const { setValue, value } = useField(toRef(props, 'name'));
+
+function valueToRanges(value: unknown) {
+  const [low, high] = props.inputFunc(value);
+  rangeLow.value = low;
+  rangeHigh.value = high;
+}
+
+onMounted(() => {
+  valueToRanges(value.value);
+});
 
 watch(
-  () => value.value,
+  value,
   () => {
-    if (value.value === undefined) {
-      rangeLow.value = undefined;
-      rangeHigh.value = undefined;
-    }
+    valueToRanges(value.value);
   },
   { deep: props.watchDeep }
 );
@@ -104,17 +128,32 @@ const higherRangeBlur = () => {
   }
 };
 
-watchEffect(() => {
-  if (rangeLow.value !== undefined && rangeHigh.value === undefined) {
-    setValue(props.outputFunc(rangeLow.value, rangeHigh.value));
-  } else if (rangeLow.value === undefined && rangeHigh.value !== undefined) {
-    setValue(props.outputFunc(rangeLow.value, rangeHigh.value));
-  } else if (rangeLow.value !== undefined && rangeHigh.value !== undefined) {
-    setValue(props.outputFunc(rangeLow.value, rangeHigh.value));
-  } else {
-    setValue(props.outputFunc(rangeLow.value, rangeHigh.value));
+watch(
+  () => [rangeLow.value, rangeHigh.value],
+  (newrange) => {
+    if (newrange[0] !== undefined && newrange[1] === undefined) {
+      setValue(props.outputFunc(newrange[0], newrange[1]));
+    } else if (newrange[0] === undefined && newrange[1] !== undefined) {
+      setValue(props.outputFunc(newrange[0], newrange[1]));
+    } else if (newrange[0] !== undefined && newrange[1] !== undefined) {
+      setValue(props.outputFunc(newrange[0], newrange[1]));
+    } else {
+      setValue(props.outputFunc(newrange[0], newrange[1]));
+    }
   }
-});
+);
+
+// watchEffect(() => {
+//   if (rangeLow.value !== undefined && rangeHigh.value === undefined) {
+//     setValue(props.outputFunc(rangeLow.value, rangeHigh.value));
+//   } else if (rangeLow.value === undefined && rangeHigh.value !== undefined) {
+//     setValue(props.outputFunc(rangeLow.value, rangeHigh.value));
+//   } else if (rangeLow.value !== undefined && rangeHigh.value !== undefined) {
+//     setValue(props.outputFunc(rangeLow.value, rangeHigh.value));
+//   } else {
+//     setValue(props.outputFunc(rangeLow.value, rangeHigh.value));
+//   }
+// });
 </script>
 
 <style scoped></style>
