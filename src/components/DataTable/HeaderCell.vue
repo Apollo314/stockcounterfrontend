@@ -3,52 +3,92 @@
     class="table-header-cell"
     v-show="!column.hidden"
     :key="column.id"
-    :class="getAlignClass(column.align)"
+    :class="{
+      ...getAlignClass(column.align),
+      'cursor-pointer': column.orderable || column.filterable,
+    }"
     style="position: relative; min-width: max-content"
     :style="thStyle"
   >
     <span>
       <b class="column-label col">
         {{ callOrGet(column.label) }}
+        <span
+          class="bg-primary q-pa-xs"
+          style="border-radius: 5px"
+          v-if="orderIndex > -1"
+          >({{ orderIndex }})</span
+        >
       </b>
     </span>
     <q-menu
-      v-if="filterable(column) || sortable(column)"
+      v-if="column.filterable || column.orderable"
       touch-position
-      class="bg-blue-8"
+      style="min-width: 200px"
       self="top middle"
     >
-      <div class="row justify-center text-bold q-pa-xs">
-        {{ callOrGet(column.label) }}
-      </div>
-      <q-btn-group spread push class="bg-red">
-        <q-btn push icon="arrow_upward" v-if="sortable(column)">
-          <q-tooltip>{{
-            $t('data_table.ordering.buttons.increasing')
-          }}</q-tooltip>
-        </q-btn>
-        <q-btn push icon="arrow_downward" v-if="sortable(column)">
-          <q-tooltip>{{
-            $t('data_table.ordering.buttons.decreasing')
-          }}</q-tooltip>
-        </q-btn>
-        <q-btn
-          push
-          icon="filter_list"
-          @click="$emit('requestFocusOnFilter', column.id)"
-          v-if="filterable(column)"
-        >
-          <q-tooltip>{{ $t('data_table.filter') }}</q-tooltip>
-        </q-btn>
-      </q-btn-group>
+      <q-card class="my-card">
+        <div class="row justify-center text-bold q-pa-sm">
+          {{ callOrGet(column.label) }}
+        </div>
+        <q-btn-group spread flat>
+          <q-btn
+            flat
+            icon="arrow_upward"
+            v-if="column.orderable"
+            @click="
+              $emit('requestOrdering', { order: 'ascending', column: column })
+            "
+            :class="{
+              'active-button':
+                orderedColumns?.get(column.id)?.order === 'ascending',
+            }"
+          >
+            <q-tooltip>{{
+              $t('data_table.ordering.buttons.increasing')
+            }}</q-tooltip>
+          </q-btn>
+          <q-btn
+            flat
+            icon="arrow_downward"
+            v-if="column.orderable"
+            @click="
+              $emit('requestOrdering', {
+                order: 'descending',
+                column: column,
+              })
+            "
+            :class="{
+              'active-button':
+                orderedColumns?.get(column.id)?.order === 'descending',
+            }"
+          >
+            <q-tooltip>{{
+              $t('data_table.ordering.buttons.decreasing')
+            }}</q-tooltip>
+          </q-btn>
+          <q-btn
+            flat
+            icon="filter_list"
+            @click="$emit('requestFocusOnFilter', column.id)"
+            v-if="column.filterable"
+          >
+            <q-tooltip>{{ $t('data_table.filter') }}</q-tooltip>
+          </q-btn>
+        </q-btn-group>
+      </q-card>
     </q-menu>
     <slot></slot>
     <ColumnResizer :column="column"></ColumnResizer>
   </th>
 </template>
 
-<script setup lang="ts" generic="Row extends BaseRow">
-import { PropType, computed, provide, ref } from 'vue';
+<script
+  setup
+  lang="ts"
+  generic="Row extends BaseRow, Column extends BaseColumn<Row>"
+>
+import { PropType, Ref, computed, inject, provide, ref } from 'vue';
 
 import { callOrGet } from 'src/composables/utilities';
 
@@ -65,9 +105,30 @@ const props = defineProps({
 
 defineEmits<{
   (e: 'requestFocusOnFilter', value: string): void;
+  (
+    e: 'requestOrdering',
+    value: { column: Column; order: 'ascending' | 'descending' }
+  ): void;
 }>();
 
 const columnWidth = ref<number | undefined>(props.column.width);
+const orderedColumns =
+  inject<
+    Ref<Map<string, { column: Column; order: 'ascending' | 'descending' }>>
+  >('orderedColumns');
+
+const orderIndex = computed(() => {
+  let index = 1;
+  if (orderedColumns?.value) {
+    for (const [, value] of orderedColumns?.value) {
+      if (value.column.id === props.column.id) {
+        return index;
+      }
+      index++;
+    }
+  }
+  return -1;
+});
 
 const thStyle = computed(() => {
   if (columnWidth.value || props.column.width) {
@@ -81,13 +142,14 @@ const thStyle = computed(() => {
   }
 });
 
-// TODO: Implement filterable and sortable based on openapi schema
-const filterable = (column: BaseColumn<Row>) => {
-  return true;
-};
-const sortable = (column: BaseColumn<Row>) => {
-  return true;
-};
-
 provide('columnWidth', columnWidth);
 </script>
+
+<style lang="scss" scoped>
+.active-button {
+  background: $primary;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+</style>

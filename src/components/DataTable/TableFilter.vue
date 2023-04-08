@@ -21,6 +21,8 @@ import { PropType, ref } from 'vue';
 import { componentMap } from 'components/VeeDynamicForm/componentMap';
 import { FormComponent } from 'src/composables/openapihelpers';
 
+import { FILTER_SUFFIXES } from './datatableutilities';
+
 const props = defineProps({
   formComponents: {
     type: Object as PropType<Record<string, FormComponent>>,
@@ -55,38 +57,6 @@ const keyIsntForPagination = (key: string) => {
   }
   return true;
 };
-
-const FILTER_SUFFIXES = [
-  'iexact',
-  'contains',
-  'icontains',
-  'in',
-  'gt',
-  'gte',
-  'lt',
-  'lte',
-  'startswith',
-  'istartswith',
-  'endswith',
-  'iendswith',
-  'date',
-  'year',
-  'iso_year',
-  'month',
-  'day',
-  'week',
-  'week_day',
-  'iso_week_day',
-  'quarter',
-  'time',
-  'hour',
-  'minute',
-  'second',
-  'regex',
-  'iregex',
-  'range',
-  'isnull',
-];
 
 const highlightedComponents = ref<Record<string, boolean>>({});
 

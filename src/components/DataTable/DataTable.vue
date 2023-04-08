@@ -44,7 +44,11 @@
                   @requestFocusOnFilter="requestFocusOnFilter($event)"
                   :column="column"
                   v-if="activeColumns.get(column.id)"
+                  @requestOrdering="
+                    order($event.column as unknown as Column, $event.order)
+                  "
                 >
+                  <!-- TODO: Fix the hack above as unknown as Column when vue supports generics better -->
                   <slot
                     :name="`th-inner-sibling-${column.id}`"
                     v-bind="{ column }"
@@ -61,7 +65,7 @@
           >
             <tr
               v-for="row in data"
-              :class="{ 'selected-row': selectedMap.get(row.id) }"
+              :class="{ 'selected-row': selectedMap.has(row.id) }"
               :key="row.id"
               @dblclick.stop="toggleSelection(row)"
             >
@@ -70,7 +74,7 @@
                 :selected-rows="selectedMap"
                 @contextRequest="
                   () => {
-                    if (!selectedMap.get(row.id)) {
+                    if (!selectedMap.has(row.id)) {
                       selectedMap.clear();
                       toggleSelection(row, true);
                     }
@@ -81,7 +85,7 @@
                 <q-checkbox
                   dense
                   class="checkbox"
-                  :model-value="!!selectedMap.get(row.id)"
+                  :model-value="selectedMap.has(row.id)"
                   @click="toggleSelection(row, undefined, $event)"
                 />
               </td>
@@ -106,7 +110,7 @@
         <div v-else class="row">
           <div
             v-for="row in data"
-            :class="{ selected: !!selectedMap.get(row.id) }"
+            :class="{ selected: selectedMap.has(row.id) }"
             :key="row.id"
             class="data-card-container q-pa-sm col-xs-12 col-sm-6 col-md-4 col-lg-3"
             @dblclick="toggleSelection(row)"
@@ -118,7 +122,7 @@
                 v-model="contextMenus[row.id]"
                 @contextRequest="
                   () => {
-                    if (!selectedMap.get(row.id)) {
+                    if (!selectedMap.has(row.id)) {
                       selectedMap.clear();
                       toggleSelection(row, true);
                     }
@@ -130,7 +134,7 @@
                   <q-checkbox
                     dense
                     class="checkbox"
-                    :model-value="!!selectedMap.get(row.id)"
+                    :model-value="selectedMap.has(row.id)"
                     @update:model-value="toggleSelection(row, $event)"
                   />
                   <q-space />
@@ -281,10 +285,9 @@ export type BaseRow = {
 };
 
 export type BaseColumn<Row> = {
-  id: keyof Row & (string | number);
+  id: keyof Row & string;
   field: keyof Row | ((row: Row) => string | number | undefined | null);
   label: string | (() => string);
-  sortable?: boolean;
   align?: 'left' | 'center' | 'right';
   /**
    * width of the column in pixel
@@ -295,6 +298,8 @@ export type BaseColumn<Row> = {
    * they can still be unhidden by the end user.
    */
   hidden?: boolean;
+  orderable?: boolean;
+  filterable?: boolean;
 };
 
 export type Pagination<Filters> = {
@@ -377,6 +382,29 @@ const requestFocusOnFilter = (field: string) => {
   tableFilterRef.value?.highlightComponentsByField(field);
 };
 
+const orderedColumns = ref(
+  new Map<string, { column: Column; order: 'ascending' | 'descending' }>()
+);
+
+function order(column: Column, order: 'ascending' | 'descending') {
+  if (orderedColumns.value.has(column.id)) {
+    if (orderedColumns.value.get(column.id)?.order === order) {
+      orderedColumns.value.delete(column.id);
+    } else {
+      orderedColumns.value.set(column.id, { column, order });
+    }
+  } else {
+    orderedColumns.value.set(column.id, { column, order });
+  }
+  request({});
+}
+
+const orderingValue = computed(() => {
+  return Array.from(orderedColumns.value, ([, value]) => {
+    return (value.order === 'descending' ? '-' : '') + value.column.id;
+  }).join(',');
+});
+
 const toggleCardView = (val?: boolean) => {
   // it doesn't work any other way than setTimeout
   // nextTick doesn't work.
@@ -439,7 +467,7 @@ function toggleSelection(row: Row, value?: boolean, event?: MouseEvent) {
     }
     toggleSelection(row, value);
   } else if (value === undefined) {
-    if (selectedMap.value.get(row.id) === undefined) {
+    if (!selectedMap.value.has(row.id)) {
       selectedMap.value.set(row.id, row);
     } else {
       selectedMap.value.delete(row.id);
@@ -506,7 +534,17 @@ const request: RequestFunction<Filters> = (partialPagination) => {
   };
   if (requestDone.value) {
     requestDone.value = false;
-    const newPagination = { ...props.pagination, ...partialPagination };
+    const filters: Record<string, string> = {
+      ...props.pagination.filters,
+      ...partialPagination.filters,
+      ordering: orderingValue.value,
+    };
+    delete partialPagination.filters;
+    const newPagination = {
+      ...props.pagination,
+      filters: filters as Filters,
+      ...partialPagination,
+    };
     emit('update:pagination', newPagination);
     nextTick(() => {
       emit('request', { pagination: props.pagination, done });
@@ -525,6 +563,7 @@ provide('request', request);
 provide('requestDone', requestDone);
 provide('columns', props.columns);
 provide('activeColumns', activeColumns);
+provide('orderedColumns', orderedColumns);
 </script>
 
 <style lang="scss">
