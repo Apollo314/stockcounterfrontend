@@ -62,7 +62,7 @@
               v-for="row in data"
               :class="{ 'selected-row': selected.indexOf(row) > -1 }"
               :key="row.id"
-              @dbclick="toggleSelection(row, !(selected.indexOf(row) > -1))"
+              @dblclick="toggleSelection(row, !(selected.indexOf(row) > -1))"
             >
               <context-menu
                 :actions="contextmenuactions"
