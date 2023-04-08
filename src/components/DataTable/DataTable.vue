@@ -76,12 +76,12 @@
                   }
                 "
               />
-              <td @click.stop="toggleSelection(row)">
+              <td @click="toggleSelection(row, undefined, $event)">
                 <q-checkbox
                   dense
                   class="checkbox"
                   :model-value="!!selectedMap.get(row.id)"
-                  @update:model-value="toggleSelection(row, $event)"
+                  @click="toggleSelection(row, undefined, $event)"
                 />
               </td>
               <template v-for="column in computedcolumns" :key="column.id">
@@ -417,13 +417,31 @@ const emit = defineEmits<{
 
 const selectedMap = ref(new Map<number | string, Row>());
 const contextMenus = ref<Record<string | number, boolean>>({});
+const lastSelectedRow = ref<Row>();
+let includeLastSelected = false;
 
 function getColValue(col: Column, row: Row) {
   return col.field instanceof Function ? col.field(row) : row[col.field];
 }
 
-function toggleSelection(row: Row, value?: boolean) {
-  if (value === undefined) {
+function toggleSelection(row: Row, value?: boolean, event?: MouseEvent) {
+  if (event?.shiftKey) {
+    if (lastSelectedRow.value !== undefined) {
+      const index_one = props.data.findIndex(
+        (row) => row.id === lastSelectedRow.value?.id
+      );
+      const index_two = props.data.findIndex((r) => r.id === row.id);
+      const index_lower = index_two > index_one ? index_one + 1 : index_two + 1;
+      const index_higher = index_two > index_one ? index_two : index_one;
+      for (const r of props.data.slice(index_lower, index_higher)) {
+        toggleSelection(r);
+      }
+      if (includeLastSelected) {
+        toggleSelection(lastSelectedRow.value);
+      }
+    }
+    toggleSelection(row, value);
+  } else if (value === undefined) {
     if (selectedMap.value.get(row.id) === undefined) {
       selectedMap.value.set(row.id, row);
     } else {
@@ -433,6 +451,14 @@ function toggleSelection(row: Row, value?: boolean) {
     selectedMap.value.delete(row.id);
   } else {
     selectedMap.value.set(row.id, row);
+  }
+  if (event !== undefined) {
+    if (event.shiftKey) {
+      includeLastSelected = true;
+    } else {
+      includeLastSelected = false;
+    }
+    lastSelectedRow.value = row;
   }
 }
 
