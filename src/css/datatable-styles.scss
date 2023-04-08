@@ -205,6 +205,10 @@ $table-dark-selected-background: darken($warning, 40%);
   &:hover .background-image {
     filter: blur(0);
   }
+  transition: scale 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  &.selected {
+    scale: 0.95;
+  }
 }
 
 .data-card-parent {
