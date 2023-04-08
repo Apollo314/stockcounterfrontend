@@ -60,30 +60,27 @@
           >
             <tr
               v-for="row in data"
-              :class="{ 'selected-row': selected.indexOf(row) > -1 }"
+              :class="{ 'selected-row': selectedMap.get(row.id) }"
               :key="row.id"
-              @dblclick="toggleSelection(row, !(selected.indexOf(row) > -1))"
+              @dblclick.stop="toggleSelection(row)"
             >
               <context-menu
                 :actions="contextmenuactions"
-                :selected-rows="selected"
+                :selected-rows="selectedMap"
                 @contextRequest="
                   () => {
-                    if (!(selected.indexOf(row) > -1)) {
-                      selected = [row];
+                    if (!selectedMap.get(row.id)) {
+                      selectedMap.clear();
+                      toggleSelection(row, true);
                     }
                   }
                 "
               />
-              <td
-                @click.stop="
-                  toggleSelection(row, !(selected.indexOf(row) > -1))
-                "
-              >
+              <td @click.stop="toggleSelection(row)">
                 <q-checkbox
                   dense
                   class="checkbox"
-                  :model-value="selected.indexOf(row) > -1"
+                  :model-value="!!selectedMap.get(row.id)"
                   @update:model-value="toggleSelection(row, $event)"
                 />
               </td>
@@ -108,20 +105,21 @@
         <div v-else class="row">
           <div
             v-for="row in data"
-            :class="{ selected: selected.indexOf(row) > -1 }"
+            :class="{ selected: !!selectedMap.get(row.id) }"
             :key="row.id"
             class="data-card-container q-pa-sm col-xs-12 col-sm-6 col-md-4 col-lg-3"
-            @dblclick="toggleSelection(row, !(selected.indexOf(row) > -1))"
+            @dblclick="toggleSelection(row)"
           >
             <div class="data-card-parent" style="width: 100%; height: 100%">
               <context-menu
                 :actions="contextmenuactions"
-                :selected-rows="selected"
+                :selected-rows="selectedMap"
                 v-model="contextMenus[row.id]"
                 @contextRequest="
                   () => {
-                    if (!(selected.indexOf(row) > -1)) {
-                      selected = [row];
+                    if (!selectedMap.get(row.id)) {
+                      selectedMap.clear();
+                      toggleSelection(row, true);
                     }
                   }
                 "
@@ -131,7 +129,7 @@
                   <q-checkbox
                     dense
                     class="checkbox"
-                    :model-value="selected.indexOf(row) > -1"
+                    :model-value="!!selectedMap.get(row.id)"
                     @update:model-value="toggleSelection(row, $event)"
                   />
                   <q-space />
@@ -170,10 +168,10 @@
       <template #action-bottom>
         <div class="row full-width q-pa-sm justify-end">
           <div
-            v-if="selected.length > 0"
+            v-if="selectedMap.size > 0"
             style="margin-top: auto; margin-bottom: auto; flex-grow: 1"
           >
-            {{ $t('data_table.xitems_selected', [selected.length]) }} aright
+            {{ $t('data_table.xitems_selected', [selectedMap.size]) }}
           </div>
           <OffsetLimitPaginator
             style="align-self: flex-end"
@@ -329,7 +327,10 @@ export type ContextMenuAction<Row> = {
   icon?: string;
   can_handle_multiple?: boolean;
   can_handle_single?: boolean;
-  callback: (rows: Row[], done: (deselect: boolean) => void) => void;
+  callback: (
+    rows: Map<number | string, Row>,
+    done: (deselect: boolean) => void
+  ) => void;
   hide?: boolean;
 };
 
@@ -414,45 +415,48 @@ const emit = defineEmits<{
   (e: 'update:card', value: boolean): void;
 }>();
 
-const selected: Ref<Row[]> = ref([]);
+const selectedMap = ref(new Map<number | string, Row>());
 const contextMenus = ref<Record<string | number, boolean>>({});
 
 function getColValue(col: Column, row: Row) {
   return col.field instanceof Function ? col.field(row) : row[col.field];
 }
 
-function toggleSelection(row: Row, value: boolean) {
-  if (value) {
-    if (!selected.value?.includes(row)) {
-      selected.value?.push(row);
+function toggleSelection(row: Row, value?: boolean) {
+  if (value === undefined) {
+    if (selectedMap.value.get(row.id) === undefined) {
+      selectedMap.value.set(row.id, row);
+    } else {
+      selectedMap.value.delete(row.id);
     }
+  } else if (value === false) {
+    selectedMap.value.delete(row.id);
   } else {
-    const index = selected.value.indexOf(row);
-    if (index > -1) {
-      selected.value?.splice(index, 1);
-    }
+    selectedMap.value.set(row.id, row);
   }
 }
 
 function toggleSelectionAll() {
   // if completely unselected, select all
-  if (selected.value.length === 0) {
-    selected.value = [...props.data];
+  if (selectedMap.value.size === 0) {
+    for (const row of props.data) {
+      selectedMap.value.set(row.id, row);
+    }
   }
   // if any selected, deselect
-  else if (selected.value.length > 0) {
-    selected.value = [];
+  else if (selectedMap.value.size > 0) {
+    selectedMap.value.clear();
   }
 }
 
 function deselectAll() {
-  selected.value = [];
+  selectedMap.value.clear();
 }
 
 const selectAllButtonStatus = computed(() => {
-  if (selected.value.length === 0) {
+  if (selectedMap.value.size === 0) {
     return false;
-  } else if (selected.value.length < props.data.length) {
+  } else if (selectedMap.value.size < props.data.length) {
     return undefined;
   } else {
     return true;
@@ -470,7 +474,6 @@ const computedcolumns = computed(() => {
 const activeColumns = ref(new Map<BaseColumn<Row>['id'], boolean>());
 for (const col of computedcolumns.value) {
   activeColumns.value.set(col.id, !col.hidden);
-  console.log(col.id, !col.hidden);
 }
 
 const requestDone = ref(true);
