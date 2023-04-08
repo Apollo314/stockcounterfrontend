@@ -43,6 +43,7 @@
                 <HeaderCell
                   @requestFocusOnFilter="requestFocusOnFilter($event)"
                   :column="column"
+                  v-if="activeColumns.get(column.id)"
                 >
                   <slot
                     :name="`th-inner-sibling-${column.id}`"
