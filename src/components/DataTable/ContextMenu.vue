@@ -16,9 +16,9 @@
             <q-item
               v-if="
                 action.hide !== true &&
-                (((selectedRows?.length || 0) > 1 &&
+                (((selectedRows?.size || 0) > 1 &&
                   action.can_handle_multiple) ||
-                  (selectedRows?.length === 1 &&
+                  (selectedRows?.size === 1 &&
                     action.can_handle_single !== false))
               "
               clickable
@@ -56,7 +56,7 @@ export type BaseRow = {
 
 defineProps({
   selectedRows: {
-    type: Array as PropType<Row[]>,
+    type: Map as PropType<Map<number | string, Row>>,
     required: false,
   },
   actions: {
