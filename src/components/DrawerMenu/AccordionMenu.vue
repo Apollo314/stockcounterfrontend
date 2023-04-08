@@ -121,20 +121,41 @@ watch(
 <style lang="scss">
 $connector-depth: 15px;
 $connector-border-radius: 8px;
-$border-width: 3px;
+$border-width: 1px;
 
-$border-color: desaturate($primary, 80%);
+$border-color: darken(desaturate($primary, 55%), 15%);
 
-$gutter: 10px;
+$gutter: -2px;
+$accordion-gutter: 10px;
+
+$absgutter: max($gutter, -$gutter);
 
 nav.menu-navigation {
   padding: $border-width;
   .menu-item:not(:first-child) {
-    margin-top: $gutter;
+    margin-top: $accordion-gutter;
+  }
+  .active-menu-item {
+    z-index: 2;
+    & > div > .q-icon {
+      .body--dark & {
+        color: white !important;
+      }
+      .body--light & {
+        color: black !important;
+      }
+    }
+  }
+  .only-child {
+    &.active-menu-item {
+      scale: 1.15;
+      outline: $border-width solid $border-color;
+    }
   }
   &.show-connectors {
     .q-expansion-item__content {
       padding-right: $border-width;
+      padding-bottom: $border-width;
       .q-list {
         .menu-item {
           margin-top: $gutter;
@@ -148,10 +169,10 @@ nav.menu-navigation {
           &::before {
             content: '';
             position: absolute;
-            height: calc(100% + #{$gutter * 2});
+            height: calc(100% + #{$absgutter});
             width: $border-width;
             left: -$connector-depth;
-            top: -$gutter / 2;
+            top: -$gutter;
             border-left: $border-width solid $border-color;
             transition: 0s;
           }
@@ -159,10 +180,11 @@ nav.menu-navigation {
         & > .menu-item:not(.accordion-item):not(:last-child)::before {
           content: '';
           position: absolute;
-          height: calc(100% + #{$gutter * 2});
+          height: calc(50% + #{$connector-border-radius});
           left: -$connector-depth;
-          top: -$gutter / 2;
+          top: calc(50% - #{$connector-border-radius});
           border-left: $border-width solid $border-color;
+          z-index: 100;
           transition: 0s;
         }
         .q-item::after {
