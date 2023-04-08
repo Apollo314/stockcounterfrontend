@@ -61,7 +61,7 @@
       <router-link
         v-if="item.children?.[0].to"
         clickable
-        class="q-pa-sm menu-link no-user-select"
+        class="q-pa-sm menu-link no-user-select only-child"
         style="border-radius: 10px"
         active-class="active-menu-item"
         exact-active-class="exact-active-menu-item"
