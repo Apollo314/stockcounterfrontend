@@ -419,7 +419,6 @@ const emit = defineEmits<{
 const selectedMap = ref(new Map<number | string, Row>());
 const contextMenus = ref<Record<string | number, boolean>>({});
 const lastSelectedRow = ref<Row>();
-let includeLastSelected = false;
 
 function getColValue(col: Column, row: Row) {
   return col.field instanceof Function ? col.field(row) : row[col.field];
@@ -437,9 +436,6 @@ function toggleSelection(row: Row, value?: boolean, event?: MouseEvent) {
       for (const r of props.data.slice(index_lower, index_higher)) {
         toggleSelection(r);
       }
-      if (includeLastSelected) {
-        toggleSelection(lastSelectedRow.value);
-      }
     }
     toggleSelection(row, value);
   } else if (value === undefined) {
@@ -454,11 +450,6 @@ function toggleSelection(row: Row, value?: boolean, event?: MouseEvent) {
     selectedMap.value.set(row.id, row);
   }
   if (event !== undefined) {
-    if (event.shiftKey) {
-      includeLastSelected = true;
-    } else {
-      includeLastSelected = false;
-    }
     lastSelectedRow.value = row;
   }
 }
