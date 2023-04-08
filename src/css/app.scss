@@ -258,3 +258,11 @@ $bg-colors: (
     background: $light-page;
   }
 }
+
+
+// fix for mobile firefox when datatable is fullscreen.
+// I seriously have no idea why. but this fixes it.
+.fixed-full {
+  height: 100vh;
+  width: 100vw;
+}

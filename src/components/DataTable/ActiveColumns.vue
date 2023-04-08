@@ -24,8 +24,8 @@
             <q-item-section avatar>
               <q-toggle
                 color="secondary"
-                :model-value="!col.hidden"
-                @update:model-value="col.hidden = !$event"
+                :model-value="activeColumns.get(col.id)"
+                @update:model-value="activeColumns.set(col.id, $event)"
               />
             </q-item-section>
           </q-item>
@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject, Ref } from 'vue';
+import { inject, ref, Ref } from 'vue';
 
 import { callOrGet } from 'src/composables/utilities';
 
@@ -54,6 +54,10 @@ withDefaults(
 );
 
 const columns = inject<Ref<BaseColumn<BaseRow>[]>>('columns');
+const activeColumns = inject<Ref<Map<string, boolean>>>(
+  'activeColumns',
+  ref(new Map<string, boolean>())
+);
 </script>
 
 <style scoped></style>

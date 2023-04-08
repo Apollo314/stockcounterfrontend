@@ -87,20 +87,20 @@
                   @update:model-value="toggleSelection(row, $event)"
                 />
               </td>
-              <td
-                :class="getAlignClass(column.align)"
-                v-for="column in computedcolumns"
-                v-show="!column.hidden"
-                :key="column.id"
-              >
-                <div class="cell">
-                  {{ getColValue(column, row) }}
-                </div>
-                <slot
-                  :name="`td-inner-sibling-${column.id}`"
-                  v-bind="{ row: row, column: column }"
-                />
-              </td>
+              <template v-for="column in computedcolumns" :key="column.id">
+                <td
+                  :class="getAlignClass(column.align)"
+                  v-if="activeColumns.get(column.id)"
+                >
+                  <div class="cell">
+                    {{ getColValue(column, row) }}
+                  </div>
+                  <slot
+                    :name="`td-inner-sibling-${column.id}`"
+                    v-bind="{ row: row, column: column }"
+                  />
+                </td>
+              </template>
               <slot name="body-tr-inner" v-bind="{ row }" />
             </tr>
           </tbody>
@@ -113,13 +113,7 @@
             class="data-card-container q-pa-sm col-xs-12 col-sm-6 col-md-4 col-lg-3"
             @dblclick="toggleSelection(row, !(selected.indexOf(row) > -1))"
           >
-            <div
-              class="data-card-parent"
-              :style="
-                selected.indexOf(row) > -1 ? 'transform: scale(0.95);' : ''
-              "
-              style="width: 100%; height: 100%"
-            >
+            <div class="data-card-parent" style="width: 100%; height: 100%">
               <context-menu
                 :actions="contextmenuactions"
                 :selected-rows="selected"
@@ -132,7 +126,7 @@
                   }
                 "
               />
-              <q-card class="data-card" style="width: 100%; overflow: hidden">
+              <q-card class="data-card" style="width: 100%">
                 <q-card-section horizontal class="q-pa-md">
                   <q-checkbox
                     dense
@@ -149,29 +143,24 @@
                     @click="contextMenus[row.id] = true"
                   />
                 </q-card-section>
-                <q-list dense separator style="z-index: 1">
-                  <q-item
-                    v-for="column in computedcolumns"
-                    v-show="!column.hidden"
-                    :key="column.id"
-                  >
-                    <q-item-section style="min-width: unset !important">
-                      <q-item-label>{{ callOrGet(column.label) }}</q-item-label>
-                    </q-item-section>
-                    <q-item-section
-                      side
-                      style="color: inherit !important; font-weight: 900"
-                    >
-                      <slot
-                        v-if="$slots[`row-slot-${column.id}`]"
-                        v-bind="{ row, column }"
-                        :name="`row-slot-${column.id}`"
-                      ></slot>
-                      <div v-else>
-                        {{ getColValue(column, row) }}
-                      </div>
-                    </q-item-section>
-                  </q-item>
+                <q-list dense separator>
+                  <template v-for="column in computedcolumns" :key="column.id">
+                    <q-item v-if="activeColumns.get(column.id)">
+                      <q-item-section style="min-width: unset !important">
+                        <q-item-label>{{
+                          callOrGet(column.label)
+                        }}</q-item-label>
+                      </q-item-section>
+                      <q-item-section
+                        side
+                        style="color: inherit !important; font-weight: 900"
+                      >
+                        <div>
+                          {{ getColValue(column, row) }}
+                        </div>
+                      </q-item-section>
+                    </q-item>
+                  </template>
                 </q-list>
               </q-card>
             </div>
@@ -179,12 +168,15 @@
         </div>
       </div>
       <template #action-bottom>
-        <div class="row full-width q-pa-sm" style="position: sticky; bottom: 0">
-          <div style="margin: auto" v-if="selected.length">
-            {{ $t('data_table.xitems_selected', [selected.length]) }}
+        <div class="row full-width q-pa-sm justify-end">
+          <div
+            v-if="selected.length > 0"
+            style="margin-top: auto; margin-bottom: auto; flex-grow: 1"
+          >
+            {{ $t('data_table.xitems_selected', [selected.length]) }} aright
           </div>
-          <q-space />
           <OffsetLimitPaginator
+            style="align-self: flex-end"
             :model-value="pagination.offset"
             :count="pagination.count"
             :limit="pagination.limit"
@@ -475,6 +467,12 @@ const computedcolumns = computed(() => {
   }
 });
 
+const activeColumns = ref(new Map<BaseColumn<Row>['id'], boolean>());
+for (const col of computedcolumns.value) {
+  activeColumns.value.set(col.id, !col.hidden);
+  console.log(col.id, !col.hidden);
+}
+
 const requestDone = ref(true);
 
 const request: RequestFunction<Filters> = (partialPagination) => {
@@ -505,6 +503,7 @@ provide('toggleCardView', toggleCardView);
 provide('request', request);
 provide('requestDone', requestDone);
 provide('columns', props.columns);
+provide('activeColumns', activeColumns);
 </script>
 
 <style lang="scss">
