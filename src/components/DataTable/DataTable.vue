@@ -378,8 +378,20 @@ const tableFilterRef = ref<{
   highlightComponentsByField: (field: string) => void;
 }>();
 
-const requestFocusOnFilter = (field: string) => {
-  tableFilterRef.value?.highlightComponentsByField(field);
+const requestFocusOnFilter = (field: string, retryCount = 0) => {
+  if (retryCount < 10) {
+    showFilter.value = true;
+
+    if (tableFilterRef.value) {
+      tableFilterRef.value?.highlightComponentsByField(field);
+    } else {
+      // so when tableFilterRef is in a dialog component, it's not yet mounted,
+      // wait till it gets mounted
+      nextTick(() => {
+        requestFocusOnFilter(field, retryCount++);
+      });
+    }
+  }
 };
 
 const orderedColumns = ref(

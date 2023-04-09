@@ -66,7 +66,9 @@ const isFilterable = <Row extends BaseRow, Column extends BaseColumn<Row>>(
 ) => {
   const parameters = operation.parameters as ExtendedParameterObject[];
   for (const parameter of parameters) {
-    if (parameter.name.startsWith(column.id)) {
+    if (parameter.name === column.id) {
+      return true;
+    } else if (parameter.name.startsWith(column.id)) {
       const remainder = parameter.name.slice(column.id.length + 2);
       if (FILTER_SUFFIXES.includes(remainder)) {
         return true;
