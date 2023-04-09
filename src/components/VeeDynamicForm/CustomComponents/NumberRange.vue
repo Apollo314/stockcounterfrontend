@@ -5,10 +5,12 @@
       <div class="col">
         <NumberInput
           @blur="lowerRangeBlur"
+          ref="lowerRangeRef"
           :label="leftLabel"
           name="rangeLow"
           :standout="standout"
           :highlight="highlight"
+          focus-on-highlight
         />
       </div>
       <q-icon
@@ -31,7 +33,7 @@
 
 <script setup lang="ts">
 import { useField, useForm } from 'vee-validate';
-import { onMounted, toRef, watch } from 'vue';
+import { onMounted, ref, toRef, watch } from 'vue';
 
 import NumberInput from './NumberInput.vue';
 

@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { QSelectProps } from 'quasar';
+import { QSelect, QSelectProps } from 'quasar';
 import { useField } from 'vee-validate';
 import { PropType, ref, toRef, watch } from 'vue';
 
@@ -127,7 +127,7 @@ defineEmits<{
 
 const { value, errorMessage, validate } = useField(toRef(props, 'name'));
 
-const selectRef = ref();
+const selectRef = ref<InstanceType<typeof QSelect>>();
 
 const options = ref();
 
@@ -150,6 +150,17 @@ watch(
     ) {
       options.value = [newval];
       value.value = (newval as Record<string, unknown>)[props.primaryKeyField];
+    }
+  }
+);
+
+watch(
+  () => props.highlight,
+  () => {
+    if (props.highlight) {
+      setTimeout(() => {
+        selectRef.value?.focus();
+      }, 50);
     }
   }
 );

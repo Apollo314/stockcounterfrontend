@@ -1,6 +1,7 @@
 <template>
   <div>
     <q-input
+      ref="inputRef"
       :outlined="outlined"
       :standout="standout"
       :label="label"
@@ -48,15 +49,23 @@
       </template>
     </q-input>
     <div class="row q-pt-md justify-center q-gutter-sm">
-      <q-btn flat :label="$t('date.today')" no-caps @click="selectLast({})" />
       <q-btn
-        flat
+        :color="highlight ? 'primary' : undefined"
+        :flat="!highlight"
+        :label="$t('date.today')"
+        no-caps
+        @click="selectLast({})"
+      />
+      <q-btn
+        :color="highlight ? 'primary' : undefined"
+        :flat="!highlight"
         :label="$t('date.thisweek')"
         no-caps
         @click="selectLast({ weeks: 1 })"
       />
       <q-btn
-        flat
+        :color="highlight ? 'primary' : undefined"
+        :flat="!highlight"
         :label="$t('date.thismonth')"
         no-caps
         @click="selectLast({ months: 1 })"
@@ -67,6 +76,7 @@
 
 <script setup lang="ts">
 import dayjs from 'dayjs';
+import { QInput } from 'quasar';
 import { useField } from 'vee-validate';
 import { ref, watch, toRef } from 'vue';
 
@@ -84,6 +94,19 @@ const props = withDefaults(
 );
 
 const { value } = useField<string | undefined>(toRef(props, 'name'));
+
+const inputRef = ref<InstanceType<typeof QInput>>();
+
+watch(
+  () => props.highlight,
+  () => {
+    if (props.highlight) {
+      setTimeout(() => {
+        inputRef.value?.focus();
+      }, 50);
+    }
+  }
+);
 
 const dateRange = ref({
   from: '',

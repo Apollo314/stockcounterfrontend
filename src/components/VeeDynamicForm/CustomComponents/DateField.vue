@@ -1,6 +1,7 @@
 <template>
   <div>
     <q-input
+      ref="inputRef"
       :outlined="outlined"
       :standout="standout"
       :label="label"
@@ -79,6 +80,7 @@
 
 <script setup lang="ts">
 import dayjs from 'dayjs';
+import { QInput } from 'quasar';
 import { useField } from 'vee-validate';
 import { ref, toRef, watch } from 'vue';
 
@@ -98,6 +100,18 @@ const props = withDefaults(
 const { value } = useField<string | undefined>(toRef(props, 'name'));
 
 const date = ref('');
+const inputRef = ref<InstanceType<typeof QInput>>();
+
+watch(
+  () => props.highlight,
+  () => {
+    if (props.highlight) {
+      setTimeout(() => {
+        inputRef.value?.focus();
+      }, 50);
+    }
+  }
+);
 
 watch(
   () => date,

@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { QInput } from 'quasar';
 import { useField } from 'vee-validate';
-import { computed, nextTick, ref, toRef } from 'vue';
+import { computed, nextTick, ref, toRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const props = withDefaults(
@@ -42,6 +42,7 @@ const props = withDefaults(
     prefix?: string;
     suffix?: string;
     highlight?: boolean;
+    focusOnHighlight?: boolean;
   }>(),
   {
     prefix: undefined,
@@ -55,12 +56,23 @@ defineEmits<{
   (e: 'blur'): void;
 }>();
 
-const inputRef = ref<QInput>();
+const inputRef = ref<InstanceType<typeof QInput>>();
 
 const { n: $n, locale } = useI18n();
 
 const { value, errorMessage, validate } = useField<string | undefined>(
   toRef(props, 'name')
+);
+
+watch(
+  () => props.highlight,
+  () => {
+    if (props.highlight && props.focusOnHighlight) {
+      setTimeout(() => {
+        inputRef.value?.focus();
+      }, 50);
+    }
+  }
 );
 
 const countSeparator = (strnumber: string | undefined, seperator: string) => {

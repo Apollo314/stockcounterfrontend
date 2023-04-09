@@ -27,7 +27,7 @@
       style="min-width: 200px"
       self="top middle"
     >
-      <q-card class="my-card">
+      <q-card bordered class="my-card">
         <div class="row justify-center text-bold q-pa-sm">
           {{ callOrGet(column.label) }}
         </div>
@@ -43,6 +43,7 @@
               'active-button':
                 orderedColumns?.get(column.id)?.order === 'ascending',
             }"
+            v-close-popup
           >
             <q-tooltip>{{
               $t('data_table.ordering.buttons.increasing')
@@ -62,6 +63,7 @@
               'active-button':
                 orderedColumns?.get(column.id)?.order === 'descending',
             }"
+            v-close-popup
           >
             <q-tooltip>{{
               $t('data_table.ordering.buttons.decreasing')
@@ -72,6 +74,7 @@
             icon="filter_list"
             @click="$emit('requestFocusOnFilter', column.id)"
             v-if="column.filterable"
+            v-close-popup
           >
             <q-tooltip>{{ $t('data_table.filter') }}</q-tooltip>
           </q-btn>
