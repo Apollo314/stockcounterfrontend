@@ -408,7 +408,7 @@ function order(column: Column, order: 'ascending' | 'descending') {
   } else {
     orderedColumns.value.set(column.id, { column, order });
   }
-  request({});
+  request({ offset: 0 });
 }
 
 const orderingValue = computed(() => {
@@ -566,6 +566,7 @@ const request: RequestFunction<Filters> = (partialPagination) => {
 
 const showFilter = ref($q.screen.gt.sm);
 
+provide('order', order);
 provide('showFilter', showFilter);
 provide('toggle', toggle);
 provide('isFullscreen', isFullscreen);

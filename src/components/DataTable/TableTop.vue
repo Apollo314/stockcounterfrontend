@@ -99,7 +99,7 @@
       no-caps
       flat
     >
-      <!-- TODO: <sorting></sorting> -->
+      <SortingComponent></SortingComponent>
     </q-btn>
     <q-btn flat icon="fullscreen" @click="toggle()" />
     <q-space />
@@ -113,6 +113,7 @@ import { computed, inject, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import ActiveColumns from './ActiveColumns.vue';
+import SortingComponent from './SortingComponent.vue';
 
 import type { RequestFunction } from './DataTable.vue';
 
