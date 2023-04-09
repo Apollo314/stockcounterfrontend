@@ -145,5 +145,6 @@ export default {
     activeColumns: 'Aktif kolonlar',
     filter: 'Filtre',
     login: 'Giriş',
+    ordering: 'Sıralama',
   },
 };

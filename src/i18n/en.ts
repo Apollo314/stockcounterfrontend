@@ -145,5 +145,6 @@ export default {
     activeColumns: 'Active columns',
     filter: 'Filter',
     login: 'Login',
+    ordering: 'Ordering',
   },
 };
