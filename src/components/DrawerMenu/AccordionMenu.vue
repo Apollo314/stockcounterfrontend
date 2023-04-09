@@ -6,6 +6,8 @@
       'bordered-menu-items': borderedMenuItems,
       'rounded-connectors': roundedConnectors,
       'filled-menu-items': filledMenuItems,
+      'negative-gutter': negativeGutter,
+      'large-gutter': !negativeGutter,
     }"
   >
     <template v-if="hasContent">
@@ -39,6 +41,7 @@ const props = withDefaults(
     roundedConnectors?: boolean;
     borderedMenuItems?: boolean;
     filledMenuItems?: boolean;
+    negativeGutter?: boolean;
   }>(),
   { filter: '' }
 );
@@ -125,12 +128,12 @@ $border-width: 1px;
 
 $border-color: darken(desaturate($primary, 55%), 15%);
 
-$gutter: -2px;
+$gutter: -4px;
 $accordion-gutter: 10px;
 
 $absgutter: max($gutter, -$gutter);
 
-nav.menu-navigation {
+@mixin menuNavigation($gutter) {
   padding: $border-width;
   .menu-item:not(:first-child) {
     margin-top: $accordion-gutter;
@@ -159,9 +162,11 @@ nav.menu-navigation {
       .q-list {
         .menu-item {
           margin-top: $gutter;
+          transition: margin-top 0.2s ease;
         }
         .accordion-item {
           margin-top: $gutter;
+          transition: margin-top 0.2s ease;
         }
         &
           > .accordion-item.q-expansion-item:not(:last-child)
@@ -174,7 +179,7 @@ nav.menu-navigation {
             left: -$connector-depth;
             top: -$gutter;
             border-left: $border-width solid $border-color;
-            transition: 0s;
+            transition: top 0.2s ease, height 0.2s ease;
           }
         }
         & > .menu-item:not(.accordion-item):not(:last-child)::before {
@@ -185,7 +190,7 @@ nav.menu-navigation {
           top: calc(50% - #{$connector-border-radius});
           border-left: $border-width solid $border-color;
           z-index: 100;
-          transition: 0s;
+          transition: top 0.2s ease, height 0.2s ease;
         }
         .q-item::after {
           content: '';
@@ -196,7 +201,7 @@ nav.menu-navigation {
           top: -$gutter;
           border-left: $border-width solid $border-color;
           border-bottom: $border-width solid $border-color;
-          transition: 0s;
+          transition: top 0.2s ease, height 0.2s ease;
         }
       }
     }
@@ -211,6 +216,18 @@ nav.menu-navigation {
       outline: $border-width solid $border-color;
       transition: 0s;
     }
+  }
+}
+
+.large-gutter {
+  &.menu-navigation {
+    @include menuNavigation(6px);
+  }
+}
+
+.negative-gutter {
+  &.menu-navigation {
+    @include menuNavigation(-2px);
   }
 }
 </style>

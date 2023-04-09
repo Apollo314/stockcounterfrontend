@@ -134,6 +134,11 @@ export default {
       swipeLeft: 'Swipe Left',
       swipeRight: 'Swipe Right',
     },
+    ui: {
+      compact: 'Compact',
+      'navigation-menu-type': 'Navigation menu type',
+      relax: 'Relax',
+    },
   },
   success: 'Action was successful',
   titles: {

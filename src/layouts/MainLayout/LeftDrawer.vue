@@ -48,6 +48,7 @@
         rounded-connectors
         filled-menu-items
         :filter="filter"
+        :negative-gutter="settingsStore.ui.negativeMenuGutter"
       ></accordion-menu>
       <template #action-bottom>
         <div class="row full-width justify-end">
@@ -73,6 +74,8 @@ import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
 import AccordionMenu from 'components/DrawerMenu/AccordionMenu.vue';
 import { menuItems } from 'stores/menu-store';
 
+import { useSettingsStore } from '../../stores/settings-store';
+
 defineProps<{
   modelValue: boolean;
 }>();
@@ -84,6 +87,8 @@ defineEmits<{
 const filter = ref('');
 
 const isOverlay = ref(false);
+
+const settingsStore = useSettingsStore();
 </script>
 
 <style scoped></style>

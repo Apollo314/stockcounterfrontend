@@ -164,6 +164,30 @@ const settingComponents = computed<SettingComponent[]>(() => {
       },
       bind: 'modelValue',
     },
+    {
+      component: QSelect,
+      props: {
+        standout: true,
+        label: $t('settings.ui.navigation-menu-type'),
+        options: [
+          {
+            label: $t('settings.ui.compact'),
+            value: true,
+          },
+          {
+            label: $t('settings.ui.relax'),
+            value: false,
+          },
+        ],
+        mapOptions: true,
+        emitValue: true,
+      },
+      getter: (state) => state.ui.negativeMenuGutter,
+      mutator: (state, value) => {
+        state.ui.negativeMenuGutter = value as boolean;
+      },
+      bind: 'modelValue',
+    },
   ];
 });
 </script>
