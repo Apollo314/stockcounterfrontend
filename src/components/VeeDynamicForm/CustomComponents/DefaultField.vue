@@ -15,7 +15,11 @@
       :dense="dense"
       autocomplete="new-password"
       :bg-color="highlight ? 'primary' : undefined"
-    />
+    >
+      <template v-if="icon" #prepend>
+        <q-icon :name="icon"></q-icon>
+      </template>
+    </q-input>
   </div>
 </template>
 
@@ -44,6 +48,7 @@ const props = withDefaults(
       | 'url'
       | 'time'
       | 'date';
+    icon?: string;
   }>(),
   {
     type: 'text',

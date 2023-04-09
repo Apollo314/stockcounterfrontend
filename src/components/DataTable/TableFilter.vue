@@ -1,4 +1,10 @@
 <template>
+  <DefaultField
+    name="search"
+    :label="$t('commons.search')"
+    icon="search"
+    v-if="formComponents['search']"
+  ></DefaultField>
   <template v-for="(formComponent, key) in formComponents" :key="key">
     <div v-if="keyIsntForPagination(key)" class="full-height q-py-xs">
       <component
@@ -20,6 +26,8 @@ import { PropType, ref } from 'vue';
 
 import { componentMap } from 'components/VeeDynamicForm/componentMap';
 import { FormComponent } from 'src/composables/openapihelpers';
+
+import DefaultField from '../VeeDynamicForm/CustomComponents/DefaultField.vue';
 
 import { FILTER_SUFFIXES } from './datatableutilities';
 
