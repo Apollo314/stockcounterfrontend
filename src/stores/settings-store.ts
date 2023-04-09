@@ -12,6 +12,7 @@ type State = {
       | 'rotate-around-corner'
       | 'swipe-left'
       | 'swipe-right';
+    negativeMenuGutter: boolean;
   };
 };
 
@@ -20,6 +21,7 @@ export const useSettingsStore = defineStore('SettingsStore', {
     ui: {
       showTransitionAnimations: true,
       genericAnimation: 'zoom-out-in',
+      negativeMenuGutter: false,
     },
   }),
   getters: {},

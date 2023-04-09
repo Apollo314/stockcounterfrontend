@@ -134,6 +134,11 @@ export default {
       swipeLeft: 'Sola Kaydır',
       swipeRight: 'Sağa Kaydır',
     },
+    ui: {
+      compact: 'Kompakt',
+      'navigation-menu-type': 'Navigasyon menü tipi',
+      relax: 'Rahat',
+    },
   },
   success: 'Başarılı',
   titles: {
