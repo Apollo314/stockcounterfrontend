@@ -20,7 +20,7 @@ export const menuItems = (): MenuItem[] => {
             {
               title: $t('menu.new-sale-invoice'),
               icon: 'post_add',
-              to: { name: 'nest', params: { id: 2 } },
+              to: { name: 'invoces-create' },
             },
           ],
         },

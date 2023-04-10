@@ -2,10 +2,6 @@ import { RouteRecordRaw, RouteLocationNormalizedLoaded } from 'vue-router';
 
 type RouteRecordRawExtended = RouteRecordRaw & {
   meta?: {
-    /**
-     * whether or not the layout should hide the header.
-     */
-    hideHeader?: boolean;
     key?: string | number | symbol;
     /**
      * a function that will return the key to use in <router-view>'s
@@ -37,7 +33,6 @@ const routes: RouteRecordRawExtended[] = [
         path: '/login',
         component: () => import('pages/Login/LoginPage.vue'),
         name: 'home',
-        meta: { hideHeader: true },
       },
       {
         path: '/table',
@@ -46,24 +41,25 @@ const routes: RouteRecordRawExtended[] = [
         meta: { key: 'table' },
       },
       {
+        path: '/create',
+        component: () => import('pages/Invoices/CreateView.vue'),
+        name: 'invoces-create',
+        meta: { key: 'create' },
+      },
+      {
         path: '/:id(\\d+)',
         component: () => import('pages/Index/IndexPage.vue'),
         name: 'nest',
-        meta: { hideHeader: true },
       },
       {
         path: 'another/',
         component: () => import('pages/Index/IndexPage2.vue'),
         name: 'another',
-        meta: { hideHeader: true },
       },
       {
         path: 'settings/',
         component: () => import('pages/Settings/SettingsPage.vue'),
         name: 'settings',
-        meta: {
-          hideHeader: true,
-        },
       },
     ],
   },

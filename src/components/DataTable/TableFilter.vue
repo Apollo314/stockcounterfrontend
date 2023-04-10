@@ -24,7 +24,7 @@
 import camelCase from 'camelcase';
 import { PropType, ref } from 'vue';
 
-import { componentMap } from 'components/VeeDynamicForm/componentMap';
+import { getComponent } from 'components/VeeDynamicForm/componentMap';
 import { FormComponent } from 'src/composables/openapihelpers';
 
 import DefaultField from '../VeeDynamicForm/CustomComponents/DefaultField.vue';
@@ -46,18 +46,6 @@ const props = defineProps({
     default: true,
   },
 });
-
-const getComponent = (formComponent: FormComponent) => {
-  let componentDefinition = componentMap[formComponent.componentString];
-  if (componentDefinition === undefined) {
-    componentDefinition = componentMap['text-input'];
-    componentDefinition.props = {
-      label: 'Define me, I am undefined',
-      hint: formComponent.componentString,
-    };
-  }
-  return componentDefinition;
-};
 
 const keyIsntForPagination = (key: string) => {
   if (['limit', 'offset', 'ordering', 'search'].includes(key)) {

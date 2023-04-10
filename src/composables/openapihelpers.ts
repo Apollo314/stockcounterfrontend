@@ -1,3 +1,5 @@
+import camelCase from 'camelcase';
+
 import { ComponentStrings } from 'components/VeeDynamicForm/componentMap';
 import { components, paths } from 'src/client/schema.json';
 
@@ -223,7 +225,7 @@ export function dereference(
     // for my drf-spectacular setup, it is always correct.
     // one could actually write a recursive access function.
     // that is how I did that before but meh. this is fine.
-    schema = get_component(
+    schema = get_component_schema(
       schema.$ref.split('/').slice(-1)[0] as keyof typeof components.schemas
     );
     return dereference(schema);
@@ -255,7 +257,7 @@ export function dereference(
   return schema;
 }
 
-export function get_component(
+export function get_component_schema(
   component_name: keyof typeof components.schemas
 ): SchemaObject {
   return components.schemas[component_name] as SchemaObject;
@@ -279,7 +281,10 @@ export type FormComponent = {
   props: ComponentProps;
 };
 
-export function create_filters(operation: OperationObject) {
+export function create_filters(
+  operation: OperationObject,
+  camelCaseify = true
+) {
   const filterComponents: Record<string, FormComponent> = {};
   if (operation.parameters) {
     for (const parameter of operation.parameters as ExtendedParameterObject[]) {
@@ -290,7 +295,9 @@ export function create_filters(operation: OperationObject) {
         ...xcomp?.props,
       };
       const component = xcomp?.component || 'text-input';
-      filterComponents[parameter.name] = {
+      filterComponents[
+        camelCaseify ? camelCase(parameter.name) : parameter.name
+      ] = {
         componentString: component as ComponentStrings,
         props: props,
       };
@@ -299,7 +306,7 @@ export function create_filters(operation: OperationObject) {
   return filterComponents;
 }
 
-export function create_form(component: SchemaObject) {
+export function create_form(component: SchemaObject, camelCaseify = true) {
   if (isObject(component) && component.properties !== undefined) {
     const formComponents: Record<string, FormComponent> = {};
     for (const propertyKey in component.properties) {
@@ -310,8 +317,16 @@ export function create_form(component: SchemaObject) {
         ...property,
         ...xcomp?.props,
       };
-      const comp = xcomp?.component || 'text-input';
-      formComponents[propertyKey] = {
+      let comp: string;
+      console.log(property);
+      if (xcomp?.component) {
+        comp = xcomp.component;
+      } else if (hasAllOf(property)) {
+        comp = 'enum-selector';
+      } else {
+        comp = 'text-input';
+      }
+      formComponents[camelCaseify ? camelCase(propertyKey) : propertyKey] = {
         componentString: comp as ComponentStrings,
         props: props,
       };
@@ -321,8 +336,44 @@ export function create_form(component: SchemaObject) {
 }
 
 /**
- * shortcut for create_form(dereference(get_component(component_name)))
+ * shortcut for create_form(dereference(get_component_schema(component_name)))
  */
-export function get_form(component_name: keyof typeof components.schemas) {
-  return create_form(dereference(get_component(component_name)));
+export function get_form(
+  component_name: keyof typeof components.schemas,
+  camelCaseIfy = true
+) {
+  return create_form(
+    dereference(get_component_schema(component_name)),
+    camelCaseIfy
+  );
+}
+
+type NestedRecord = {
+  [key: string | number]: NestedRecord;
+};
+
+/**
+ * ex: object: {a: 1, b: 2, c: {d: 3}}, shouldHave: {c: {d: 3}} // true
+ * ex: object: {a: 1, b: 2, c: {d: 3}}, shouldHave: {c: {d: 4}} // false
+ * @param object an object you want check if it has the possibly nested value shouldHave
+ * @param shouldHave object to have definitely.
+ * @returns boolean
+ */
+function objectHasPartial(
+  object: NestedRecord,
+  shouldHave: NestedRecord
+): boolean {
+  let result = true;
+  for (const key in shouldHave) {
+    if (Object.prototype.hasOwnProperty.call(object, key)) {
+      if (typeof shouldHave[key] === 'object') {
+        result = objectHasPartial(object[key], shouldHave[key]);
+      } else if (shouldHave[key] !== object[key]) {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+  return result;
 }
