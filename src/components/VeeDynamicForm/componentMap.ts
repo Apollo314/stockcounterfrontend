@@ -1,6 +1,7 @@
 import { api } from 'boot/axios';
 import { $t } from 'boot/i18n';
 import { CancelablePromise } from 'src/client';
+import { FormComponent } from 'src/composables/openapihelpers';
 
 import CheckBox from './CustomComponents/CheckBox.vue';
 import DateRange from './CustomComponents/DateRange.vue';
@@ -132,4 +133,16 @@ export const componentMap: ComponentMap = {
     component: NumberInput,
     props: {},
   },
+};
+
+export const getComponent = (formComponent: FormComponent) => {
+  let componentDefinition = componentMap[formComponent.componentString];
+  if (componentDefinition === undefined) {
+    componentDefinition = componentMap['text-input'];
+    componentDefinition.props = {
+      label: 'Define me, I am undefined',
+      hint: formComponent.componentString,
+    };
+  }
+  return componentDefinition;
 };
