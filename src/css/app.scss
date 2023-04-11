@@ -53,7 +53,13 @@ a {
   background: transparent;
 
   &.q-drawer--on-top {
-    background: transparentize($color: $primary, $amount: 0.85);
+    .body--dark & {
+      background: transparentize($color: $dark-page, $amount: 0.25);
+    }
+    .body--light & {
+      background: transparentize($color: $almost-white, $amount: 0.55);
+    }
+
   }
 }
 
@@ -258,7 +264,6 @@ $bg-colors: (
     background: $light-page;
   }
 }
-
 
 // fix for mobile firefox when datatable is fullscreen.
 // I seriously have no idea why. but this fixes it.
