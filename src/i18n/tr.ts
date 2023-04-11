@@ -31,6 +31,7 @@ export default {
     login: 'Giriş yap',
   },
   commons: {
+    cancel: 'Vazgeç',
     dofilter: 'Filtrele',
     fields: {
       created_at: 'Oluşturma Tarihi',
@@ -40,6 +41,7 @@ export default {
     },
     new: 'Yeni @:{0}',
     'no-result': 'Sonuç Yok',
+    ok: 'Tamam',
     refresh: 'Yenile',
     reset: 'Sıfırla',
     search: 'Ara',
