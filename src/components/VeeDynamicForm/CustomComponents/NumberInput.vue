@@ -35,8 +35,6 @@ const props = withDefaults(
     name: string;
     label: string;
     standout?: string | boolean;
-    bordered?: boolean;
-    class?: string;
     nullable?: boolean;
     dense?: boolean;
     prefix?: string;
@@ -47,7 +45,6 @@ const props = withDefaults(
   {
     prefix: undefined,
     suffix: undefined,
-    class: '',
     standout: true,
   }
 );
