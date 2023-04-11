@@ -16,8 +16,8 @@ $primary: #0088c7;
 $secondary: #26a69a;
 $accent: #b02755;
 
-$dark: #181818;
-$dark-page: #0f0f0f;
+$dark: #18181c;
+$dark-page: #0e0e12;
 
 $positive: #21ba45;
 $negative: #aa2333;
@@ -32,3 +32,6 @@ $almost-white: #f9f9f9;
 $coolshadow: 0 5px 12px rgba(0, 0, 0, 7%), 0 15px 25px rgba(0, 0, 0, 7%);
 $coolshadowmore: 0 5px 12px rgba(0, 0, 0, 25%), 0 15px 25px rgba(0, 0, 0, 25%);
 $tooltip-fontsize: 1em;
+
+$separator-color: rgba(0, 0, 0, 0.12) !default;
+$separator-dark-color: rgba(255, 255, 255, 0.12) !default;
