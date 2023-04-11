@@ -1,5 +1,5 @@
 <template>
-  <div ref="tableParentRef" class="row fit">
+  <div ref="tableParentRef" class="row data-table fit">
     <adaptive-card
       :class="{
         'sticky-header': stickyHeader,

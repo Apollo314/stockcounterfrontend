@@ -8,23 +8,19 @@
   <template v-for="(formComponent, key) in formComponents" :key="key">
     <div v-if="keyIsntForPagination(key)" class="full-height q-py-xs">
       <component
-        :is="getComponent(formComponent).component"
-        v-bind="{
-          ...getComponent(formComponent).props,
-          ...formComponent.props,
-        }"
+        :is="getComponent(formComponent)"
+        v-bind="getProps(formComponent)"
         :highlight="highlightedComponents[key]"
-        :name="camelCaseNames ? camelCase(key) : key"
+        :name="key"
       ></component>
     </div>
   </template>
 </template>
 
 <script setup lang="ts" generic="Filters extends Record<string, unknown>">
-import camelCase from 'camelcase';
 import { PropType, ref } from 'vue';
 
-import { getComponent } from 'components/VeeDynamicForm/componentMap';
+import { getComponent, getProps } from 'components/VeeDynamicForm/componentMap';
 import { FormComponent } from 'src/composables/openapihelpers';
 
 import DefaultField from '../VeeDynamicForm/CustomComponents/DefaultField.vue';
@@ -39,11 +35,6 @@ const props = defineProps({
   initialFilters: {
     type: Object as PropType<Filters>,
     required: false,
-  },
-  camelCaseNames: {
-    type: Boolean,
-    required: false,
-    default: true,
   },
 });
 
