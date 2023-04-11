@@ -1,38 +1,31 @@
 <template>
-  <div>
-    <q-select
-      :standout="standout"
-      tabindex="0"
-      behavior="menu"
-      class="label-top nice-select"
-      :popup-content-class="
-        ['nice-select-popup', 'coolshadow', 'compact-scrollbar'].join(' ')
-      "
-      options-selected-class="bg-teal text-white"
-      v-model="value"
-      :options="options"
-      :label="label"
-      :label-color="labelColor"
-      :error="!!errorMessage"
-      :error-message="errorMessage"
-      @input-value="validate()"
-      @blur="validate()"
-      :clearable="clearable"
-      clear-icon="clear"
-      :dense="dense"
-      :bg-color="highlight ? 'primary' : undefined"
-    >
-    </q-select>
-  </div>
+  <q-select
+    :standout="standout"
+    tabindex="0"
+    v-model="value"
+    :options="options"
+    :label="label"
+    :label-color="labelColor"
+    :error="!!errorMessage"
+    :error-message="errorMessage"
+    :hide-bottom-space="!errorMessage"
+    @input-value="validate()"
+    @blur="validate()"
+    :clearable="clearable"
+    clear-icon="clear"
+    :dense="dense"
+    :bg-color="highlight ? 'primary' : undefined"
+  >
+  </q-select>
 </template>
 
 <script setup lang="ts">
 import { useField } from 'vee-validate';
-import { toRef, onMounted } from 'vue';
+import { computed, toRef } from 'vue';
 
 const props = withDefaults(
   defineProps<{
-    options: string[] | { label: string; value: unknown }[];
+    options?: string[] | { label: string; value: unknown }[];
     nullable?: boolean;
     default?: unknown;
     label?: string;
@@ -42,16 +35,30 @@ const props = withDefaults(
     clearable?: boolean;
     dense?: boolean;
     highlight?: boolean;
+    allOf?: Array<{ enum: string[] }>;
   }>(),
   { standout: true }
 );
 
-const { value, errorMessage, validate } = useField(toRef(props, 'name'));
-
-onMounted(() => {
-  if (props.default) {
-    value.value = props.default;
+const { value, errorMessage, validate } = useField(
+  toRef(props, 'name'),
+  undefined,
+  {
+    initialValue: toRef(props, 'default'),
   }
+);
+
+const options = computed(() => {
+  if (props.options) {
+    return props.options;
+  }
+  let options: unknown[] = [];
+  if (props.allOf) {
+    for (const opts of props.allOf) {
+      options = [...options, ...opts.enum];
+    }
+  }
+  return options;
 });
 </script>
 

@@ -31,6 +31,7 @@ export default {
     login: 'Log in',
   },
   commons: {
+    cancel: 'Cancel',
     dofilter: 'Filter',
     fields: {
       created_at: 'Create Date',
@@ -40,6 +41,7 @@ export default {
     },
     new: 'New @:{0}',
     'no-result': 'No Result',
+    ok: 'Okay',
     refresh: 'Refresh',
     reset: 'Reset',
     search: 'Search',
