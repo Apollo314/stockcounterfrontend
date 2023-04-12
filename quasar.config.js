@@ -95,7 +95,10 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
-      // https: true
+      https: {
+        cert: path.join(__dirname, 'cert.pem'),
+        key: path.join(__dirname, 'key.pem'),
+      },
       open: false, // opens browser window automatically
     },
 
