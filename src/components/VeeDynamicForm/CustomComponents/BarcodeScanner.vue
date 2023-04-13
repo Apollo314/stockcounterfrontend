@@ -39,13 +39,14 @@
             style="position: absolute; bottom: 10%; width: calc(100% - 50px)"
           >
             <div class="row justify-end q-col-gutter-sm">
-              <div class="col" v-if="zoomFeature?.isSupported()">
+              <div class="col" v-if="zoom?.isSupported">
+                {{ zoom }}
                 <q-slider
-                  :model-value="zoomFeature.value()"
-                  :min="zoomFeature.min()"
-                  :max="zoomFeature.max()"
-                  :step="zoomFeature.step()"
-                  @update:model-value="zoomFeature?.apply($event || 2)"
+                  :model-value="Math.round(zoom.value * 10) / 10"
+                  :min="zoom.min"
+                  :max="zoom.max"
+                  :step="zoom.step"
+                  @update:model-value="applyZoom($event || 1)"
                   label
                   snap
                   markers
@@ -115,9 +116,10 @@ const config = ref<Config>({
   aspectRatio: aspectRatio.value,
   disableFlip: true,
   defaultZoomValueIfSupported: 2,
+  reScanInterval: 2000,
 });
 
-const { zoomFeature, torchFeature } = useQRScanner(
+const { zoom, applyZoom, torchFeature } = useQRScanner(
   scannerRef,
   config,
   (scan) => {
