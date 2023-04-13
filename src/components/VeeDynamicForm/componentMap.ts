@@ -3,15 +3,16 @@ import { $t } from 'boot/i18n';
 import { CancelablePromise } from 'src/client';
 import { FormComponent } from 'src/composables/openapihelpers';
 
+import BarcodeScanner from './CustomComponents/BarcodeScanner.vue';
 import CheckBox from './CustomComponents/CheckBox.vue';
 import DateRange from './CustomComponents/DateRange.vue';
 import DefaultField from './CustomComponents/DefaultField.vue';
 import EnumSelector from './CustomComponents/EnumSelector.vue';
+import ImageSelector from './CustomComponents/ImageSelector.vue';
 import NumberInput from './CustomComponents/NumberInput.vue';
 import NumberRange from './CustomComponents/NumberRange.vue';
 import SearchSelector from './CustomComponents/SearchSelector.vue';
-// import BarcodeScanner from './CustomComponents/BarcodeScanner.vue';
-// import ImageSelector from './CustomComponents/ImageSelector.vue';
+import UndefinedWarningComponent from './CustomComponents/UndefinedWarningComponent.vue';
 
 import type { Component } from 'vue';
 
@@ -24,11 +25,12 @@ export const componentStrings = [
   'item-select',
   'enum-selector',
   'checkbox',
-  // 'single-image-selector',
+  'single-image-selector',
   'money-input',
   'money-range',
-  // 'barcode-scanner',
+  'barcode-scanner',
   'date-time-range',
+  'undefined',
 ] as const;
 
 export type ComponentStrings = (typeof componentStrings)[number];
@@ -133,16 +135,32 @@ export const componentMap: ComponentMap = {
     component: NumberInput,
     props: {},
   },
+  'single-image-selector': {
+    component: ImageSelector,
+    props: {},
+  },
+  'barcode-scanner': {
+    component: BarcodeScanner,
+    props: {},
+  },
+  undefined: {
+    component: UndefinedWarningComponent,
+    props: {},
+  },
 };
 
 export const getComponent = (formComponent: FormComponent) => {
   let componentDefinition = componentMap[formComponent.componentString];
   if (componentDefinition === undefined) {
-    componentDefinition = componentMap['text-input'];
-    componentDefinition.props = {
-      label: 'Define me, I am undefined',
-      hint: formComponent.componentString,
-    };
+    componentDefinition = componentMap['undefined'];
   }
-  return componentDefinition;
+  return componentDefinition.component;
+};
+
+export const getProps = (formComponent: FormComponent) => {
+  let componentDefinition = componentMap[formComponent.componentString];
+  if (componentDefinition === undefined) {
+    componentDefinition = componentMap['undefined'];
+  }
+  return { ...componentDefinition.props, ...formComponent.props };
 };
