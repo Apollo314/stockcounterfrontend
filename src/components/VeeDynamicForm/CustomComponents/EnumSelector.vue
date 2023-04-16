@@ -55,7 +55,7 @@ const options = computed(() => {
   let options: unknown[] = [];
   if (props.allOf) {
     for (const opts of props.allOf) {
-      options = [...options, ...opts.enum];
+      options.push(...opts.enum);
     }
   }
   return options;
