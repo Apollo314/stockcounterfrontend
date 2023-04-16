@@ -23,7 +23,28 @@ const itemLabels: Record<keyof ItemOut, string> = {
   updated_by: 'Güncelleyen',
 };
 
+const ajvErrors = {
+  const: 'sabite eşit olmalı: {allowedValue}',
+  dependentRequired: '{property} varsa {deps} mevcut olmalı',
+  enum: 'sadece izin verilen değerleri girebilirsiniz: {allowedValues}',
+  exclusiveMaximum: '{limit} değerinden küçük olmalı',
+  exclusiveMinimum: '{limit} değerinden büyük olmalı',
+  maxItems: '{limit} öğeden daha fazla olamaz',
+  maxLength: '{limit} karakterden daha uzun olamaz',
+  maxProperties: '{limit} öğeden daha fazla olamaz',
+  maximum: '{limit} veya daha az olmalı',
+  minLength: '{limit} karakterden daha kısa olamaz',
+  minProperties: '{limit} öğeden daha az öğe olamaz',
+  minimum: '{limit} veya daha çok olmalı',
+  mixItems: '{limit} öğeden daha az öğe olamaz',
+  multipleOf: 'yalnızca {multipleOf} ve katları olabilir',
+  pattern: 'örüntüye uymalı: {pattern}',
+  required: 'Bu alan gerekli',
+  uniqueItems: 'tekrarlayan öğeler olamaz (öğe {j} ve {i} birbirinin aynısı)',
+};
+
 export default {
+  'ajv-errors': ajvErrors,
   appName: 'Stok Takibi',
   buttons: {
     back: 'Geri',
