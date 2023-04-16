@@ -1,5 +1,3 @@
-import camelCase from 'camelcase';
-
 import { ComponentStrings } from 'components/VeeDynamicForm/componentMap';
 import { components, paths } from 'src/client/schema.json';
 
@@ -281,10 +279,7 @@ export type FormComponent = {
   props: ComponentProps;
 };
 
-export function create_filters(
-  operation: OperationObject,
-  camelCaseify = true
-) {
+export function create_filters(operation: OperationObject) {
   const filterComponents: Record<string, FormComponent> = {};
   if (operation.parameters) {
     for (const parameter of operation.parameters as ExtendedParameterObject[]) {
@@ -295,9 +290,7 @@ export function create_filters(
         ...xcomp?.props,
       };
       const component = xcomp?.component || 'text-input';
-      filterComponents[
-        camelCaseify ? camelCase(parameter.name) : parameter.name
-      ] = {
+      filterComponents[parameter.name] = {
         componentString: component as ComponentStrings,
         props: props,
       };
@@ -306,7 +299,7 @@ export function create_filters(
   return filterComponents;
 }
 
-export function create_form(component: SchemaObject, camelCaseify = true) {
+export function create_form(component: SchemaObject) {
   if (isObject(component) && component.properties !== undefined) {
     const formComponents: Record<string, FormComponent> = {};
     for (const propertyKey in component.properties) {
@@ -318,7 +311,6 @@ export function create_form(component: SchemaObject, camelCaseify = true) {
         ...xcomp?.props,
       };
       let comp: string;
-      console.log(property);
       if (xcomp?.component) {
         comp = xcomp.component;
       } else if (hasAllOf(property)) {
@@ -326,7 +318,7 @@ export function create_form(component: SchemaObject, camelCaseify = true) {
       } else {
         comp = 'text-input';
       }
-      formComponents[camelCaseify ? camelCase(propertyKey) : propertyKey] = {
+      formComponents[propertyKey] = {
         componentString: comp as ComponentStrings,
         props: props,
       };
@@ -338,42 +330,10 @@ export function create_form(component: SchemaObject, camelCaseify = true) {
 /**
  * shortcut for create_form(dereference(get_component_schema(component_name)))
  */
-export function get_form(
-  component_name: keyof typeof components.schemas,
-  camelCaseIfy = true
-) {
-  return create_form(
-    dereference(get_component_schema(component_name)),
-    camelCaseIfy
-  );
+export function get_form(component_name: keyof typeof components.schemas) {
+  return create_form(dereference(get_component_schema(component_name)));
 }
 
-type NestedRecord = {
-  [key: string | number]: NestedRecord;
+export type NestedRecord = {
+  [key: string | number]: NestedRecord | string | number;
 };
-
-/**
- * ex: object: {a: 1, b: 2, c: {d: 3}}, shouldHave: {c: {d: 3}} // true
- * ex: object: {a: 1, b: 2, c: {d: 3}}, shouldHave: {c: {d: 4}} // false
- * @param object an object you want check if it has the possibly nested value shouldHave
- * @param shouldHave object to have definitely.
- * @returns boolean
- */
-function objectHasPartial(
-  object: NestedRecord,
-  shouldHave: NestedRecord
-): boolean {
-  let result = true;
-  for (const key in shouldHave) {
-    if (Object.prototype.hasOwnProperty.call(object, key)) {
-      if (typeof shouldHave[key] === 'object') {
-        result = objectHasPartial(object[key], shouldHave[key]);
-      } else if (shouldHave[key] !== object[key]) {
-        return false;
-      }
-    } else {
-      return false;
-    }
-  }
-  return result;
-}
