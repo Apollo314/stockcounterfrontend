@@ -14,8 +14,11 @@ export function deepCamelCase(object: NestedRecord): void {
   for (const key in object) {
     if (Object.prototype.hasOwnProperty.call(object, key)) {
       const element = object[key];
-      delete object[key];
-      object[camelCase(key)] = element;
+      const camelizedKey = camelCase(key);
+      if (key !== camelizedKey) {
+        object[camelizedKey] = element;
+        delete object[key];
+      }
       if (typeof element === 'object') {
         deepCamelCase(element);
       }
