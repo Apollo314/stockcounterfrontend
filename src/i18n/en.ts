@@ -23,7 +23,30 @@ const itemLabels: Record<keyof ItemOut, string> = {
   updated_by: 'Updated by',
 };
 
+const ajvErrors = {
+  const: 'must be equal to constant: {allowedValue}',
+  dependentRequired:
+    'must have properties {deps} when property {property} is present',
+  enum: 'must be equal to one of the allowed values: {allowedValues}',
+  exclusiveMaximum: 'must be < {limit}',
+  exclusiveMinimum: 'must be > {limit}',
+  maxItems: 'must NOT have more than {limit} items',
+  maxLength: 'must NOT have more than {limit} characters',
+  maxProperties: 'must NOT have more than {limit} items',
+  maximum: 'must be <= {limit}',
+  minLength: 'must NOT have less than {limit} characters',
+  minProperties: 'must NOT have fewer than {limit} items',
+  minimum: 'must be >= {limit}',
+  mixItems: 'must NOT have less than {limit} items',
+  multipleOf: 'must be multiple of {multipleOf}',
+  pattern: 'Must match pattern {pattern}',
+  required: 'This field is required',
+  uniqueItems:
+    'must NOT have duplicate items (items {j} and {i} are identical)',
+};
+
 export default {
+  'ajv-errors': ajvErrors,
   appName: 'Stock Counter',
   buttons: {
     back: 'Back',
