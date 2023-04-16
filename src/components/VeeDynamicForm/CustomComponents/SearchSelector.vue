@@ -129,7 +129,7 @@ const { value, errorMessage, validate } = useField(toRef(props, 'name'));
 
 const selectRef = ref<InstanceType<typeof QSelect>>();
 
-const options = ref();
+const options = ref<unknown[]>([]);
 
 const searchFilter = ref('');
 const offset = ref(0);
@@ -178,7 +178,7 @@ const onFilter: QSelectProps['onFilter'] = (val, update, abort) => {
           endOfItems.value = true;
         }
         update(() => {
-          options.value = response.results;
+          options.value = response.results || [];
         });
       },
       (reason: unknown) => {
@@ -205,7 +205,7 @@ const loadMore = () => {
         if (!response.next) {
           endOfItems.value = true;
         }
-        options.value = [...options.value, ...(response?.results || [])];
+        options.value.push(...(response.results || []));
       })
       .finally(() => {
         loading.value = false;
