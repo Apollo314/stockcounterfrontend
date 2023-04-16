@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { MaybeRef } from '@vueuse/shared';
-import { onActivated, ref, unref } from 'vue';
+import { onActivated, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import { api } from 'boot/axios';
@@ -23,13 +23,14 @@ import DataTable from 'components/DataTable/DataTable.vue';
 import { ColumnsGenerator } from 'components/DataTable/datatableutilities';
 import FullHeightPage from 'components/Page/FullHeightPage.vue';
 import { create_filters, get_operation } from 'src/composables/openapihelpers';
+import { queryMaker } from 'src/composables/utilities';
 
 import type {
   BaseColumn,
   BaseRow,
   ColumnsOverride,
-  Pagination,
   ContextMenuGroup,
+  Pagination,
 } from 'components/DataTable/DataTable.vue';
 import type { ItemOut } from 'src/client';
 
@@ -136,13 +137,8 @@ function fetcher({
   pagination: MaybeRef<Pagination<Filters>>;
   done?: () => void;
 }) {
-  const pg = unref(requestPagination);
   api.inventory
-    .inventoryItemList({
-      limit: pg.limit,
-      offset: pg.offset,
-      ...pg.filters,
-    })
+    .inventoryItemList(queryMaker(requestPagination))
     .then((value) => {
       data.value = value.results;
       pagination.value.count = value.count || 0;
