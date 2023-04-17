@@ -65,9 +65,8 @@
     <q-file
       :standout="standout"
       class="label-top hide-file-slot"
-      :model-value="inputImage"
+      v-model="inputImage"
       :stack-label="!!value"
-      @update:model-value="inputImage = $event"
       :label="label"
       accept="image/*"
       :error="!!errorMessage"
@@ -113,9 +112,9 @@ const props = withDefaults(
   }
 );
 
-const inputImage = ref();
-const cropper = ref();
-const cropperSrc = ref();
+const inputImage = ref<File>();
+const cropper = ref<InstanceType<typeof Cropper>>();
+const cropperSrc = ref<string | ArrayBuffer | null>();
 
 const { value, errorMessage, setValue } = useField<string | undefined>(
   toRef(props, 'name')
@@ -126,20 +125,25 @@ const setCropperImage = () => {
   reader.onload = () => {
     cropperSrc.value = reader?.result;
   };
-  reader.readAsDataURL(inputImage.value);
+  if (inputImage.value) {
+    reader.readAsDataURL(inputImage.value);
+  }
 };
 
-watch(
-  () => inputImage.value,
-  (newval) => {
-    if (newval) {
-      setCropperImage();
-    } else {
-      cropperSrc.value = undefined;
-      setValue(undefined);
-    }
+watch(inputImage, (newval) => {
+  if (newval) {
+    setCropperImage();
+  } else {
+    cropperSrc.value = undefined;
+    setValue(undefined);
   }
-);
+});
+
+watch(value, () => {
+  if (!value.value) {
+    inputImage.value = undefined;
+  }
+});
 
 const updateModelValue = ({ canvas }: { canvas: HTMLCanvasElement }) => {
   setValue(canvas.toDataURL('image/jpeg'));
@@ -151,11 +155,15 @@ const clear = () => {
 };
 
 const rotate = (angle: number) => {
-  cropper.value.rotate(angle);
+  if (cropper.value) {
+    cropper.value.rotate(angle);
+  }
 };
 
 const flip = (x: boolean, y: boolean) => {
-  cropper.value.flip(x, y);
+  if (cropper.value) {
+    cropper.value.flip(x, y);
+  }
 };
 </script>
 
