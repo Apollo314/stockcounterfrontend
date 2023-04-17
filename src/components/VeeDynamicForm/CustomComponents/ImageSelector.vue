@@ -162,7 +162,6 @@ const flip = (x: boolean, y: boolean) => {
 <style lang="scss">
 .expander {
   position: relative;
-  height: 400px;
   transition: height 0.3s ease;
   &.height-zero {
     height: 0;
@@ -179,6 +178,12 @@ const flip = (x: boolean, y: boolean) => {
   .vue-advanced-cropper__background,
   .vue-advanced-cropper__foreground {
     border-radius: $generic-border-radius;
+  }
+  .vue-advanced-cropper__boundaries {
+    width: 100% !important;
+  }
+  .vue-advanced-cropper__stretcher {
+    width: 100% !important;
   }
 }
 
