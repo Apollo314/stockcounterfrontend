@@ -9,7 +9,8 @@ const ajv = new Ajv({
   strictTypes: false,
 });
 ajv.addSchema(schema, 'root');
-// ajv.addFormat('decimal', true);
-// ajv.addFormat('date-time', true);
+ajv.addFormat('decimal', true);
+ajv.addFormat('date-time', true);
+ajv.addFormat('binary', true);
 
 export { ajv, schema };
