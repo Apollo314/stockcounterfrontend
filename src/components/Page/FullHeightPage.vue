@@ -1,19 +1,6 @@
 <template>
   <q-page :padding="padding" :style-fn="styleFn || defaultStlyeFn">
     <div :class="{ 'full-height': fit }" class="flex column">
-      <div v-if="!hideBackButton" class="col-shrink q-pa-sm">
-        <div class="row full-width">
-          <q-btn
-            flat
-            icon="chevron_left"
-            :label="$t('buttons.back')"
-            no-caps
-            @click="$router.back()"
-          />
-          <q-space />
-          <slot name="top-right"></slot>
-        </div>
-      </div>
       <div class="col">
         <slot></slot>
       </div>
@@ -23,7 +10,6 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  hideBackButton?: boolean;
   /**
    * whether or not fit the whole page to viewport
    */

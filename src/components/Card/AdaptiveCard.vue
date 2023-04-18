@@ -10,29 +10,36 @@
       'compact-scrollbar': compactScrollbar,
     }"
   >
-    <q-card-actions
-      v-if="$slots['action-top']"
-      class="q-pa-none actions-container"
-    >
-      <div class="row actions-row top full-width">
-        <slot name="action-top" />
-      </div>
-    </q-card-actions>
+    <div v-if="$slots['action-top'] || $slots['title-sticky']">
+      <slot name="action-top"></slot>
+      <card-top
+        v-if="!$slots['action-top'] && (backButton || $slots['title-sticky'])"
+        :back-button="backButton"
+      >
+        <template #title><slot name="title-sticky" /></template>
+      </card-top>
+    </div>
     <div ref="scrollParent" class="scrollparent">
       <div ref="scroller" class="scroll-section flex no-user-select">
         <div ref="scrolledContent" style="flex-grow: 1">
+          <card-top
+            v-if="
+              !($slots['action-top'] || $slots['title-sticky']) &&
+              (backButton || $slots['title'])
+            "
+            :back-button="backButton"
+          >
+            <template #title><slot name="title" /></template>
+          </card-top>
           <slot />
         </div>
       </div>
     </div>
-    <q-card-actions
-      v-if="$slots['action-bottom']"
-      class="q-pa-none actions-container"
-    >
+    <div v-if="$slots['action-bottom']">
       <div class="row actions-row bottom full-width">
         <slot name="action-bottom" />
       </div>
-    </q-card-actions>
+    </div>
   </q-card>
 </template>
 
@@ -40,8 +47,11 @@
 import { useScroll } from '@vueuse/core';
 import { onActivated, ref } from 'vue';
 
+import CardTop from './CardTop.vue';
+
 withDefaults(
   defineProps<{
+    backButton?: boolean;
     bordered?: boolean;
     compactScrollbar?: boolean;
   }>(),
