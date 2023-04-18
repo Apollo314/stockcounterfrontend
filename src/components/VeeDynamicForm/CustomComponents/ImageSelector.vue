@@ -74,9 +74,9 @@
       :hide-bottom-space="!errorMessage"
     >
       <template #default v-if="value">
-        <div class="bg-grey-12 q-pa-sm" style="border-radius: 5px">
+        <div class="bg-grey-12 q-pa-sm shadow-6" style="border-radius: 5px">
           <q-img
-            width="300px"
+            width="200px"
             :src="value || ''"
             spinner-color="primary"
             spinner-size="82px"
