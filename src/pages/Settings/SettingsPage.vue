@@ -1,7 +1,10 @@
 <template>
-  <FullHeightPage padding>
-    <AdaptiveCard style="max-width: 650px">
-      <div class="q-pa-md q-gutter-md">
+  <FullHeightPage padding :fit="$q.screen.gt.sm">
+    <AdaptiveCard back-button style="max-width: 650px">
+      <template #title>
+        <div class="text-h6">{{ $t('settings.settings') }}</div>
+      </template>
+      <div class="q-px-md q-pb-md q-gutter-md">
         <template v-for="(comp, i) in settingComponents" :key="i">
           <component
             :[comp.bind]="comp.getter(settings.$state)"
