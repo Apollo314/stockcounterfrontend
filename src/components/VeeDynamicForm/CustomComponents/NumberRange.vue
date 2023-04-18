@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { useField, useForm } from 'vee-validate';
-import { onMounted, ref, toRef, watch } from 'vue';
+import { onMounted, toRef, watch } from 'vue';
 
 import NumberInput from './NumberInput.vue';
 
