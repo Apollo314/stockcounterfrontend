@@ -7,18 +7,13 @@ import { NestedRecord, SchemaObject } from 'src/composables/openapihelpers';
 
 /**
  * to translate ajv errors to any locale
- * @param base string like "invoiceLabels", "itemLabels", depends on the path you translated your fields
  * @param errors errors from ajv passed on directly
  */
-const translator = (base: string, errors: ErrorObject[]) => {
+const translator = (errors: ErrorObject[]) => {
   for (const error of errors) {
     const params: Record<string, string> = {};
     for (const [key, value] of Object.entries(error.params)) {
-      if (key === 'missingProperty') {
-        params[key] = `${base}.${value}`;
-      } else {
-        params[key] = value;
-      }
+      params[key] = value;
     }
     error.message = $t(`ajv-errors.${error.keyword}`, params) || error.message;
   }
@@ -27,7 +22,7 @@ const translator = (base: string, errors: ErrorObject[]) => {
 export function openapiToVeeValidateValidator<
   S extends SchemaObject,
   TInput extends NestedRecord
->(componentSchema: S, base: string): TypedSchema<TInput, TInput> {
+>(componentSchema: S): TypedSchema<TInput, TInput> {
   const validateFunc = ajv.compile(componentSchema);
   const schema: TypedSchema = {
     __type: 'VVTypedSchema',
@@ -36,7 +31,7 @@ export function openapiToVeeValidateValidator<
       const ajvErrors: ErrorObject[] = validateFunc.errors
         ? validateFunc.errors
         : [];
-      translator(base, ajvErrors);
+      translator(ajvErrors);
       const errors: TypedSchemaError[] =
         ajvErrors.map((error) => {
           return {

@@ -317,7 +317,7 @@ export function create_form<
 ) {
   const component = dereference(get_component_schema(component_name));
   const validator = createValidator
-    ? openapiToVeeValidateValidator(component, component_name)
+    ? openapiToVeeValidateValidator(component)
     : undefined;
   const formComponents = new Map<Field, FormComponent>();
   const hiddenFormComponents = new Map<Field, FormComponent>();
