@@ -63,7 +63,7 @@ export function useVPan(options: VPanOptions) {
     deltastartpos.value.y = y.value;
   }
 
-  function onReleased(evt: MouseEvent) {
+  function onReleased() {
     pressed.value = false;
   }
 
