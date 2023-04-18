@@ -40,7 +40,6 @@
           >
             <div class="row justify-end q-col-gutter-sm">
               <div class="col" v-if="zoom?.isSupported">
-                {{ zoom }}
                 <q-slider
                   :model-value="Math.round(zoom.value * 10) / 10"
                   :min="zoom.min"
