@@ -1,15 +1,16 @@
 import { ComponentStrings } from 'components/VeeDynamicForm/componentMap';
+import { openapiToVeeValidateValidator } from 'components/VeeDynamicForm/openapiToYup';
 import { components, paths } from 'src/client/schema.json';
 
 import type {
   DiscriminatorObject,
   ExternalDocumentationObject,
   MediaTypeObject,
-  OperationObject as WrongOperationObject,
+  ParameterObject,
   ReferenceObject,
   ResponseObject,
+  OperationObject as WrongOperationObject,
   XMLObject,
-  ParameterObject,
 } from 'openapi-typescript';
 
 type XComponent = {
@@ -299,9 +300,28 @@ export function create_filters(operation: OperationObject) {
   return filterComponents;
 }
 
-export function create_form(component: SchemaObject) {
+export function create_form<
+  C extends typeof components.schemas,
+  ComponentName extends Extract<
+    keyof typeof components.schemas,
+    `${string}Request`
+  >,
+  Field extends keyof Extract<
+    C[ComponentName],
+    { properties: unknown }
+  >['properties']
+>(
+  component_name: ComponentName,
+  hidden_fields?: Field[],
+  createValidator = true
+) {
+  const component = dereference(get_component_schema(component_name));
+  const validator = createValidator
+    ? openapiToVeeValidateValidator(component, component_name)
+    : undefined;
+  const formComponents = new Map<Field, FormComponent>();
+  const hiddenFormComponents = new Map<Field, FormComponent>();
   if (isObject(component) && component.properties !== undefined) {
-    const formComponents: Record<string, FormComponent> = {};
     for (const propertyKey in component.properties) {
       const property = component.properties[propertyKey] as SchemaObject;
       const xcomp = property['x-components'];
@@ -318,20 +338,18 @@ export function create_form(component: SchemaObject) {
       } else {
         comp = 'text-input';
       }
-      formComponents[propertyKey] = {
+      const formComp = {
         componentString: comp as ComponentStrings,
         props: props,
       };
+      if (hidden_fields?.includes(propertyKey as Field)) {
+        hiddenFormComponents.set(propertyKey as Field, formComp);
+      } else {
+        formComponents.set(propertyKey as Field, formComp);
+      }
     }
-    return formComponents;
   }
-}
-
-/**
- * shortcut for create_form(dereference(get_component_schema(component_name)))
- */
-export function get_form(component_name: keyof typeof components.schemas) {
-  return create_form(dereference(get_component_schema(component_name)));
+  return { formComponents, hiddenFormComponents, validator };
 }
 
 export type NestedRecord = {

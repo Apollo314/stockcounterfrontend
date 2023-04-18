@@ -2,11 +2,7 @@
   <FullHeightPage hide-back-button padding :fit="$q.screen.gt.sm">
     <Form class="full-height" :validation-schema="validator">
       <AdaptiveCard class="q-pa-md" style="max-width: 650px">
-        <DynamicForm
-          v-if="formComponents"
-          :form-components="formComponents"
-          :ignored-fields="['buycurrency', 'sellcurrency']"
-        >
+        <DynamicForm :form-components="formComponents">
           <template #buyprice="{ getComponent, formComponent, getProps }">
             <div class="row">
               <div class="col">
@@ -18,8 +14,9 @@
               </div>
               <div class="col-shrink q-pl-sm">
                 <component
-                  :is="getComponent(formComponents['buycurrency'])"
-                  v-bind="getProps(formComponents['buycurrency'])"
+                  v-if="hiddenFormComponents.has('buycurrency')"
+                  :is="getComponent(hiddenFormComponents.get('buycurrency')!)"
+                  v-bind="getProps(hiddenFormComponents.get('buycurrency')!)"
                   name="buycurrency"
                   style="width: 160px"
                 ></component>
@@ -37,8 +34,9 @@
               </div>
               <div class="q-pl-sm" style="flex-grow: 0; flex-shrink: 0">
                 <component
-                  :is="getComponent(formComponents['sellcurrency'])"
-                  v-bind="getProps(formComponents['sellcurrency'])"
+                  v-if="formComponents"
+                  :is="getComponent(hiddenFormComponents.get('sellcurrency')!)"
+                  v-bind="getProps(hiddenFormComponents.get('sellcurrency')!)"
                   name="sellcurrency"
                   style="width: 160px"
                 ></component>
@@ -75,14 +73,11 @@ import { Form } from 'vee-validate';
 import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
 import FullHeightPage from 'components/Page/FullHeightPage.vue';
 import DynamicForm from 'components/VeeDynamicForm/DynamicForm.vue';
-import { openapiToVeeValidateValidator } from 'components/VeeDynamicForm/openapiToYup';
-import { get_component_schema, get_form } from 'src/composables/openapihelpers';
+import { create_form } from 'src/composables/openapihelpers';
 
-const formComponents = get_form('ItemInRequest');
-
-const validator = openapiToVeeValidateValidator(
-  get_component_schema('ItemInRequest'),
-  'itemLabels'
+const { formComponents, hiddenFormComponents, validator } = create_form(
+  'ItemInRequest',
+  ['buycurrency', 'sellcurrency']
 );
 </script>
 
