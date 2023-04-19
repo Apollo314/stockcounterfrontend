@@ -123,7 +123,9 @@ export const useQRScanner = (
         scanner.value?.getRunningTrackCameraCapabilities();
       zoomFeature.value = cameraCapabilities?.zoomFeature();
       torchFeature.value = cameraCapabilities?.torchFeature();
-      applyZoom(unrefedconfig?.defaultZoomValueIfSupported || 1);
+      if (zoomFeature.value?.isSupported) {
+        applyZoom(unrefedconfig?.defaultZoomValueIfSupported || 1);
+      }
       // await zoomFeature.value?.apply(
       //   unrefedconfig?.defaultZoomValueIfSupported || 1
       // );
@@ -145,16 +147,22 @@ export const useQRScanner = (
         el.id = elid;
         createScanner();
       } else {
-        scanner.value?.stop();
+        try {
+          scanner.value?.stop();
+        } catch (error) {}
       }
     }
   );
 
   onUnmounted(() => {
-    scanner.value?.stop();
+    try {
+      scanner.value?.stop();
+    } catch (error) {}
   });
   onDeactivated(() => {
-    scanner.value?.stop();
+    try {
+      scanner.value?.stop();
+    } catch (error) {}
   });
 
   return {
