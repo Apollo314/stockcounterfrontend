@@ -20,7 +20,7 @@ declare module '@vue/runtime-core' {
 // const api = axios.create({ baseURL: 'https://api.example.com' });
 
 const api = new AppClient({
-  BASE: process.env.BASE ?? `https://${window.location.hostname}:8000`,
+  BASE: process.env.BASE ?? `http://${window.location.hostname}:8000`,
   WITH_CREDENTIALS: true,
 });
 
