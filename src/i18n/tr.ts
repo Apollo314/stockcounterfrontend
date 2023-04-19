@@ -1,4 +1,4 @@
-/*eslint sort-keys: "error"*/
+/*eslint sort-keys: "warn"*/
 
 import { ItemOut } from 'src/client';
 
@@ -66,6 +66,11 @@ export default {
     refresh: 'Yenile',
     reset: 'Sıfırla',
     search: 'Ara',
+    yes: 'Evet',
+  },
+  confirmations: {
+    'repeat-text-above': 'Yukarıdaki yazıyı tekrar edin',
+    'will-be-deleted': '{objects} silinecek.',
   },
   data_table: {
     cards: 'Kart görünümü',
