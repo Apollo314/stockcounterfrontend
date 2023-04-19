@@ -61,29 +61,34 @@
         </q-btn-group>
       </div>
     </div>
-
     <q-file
       :standout="standout"
       class="label-top hide-file-slot"
       v-model="inputImage"
-      :stack-label="!!value"
+      :stack-label="!!(imgUrl || value)"
       :label="label"
       accept="image/*"
       :error="!!errorMessage"
       :error-message="errorMessage"
       :hide-bottom-space="!errorMessage"
     >
-      <template #default v-if="value">
-        <div class="bg-grey-12 q-pa-sm shadow-6" style="border-radius: 5px">
+      <template #prepend>
+        <q-icon name="image"></q-icon>
+      </template>
+      <template #default v-if="imgUrl || value">
+        <div
+          class="q-pa-sm bg-grey-1 coolshadowmore pictureframe"
+          style="border-radius: 5px"
+        >
           <q-img
             width="200px"
-            :src="value || ''"
+            :src="value || imgUrl || ''"
             spinner-color="primary"
             spinner-size="82px"
           />
         </div>
       </template>
-      <template #append v-if="value">
+      <template #append v-if="imgUrl || value">
         <q-icon class="cursor-pointer" name="clear" @click="clear()" />
       </template>
       <template #file> </template>
@@ -116,7 +121,9 @@ const inputImage = ref<File>();
 const cropper = ref<InstanceType<typeof Cropper>>();
 const cropperSrc = ref<string | ArrayBuffer | null>();
 
-const { value, errorMessage, setValue } = useField<string | undefined>(
+const imgUrl = ref<string>();
+
+const { value, errorMessage, setValue } = useField<string | null | undefined>(
   toRef(props, 'name')
 );
 
@@ -142,6 +149,9 @@ watch(inputImage, (newval) => {
 watch(value, () => {
   if (!value.value) {
     inputImage.value = undefined;
+  } else if (value.value.startsWith('http')) {
+    imgUrl.value = value.value;
+    value.value = undefined;
   }
 });
 
@@ -152,6 +162,8 @@ const updateModelValue = ({ canvas }: { canvas: HTMLCanvasElement }) => {
 const clear = () => {
   setValue(undefined);
   inputImage.value = undefined;
+  imgUrl.value = undefined;
+  value.value = null; // otherwise json just ignores undefined, doesn't send the field and image doesn't get deleted
 };
 
 const rotate = (angle: number) => {
@@ -195,7 +207,38 @@ const flip = (x: boolean, y: boolean) => {
   }
 }
 
+@keyframes wiggle {
+  0% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: -2deg;
+  }
+  50% {
+    rotate: 2deg;
+  }
+  75% {
+    rotate: -2deg;
+  }
+  100% {
+    rotate: 0deg;
+    translate: 25% 25%;
+    scale: 1.5;
+  }
+}
+
 .hide-file-slot {
+  .q-field__control-container {
+    padding-bottom: 12px;
+    .pictureframe {
+      &:hover {
+        body.desktop & {
+          z-index: 1000;
+          animation: wiggle 0.3s ease forwards;
+        }
+      }
+    }
+  }
   .q-field__native {
     max-width: 0px;
   }

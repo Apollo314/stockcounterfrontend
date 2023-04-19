@@ -17,6 +17,7 @@
 import { MaybeRef } from '@vueuse/shared';
 import { onActivated, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 
 import { api } from 'boot/axios';
 import DataTable from 'components/DataTable/DataTable.vue';
@@ -100,20 +101,24 @@ const co: ColumnsOverride<Column, Row> = {
     label: () => $t('itemlabels.category'),
     field: (row) => row.category?.name,
   },
-  // barcode: { label: () => $t('itemlabels.barcode') },
-  // buycurrency: { label: () => $t('itemlabels.buycurrency') },
-  // description: { label: () => $t('itemlabels.description') },
-  // sellcurrency: { label: () => $t('itemlabels.sellcurrency') },
+  barcode: { label: () => $t('itemlabels.barcode'), hidden: true },
+  description: { label: () => $t('itemlabels.description'), hidden: true },
 };
 
 const columns = ColumnsGenerator<Column, Row>(co, operation);
+const router = useRouter();
 
 const contextmenuactions: ContextMenuGroup<Row>[] = [
   [
     {
-      callback: () => console.log('I am called'),
+      callback: (rows, done) => {
+        router.push({
+          name: 'items-update',
+          params: { id: Array.from(rows)[0][1].id },
+        });
+        done(true);
+      },
       label: 'I am a label',
-      can_handle_multiple: true,
       can_handle_single: true,
       color: 'primary',
       icon: 'edit',

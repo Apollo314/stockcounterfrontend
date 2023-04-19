@@ -1,6 +1,11 @@
 <template>
   <FullHeightPage hide-back-button padding :fit="$q.screen.gt.sm">
-    <Form class="full-height" :validation-schema="validator">
+    <Form
+      class="full-height"
+      :validation-schema="validator"
+      :initial-values="initialData"
+      @submit="submit($event as ItemInRequest)"
+    >
       <AdaptiveCard back-button padding style="max-width: 650px">
         <template #title-sticky>
           <div class="text-h6">Item Creation Form</div>
@@ -74,16 +79,42 @@
 
 <script setup lang="ts">
 import { Form } from 'vee-validate';
+import { onBeforeMount, ref } from 'vue';
 
 import AdaptiveCard from 'components/Card/AdaptiveCard.vue';
 import FullHeightPage from 'components/Page/FullHeightPage.vue';
 import DynamicForm from 'components/VeeDynamicForm/DynamicForm.vue';
 import { create_form } from 'src/composables/openapihelpers';
 
+import { api } from '../../boot/axios';
+import { ItemDetail, ItemInRequest } from '../../client';
+
+const props = defineProps<{
+  id?: string;
+}>();
+
+onBeforeMount(() => {
+  if (props.id) {
+    api.inventory.inventoryItemRetrieve({ id: +props.id }).then((result) => {
+      initialData.value = result;
+    });
+  }
+});
+
+const initialData = ref<ItemDetail>();
+
 const { formComponents, hiddenFormComponents, validator } = create_form(
   'ItemInRequest',
   ['buycurrency', 'sellcurrency']
 );
+
+function submit(event: ItemInRequest) {
+  if (props.id) {
+    api.inventory.inventoryItemUpdate({ id: +props.id, requestBody: event });
+  } else {
+    api.inventory.inventoryItemCreate({ requestBody: event });
+  }
+}
 </script>
 
 <style scoped></style>
