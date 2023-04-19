@@ -33,10 +33,15 @@
               "
               v-close-popup
             >
-              <q-item-section avatar v-if="action.icon">
-                <q-icon :color="action.color" :name="action.icon" />
-              </q-item-section>
-              <q-item-section>{{ action.label }}</q-item-section>
+              <div class="row full-width items-center">
+                <q-icon
+                  :color="action.color"
+                  size="24px"
+                  class="q-mr-md"
+                  :name="action.icon"
+                />
+                <div>{{ action.label }}</div>
+              </div>
             </q-item>
           </template>
         </template>
