@@ -2,12 +2,12 @@
   <FullHeightPage hide-back-button padding :fit="!card || $q.screen.gt.sm">
     <DataTable
       v-model:pagination="pagination"
+      v-model:card="card"
       :data="data || []"
       :columns="columns"
       :contextmenuactions="contextmenuactions"
-      @request="fetcher"
-      v-model:card="card"
       :filter-components="formComponents"
+      @request="fetcher"
     >
     </DataTable>
   </FullHeightPage>

@@ -53,7 +53,9 @@ export default {
   },
   commons: {
     cancel: 'Vazgeç',
+    delete: 'Sil',
     dofilter: 'Filtrele',
+    editoropen: 'Aç/Değiştir',
     fields: {
       created_at: 'Oluşturma Tarihi',
       created_by: 'Oluşturan',
