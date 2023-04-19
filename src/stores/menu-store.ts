@@ -14,13 +14,13 @@ export const menuItems = (): MenuItem[] => {
           title: $t('menu.sale-invoices'),
           shrinkable: true,
           icon: 'article',
-          to: { name: 'invoices' },
+          to: { name: 'nest', params: { id: 1 } },
           bgColor: 'green-8',
           children: [
             {
               title: $t('menu.new-sale-invoice'),
               icon: 'post_add',
-              to: { name: 'invoces-create' },
+              to: { name: 'nest', params: { id: 2 } },
             },
           ],
         },
@@ -81,12 +81,12 @@ export const menuItems = (): MenuItem[] => {
           icon: 'trolley',
           bgColor: 'yellow-10',
           shrinkable: true,
-          to: { name: 'nest', params: { id: 9 } },
+          to: { name: 'items-list' },
           children: [
             {
               title: $t('commons.new', ['menu.item-service']),
               icon: 'conveyor_belt',
-              to: { name: 'nest', params: { id: 10 } },
+              to: { name: 'items-create' },
             },
           ],
         },
