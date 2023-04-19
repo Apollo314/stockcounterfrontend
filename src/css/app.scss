@@ -84,6 +84,14 @@ a {
   }
 }
 
+.coolshadow {
+  box-shadow: $coolshadow;
+}
+
+.coolshadowmore {
+  box-shadow: $coolshadowmore;
+}
+
 // q-card
 .q-card {
   @include thic-card();
