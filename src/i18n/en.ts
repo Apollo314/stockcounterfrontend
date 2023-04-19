@@ -1,4 +1,4 @@
-/*eslint sort-keys: "error"*/
+/*eslint sort-keys: "warn"*/
 
 import { ItemOut } from 'src/client';
 
@@ -55,7 +55,9 @@ export default {
   },
   commons: {
     cancel: 'Cancel',
+    delete: 'Delete',
     dofilter: 'Filter',
+    editoropen: 'Edit/Open',
     fields: {
       created_at: 'Create Date',
       created_by: 'Created By',
@@ -68,6 +70,11 @@ export default {
     refresh: 'Refresh',
     reset: 'Reset',
     search: 'Search',
+    yes: 'Yes',
+  },
+  confirmations: {
+    'repeat-text-above': 'Repeat the text above',
+    'will-be-deleted': '{objects} will be deleted.',
   },
   data_table: {
     cards: 'Cards view',

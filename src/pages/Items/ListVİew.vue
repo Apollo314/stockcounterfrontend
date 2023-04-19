@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 import { MaybeRef } from '@vueuse/shared';
+import { useQuasar } from 'quasar';
 import { onActivated, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
@@ -22,6 +23,7 @@ import { useRouter } from 'vue-router';
 import { api } from 'boot/axios';
 import DataTable from 'components/DataTable/DataTable.vue';
 import { ColumnsGenerator } from 'components/DataTable/datatableutilities';
+import RepeatTextConfirmation from 'components/Dialogs/RepeatTextConfirmation.vue';
 import FullHeightPage from 'components/Page/FullHeightPage.vue';
 import { create_filters, get_operation } from 'src/composables/openapihelpers';
 import { queryMaker } from 'src/composables/utilities';
@@ -107,6 +109,7 @@ const co: ColumnsOverride<Column, Row> = {
 
 const columns = ColumnsGenerator<Column, Row>(co, operation);
 const router = useRouter();
+const $q = useQuasar();
 
 const contextmenuactions: ContextMenuGroup<Row>[] = [
   [
@@ -118,10 +121,39 @@ const contextmenuactions: ContextMenuGroup<Row>[] = [
         });
         done(true);
       },
-      label: 'I am a label',
+      label: $t('commons.editoropen'),
       can_handle_single: true,
       color: 'primary',
       icon: 'edit',
+    },
+    {
+      callback: (rows, done) => {
+        const names = Array.from(rows, ([, row]) => row.name).join(', ');
+        $q.dialog({
+          component: RepeatTextConfirmation,
+          componentProps: {
+            explanation: $t('confirmations.will-be-deleted', {
+              objects: `[${names}]`,
+            }),
+            icon: 'delete',
+            color: 'negative',
+          },
+        }).onOk(() => {
+          api.inventory
+            .inventoryBulkItemDestroy({
+              pk: Array.from(rows, ([, value]) => value.id.toString()),
+            })
+            .then(() => {
+              done(true);
+              fetcher({ pagination: pagination.value });
+            });
+        });
+      },
+      label: $t('commons.delete'),
+      can_handle_single: true,
+      can_handle_multiple: true,
+      color: 'negative',
+      icon: 'delete',
     },
   ],
 ];
