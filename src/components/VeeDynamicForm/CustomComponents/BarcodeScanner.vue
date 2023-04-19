@@ -1,6 +1,7 @@
 <template>
   <div>
     <q-input
+      ref="inputRef"
       :standout="standout"
       :outlined="outlined"
       v-model="value"
@@ -10,6 +11,7 @@
       :error="!!errorMessage"
       :error-message="errorMessage"
       :hide-bottom-space="!errorMessage"
+      :bg-color="highlight ? 'primary' : undefined"
       clear-icon="clear"
       :dense="dense"
     >
@@ -72,9 +74,9 @@
 </template>
 
 <script setup lang="ts">
-import { useQuasar } from 'quasar';
+import { QInput, useQuasar } from 'quasar';
 import { useField } from 'vee-validate';
-import { computed, ref, toRef } from 'vue';
+import { computed, ref, toRef, watch } from 'vue';
 
 import { Config, useQRScanner } from 'src/composables/useQRScanner';
 
@@ -86,6 +88,7 @@ const props = withDefaults(
     label: string;
     clearable?: boolean;
     dense?: boolean;
+    highlight?: boolean;
   }>(),
   {
     type: 'text',
@@ -96,6 +99,7 @@ const props = withDefaults(
 
 const modalOpen = ref(false);
 const scannerRef = ref<HTMLElement>();
+const inputRef = ref<InstanceType<typeof QInput>>();
 
 const $q = useQuasar();
 
@@ -117,6 +121,17 @@ const config = ref<Config>({
   defaultZoomValueIfSupported: 2,
   reScanInterval: 2000,
 });
+
+watch(
+  () => props.highlight,
+  () => {
+    if (props.highlight) {
+      setTimeout(() => {
+        inputRef.value?.focus();
+      }, 50);
+    }
+  }
+);
 
 const { zoom, applyZoom, torchFeature } = useQRScanner(
   scannerRef,
