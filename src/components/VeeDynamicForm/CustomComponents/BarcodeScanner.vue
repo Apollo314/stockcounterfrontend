@@ -15,7 +15,7 @@
       clear-icon="clear"
       :dense="dense"
     >
-      <template #prepend>
+      <template #before>
         <q-btn flat icon="qr_code_scanner" @click="modalOpen = true" />
       </template>
     </q-input>
