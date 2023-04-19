@@ -1,7 +1,6 @@
 <template>
   <th
     class="table-header-cell"
-    v-show="!column.hidden"
     :key="column.id"
     :class="{
       ...getAlignClass(column.align),
