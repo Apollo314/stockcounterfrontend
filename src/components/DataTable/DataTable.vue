@@ -547,7 +547,6 @@ const request: RequestFunction<Filters> = (partialPagination) => {
   if (requestDone.value) {
     requestDone.value = false;
     const filters: Record<string, string> = {
-      ...props.pagination.filters,
       ...partialPagination.filters,
       ordering: orderingValue.value,
     };
