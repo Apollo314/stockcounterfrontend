@@ -663,7 +663,7 @@
             "schema": {
               "type": "string",
               "x-components": {
-                "component": "text-input",
+                "component": "barcode-scanner",
                 "props": {
                   "label": "barcode"
                 }
@@ -905,7 +905,7 @@
               "schema": {
                 "type": "string",
                 "x-components": {
-                  "component": "text-input",
+                  "component": "barcode-scanner",
                   "props": {
                     "label": "barcode"
                   }
@@ -1151,7 +1151,7 @@
             "schema": {
               "type": "string",
               "x-components": {
-                "component": "text-input",
+                "component": "barcode-scanner",
                 "props": {
                   "label": "barcode"
                 }
@@ -1393,7 +1393,7 @@
               "schema": {
                 "type": "string",
                 "x-components": {
-                  "component": "text-input",
+                  "component": "barcode-scanner",
                   "props": {
                     "label": "barcode"
                   }
@@ -5853,7 +5853,6 @@
             "type": "string",
             "format": "uri",
             "nullable": true,
-            "title": "Önizleme Fotoğraf",
             "x-components": {
               "component": "single-image-selector"
             }
@@ -6006,7 +6005,6 @@
             "type": "string",
             "format": "uri",
             "nullable": true,
-            "title": "Önizleme Fotoğraf",
             "x-components": {
               "component": "single-image-selector"
             }
@@ -6139,7 +6137,6 @@
             "type": "string",
             "format": "binary",
             "nullable": true,
-            "title": "Önizleme Fotoğraf",
             "x-components": {
               "component": "single-image-selector"
             }
@@ -6422,7 +6419,6 @@
             "type": "string",
             "format": "uri",
             "nullable": true,
-            "title": "Önizleme Fotoğraf",
             "x-components": {
               "component": "single-image-selector"
             }
@@ -6996,7 +6992,6 @@
             "type": "string",
             "format": "binary",
             "nullable": true,
-            "title": "Önizleme Fotoğraf",
             "x-components": {
               "component": "single-image-selector"
             }
