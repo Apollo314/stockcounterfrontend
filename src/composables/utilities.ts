@@ -6,8 +6,11 @@ import { Pagination } from '../components/DataTable/DataTable.vue';
 
 import { NestedRecord } from './openapihelpers';
 
-export function callOrGet<T>(value: T | (() => T)): T {
-  return value instanceof Function ? value() : value;
+export function callOrGet<T, Args>(
+  value: T | ((...args: Args[]) => T),
+  args?: Args[]
+): T {
+  return value instanceof Function ? value(...(args || [])) : value;
 }
 
 export function deepCamelCase(object: NestedRecord): void {

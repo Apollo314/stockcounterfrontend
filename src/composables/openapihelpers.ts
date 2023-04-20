@@ -1,5 +1,9 @@
+import { Quasar } from 'quasar';
+
+import { $locale } from 'boot/i18n';
 import { ComponentStrings } from 'components/VeeDynamicForm/componentMap';
 import { openapiToVeeValidateValidator } from 'components/VeeDynamicForm/openapiToYup';
+import { components as components_tr } from 'src/client/schema-tr.json';
 import { components, paths } from 'src/client/schema.json';
 
 import type {
@@ -120,7 +124,7 @@ type CorrectMediaTypeObject = Omit<MediaTypeObject, 'schema'> & {
   schema?: SchemaObject | ReferenceObject;
 };
 
-type CorrectResponseObject = Omit<ResponseObject, 'content'> & {
+export type CorrectResponseObject = Omit<ResponseObject, 'content'> & {
   content?: {
     [contentType: string]: CorrectMediaTypeObject;
   };
@@ -257,8 +261,16 @@ export function dereference(
 }
 
 export function get_component_schema(
-  component_name: keyof typeof components.schemas
+  component_name: keyof typeof components.schemas,
+  locale?: 'en' | 'tr'
 ): SchemaObject {
+  locale = locale || $locale.value === 'tr' ? 'tr' : 'en';
+  if (locale === 'en') {
+    return components.schemas[component_name] as SchemaObject;
+  } else if (locale === 'tr') {
+    return components_tr.schemas[component_name] as SchemaObject;
+  } else {
+  }
   return components.schemas[component_name] as SchemaObject;
 }
 

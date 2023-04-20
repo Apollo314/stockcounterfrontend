@@ -1,7 +1,7 @@
 <template>
   <th
-    class="table-header-cell"
     :key="column.id"
+    class="table-header-cell"
     :class="{
       ...getAlignClass(column.align),
       'cursor-pointer': column.orderable || column.filterable,
@@ -11,11 +11,11 @@
   >
     <span>
       <b class="column-label col">
-        {{ callOrGet(column.label) }}
+        {{ callOrGet(column.label, [column]) }}
         <span
+          v-if="orderIndex > -1"
           class="bg-primary q-pa-xs"
           style="border-radius: 5px"
-          v-if="orderIndex > -1"
           >({{ orderIndex }})</span
         >
       </b>
@@ -23,57 +23,56 @@
     <q-menu
       v-if="column.filterable || column.orderable"
       touch-position
-      style="min-width: 200px"
       self="top middle"
     >
       <q-card bordered class="my-card">
         <div class="row justify-center text-bold q-pa-sm">
-          {{ callOrGet(column.label) }}
+          {{ callOrGet(column.label, [column]) }}
         </div>
         <q-btn-group spread flat>
           <q-btn
+            v-if="column.orderable"
+            v-close-popup
             flat
             icon="arrow_upward"
-            v-if="column.orderable"
-            @click="
-              $emit('requestOrdering', { order: 'ascending', column: column })
-            "
             :class="{
               'active-button':
                 orderedColumns?.get(column.id)?.order === 'ascending',
             }"
-            v-close-popup
+            @click="
+              $emit('requestOrdering', { order: 'ascending', column: column })
+            "
           >
             <q-tooltip>{{
               $t('data_table.ordering.buttons.increasing')
             }}</q-tooltip>
           </q-btn>
           <q-btn
+            v-if="column.orderable"
+            v-close-popup
             flat
             icon="arrow_downward"
-            v-if="column.orderable"
+            :class="{
+              'active-button':
+                orderedColumns?.get(column.id)?.order === 'descending',
+            }"
             @click="
               $emit('requestOrdering', {
                 order: 'descending',
                 column: column,
               })
             "
-            :class="{
-              'active-button':
-                orderedColumns?.get(column.id)?.order === 'descending',
-            }"
-            v-close-popup
           >
             <q-tooltip>{{
               $t('data_table.ordering.buttons.decreasing')
             }}</q-tooltip>
           </q-btn>
           <q-btn
+            v-if="column.filterable"
+            v-close-popup
             flat
             icon="filter_list"
             @click="$emit('requestFocusOnFilter', column.id)"
-            v-if="column.filterable"
-            v-close-popup
           >
             <q-tooltip>{{ $t('data_table.filter') }}</q-tooltip>
           </q-btn>

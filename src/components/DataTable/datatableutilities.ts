@@ -1,8 +1,11 @@
 import { Ref, ref } from 'vue';
 
 import {
+  CorrectResponseObject,
   ExtendedParameterObject,
   OperationObject,
+  SchemaObject,
+  dereference,
 } from 'src/composables/openapihelpers';
 
 import { BaseColumn, ColumnsOverride, BaseRow } from './DataTable.vue';
@@ -78,17 +81,52 @@ const isFilterable = <Row extends BaseRow, Column extends BaseColumn<Row>>(
   return false;
 };
 
+const extractSchemaFromOperation = (operation: OperationObject) => {
+  const responseSchema = (operation.responses[200] as CorrectResponseObject)
+    .content?.['application/json'].schema;
+  if (responseSchema) {
+    const derefedSchema = dereference(responseSchema) as Extract<
+      SchemaObject,
+      { type: 'object' }
+    >;
+    const properties = derefedSchema.properties;
+    if (!properties) {
+      return;
+    }
+    const results = properties['results'] as Extract<
+      SchemaObject,
+      { type: 'array' }
+    >;
+    if (!results) {
+      return;
+    }
+    const items = results.items;
+    if (!items) {
+      return;
+    }
+    return items as Extract<SchemaObject, { type: 'object' }>;
+  }
+  return;
+};
+
 export function ColumnsGenerator<
   Column extends BaseColumn<Row>,
   Row extends BaseRow
 >(columnsOverride: ColumnsOverride<Column, Row>, operation?: OperationObject) {
   const columns = ref<Column[]>([]) as Ref<Column[]>;
+  const operationSchema =
+    operation !== undefined ? extractSchemaFromOperation(operation) : undefined;
   for (const key in columnsOverride) {
     const co = columnsOverride[key];
+
+    const schemaField = operationSchema?.properties?.[key] as
+      | SchemaObject
+      | undefined;
+
     const column: Column = {
       field: key as string,
       id: key as string,
-      label: key as string,
+      label: schemaField?.title || (key as string),
     } as Column;
     if (operation) {
       const orderableColumns = getOrderableColumns(operation, 'ordering');

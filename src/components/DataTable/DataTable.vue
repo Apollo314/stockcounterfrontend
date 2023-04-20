@@ -1,20 +1,20 @@
 <template>
   <div ref="tableParentRef" class="row data-table fit">
     <adaptive-card
+      ref="tableCardRef"
       :class="{
         'sticky-header': stickyHeader,
         'sticky-caption': stickyCaption,
         'bg-transparent': card && !$q.screen.gt.xs && !isFullscreen,
         cards: card,
       }"
-      ref="tableCardRef"
       class="full-height col"
       :bordered="$q.screen.gt.xs"
     >
       <template #action-top>
         <Teleport
-          :to="subHeader"
           v-if="subHeader"
+          :to="subHeader"
           :disabled="
             !card || $q.screen.gt.sm || isFullscreen || !mountedToDataTable
           "
@@ -41,10 +41,10 @@
               </th>
               <template v-for="column in computedcolumns" :key="column.id">
                 <HeaderCell
-                  @requestFocusOnFilter="requestFocusOnFilter($event)"
-                  :column="column"
                   v-if="activeColumns.get(column.id)"
-                  @requestOrdering="
+                  :column="column"
+                  @request-focus-on-filter="requestFocusOnFilter($event)"
+                  @request-ordering="
                     order($event.column as unknown as Column, $event.order)
                   "
                 >
@@ -65,14 +65,14 @@
           >
             <tr
               v-for="row in data"
-              :class="{ 'selected-row': selectedMap.has(row.id) }"
               :key="row.id"
+              :class="{ 'selected-row': selectedMap.has(row.id) }"
               @dblclick.stop="toggleSelection(row)"
             >
               <context-menu
                 :actions="contextmenuactions"
                 :selected-rows="selectedMap"
-                @contextRequest="
+                @context-request="
                   () => {
                     if (!selectedMap.has(row.id)) {
                       selectedMap.clear();
@@ -91,8 +91,8 @@
               </td>
               <template v-for="column in computedcolumns" :key="column.id">
                 <td
-                  :class="getAlignClass(column.align)"
                   v-if="activeColumns.get(column.id)"
+                  :class="getAlignClass(column.align)"
                 >
                   <div class="cell">
                     {{ getColValue(column, row) }}
@@ -110,17 +110,17 @@
         <div v-else class="row">
           <div
             v-for="row in data"
-            :class="{ selected: selectedMap.has(row.id) }"
             :key="row.id"
+            :class="{ selected: selectedMap.has(row.id) }"
             class="data-card-container q-pa-sm col-xs-12 col-sm-6 col-md-4 col-lg-3"
             @dblclick="toggleSelection(row)"
           >
             <div class="data-card-parent" style="width: 100%; height: 100%">
               <context-menu
+                v-model="contextMenus[row.id]"
                 :actions="contextmenuactions"
                 :selected-rows="selectedMap"
-                v-model="contextMenus[row.id]"
-                @contextRequest="
+                @context-request="
                   () => {
                     if (!selectedMap.has(row.id)) {
                       selectedMap.clear();
@@ -151,7 +151,7 @@
                     <q-item v-if="activeColumns.get(column.id)">
                       <q-item-section style="min-width: unset !important">
                         <q-item-label>{{
-                          callOrGet(column.label)
+                          callOrGet(column.label, [column])
                         }}</q-item-label>
                       </q-item-section>
                       <q-item-section
@@ -183,36 +183,36 @@
             :model-value="pagination.offset"
             :count="pagination.count"
             :limit="pagination.limit"
-            @update:model-value="request({ offset: $event })"
             :max-length="7"
             direction-links
+            @update:model-value="request({ offset: $event })"
           ></OffsetLimitPaginator>
         </div>
       </template>
     </adaptive-card>
     <Form
-      class="full-height"
-      :keep-values="true"
       ref="filterFormRef"
       v-slot="{ handleSubmit, handleReset, values }"
+      class="full-height"
+      :keep-values="true"
     >
       <InlineDrawer
+        v-if="filterComponents && mountedToDataTable"
         v-model="showFilter"
         style="max-height: 100%"
         :width="300"
         :overlay="width < 700"
         bordered
-        v-if="filterComponents && mountedToDataTable"
         :class="{ 'q-ml-md': showFilter && !(width < 700) }"
       >
         <form
+          class="full-height"
           @submit="
             handleSubmit($event, () =>
               request({ offset: -1, filters: values as Filters })
             )
           "
           @reset="handleReset"
-          class="full-height"
         >
           <AdaptiveCard class="bg-transparent shadow-0 full-height">
             <div class="q-pa-sm">
@@ -287,7 +287,7 @@ export type BaseRow = {
 export type BaseColumn<Row> = {
   id: keyof Row & string;
   field: keyof Row | ((row: Row) => string | number | undefined | null);
-  label: string | (() => string);
+  label: string | ((column: BaseColumn<Row>) => string);
   align?: 'left' | 'center' | 'right';
   /**
    * width of the column in pixel
