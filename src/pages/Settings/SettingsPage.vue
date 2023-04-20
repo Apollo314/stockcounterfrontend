@@ -7,10 +7,10 @@
       <div class="q-px-md q-pb-md q-gutter-md">
         <template v-for="(comp, i) in settingComponents" :key="i">
           <component
-            :[comp.bind]="comp.getter(settings.$state)"
-            @update:model-value="comp.mutator(settings.$state, $event)"
             :is="comp.component"
+            :[comp.bind]="comp.getter(settings.$state)"
             v-bind="comp.props"
+            @update:model-value="comp.mutator(settings.$state, $event)"
           ></component>
         </template>
       </div>
@@ -19,6 +19,7 @@
 </template>
 
 <script setup lang="ts">
+import axios from 'axios';
 import { ComponentConstructor, QCheckbox, QSelect, useQuasar } from 'quasar';
 import quasarEN from 'quasar/lang/en-US';
 import quasarTR from 'quasar/lang/tr';
@@ -76,6 +77,8 @@ const settingComponents = computed<SettingComponent[]>(() => {
       getter: () => locale.value,
       mutator: (_, value) => {
         locale.value = value as keyof typeof quasarLangMap;
+        axios.defaults.headers.common['Accept-Language'] =
+          value as keyof typeof quasarLangMap;
         $q.lang.set(quasarLangMap[value as keyof typeof quasarLangMap]);
       },
       bind: 'modelValue',
