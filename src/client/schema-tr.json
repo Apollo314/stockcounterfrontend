@@ -336,7 +336,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Category",
+            "description": "Ara: Kategori",
             "schema": {
               "type": "string"
             }
@@ -394,7 +394,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Category",
+              "description": "Ara: Kategori",
               "schema": {
                 "type": "string"
               }
@@ -455,7 +455,7 @@
             "name": "name",
             "schema": {
               "type": "string",
-              "title": "Category"
+              "title": "Kategori"
             },
             "required": true
           }
@@ -487,7 +487,7 @@
             "name": "name",
             "schema": {
               "type": "string",
-              "title": "Category"
+              "title": "Kategori"
             },
             "required": true
           }
@@ -529,7 +529,7 @@
             "name": "name",
             "schema": {
               "type": "string",
-              "title": "Category"
+              "title": "Kategori"
             },
             "required": true
           }
@@ -570,7 +570,7 @@
             "name": "name",
             "schema": {
               "type": "string",
-              "title": "Category"
+              "title": "Kategori"
             },
             "required": true
           }
@@ -790,7 +790,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Item/Service, Description",
+            "description": "Ara: Ürün/Hizmet, Açıklama",
             "schema": {
               "type": "string"
             }
@@ -1036,7 +1036,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Item/Service, Description",
+              "description": "Ara: Ürün/Hizmet, Açıklama",
               "schema": {
                 "type": "string"
               }
@@ -1278,7 +1278,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Item/Service, Description",
+            "description": "Ara: Ürün/Hizmet, Açıklama",
             "schema": {
               "type": "string"
             }
@@ -1524,7 +1524,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Item/Service, Description",
+              "description": "Ara: Ürün/Hizmet, Açıklama",
               "schema": {
                 "type": "string"
               }
@@ -1960,7 +1960,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Item/Service",
+            "description": "Ara: Ürün/Hizmet",
             "schema": {
               "type": "string"
             }
@@ -2108,7 +2108,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Item/Service",
+              "description": "Ara: Ürün/Hizmet",
               "schema": {
                 "type": "string"
               }
@@ -2302,7 +2302,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Stock unit",
+            "description": "Ara: Birim",
             "schema": {
               "type": "string"
             }
@@ -2360,7 +2360,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Stock unit",
+              "description": "Ara: Birim",
               "schema": {
                 "type": "string"
               }
@@ -2421,7 +2421,7 @@
             "name": "name",
             "schema": {
               "type": "string",
-              "title": "Stock unit"
+              "title": "Birim"
             },
             "required": true
           }
@@ -2453,7 +2453,7 @@
             "name": "name",
             "schema": {
               "type": "string",
-              "title": "Stock unit"
+              "title": "Birim"
             },
             "required": true
           }
@@ -2495,7 +2495,7 @@
             "name": "name",
             "schema": {
               "type": "string",
-              "title": "Stock unit"
+              "title": "Birim"
             },
             "required": true
           }
@@ -2536,7 +2536,7 @@
             "name": "name",
             "schema": {
               "type": "string",
-              "title": "Stock unit"
+              "title": "Birim"
             },
             "required": true
           }
@@ -2562,7 +2562,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Depot name, Address, Phone, Plate number",
+            "description": "Ara: Depo adı, Adres, Telefon, Plaka numarası",
             "schema": {
               "type": "string"
             }
@@ -2610,7 +2610,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Depot name, Address, Phone, Plate number",
+              "description": "Ara: Depo adı, Adres, Telefon, Plaka numarası",
               "schema": {
                 "type": "string"
               }
@@ -2658,7 +2658,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Item/Service",
+            "description": "Ara: Ürün/Hizmet",
             "schema": {
               "type": "string"
             }
@@ -2706,7 +2706,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Item/Service",
+              "description": "Ara: Ürün/Hizmet",
               "schema": {
                 "type": "string"
               }
@@ -4406,7 +4406,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: first name, last name, email address, username",
+            "description": "Ara: adı, soyadı, e-posta adresi, kullanıcı adı",
             "schema": {
               "type": "string"
             }
@@ -4561,7 +4561,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: first name, last name, email address, username",
+              "description": "Ara: adı, soyadı, e-posta adresi, kullanıcı adı",
               "schema": {
                 "type": "string"
               }
@@ -4721,7 +4721,7 @@
               "type": "integer",
               "title": "ID"
             },
-            "description": "A unique integer value identifying this user.",
+            "description": "A unique integer value identifying this kullanıcı.",
             "required": true
           }
         ],
@@ -4754,7 +4754,7 @@
               "type": "integer",
               "title": "ID"
             },
-            "description": "A unique integer value identifying this user.",
+            "description": "A unique integer value identifying this kullanıcı.",
             "required": true
           }
         ],
@@ -4797,7 +4797,7 @@
               "type": "integer",
               "title": "ID"
             },
-            "description": "A unique integer value identifying this user.",
+            "description": "A unique integer value identifying this kullanıcı.",
             "required": true
           }
         ],
@@ -4839,7 +4839,7 @@
               "type": "integer",
               "title": "ID"
             },
-            "description": "A unique integer value identifying this user.",
+            "description": "A unique integer value identifying this kullanıcı.",
             "required": true
           }
         ],
@@ -5007,7 +5007,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Category",
+            "title": "Kategori",
             "maxLength": 40
           },
           "parent": {
@@ -5027,7 +5027,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Category",
+            "title": "Kategori",
             "maxLength": 40
           },
           "parent": {
@@ -5051,25 +5051,25 @@
           },
           "username": {
             "type": "string",
-            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
-            "title": "Username",
+            "title": "Kullanıcı adı",
+            "description": "Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.",
             "pattern": "^[\\w.@+-]+$",
             "maxLength": 150
           },
           "first_name": {
             "type": "string",
-            "title": "First name",
+            "title": "Adı",
             "maxLength": 150
           },
           "last_name": {
             "type": "string",
-            "title": "Last name",
+            "title": "Soyadı",
             "maxLength": 150
           },
           "email": {
             "type": "string",
             "format": "email",
-            "title": "Email address",
+            "title": "E-posta adresi",
             "maxLength": 254
           },
           "phone": {
@@ -5081,31 +5081,31 @@
           "date_joined": {
             "type": "string",
             "format": "date-time",
-            "title": "Date joined"
+            "title": "Katılma tarihi"
           },
           "last_login": {
             "type": "string",
             "format": "date-time",
             "nullable": true,
-            "title": "Last login"
+            "title": "Son oturum açma"
           },
           "is_active": {
             "type": "boolean",
             "default": true,
-            "title": "Active",
-            "description": "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."
+            "title": "Etkin",
+            "description": "Bu kullanıcının etkin olarak işlem görüp görmediğini belirler. Hesapları silmek yerine bunun işaretini kaldırın."
           },
           "is_staff": {
             "type": "boolean",
             "default": false,
-            "title": "Staff status",
-            "description": "Designates whether the user can log into this admin site."
+            "title": "Görev durumu",
+            "description": "Kullanıcının bu yönetici sitesine oturum açıp açamayacağını belirler."
           },
           "is_superuser": {
             "type": "boolean",
             "default": false,
-            "title": "Superuser status",
-            "description": "Designates that this user has all permissions without explicitly assigning them."
+            "title": "Süper kullanıcı durumu",
+            "description": "Bu kullanıcıya ayrı ayrı izin atamadan tüm izinlerin verilip verilmeyeceğini belirler."
           },
           "avatar": {
             "type": "string",
@@ -5122,25 +5122,25 @@
           "username": {
             "type": "string",
             "minLength": 1,
-            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
-            "title": "Username",
+            "title": "Kullanıcı adı",
+            "description": "Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.",
             "pattern": "^[\\w.@+-]+$",
             "maxLength": 150
           },
           "first_name": {
             "type": "string",
-            "title": "First name",
+            "title": "Adı",
             "maxLength": 150
           },
           "last_name": {
             "type": "string",
-            "title": "Last name",
+            "title": "Soyadı",
             "maxLength": 150
           },
           "email": {
             "type": "string",
             "format": "email",
-            "title": "Email address",
+            "title": "E-posta adresi",
             "maxLength": 254
           },
           "phone": {
@@ -5152,31 +5152,31 @@
           "date_joined": {
             "type": "string",
             "format": "date-time",
-            "title": "Date joined"
+            "title": "Katılma tarihi"
           },
           "last_login": {
             "type": "string",
             "format": "date-time",
             "nullable": true,
-            "title": "Last login"
+            "title": "Son oturum açma"
           },
           "is_active": {
             "type": "boolean",
             "default": true,
-            "title": "Active",
-            "description": "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."
+            "title": "Etkin",
+            "description": "Bu kullanıcının etkin olarak işlem görüp görmediğini belirler. Hesapları silmek yerine bunun işaretini kaldırın."
           },
           "is_staff": {
             "type": "boolean",
             "default": false,
-            "title": "Staff status",
-            "description": "Designates whether the user can log into this admin site."
+            "title": "Görev durumu",
+            "description": "Kullanıcının bu yönetici sitesine oturum açıp açamayacağını belirler."
           },
           "is_superuser": {
             "type": "boolean",
             "default": false,
-            "title": "Superuser status",
-            "description": "Designates that this user has all permissions without explicitly assigning them."
+            "title": "Süper kullanıcı durumu",
+            "description": "Bu kullanıcıya ayrı ayrı izin atamadan tüm izinlerin verilip verilmeyeceğini belirler."
           },
           "avatar": {
             "type": "string",
@@ -5201,7 +5201,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Name",
+            "title": "Adı",
             "maxLength": 150
           }
         },
@@ -5217,16 +5217,16 @@
           },
           "name": {
             "type": "string",
-            "title": "Name",
+            "title": "Adı",
             "maxLength": 150
           },
           "permissions": {
             "type": "array",
             "items": {
               "type": "integer",
-              "title": ""
+              "title": "Izinler"
             },
-            "title": "Permissions"
+            "title": "Izinler"
           }
         },
         "required": ["id", "name"]
@@ -5237,7 +5237,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Name",
+            "title": "Adı",
             "maxLength": 150
           }
         },
@@ -5802,25 +5802,25 @@
           },
           "created_by": {
             "type": "integer",
-            "title": "Created by",
+            "title": "Oluşturan",
             "nullable": true
           },
           "updated_by": {
             "type": "integer",
-            "title": "Updated by",
+            "title": "Güncelleyen",
             "nullable": true
           },
           "created_at": {
             "type": "string",
             "format": "date-time",
-            "title": "Created at"
+            "title": "Oluşturulma tarihi"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "readOnly": true,
             "nullable": true,
-            "title": "Updated at"
+            "title": "Güncelleme tarihi"
           },
           "currency": {
             "allOf": [
@@ -5893,18 +5893,18 @@
           },
           "created_by": {
             "type": "integer",
-            "title": "Created by",
+            "title": "Oluşturan",
             "nullable": true
           },
           "updated_by": {
             "type": "integer",
-            "title": "Updated by",
+            "title": "Güncelleyen",
             "nullable": true
           },
           "created_at": {
             "type": "string",
             "format": "date-time",
-            "title": "Created at"
+            "title": "Oluşturulma tarihi"
           },
           "currency": {
             "allOf": [
@@ -5970,14 +5970,14 @@
           },
           "name": {
             "type": "string",
-            "title": "Item/Service",
+            "title": "Ürün/Hizmet",
             "maxLength": 200
           },
           "thumbnail": {
             "type": "string",
             "format": "uri",
             "nullable": true,
-            "title": "Thumbnail",
+            "title": "Önizleme resmi",
             "x-components": {
               "component": "single-image-selector"
             }
@@ -5997,7 +5997,7 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Buy price",
+            "title": "Alış fiyatı",
             "x-components": {
               "component": "money-input"
             }
@@ -6009,13 +6009,13 @@
               }
             ],
             "default": "TRY",
-            "title": "Buy currency"
+            "title": "Alış para birimi"
           },
           "sellprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Sell price",
+            "title": "Satış fiyatı",
             "x-components": {
               "component": "money-input"
             }
@@ -6027,7 +6027,7 @@
               }
             ],
             "default": "TRY",
-            "title": "Sell currency"
+            "title": "Satış para birimi"
           },
           "kdv": {
             "allOf": [
@@ -6042,7 +6042,7 @@
           "stock_code": {
             "type": "string",
             "nullable": true,
-            "title": "Stock code",
+            "title": "Birim kodu",
             "maxLength": 40
           },
           "stocks": {
@@ -6056,7 +6056,7 @@
           "barcode": {
             "type": "string",
             "nullable": true,
-            "title": "Barcode",
+            "title": "Barkod",
             "maxLength": 20,
             "x-components": {
               "component": "barcode-scanner"
@@ -6066,14 +6066,14 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true,
-            "title": "Created at"
+            "title": "Oluşturulma tarihi"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "readOnly": true,
             "nullable": true,
-            "title": "Updated at"
+            "title": "Güncelleme tarihi"
           },
           "created_by": {
             "allOf": [
@@ -6094,7 +6094,7 @@
           "description": {
             "type": "string",
             "nullable": true,
-            "title": "Description",
+            "title": "Açıklama",
             "maxLength": 2000
           },
           "category": {
@@ -6147,21 +6147,21 @@
           },
           "name": {
             "type": "string",
-            "title": "Item/Service",
+            "title": "Ürün/Hizmet",
             "maxLength": 200
           },
           "thumbnail": {
             "type": "string",
             "format": "uri",
             "nullable": true,
-            "title": "Thumbnail",
+            "title": "Önizleme resmi",
             "x-components": {
               "component": "single-image-selector"
             }
           },
           "stock_unit": {
             "type": "integer",
-            "title": "Stock unit",
+            "title": "Birim",
             "x-components": {
               "component": "unit-selector"
             }
@@ -6170,7 +6170,7 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Buy price",
+            "title": "Alış fiyatı",
             "x-components": {
               "component": "money-input"
             }
@@ -6182,13 +6182,13 @@
               }
             ],
             "default": "TRY",
-            "title": "Buy currency"
+            "title": "Alış para birimi"
           },
           "sellprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Sell price",
+            "title": "Satış fiyatı",
             "x-components": {
               "component": "money-input"
             }
@@ -6200,7 +6200,7 @@
               }
             ],
             "default": "TRY",
-            "title": "Sell currency"
+            "title": "Satış para birimi"
           },
           "kdv": {
             "allOf": [
@@ -6215,7 +6215,7 @@
           "stock_code": {
             "type": "string",
             "nullable": true,
-            "title": "Stock code",
+            "title": "Birim kodu",
             "maxLength": 40
           },
           "stocks": {
@@ -6229,7 +6229,7 @@
           "barcode": {
             "type": "string",
             "nullable": true,
-            "title": "Barcode",
+            "title": "Barkod",
             "maxLength": 20,
             "x-components": {
               "component": "barcode-scanner"
@@ -6239,24 +6239,24 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true,
-            "title": "Created at"
+            "title": "Oluşturulma tarihi"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "readOnly": true,
             "nullable": true,
-            "title": "Updated at"
+            "title": "Güncelleme tarihi"
           },
           "description": {
             "type": "string",
             "nullable": true,
-            "title": "Description",
+            "title": "Açıklama",
             "maxLength": 2000
           },
           "category": {
             "type": "integer",
-            "title": "Category",
+            "title": "Kategori",
             "nullable": true,
             "x-components": {
               "component": "category-selector"
@@ -6281,21 +6281,21 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Item/Service",
+            "title": "Ürün/Hizmet",
             "maxLength": 200
           },
           "thumbnail": {
             "type": "string",
             "format": "binary",
             "nullable": true,
-            "title": "Thumbnail",
+            "title": "Önizleme resmi",
             "x-components": {
               "component": "single-image-selector"
             }
           },
           "stock_unit": {
             "type": "integer",
-            "title": "Stock unit",
+            "title": "Birim",
             "x-components": {
               "component": "unit-selector"
             }
@@ -6304,7 +6304,7 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Buy price",
+            "title": "Alış fiyatı",
             "x-components": {
               "component": "money-input"
             }
@@ -6316,13 +6316,13 @@
               }
             ],
             "default": "TRY",
-            "title": "Buy currency"
+            "title": "Alış para birimi"
           },
           "sellprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Sell price",
+            "title": "Satış fiyatı",
             "x-components": {
               "component": "money-input"
             }
@@ -6334,7 +6334,7 @@
               }
             ],
             "default": "TRY",
-            "title": "Sell currency"
+            "title": "Satış para birimi"
           },
           "kdv": {
             "allOf": [
@@ -6349,13 +6349,13 @@
           "stock_code": {
             "type": "string",
             "nullable": true,
-            "title": "Stock code",
+            "title": "Birim kodu",
             "maxLength": 40
           },
           "barcode": {
             "type": "string",
             "nullable": true,
-            "title": "Barcode",
+            "title": "Barkod",
             "maxLength": 20,
             "x-components": {
               "component": "barcode-scanner"
@@ -6364,12 +6364,12 @@
           "description": {
             "type": "string",
             "nullable": true,
-            "title": "Description",
+            "title": "Açıklama",
             "maxLength": 2000
           },
           "category": {
             "type": "integer",
-            "title": "Category",
+            "title": "Kategori",
             "nullable": true,
             "x-components": {
               "component": "category-selector"
@@ -6387,13 +6387,13 @@
           },
           "name": {
             "type": "string",
-            "title": "Item/Service",
+            "title": "Ürün/Hizmet",
             "maxLength": 200
           },
           "description": {
             "type": "string",
             "nullable": true,
-            "title": "Description",
+            "title": "Açıklama",
             "maxLength": 2000
           },
           "stock_unit": {
@@ -6407,7 +6407,7 @@
           "barcode": {
             "type": "string",
             "nullable": true,
-            "title": "Barcode",
+            "title": "Barkod",
             "maxLength": 20
           },
           "kdv": {
@@ -6430,14 +6430,14 @@
           "stock_code": {
             "type": "string",
             "nullable": true,
-            "title": "Stock code",
+            "title": "Birim kodu",
             "maxLength": 40
           },
           "buyprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Buy price"
+            "title": "Alış fiyatı"
           },
           "buycurrency": {
             "allOf": [
@@ -6446,13 +6446,13 @@
               }
             ],
             "default": "TRY",
-            "title": "Buy currency"
+            "title": "Alış para birimi"
           },
           "sellprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Sell price"
+            "title": "Satış fiyatı"
           },
           "sellcurrency": {
             "allOf": [
@@ -6461,7 +6461,7 @@
               }
             ],
             "default": "TRY",
-            "title": "Sell currency"
+            "title": "Satış para birimi"
           }
         },
         "required": [
@@ -6483,13 +6483,13 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Item/Service",
+            "title": "Ürün/Hizmet",
             "maxLength": 200
           },
           "description": {
             "type": "string",
             "nullable": true,
-            "title": "Description",
+            "title": "Açıklama",
             "maxLength": 2000
           },
           "stock_unit": {
@@ -6503,7 +6503,7 @@
           "barcode": {
             "type": "string",
             "nullable": true,
-            "title": "Barcode",
+            "title": "Barkod",
             "maxLength": 20
           },
           "kdv": {
@@ -6526,14 +6526,14 @@
           "stock_code": {
             "type": "string",
             "nullable": true,
-            "title": "Stock code",
+            "title": "Birim kodu",
             "maxLength": 40
           },
           "buyprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Buy price"
+            "title": "Alış fiyatı"
           },
           "buycurrency": {
             "allOf": [
@@ -6542,13 +6542,13 @@
               }
             ],
             "default": "TRY",
-            "title": "Buy currency"
+            "title": "Alış para birimi"
           },
           "sellprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Sell price"
+            "title": "Satış fiyatı"
           },
           "sellcurrency": {
             "allOf": [
@@ -6557,7 +6557,7 @@
               }
             ],
             "default": "TRY",
-            "title": "Sell currency"
+            "title": "Satış para birimi"
           }
         },
         "required": [
@@ -6579,14 +6579,14 @@
           },
           "name": {
             "type": "string",
-            "title": "Item/Service",
+            "title": "Ürün/Hizmet",
             "maxLength": 200
           },
           "thumbnail": {
             "type": "string",
             "format": "uri",
             "nullable": true,
-            "title": "Thumbnail",
+            "title": "Önizleme resmi",
             "x-components": {
               "component": "single-image-selector"
             }
@@ -6606,7 +6606,7 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Buy price",
+            "title": "Alış fiyatı",
             "x-components": {
               "component": "money-input"
             }
@@ -6618,13 +6618,13 @@
               }
             ],
             "default": "TRY",
-            "title": "Buy currency"
+            "title": "Alış para birimi"
           },
           "sellprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Sell price",
+            "title": "Satış fiyatı",
             "x-components": {
               "component": "money-input"
             }
@@ -6636,7 +6636,7 @@
               }
             ],
             "default": "TRY",
-            "title": "Sell currency"
+            "title": "Satış para birimi"
           },
           "kdv": {
             "allOf": [
@@ -6651,7 +6651,7 @@
           "stock_code": {
             "type": "string",
             "nullable": true,
-            "title": "Stock code",
+            "title": "Birim kodu",
             "maxLength": 40
           },
           "stocks": {
@@ -6665,7 +6665,7 @@
           "barcode": {
             "type": "string",
             "nullable": true,
-            "title": "Barcode",
+            "title": "Barkod",
             "maxLength": 20,
             "x-components": {
               "component": "barcode-scanner"
@@ -6675,14 +6675,14 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true,
-            "title": "Created at"
+            "title": "Oluşturulma tarihi"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time",
             "readOnly": true,
             "nullable": true,
-            "title": "Updated at"
+            "title": "Güncelleme tarihi"
           },
           "created_by": {
             "allOf": [
@@ -6703,7 +6703,7 @@
           "description": {
             "type": "string",
             "nullable": true,
-            "title": "Description",
+            "title": "Açıklama",
             "maxLength": 2000
           },
           "category": {
@@ -6758,13 +6758,13 @@
             "type": "string",
             "writeOnly": true,
             "minLength": 1,
-            "title": "Username"
+            "title": "Kullanıcı adı"
           },
           "password": {
             "type": "string",
             "writeOnly": true,
             "minLength": 1,
-            "title": "Password"
+            "title": "Parola"
           }
         },
         "required": ["password", "username"]
@@ -7083,7 +7083,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Category",
+            "title": "Kategori",
             "maxLength": 40
           },
           "parent": {
@@ -7118,18 +7118,18 @@
           },
           "created_by": {
             "type": "integer",
-            "title": "Created by",
+            "title": "Oluşturan",
             "nullable": true
           },
           "updated_by": {
             "type": "integer",
-            "title": "Updated by",
+            "title": "Güncelleyen",
             "nullable": true
           },
           "created_at": {
             "type": "string",
             "format": "date-time",
-            "title": "Created at"
+            "title": "Oluşturulma tarihi"
           },
           "currency": {
             "allOf": [
@@ -7185,21 +7185,21 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Item/Service",
+            "title": "Ürün/Hizmet",
             "maxLength": 200
           },
           "thumbnail": {
             "type": "string",
             "format": "binary",
             "nullable": true,
-            "title": "Thumbnail",
+            "title": "Önizleme resmi",
             "x-components": {
               "component": "single-image-selector"
             }
           },
           "stock_unit": {
             "type": "integer",
-            "title": "Stock unit",
+            "title": "Birim",
             "x-components": {
               "component": "unit-selector"
             }
@@ -7208,7 +7208,7 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Buy price",
+            "title": "Alış fiyatı",
             "x-components": {
               "component": "money-input"
             }
@@ -7220,13 +7220,13 @@
               }
             ],
             "default": "TRY",
-            "title": "Buy currency"
+            "title": "Alış para birimi"
           },
           "sellprice": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Sell price",
+            "title": "Satış fiyatı",
             "x-components": {
               "component": "money-input"
             }
@@ -7238,7 +7238,7 @@
               }
             ],
             "default": "TRY",
-            "title": "Sell currency"
+            "title": "Satış para birimi"
           },
           "kdv": {
             "allOf": [
@@ -7253,13 +7253,13 @@
           "stock_code": {
             "type": "string",
             "nullable": true,
-            "title": "Stock code",
+            "title": "Birim kodu",
             "maxLength": 40
           },
           "barcode": {
             "type": "string",
             "nullable": true,
-            "title": "Barcode",
+            "title": "Barkod",
             "maxLength": 20,
             "x-components": {
               "component": "barcode-scanner"
@@ -7268,12 +7268,12 @@
           "description": {
             "type": "string",
             "nullable": true,
-            "title": "Description",
+            "title": "Açıklama",
             "maxLength": 2000
           },
           "category": {
             "type": "integer",
-            "title": "Category",
+            "title": "Kategori",
             "nullable": true,
             "x-components": {
               "component": "category-selector"
@@ -7397,7 +7397,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Stock unit",
+            "title": "Birim",
             "maxLength": 20
           }
         }
@@ -7408,25 +7408,25 @@
           "username": {
             "type": "string",
             "minLength": 1,
-            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
-            "title": "Username",
+            "title": "Kullanıcı adı",
+            "description": "Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.",
             "pattern": "^[\\w.@+-]+$",
             "maxLength": 150
           },
           "first_name": {
             "type": "string",
-            "title": "First name",
+            "title": "Adı",
             "maxLength": 150
           },
           "last_name": {
             "type": "string",
-            "title": "Last name",
+            "title": "Soyadı",
             "maxLength": 150
           },
           "email": {
             "type": "string",
             "format": "email",
-            "title": "Email address",
+            "title": "E-posta adresi",
             "maxLength": 254
           },
           "phone": {
@@ -7438,31 +7438,31 @@
           "date_joined": {
             "type": "string",
             "format": "date-time",
-            "title": "Date joined"
+            "title": "Katılma tarihi"
           },
           "last_login": {
             "type": "string",
             "format": "date-time",
             "nullable": true,
-            "title": "Last login"
+            "title": "Son oturum açma"
           },
           "is_active": {
             "type": "boolean",
             "default": true,
-            "title": "Active",
-            "description": "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."
+            "title": "Etkin",
+            "description": "Bu kullanıcının etkin olarak işlem görüp görmediğini belirler. Hesapları silmek yerine bunun işaretini kaldırın."
           },
           "is_staff": {
             "type": "boolean",
             "default": false,
-            "title": "Staff status",
-            "description": "Designates whether the user can log into this admin site."
+            "title": "Görev durumu",
+            "description": "Kullanıcının bu yönetici sitesine oturum açıp açamayacağını belirler."
           },
           "is_superuser": {
             "type": "boolean",
             "default": false,
-            "title": "Superuser status",
-            "description": "Designates that this user has all permissions without explicitly assigning them."
+            "title": "Süper kullanıcı durumu",
+            "description": "Bu kullanıcıya ayrı ayrı izin atamadan tüm izinlerin verilip verilmeyeceğini belirler."
           },
           "avatar": {
             "type": "string",
@@ -7485,25 +7485,25 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Depot name",
+            "title": "Depo adı",
             "maxLength": 100
           },
           "address": {
             "type": "string",
             "nullable": true,
-            "title": "Address",
+            "title": "Adres",
             "maxLength": 200
           },
           "phone": {
             "type": "string",
             "nullable": true,
-            "title": "Phone",
+            "title": "Telefon",
             "maxLength": 20
           },
           "plate_number": {
             "type": "string",
             "nullable": true,
-            "title": "Plate number",
+            "title": "Plaka numarası",
             "maxLength": 20
           }
         }
@@ -7920,7 +7920,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Stock unit",
+            "title": "Birim",
             "maxLength": 20
           }
         },
@@ -7936,7 +7936,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Stock unit",
+            "title": "Birim",
             "maxLength": 20
           }
         },
@@ -7948,7 +7948,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Stock unit",
+            "title": "Birim",
             "maxLength": 20
           }
         },
@@ -7960,7 +7960,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Stock unit",
+            "title": "Birim",
             "maxLength": 20
           }
         },
@@ -7976,25 +7976,25 @@
           },
           "username": {
             "type": "string",
-            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
-            "title": "Username",
+            "title": "Kullanıcı adı",
+            "description": "Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.",
             "pattern": "^[\\w.@+-]+$",
             "maxLength": 150
           },
           "first_name": {
             "type": "string",
-            "title": "First name",
+            "title": "Adı",
             "maxLength": 150
           },
           "last_name": {
             "type": "string",
-            "title": "Last name",
+            "title": "Soyadı",
             "maxLength": 150
           },
           "email": {
             "type": "string",
             "format": "email",
-            "title": "Email address",
+            "title": "E-posta adresi",
             "maxLength": 254
           },
           "phone": {
@@ -8006,31 +8006,31 @@
           "date_joined": {
             "type": "string",
             "format": "date-time",
-            "title": "Date joined"
+            "title": "Katılma tarihi"
           },
           "last_login": {
             "type": "string",
             "format": "date-time",
             "nullable": true,
-            "title": "Last login"
+            "title": "Son oturum açma"
           },
           "is_active": {
             "type": "boolean",
             "default": true,
-            "title": "Active",
-            "description": "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."
+            "title": "Etkin",
+            "description": "Bu kullanıcının etkin olarak işlem görüp görmediğini belirler. Hesapları silmek yerine bunun işaretini kaldırın."
           },
           "is_staff": {
             "type": "boolean",
             "default": false,
-            "title": "Staff status",
-            "description": "Designates whether the user can log into this admin site."
+            "title": "Görev durumu",
+            "description": "Kullanıcının bu yönetici sitesine oturum açıp açamayacağını belirler."
           },
           "is_superuser": {
             "type": "boolean",
             "default": false,
-            "title": "Superuser status",
-            "description": "Designates that this user has all permissions without explicitly assigning them."
+            "title": "Süper kullanıcı durumu",
+            "description": "Bu kullanıcıya ayrı ayrı izin atamadan tüm izinlerin verilip verilmeyeceğini belirler."
           },
           "avatar": {
             "type": "string",
@@ -8054,25 +8054,25 @@
           "username": {
             "type": "string",
             "minLength": 1,
-            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
-            "title": "Username",
+            "title": "Kullanıcı adı",
+            "description": "Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.",
             "pattern": "^[\\w.@+-]+$",
             "maxLength": 150
           },
           "first_name": {
             "type": "string",
-            "title": "First name",
+            "title": "Adı",
             "maxLength": 150
           },
           "last_name": {
             "type": "string",
-            "title": "Last name",
+            "title": "Soyadı",
             "maxLength": 150
           },
           "email": {
             "type": "string",
             "format": "email",
-            "title": "Email address",
+            "title": "E-posta adresi",
             "maxLength": 254
           },
           "phone": {
@@ -8084,31 +8084,31 @@
           "date_joined": {
             "type": "string",
             "format": "date-time",
-            "title": "Date joined"
+            "title": "Katılma tarihi"
           },
           "last_login": {
             "type": "string",
             "format": "date-time",
             "nullable": true,
-            "title": "Last login"
+            "title": "Son oturum açma"
           },
           "is_active": {
             "type": "boolean",
             "default": true,
-            "title": "Active",
-            "description": "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."
+            "title": "Etkin",
+            "description": "Bu kullanıcının etkin olarak işlem görüp görmediğini belirler. Hesapları silmek yerine bunun işaretini kaldırın."
           },
           "is_staff": {
             "type": "boolean",
             "default": false,
-            "title": "Staff status",
-            "description": "Designates whether the user can log into this admin site."
+            "title": "Görev durumu",
+            "description": "Kullanıcının bu yönetici sitesine oturum açıp açamayacağını belirler."
           },
           "is_superuser": {
             "type": "boolean",
             "default": false,
-            "title": "Superuser status",
-            "description": "Designates that this user has all permissions without explicitly assigning them."
+            "title": "Süper kullanıcı durumu",
+            "description": "Bu kullanıcıya ayrı ayrı izin atamadan tüm izinlerin verilip verilmeyeceğini belirler."
           },
           "avatar": {
             "type": "string",
@@ -8136,25 +8136,25 @@
           },
           "username": {
             "type": "string",
-            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
-            "title": "Username",
+            "title": "Kullanıcı adı",
+            "description": "Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.",
             "pattern": "^[\\w.@+-]+$",
             "maxLength": 150
           },
           "first_name": {
             "type": "string",
-            "title": "First name",
+            "title": "Adı",
             "maxLength": 150
           },
           "last_name": {
             "type": "string",
-            "title": "Last name",
+            "title": "Soyadı",
             "maxLength": 150
           },
           "email": {
             "type": "string",
             "format": "email",
-            "title": "Email address",
+            "title": "E-posta adresi",
             "maxLength": 254
           },
           "phone": {
@@ -8166,31 +8166,31 @@
           "date_joined": {
             "type": "string",
             "format": "date-time",
-            "title": "Date joined"
+            "title": "Katılma tarihi"
           },
           "last_login": {
             "type": "string",
             "format": "date-time",
             "nullable": true,
-            "title": "Last login"
+            "title": "Son oturum açma"
           },
           "is_active": {
             "type": "boolean",
             "default": true,
-            "title": "Active",
-            "description": "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."
+            "title": "Etkin",
+            "description": "Bu kullanıcının etkin olarak işlem görüp görmediğini belirler. Hesapları silmek yerine bunun işaretini kaldırın."
           },
           "is_staff": {
             "type": "boolean",
             "default": false,
-            "title": "Staff status",
-            "description": "Designates whether the user can log into this admin site."
+            "title": "Görev durumu",
+            "description": "Kullanıcının bu yönetici sitesine oturum açıp açamayacağını belirler."
           },
           "is_superuser": {
             "type": "boolean",
             "default": false,
-            "title": "Superuser status",
-            "description": "Designates that this user has all permissions without explicitly assigning them."
+            "title": "Süper kullanıcı durumu",
+            "description": "Bu kullanıcıya ayrı ayrı izin atamadan tüm izinlerin verilip verilmeyeceğini belirler."
           },
           "avatar": {
             "type": "string",
@@ -8218,25 +8218,25 @@
           },
           "name": {
             "type": "string",
-            "title": "Depot name",
+            "title": "Depo adı",
             "maxLength": 100
           },
           "address": {
             "type": "string",
             "nullable": true,
-            "title": "Address",
+            "title": "Adres",
             "maxLength": 200
           },
           "phone": {
             "type": "string",
             "nullable": true,
-            "title": "Phone",
+            "title": "Telefon",
             "maxLength": 20
           },
           "plate_number": {
             "type": "string",
             "nullable": true,
-            "title": "Plate number",
+            "title": "Plaka numarası",
             "maxLength": 20
           }
         },
@@ -8252,11 +8252,11 @@
           },
           "item": {
             "type": "integer",
-            "title": "Item/Service"
+            "title": "Ürün/Hizmet"
           },
           "warehouse": {
             "type": "integer",
-            "title": "Depot name",
+            "title": "Depo adı",
             "nullable": true
           },
           "amount": {
@@ -8310,7 +8310,7 @@
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Amount"
+            "title": "Miktar"
           }
         },
         "required": ["warehouse"]
@@ -8331,7 +8331,7 @@
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Amount"
+            "title": "Miktar"
           }
         },
         "required": ["warehouse"]
@@ -8383,11 +8383,11 @@
         "properties": {
           "item": {
             "type": "integer",
-            "title": "Item/Service"
+            "title": "Ürün/Hizmet"
           },
           "warehouse": {
             "type": "integer",
-            "title": "Depot name",
+            "title": "Depo adı",
             "nullable": true
           }
         },
@@ -8399,25 +8399,25 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Depot name",
+            "title": "Depo adı",
             "maxLength": 100
           },
           "address": {
             "type": "string",
             "nullable": true,
-            "title": "Address",
+            "title": "Adres",
             "maxLength": 200
           },
           "phone": {
             "type": "string",
             "nullable": true,
-            "title": "Phone",
+            "title": "Telefon",
             "maxLength": 20
           },
           "plate_number": {
             "type": "string",
             "nullable": true,
-            "title": "Plate number",
+            "title": "Plaka numarası",
             "maxLength": 20
           }
         },

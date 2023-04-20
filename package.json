@@ -10,8 +10,9 @@
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"See package.json => scripts for available tests.\" && exit 0",
     "generate-client": "openapi --input http://127.0.0.1:8000/api/schema/ --output ./src/client --useUnionTypes --useOptions --client axios --name AppClient",
-    "save-schema": "curl --output ./src/client/schema.json --url http://127.0.0.1:8000/api/schema/?format=json",
-    "openapi": "npm run generate-client & npm run save-schema",
+    "save-schema": "curl --output ./src/client/schema.json --url \"http://127.0.0.1:8000/api/schema/?format=json&lang=en\"",
+    "save-schema-tr": "curl --output ./src/client/schema-tr.json --url \"http://127.0.0.1:8000/api/schema/?format=json&lang=tr\"",
+    "openapi": "npm run generate-client & npm run save-schema & npm run save-schema-tr",
     "test:unit:ui": "vitest --ui",
     "test:unit": "vitest",
     "test:unit:ci": "vitest run"

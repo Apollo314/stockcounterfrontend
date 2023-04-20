@@ -1,28 +1,5 @@
 /*eslint sort-keys: "warn"*/
 
-import { ItemOut } from 'src/client';
-
-const itemLabels: Record<keyof ItemOut, string> = {
-  barcode: 'Barkod',
-  buycurrency: 'Alış para birimi',
-  buyprice: 'Alış fiyatı',
-  category: 'Kategori',
-  created_at: 'Oluşturulma tarihi',
-  created_by: 'Oluşturan',
-  description: 'Tanım',
-  id: 'ID',
-  kdv: 'KDV',
-  name: 'Ürün/Hizmet adı',
-  sellcurrency: 'Satış para birimi',
-  sellprice: 'Satış fiyatı',
-  stock_code: 'Stok kodu',
-  stock_unit: 'Stok birimi',
-  stocks: 'Stoklar',
-  thumbnail: 'Önizleme Resmi',
-  updated_at: 'Güncelleme tarihi',
-  updated_by: 'Güncelleyen',
-};
-
 const ajvErrors = {
   const: 'sabite eşit olmalı: {allowedValue}',
   dependentRequired: '{property} varsa {deps} mevcut olmalı',
@@ -105,11 +82,14 @@ export default {
   forms: {
     password: 'Parola',
     rememberMe: 'Beni hatırla',
+    titles: {
+      item_creation: 'Ürün Oluşturma Formu',
+      item_update: 'Ürün Güncelleme Formu',
+    },
     username: 'Kullanıcı adı',
   },
   fourofour: 'Aradık bulamadık.',
   gohome: 'Anasayfaya dön',
-  itemlabels: itemLabels,
   labels: {
     maximum: 'Maksimum',
     minimum: 'Minimum',
@@ -140,6 +120,11 @@ export default {
   },
   nav: {
     search: 'Menüde ara',
+  },
+  notifications: {
+    created_successfully: 'Başarıyla oluşturuldu!',
+    request_failed: 'İstek başarısızlıkla sonuçlandı',
+    updated_successfully: 'Başarıyla güncellendi!',
   },
   settings: {
     language: {
