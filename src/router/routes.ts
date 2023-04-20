@@ -1,6 +1,10 @@
-import { RouteRecordRaw, RouteLocationNormalizedLoaded } from 'vue-router';
+import {
+  RouteRecordRaw,
+  RouteLocationNormalizedLoaded,
+  RouteLocationRaw,
+} from 'vue-router';
 
-type RouteRecordRawExtended = RouteRecordRaw & {
+type Extension = {
   meta?: {
     key?: string | number | symbol;
     /**
@@ -14,9 +18,17 @@ type RouteRecordRawExtended = RouteRecordRaw & {
      * key in <router-view>'s <Component> will be route.path
      */
     pathAsKey?: boolean;
+    /**
+     * in paths that create or update redirect route
+     */
+    createdSuccessRedirect?: RouteLocationRaw;
   };
   children?: RouteRecordRawExtended[];
 };
+
+type RouteRecordRawExtended = RouteRecordRaw & Extension;
+export type RouteLocationNormalizedLoadedExtended =
+  RouteLocationNormalizedLoaded & Extension;
 
 const routes: RouteRecordRawExtended[] = [
   {
@@ -44,7 +56,10 @@ const routes: RouteRecordRawExtended[] = [
         path: 'items/create',
         component: () => import('pages/Items/DetailView.vue'),
         name: 'items-create',
-        meta: { key: 'items-create' },
+        meta: {
+          key: 'items-create',
+          createdSuccessRedirect: { name: 'items-list' },
+        },
       },
       {
         path: 'items/update/:id(\\d+)',
