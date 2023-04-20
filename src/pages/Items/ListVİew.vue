@@ -43,16 +43,16 @@ type Column = BaseColumn<Row>;
 
 const operation = get_operation('/inventory/item/', 'get');
 const formComponents = create_filters(operation);
+
 type Filters = Record<keyof typeof formComponents, string>;
 
 const { t: $t, n: $n, d: $d } = useI18n();
 const card = ref(false);
 
 const co: ColumnsOverride<Column, Row> = {
-  id: { label: () => $t('itemlabels.id'), hidden: true },
-  name: { width: 400, label: () => $t('itemlabels.name') },
+  id: { hidden: true },
+  name: { width: 400 },
   buyprice: {
-    label: () => $t('itemlabels.buyprice'),
     field: (row) =>
       `${$n(parseFloat(row.buyprice), {
         style: 'currency',
@@ -60,7 +60,6 @@ const co: ColumnsOverride<Column, Row> = {
       })}`,
   },
   sellprice: {
-    label: () => $t('itemlabels.sellprice'),
     field: (row) =>
       `${$n(parseFloat(row.sellprice), {
         style: 'currency',
@@ -73,38 +72,30 @@ const co: ColumnsOverride<Column, Row> = {
         (sum, stock) => sum + parseFloat(stock.amount),
         0
       )} ${row.stock_unit.name}`,
-    label: () => $t('itemlabels.stocks'),
   },
   updated_at: {
     field: (row) => $d(row.updated_at || ''),
-    label: () => $t('itemlabels.updated_at'),
     align: 'right',
   },
   updated_by: {
     field: (row) => row.updated_by.username,
-    label: () => $t('itemlabels.updated_by'),
   },
-  stock_code: { label: () => $t('itemlabels.stock_code') },
   created_at: {
     field: (row) => $d(row.created_at || ''),
-    label: () => $t('itemlabels.created_at'),
   },
   created_by: {
     field: (row) => row.created_by.username,
-    label: () => $t('itemlabels.created_by'),
   },
   kdv: {
-    label: () => $t('itemlabels.kdv'),
-    // field: (row) => JSON.stringify(row.created_by),
     field: (row) => $n(row.kdv / 100, { style: 'percent' }),
     align: 'right',
   },
   category: {
-    label: () => $t('itemlabels.category'),
     field: (row) => row.category?.name,
   },
-  barcode: { label: () => $t('itemlabels.barcode'), hidden: true },
-  description: { label: () => $t('itemlabels.description'), hidden: true },
+  barcode: { hidden: true },
+  description: { hidden: true },
+  stock_code: { hidden: true },
 };
 
 const columns = ColumnsGenerator<Column, Row>(co, operation);
