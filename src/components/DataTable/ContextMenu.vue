@@ -1,13 +1,13 @@
 <template>
   <q-popup-proxy
-    class="unselectable"
     ref="popupRef"
-    @before-show="handleShow"
+    class="unselectable"
     :context-menu="contextMenu"
     :model-value="modelValue"
-    @update:model-value="emit('update:model-value', $event)"
     transition-show="jump-down"
     transition-hide="jump-up"
+    @before-show="handleShow"
+    @update:model-value="emit('update:model-value', $event)"
   >
     <q-card bordered>
       <q-list class="listpadding" separator style="min-width: 250px">
@@ -21,17 +21,17 @@
                   (selectedRows?.size === 1 &&
                     action.can_handle_single !== false))
               "
-              clickable
               v-ripple
+              v-close-popup
+              clickable
               @click="
                 selectedRows &&
-                  action.callback(selectedRows, (deselect: boolean) => {
+                  action.callback(selectedRows, (deselect) => {
                     if (deselect) {
-                      $emit('update:selectedRows', []);
+                      selectedRows.clear();
                     }
                   })
               "
-              v-close-popup
             >
               <div class="row full-width items-center">
                 <q-icon
@@ -63,6 +63,7 @@ defineProps({
   selectedRows: {
     type: Map as PropType<Map<number | string, Row>>,
     required: false,
+    default: new Map(),
   },
   actions: {
     type: Array as PropType<ContextMenuGroup<Row>[]>,
