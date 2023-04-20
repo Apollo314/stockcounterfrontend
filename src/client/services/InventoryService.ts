@@ -1051,7 +1051,7 @@ export class InventoryService {
     offset,
   }: {
     /**
-     * Ara: Depo adı, Adress (varsa), Telefon, Plaka (varsa)
+     * Ara: Depo adı, Adres, Telefon, Plaka numarası
      */
     search?: string;
     /**

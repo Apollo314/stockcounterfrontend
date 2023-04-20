@@ -1,28 +1,5 @@
 /*eslint sort-keys: "warn"*/
 
-import { ItemOut } from 'src/client';
-
-const itemLabels: Record<keyof ItemOut, string> = {
-  barcode: 'Barcode',
-  buycurrency: 'Buy currency',
-  buyprice: 'Buy price',
-  category: 'Category',
-  created_at: 'Created at',
-  created_by: 'Created by',
-  description: 'Description',
-  id: 'ID',
-  kdv: 'Tax(KDV)',
-  name: 'Item/Service name',
-  sellcurrency: 'Sell currency',
-  sellprice: 'Sell price',
-  stock_code: 'Stock code',
-  stock_unit: 'Stock unit',
-  stocks: 'Stocks',
-  thumbnail: 'Thumbnail',
-  updated_at: 'Updated at',
-  updated_by: 'Updated by',
-};
-
 const ajvErrors = {
   const: 'must be equal to constant: {allowedValue}',
   dependentRequired:
@@ -107,11 +84,14 @@ export default {
   forms: {
     password: 'Password',
     rememberMe: 'Remember me',
+    titles: {
+      item_creation: 'Item Creation Form',
+      item_update: 'Item Update Form',
+    },
     username: 'Username',
   },
   fourofour: 'Oops. Nothing here...',
   gohome: 'Go home',
-  itemlabels: itemLabels,
   labels: {
     maximum: 'Maximum',
     minimum: 'Minimum',
@@ -142,6 +122,11 @@ export default {
   },
   nav: {
     search: 'Search in menu',
+  },
+  notifications: {
+    created_successfully: 'Created successfully!',
+    request_failed: 'Request failed',
+    updated_successfully: 'Updated succesfully!',
   },
   settings: {
     language: {
