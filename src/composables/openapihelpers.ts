@@ -1,9 +1,10 @@
-import { Quasar } from 'quasar';
-
 import { $locale } from 'boot/i18n';
 import { ComponentStrings } from 'components/VeeDynamicForm/componentMap';
 import { openapiToVeeValidateValidator } from 'components/VeeDynamicForm/openapiToYup';
-import { components as components_tr } from 'src/client/schema-tr.json';
+import {
+  components as components_tr,
+  paths as paths_tr,
+} from 'src/client/schema-tr.json';
 import { components, paths } from 'src/client/schema.json';
 
 import type {
@@ -265,20 +266,23 @@ export function get_component_schema(
   locale?: 'en' | 'tr'
 ): SchemaObject {
   locale = locale || $locale.value === 'tr' ? 'tr' : 'en';
-  if (locale === 'en') {
-    return components.schemas[component_name] as SchemaObject;
-  } else if (locale === 'tr') {
+  if (locale === 'tr') {
     return components_tr.schemas[component_name] as SchemaObject;
   } else {
+    return components.schemas[component_name] as SchemaObject;
   }
-  return components.schemas[component_name] as SchemaObject;
 }
 
 export function get_operation<
   P extends keyof typeof paths,
   O extends keyof (typeof paths)[P]
->(path_name: P, operation: O) {
-  return paths[path_name][operation] as OperationObject;
+>(path_name: P, operation: O, locale?: 'en' | 'tr') {
+  locale = locale || $locale.value === 'tr' ? 'tr' : 'en';
+  if (locale === 'tr') {
+    return paths_tr[path_name][operation] as OperationObject;
+  } else {
+    return paths[path_name][operation] as OperationObject;
+  }
 }
 
 type ComponentProps = {
@@ -297,6 +301,7 @@ export function create_filters(operation: OperationObject) {
   if (operation.parameters) {
     for (const parameter of operation.parameters as ExtendedParameterObject[]) {
       const xcomp = parameter.schema?.['x-components'];
+      console.log(parameter.schema);
       const props: ComponentProps = {
         label: parameter.schema?.title || parameter.name,
         ...parameter.schema,

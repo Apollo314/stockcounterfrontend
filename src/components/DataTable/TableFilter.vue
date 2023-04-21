@@ -1,9 +1,9 @@
 <template>
   <DefaultField
+    v-if="formComponents['search']"
     name="search"
     :label="$t('commons.search')"
     icon="search"
-    v-if="formComponents['search']"
   ></DefaultField>
   <template v-for="(formComponent, key) in formComponents" :key="key">
     <div v-if="keyIsntForPagination(key)" class="full-height q-py-xs">

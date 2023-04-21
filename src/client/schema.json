@@ -602,7 +602,7 @@
               "x-components": {
                 "component": "multi-category-selector",
                 "props": {
-                  "label": "category"
+                  "label": "Category"
                 }
               }
             }
@@ -617,9 +617,7 @@
               "x-components": {
                 "component": "checkbox",
                 "props": {
-                  "true_label": "only_categoryless",
-                  "false_label": "only_categorized",
-                  "indetermined_label": "with_or_without_cateogory",
+                  "label": "Show categoryless",
                   "toggleIndeterminate": true
                 }
               }
@@ -635,7 +633,7 @@
               "x-components": {
                 "component": "money-range",
                 "props": {
-                  "label": "buyprice"
+                  "label": "Buy price"
                 }
               }
             }
@@ -650,7 +648,7 @@
               "x-components": {
                 "component": "money-range",
                 "props": {
-                  "label": "sellprice"
+                  "label": "Sell price"
                 }
               }
             }
@@ -665,7 +663,7 @@
               "x-components": {
                 "component": "barcode-scanner",
                 "props": {
-                  "label": "barcode"
+                  "label": "Barcode"
                 }
               }
             }
@@ -680,7 +678,7 @@
               "x-components": {
                 "component": "multi-stockunit-selector",
                 "props": {
-                  "label": "stockunit"
+                  "label": "Stock unit"
                 }
               }
             }
@@ -695,7 +693,7 @@
               "x-components": {
                 "component": "date-time-range",
                 "props": {
-                  "label": "created_at"
+                  "label": "Created at"
                 }
               }
             }
@@ -710,7 +708,7 @@
               "x-components": {
                 "component": "date-time-range",
                 "props": {
-                  "label": "updated_at"
+                  "label": "Updated at"
                 }
               }
             }
@@ -725,7 +723,7 @@
               "x-components": {
                 "component": "user-select",
                 "props": {
-                  "label": "created_by"
+                  "label": "Created by"
                 }
               }
             }
@@ -740,7 +738,7 @@
               "x-components": {
                 "component": "user-select",
                 "props": {
-                  "label": "updated_by"
+                  "label": "Updated by"
                 }
               }
             }
@@ -755,7 +753,7 @@
               "x-components": {
                 "component": "checkbox",
                 "props": {
-                  "label": "inactivated",
+                  "label": "Show inactivated Items/Services",
                   "toggleIndeterminate": true
                 }
               }
@@ -844,7 +842,7 @@
                 "x-components": {
                   "component": "multi-category-selector",
                   "props": {
-                    "label": "category"
+                    "label": "Category"
                   }
                 }
               }
@@ -859,9 +857,7 @@
                 "x-components": {
                   "component": "checkbox",
                   "props": {
-                    "true_label": "only_categoryless",
-                    "false_label": "only_categorized",
-                    "indetermined_label": "with_or_without_cateogory",
+                    "label": "Show categoryless",
                     "toggleIndeterminate": true
                   }
                 }
@@ -877,7 +873,7 @@
                 "x-components": {
                   "component": "money-range",
                   "props": {
-                    "label": "buyprice"
+                    "label": "Buy price"
                   }
                 }
               }
@@ -892,7 +888,7 @@
                 "x-components": {
                   "component": "money-range",
                   "props": {
-                    "label": "sellprice"
+                    "label": "Sell price"
                   }
                 }
               }
@@ -907,7 +903,7 @@
                 "x-components": {
                   "component": "barcode-scanner",
                   "props": {
-                    "label": "barcode"
+                    "label": "Barcode"
                   }
                 }
               }
@@ -922,7 +918,7 @@
                 "x-components": {
                   "component": "multi-stockunit-selector",
                   "props": {
-                    "label": "stockunit"
+                    "label": "Stock unit"
                   }
                 }
               }
@@ -937,7 +933,7 @@
                 "x-components": {
                   "component": "date-time-range",
                   "props": {
-                    "label": "created_at"
+                    "label": "Created at"
                   }
                 }
               }
@@ -952,7 +948,7 @@
                 "x-components": {
                   "component": "date-time-range",
                   "props": {
-                    "label": "updated_at"
+                    "label": "Updated at"
                   }
                 }
               }
@@ -967,7 +963,7 @@
                 "x-components": {
                   "component": "user-select",
                   "props": {
-                    "label": "created_by"
+                    "label": "Created by"
                   }
                 }
               }
@@ -982,7 +978,7 @@
                 "x-components": {
                   "component": "user-select",
                   "props": {
-                    "label": "updated_by"
+                    "label": "Updated by"
                   }
                 }
               }
@@ -997,7 +993,7 @@
                 "x-components": {
                   "component": "checkbox",
                   "props": {
-                    "label": "inactivated",
+                    "label": "Show inactivated Items/Services",
                     "toggleIndeterminate": true
                   }
                 }
@@ -1090,7 +1086,7 @@
               "x-components": {
                 "component": "multi-category-selector",
                 "props": {
-                  "label": "category"
+                  "label": "Category"
                 }
               }
             }
@@ -1105,9 +1101,7 @@
               "x-components": {
                 "component": "checkbox",
                 "props": {
-                  "true_label": "only_categoryless",
-                  "false_label": "only_categorized",
-                  "indetermined_label": "with_or_without_cateogory",
+                  "label": "Show categoryless",
                   "toggleIndeterminate": true
                 }
               }
@@ -1123,7 +1117,7 @@
               "x-components": {
                 "component": "money-range",
                 "props": {
-                  "label": "buyprice"
+                  "label": "Buy price"
                 }
               }
             }
@@ -1138,7 +1132,7 @@
               "x-components": {
                 "component": "money-range",
                 "props": {
-                  "label": "sellprice"
+                  "label": "Sell price"
                 }
               }
             }
@@ -1153,7 +1147,7 @@
               "x-components": {
                 "component": "barcode-scanner",
                 "props": {
-                  "label": "barcode"
+                  "label": "Barcode"
                 }
               }
             }
@@ -1168,7 +1162,7 @@
               "x-components": {
                 "component": "multi-stockunit-selector",
                 "props": {
-                  "label": "stockunit"
+                  "label": "Stock unit"
                 }
               }
             }
@@ -1183,7 +1177,7 @@
               "x-components": {
                 "component": "date-time-range",
                 "props": {
-                  "label": "created_at"
+                  "label": "Created at"
                 }
               }
             }
@@ -1198,7 +1192,7 @@
               "x-components": {
                 "component": "date-time-range",
                 "props": {
-                  "label": "updated_at"
+                  "label": "Updated at"
                 }
               }
             }
@@ -1213,7 +1207,7 @@
               "x-components": {
                 "component": "user-select",
                 "props": {
-                  "label": "created_by"
+                  "label": "Created by"
                 }
               }
             }
@@ -1228,7 +1222,7 @@
               "x-components": {
                 "component": "user-select",
                 "props": {
-                  "label": "updated_by"
+                  "label": "Updated by"
                 }
               }
             }
@@ -1243,7 +1237,7 @@
               "x-components": {
                 "component": "checkbox",
                 "props": {
-                  "label": "inactivated",
+                  "label": "Show inactivated Items/Services",
                   "toggleIndeterminate": true
                 }
               }
@@ -1332,7 +1326,7 @@
                 "x-components": {
                   "component": "multi-category-selector",
                   "props": {
-                    "label": "category"
+                    "label": "Category"
                   }
                 }
               }
@@ -1347,9 +1341,7 @@
                 "x-components": {
                   "component": "checkbox",
                   "props": {
-                    "true_label": "only_categoryless",
-                    "false_label": "only_categorized",
-                    "indetermined_label": "with_or_without_cateogory",
+                    "label": "Show categoryless",
                     "toggleIndeterminate": true
                   }
                 }
@@ -1365,7 +1357,7 @@
                 "x-components": {
                   "component": "money-range",
                   "props": {
-                    "label": "buyprice"
+                    "label": "Buy price"
                   }
                 }
               }
@@ -1380,7 +1372,7 @@
                 "x-components": {
                   "component": "money-range",
                   "props": {
-                    "label": "sellprice"
+                    "label": "Sell price"
                   }
                 }
               }
@@ -1395,7 +1387,7 @@
                 "x-components": {
                   "component": "barcode-scanner",
                   "props": {
-                    "label": "barcode"
+                    "label": "Barcode"
                   }
                 }
               }
@@ -1410,7 +1402,7 @@
                 "x-components": {
                   "component": "multi-stockunit-selector",
                   "props": {
-                    "label": "stockunit"
+                    "label": "Stock unit"
                   }
                 }
               }
@@ -1425,7 +1417,7 @@
                 "x-components": {
                   "component": "date-time-range",
                   "props": {
-                    "label": "created_at"
+                    "label": "Created at"
                   }
                 }
               }
@@ -1440,7 +1432,7 @@
                 "x-components": {
                   "component": "date-time-range",
                   "props": {
-                    "label": "updated_at"
+                    "label": "Updated at"
                   }
                 }
               }
@@ -1455,7 +1447,7 @@
                 "x-components": {
                   "component": "user-select",
                   "props": {
-                    "label": "created_by"
+                    "label": "Created by"
                   }
                 }
               }
@@ -1470,7 +1462,7 @@
                 "x-components": {
                   "component": "user-select",
                   "props": {
-                    "label": "updated_by"
+                    "label": "Updated by"
                   }
                 }
               }
@@ -1485,7 +1477,7 @@
                 "x-components": {
                   "component": "checkbox",
                   "props": {
-                    "label": "inactivated",
+                    "label": "Show inactivated Items/Services",
                     "toggleIndeterminate": true
                   }
                 }
