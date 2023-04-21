@@ -541,7 +541,7 @@ const request: RequestFunction<Filters> = (partialPagination) => {
     requestDone.value = true;
     deselectAll();
     if (tableCardRef.value) {
-      tableCardRef.value.scrollTo({ x: 0, y: 0 });
+      tableCardRef.value.scrollTo({ y: 0 });
     }
   };
   if (requestDone.value) {

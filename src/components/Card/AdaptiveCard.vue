@@ -66,7 +66,7 @@ const scroller = ref<HTMLElement>();
 
 const { x, y, arrivedState } = useScroll(scroller);
 
-const scrollTo = ({ x, y }: { x: number; y: number }): void => {
+const scrollTo = ({ x, y }: { x?: number; y?: number }): void => {
   window.scrollTo({ top: y, left: x });
   if (scroller.value !== undefined) {
     scroller.value.scrollTo({
