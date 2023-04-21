@@ -30,6 +30,7 @@ export const componentStrings = [
   'money-range',
   'barcode-scanner',
   'date-time-range',
+  'multi-stockunit-selector',
   'undefined',
 ] as const;
 
@@ -98,6 +99,15 @@ export const componentMap: ComponentMap = {
     props: {
       queryService: queryServiceFactory('inventory', 'inventoryStockUnitList'),
       optionLabel: (option) => option?.name as string,
+    },
+  },
+  'multi-stockunit-selector': {
+    component: SearchSelector,
+    props: {
+      queryService: queryServiceFactory('inventory', 'inventoryStockUnitList'),
+      optionLabel: (option) => option?.name as string,
+      multiple: true,
+      useChips: true,
     },
   },
   'user-select': {
