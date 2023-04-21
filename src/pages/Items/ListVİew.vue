@@ -110,7 +110,7 @@ const contextmenuactions: ContextMenuGroup<Row>[] = [
           name: 'items-update',
           params: { id: Array.from(rows)[0][1].id },
         });
-        done(true);
+        done(false);
       },
       label: $t('commons.editoropen'),
       can_handle_single: true,
