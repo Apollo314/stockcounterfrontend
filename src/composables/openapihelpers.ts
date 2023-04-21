@@ -301,7 +301,6 @@ export function create_filters(operation: OperationObject) {
   if (operation.parameters) {
     for (const parameter of operation.parameters as ExtendedParameterObject[]) {
       const xcomp = parameter.schema?.['x-components'];
-      console.log(parameter.schema);
       const props: ComponentProps = {
         label: parameter.schema?.title || parameter.name,
         ...parameter.schema,

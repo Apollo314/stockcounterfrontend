@@ -1,3 +1,6 @@
+import { Quasar } from 'quasar';
+import quasarEN from 'quasar/lang/en-US';
+import quasarTR from 'quasar/lang/tr';
 import { boot } from 'quasar/wrappers';
 import { WritableComputedRef } from 'vue';
 import { createI18n, ComposerTranslation } from 'vue-i18n';
@@ -27,9 +30,17 @@ declare module 'vue-i18n' {
   export interface DefineNumberFormat {}
 }
 
+const local_locale = navigator.language.split('-')?.[0];
+const quasarLangMap = {
+  en: quasarEN,
+  tr: quasarTR,
+};
+
+Quasar.lang.set(quasarLangMap[local_locale === 'tr' ? 'tr' : 'en']);
+
 /* eslint-enable @typescript-eslint/no-empty-interface */
 const i18n = createI18n<[MessageSchema], MessageLanguages>({
-  locale: navigator.language.split('-')?.[0],
+  locale: local_locale,
   fallbackLocale: 'en',
   legacy: false,
   messages,
