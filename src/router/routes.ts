@@ -1,8 +1,4 @@
-import {
-  RouteRecordRaw,
-  RouteLocationNormalizedLoaded,
-  RouteLocationRaw,
-} from 'vue-router';
+import { RouteRecordRaw, RouteLocationNormalizedLoaded } from 'vue-router';
 
 type Extension = {
   meta?: {
@@ -18,10 +14,6 @@ type Extension = {
      * key in <router-view>'s <Component> will be route.path
      */
     pathAsKey?: boolean;
-    /**
-     * in paths that create or update redirect route
-     */
-    createdSuccessRedirect?: RouteLocationRaw;
   };
   children?: RouteRecordRawExtended[];
 };
@@ -58,7 +50,6 @@ const routes: RouteRecordRawExtended[] = [
         name: 'items-create',
         meta: {
           key: 'items-create',
-          createdSuccessRedirect: { name: 'items-list' },
         },
       },
       {
