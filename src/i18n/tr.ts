@@ -6,18 +6,18 @@ const ajvErrors = {
   enum: 'sadece izin verilen değerleri girebilirsiniz: {allowedValues}',
   exclusiveMaximum: '{limit} değerinden küçük olmalı',
   exclusiveMinimum: '{limit} değerinden büyük olmalı',
-  maxItems: '{limit} öğeden daha fazla olamaz',
+  maxItems: '{limit} ögeden daha fazla olamaz',
   maxLength: '{limit} karakterden daha uzun olamaz',
-  maxProperties: '{limit} öğeden daha fazla olamaz',
+  maxProperties: '{limit} ögeden daha fazla olamaz',
   maximum: '{limit} veya daha az olmalı',
   minLength: '{limit} karakterden daha kısa olamaz',
-  minProperties: '{limit} öğeden daha az öğe olamaz',
+  minProperties: '{limit} ögeden daha az öge olamaz',
   minimum: '{limit} veya daha çok olmalı',
-  mixItems: '{limit} öğeden daha az öğe olamaz',
+  mixItems: '{limit} ögeden daha az öge olamaz',
   multipleOf: 'yalnızca {multipleOf} ve katları olabilir',
   pattern: 'örüntüye uymalı: {pattern}',
   required: 'Bu alan gerekli',
-  uniqueItems: 'tekrarlayan öğeler olamaz (öğe {j} ve {i} birbirinin aynısı)',
+  uniqueItems: 'tekrarlayan ögeler olamaz (öge {j} ve {i} birbirinin aynısı)',
 };
 
 export default {
@@ -29,6 +29,8 @@ export default {
     login: 'Giriş yap',
   },
   commons: {
+    'are-you-sure-you-want-to-delete':
+      'Bu ögenin silinmesini istediğinize emin misiniz?',
     cancel: 'Vazgeç',
     delete: 'Sil',
     dofilter: 'Filtrele',
@@ -68,7 +70,7 @@ export default {
     rows: 'Satır görünümü',
     table_type: 'Tablo Tipi',
     view: 'Görünüm',
-    xitems_selected: '{0} öğe seçildi',
+    xitems_selected: '{0} öge seçildi',
   },
   date: {
     inthreemonths: 'Üç ay içinde',
@@ -83,6 +85,8 @@ export default {
     password: 'Parola',
     rememberMe: 'Beni hatırla',
     titles: {
+      generic_create: 'Kayıt Oluşturma Formu',
+      generic_update: 'Kayıt Güncelleme Formu',
       item_creation: 'Ürün Oluşturma Formu',
       item_update: 'Ürün Güncelleme Formu',
     },
@@ -123,6 +127,7 @@ export default {
   },
   notifications: {
     created_successfully: 'Başarıyla oluşturuldu!',
+    deleted_successfully: 'Başarıyla silindi!',
     request_failed: 'İstek başarısızlıkla sonuçlandı',
     updated_successfully: 'Başarıyla güncellendi!',
   },

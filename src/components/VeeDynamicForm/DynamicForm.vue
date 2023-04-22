@@ -30,7 +30,7 @@ import { FormComponent } from 'src/composables/openapihelpers';
 
 defineProps({
   formComponents: {
-    type: Object as PropType<Map<string, FormComponent>>,
+    type: Object as PropType<Map<string, FormComponent> | undefined>,
     required: true,
   },
 });

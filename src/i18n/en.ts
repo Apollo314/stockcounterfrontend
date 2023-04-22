@@ -31,6 +31,7 @@ export default {
     login: 'Log in',
   },
   commons: {
+    'are-you-sure-you-want-to-delete': 'Are you sure you want to delete this?',
     cancel: 'Cancel',
     delete: 'Delete',
     dofilter: 'Filter',
@@ -85,6 +86,8 @@ export default {
     password: 'Password',
     rememberMe: 'Remember me',
     titles: {
+      generic_create: 'Create Form',
+      generic_update: 'Update Form',
       item_creation: 'Item Creation Form',
       item_update: 'Item Update Form',
     },
@@ -125,6 +128,7 @@ export default {
   },
   notifications: {
     created_successfully: 'Created successfully!',
+    deleted_successfully: 'Deleted successfully!',
     request_failed: 'Request failed',
     updated_successfully: 'Updated succesfully!',
   },
