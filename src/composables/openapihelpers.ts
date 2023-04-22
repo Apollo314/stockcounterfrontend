@@ -13,6 +13,7 @@ import type {
   MediaTypeObject,
   ParameterObject,
   ReferenceObject,
+  RequestBodyObject,
   ResponseObject,
   OperationObject as WrongOperationObject,
   XMLObject,
@@ -322,52 +323,108 @@ export function create_form<
     keyof typeof components.schemas,
     `${string}Request`
   >,
-  Field extends keyof Extract<
-    C[ComponentName],
-    { properties: unknown }
-  >['properties']
+  Field extends
+    | keyof Extract<C[ComponentName], { properties: unknown }>['properties']
+    | string
 >(
-  component_name: ComponentName,
+  componentNameOrSchema: ComponentName | SchemaObject | undefined,
   hidden_fields?: Field[],
   createValidator = true
 ) {
-  const component = dereference(get_component_schema(component_name));
-  const validator = createValidator
-    ? openapiToVeeValidateValidator(component)
-    : undefined;
-  const formComponents = new Map<Field, FormComponent>();
-  const hiddenFormComponents = new Map<Field, FormComponent>();
-  if (isObject(component) && component.properties !== undefined) {
-    for (const propertyKey in component.properties) {
-      const property = component.properties[propertyKey] as SchemaObject;
-      const xcomp = property['x-components'];
-      const props: ComponentProps = {
-        label: property.title || propertyKey,
-        ...property,
-        ...xcomp?.props,
-      };
-      let comp: string;
-      if (xcomp?.component) {
-        comp = xcomp.component;
-      } else if (hasAllOf(property)) {
-        comp = 'enum-selector';
-      } else {
-        comp = 'text-input';
-      }
-      const formComp = {
-        componentString: comp as ComponentStrings,
-        props: props,
-      };
-      if (hidden_fields?.includes(propertyKey as Field)) {
-        hiddenFormComponents.set(propertyKey as Field, formComp);
-      } else {
-        formComponents.set(propertyKey as Field, formComp);
+  const component =
+    typeof componentNameOrSchema === 'string'
+      ? dereference(get_component_schema(componentNameOrSchema))
+      : componentNameOrSchema;
+  if (component) {
+    const validator = createValidator
+      ? openapiToVeeValidateValidator(component)
+      : undefined;
+    const formComponents = new Map<Field, FormComponent>();
+    const hiddenFormComponents = new Map<Field, FormComponent>();
+    if (isObject(component) && component.properties !== undefined) {
+      for (const propertyKey in component.properties) {
+        const property = component.properties[propertyKey] as SchemaObject;
+        const xcomp = property['x-components'];
+        const props: ComponentProps = {
+          label: property.title || propertyKey,
+          ...property,
+          ...xcomp?.props,
+        };
+        let comp: string;
+        if (xcomp?.component) {
+          comp = xcomp.component;
+        } else if (hasAllOf(property)) {
+          comp = 'enum-selector';
+        } else {
+          comp = 'text-input';
+        }
+        const formComp = {
+          componentString: comp as ComponentStrings,
+          props: props,
+        };
+        if (hidden_fields?.includes(propertyKey as Field)) {
+          hiddenFormComponents.set(propertyKey as Field, formComp);
+        } else {
+          formComponents.set(propertyKey as Field, formComp);
+        }
       }
     }
+    return { formComponents, hiddenFormComponents, validator };
+  } else {
+    return {
+      formComponents: undefined,
+      hiddenFormComponents: undefined,
+      validator: undefined,
+    };
   }
-  return { formComponents, hiddenFormComponents, validator };
 }
 
 export type NestedRecord = {
   [key: string | number]: NestedRecord | string | number;
+};
+
+export const extractResponseSchemaFromOperation = (
+  operation: OperationObject
+) => {
+  const responseSchema = (operation.responses[200] as CorrectResponseObject)
+    .content?.['application/json'].schema;
+  if (responseSchema) {
+    const derefedSchema = dereference(responseSchema) as Extract<
+      SchemaObject,
+      { type: 'object' }
+    >;
+    const properties = derefedSchema.properties;
+    if (!properties) {
+      return;
+    }
+    const results = properties['results'] as Extract<
+      SchemaObject,
+      { type: 'array' }
+    >;
+    if (!results) {
+      return;
+    }
+    const items = results.items;
+    if (!items) {
+      return;
+    }
+    return items as Extract<SchemaObject, { type: 'object' }>;
+  }
+  return;
+};
+
+export const extractRequestSchemaFromOperation = (
+  operation: OperationObject
+) => {
+  if (operation.requestBody) {
+    const requestBody = operation.requestBody as RequestBodyObject;
+    const content = requestBody.content;
+    const jsonContent = content['application/json'];
+    if (jsonContent) {
+      const schema = (jsonContent as MediaTypeObject)['schema'];
+      if (schema) {
+        return dereference(schema);
+      }
+    }
+  }
 };
