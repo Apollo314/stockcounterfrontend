@@ -380,7 +380,7 @@ export function create_form<
 }
 
 export type NestedRecord = {
-  [key: string | number]: NestedRecord | string | number;
+  [key: string | number]: NestedRecord | NestedRecord[] | string | number;
 };
 
 export const extractResponseSchemaFromOperation = (
