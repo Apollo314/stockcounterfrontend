@@ -148,13 +148,13 @@ export const menuItems = (): MenuItem[] => {
           title: $t('menu.customer', 2),
           icon: 'groups',
           bgColor: 'positive',
-          to: { name: 'nest', params: { id: 17 } },
+          to: { name: 'customer-list' },
           children: [
             {
               shrinkable: true,
               title: $t('commons.new', ['menu.customer']),
               icon: 'person',
-              to: { name: 'nest', params: { id: 18 } },
+              to: { name: 'customer-create' },
             },
           ],
         },
@@ -163,12 +163,12 @@ export const menuItems = (): MenuItem[] => {
           title: $t('menu.supplier', 2),
           bgColor: 'negative',
           icon: 'location_city',
-          to: { name: 'nest', params: { id: 19 } },
+          to: { name: 'supplier-list' },
           children: [
             {
               title: $t('commons.new', ['menu.supplier']),
               icon: 'business',
-              to: { name: 'nest', params: { id: 20 } },
+              to: { name: 'supplier-create' },
             },
           ],
         },
