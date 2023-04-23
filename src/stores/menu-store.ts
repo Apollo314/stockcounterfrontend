@@ -126,12 +126,12 @@ export const menuItems = (): MenuItem[] => {
           shrinkable: true,
           bgColor: 'brown-8',
           icon: 'warehouse',
-          to: { name: 'nest', params: { id: 15 } },
+          to: { name: 'warehouse-list' },
           children: [
             {
               title: $t('commons.new', ['menu.warehouse']),
               icon: 'gite',
-              to: { name: 'nest', params: { id: 16 } },
+              to: { name: 'warehouse-create' },
             },
           ],
         },
