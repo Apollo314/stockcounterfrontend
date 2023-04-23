@@ -71,7 +71,7 @@ const routes: RouteRecordRawExtended[] = [
         meta: { key: 'category-list' },
       },
       {
-        path: 'items/create',
+        path: 'category/create',
         component: () => import('pages/Categories/DetailView.vue'),
         name: 'category-create',
         meta: {
@@ -86,6 +86,30 @@ const routes: RouteRecordRawExtended[] = [
         props: true,
       },
       // Category
+
+      // Warehouse
+      {
+        path: 'warehouses/',
+        component: () => import('src/pages/Warehouses/ListVİew.vue'),
+        name: 'warehouse-list',
+        meta: { key: 'warehouse-list' },
+      },
+      {
+        path: 'warehouses/create',
+        component: () => import('pages/Warehouses/DetailView.vue'),
+        name: 'warehouse-create',
+        meta: {
+          key: 'warehouse-create',
+        },
+      },
+      {
+        path: 'warehouses/update/:id(\\d+)',
+        component: () => import('pages/Warehouses/DetailView.vue'),
+        name: 'warehouse-update',
+        meta: { pathAsKey: true },
+        props: true,
+      },
+      // Warehouse
 
       {
         path: '/:id(\\d+)',
