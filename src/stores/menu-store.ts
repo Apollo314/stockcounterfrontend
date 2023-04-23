@@ -96,12 +96,12 @@ export const menuItems = (): MenuItem[] => {
           shrinkable: true,
           icon: 'square_foot',
           bgColor: 'purple-8',
-          to: { name: 'nest', params: { id: 11 } },
+          to: { name: 'stockunit-list' },
           children: [
             {
               title: $t('commons.new', ['menu.unit']),
               icon: 'straighten',
-              to: { name: 'nest', params: { id: 12 } },
+              to: { name: 'stockunit-create' },
             },
           ],
         },
