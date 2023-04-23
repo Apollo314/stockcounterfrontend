@@ -1,16 +1,17 @@
 <template>
-  <q-page
-    :padding="$q.screen.gt.xs"
-    style="display: flex; align-items: flex-start; justify-content: center"
-  >
-    <Login style="margin-top: min(50px, 20vh)" @success="success"></Login>
-  </q-page>
+  <FullHeightPage :padding="$q.screen.gt.xs" class="full-height">
+    <div class="row full-width justify-center">
+      <Login style="margin-top: min(50px, 20vh)" @success="success"></Login>
+    </div>
+  </FullHeightPage>
 </template>
 
 <script setup lang="ts">
 import { RouteLocationRaw, useRouter } from 'vue-router';
 
 import Login from 'components/Login/LoginComponent.vue';
+
+import FullHeightPage from '../../components/Page/FullHeightPage.vue';
 
 const props = withDefaults(
   defineProps<{
