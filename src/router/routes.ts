@@ -38,6 +38,8 @@ const routes: RouteRecordRawExtended[] = [
         component: () => import('pages/Login/LoginPage.vue'),
         name: 'home',
       },
+
+      // Item
       {
         path: 'items/',
         component: () => import('src/pages/Items/ListVİew.vue'),
@@ -59,6 +61,32 @@ const routes: RouteRecordRawExtended[] = [
         meta: { pathAsKey: true },
         props: true,
       },
+      // Item
+
+      // Category
+      {
+        path: 'categories/',
+        component: () => import('src/pages/Categories/ListVİew.vue'),
+        name: 'category-list',
+        meta: { key: 'category-list' },
+      },
+      {
+        path: 'items/create',
+        component: () => import('pages/Categories/DetailView.vue'),
+        name: 'category-create',
+        meta: {
+          key: 'category-create',
+        },
+      },
+      {
+        path: 'category/update/:name(\\w+)',
+        component: () => import('pages/Categories/DetailView.vue'),
+        name: 'category-update',
+        meta: { pathAsKey: true },
+        props: true,
+      },
+      // Category
+
       {
         path: '/:id(\\d+)',
         component: () => import('pages/Index/IndexPage.vue'),

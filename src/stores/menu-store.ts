@@ -111,12 +111,12 @@ export const menuItems = (): MenuItem[] => {
           shrinkable: true,
           icon: 'category',
           bgColor: 'lime-8',
-          to: { name: 'nest', params: { id: 13 } },
+          to: { name: 'category-list' },
           children: [
             {
               title: $t('commons.new', ['menu.category']),
               icon: 'hexagon',
-              to: { name: 'nest', params: { id: 14 } },
+              to: { name: 'category-create' },
             },
           ],
         },

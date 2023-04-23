@@ -60,6 +60,8 @@ export type { PatchedStockUnitRequest } from './models/PatchedStockUnitRequest';
 export type { PatchedUserRequest } from './models/PatchedUserRequest';
 export type { PatchedWarehouseRequest } from './models/PatchedWarehouseRequest';
 export type { RoleEnum } from './models/RoleEnum';
+export type { SimpleCategory } from './models/SimpleCategory';
+export type { SimpleCategoryRequest } from './models/SimpleCategoryRequest';
 export type { Stakeholder } from './models/Stakeholder';
 export type { StakeholderBasic } from './models/StakeholderBasic';
 export type { StakeholderBasicRequest } from './models/StakeholderBasicRequest';
