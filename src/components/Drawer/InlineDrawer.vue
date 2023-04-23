@@ -12,8 +12,9 @@
       }"
     >
       <adaptive-card
-        v-touch-swipe:8e-2:10:50.mouse.right="closeIfOverlay"
         ref="drawerCardRef"
+        v-touch-swipe.mouse.right="closeIfOverlay"
+        class="full-height"
         :bordered="bordered"
       >
         <slot></slot>
@@ -22,11 +23,11 @@
   </q-dialog>
   <q-card
     v-else
+    v-show="width > 0"
     :style="{
       width: `${(modelValue ? 1 : 0) * width}px`,
     }"
     :bordered="bordered && modelValue"
-    v-show="width > 0"
     class="full-height inline-drawer-parent"
   >
     <div
