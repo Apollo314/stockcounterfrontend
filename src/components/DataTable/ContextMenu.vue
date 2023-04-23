@@ -28,7 +28,7 @@
                 selectedRows &&
                   action.callback(selectedRows, (deselect) => {
                     if (deselect) {
-                      selectedRows.clear();
+                      selectedRows?.clear();
                     }
                   })
               "
@@ -51,35 +51,21 @@
 </template>
 
 <script setup lang="ts" generic="Row extends BaseRow">
-import { PropType } from 'vue';
+import { ContextMenuGroup, BaseRow } from './DataTable.vue';
 
-import { ContextMenuGroup } from './DataTable.vue';
-
-export type BaseRow = {
-  id: number | string;
-};
-
-defineProps({
-  selectedRows: {
-    type: Map as PropType<Map<number | string, Row>>,
-    required: false,
-    default: new Map(),
-  },
-  actions: {
-    type: Array as PropType<ContextMenuGroup<Row>[]>,
-    required: true,
-  },
-  modelValue: {
-    type: Boolean,
-    required: false,
-    default: undefined,
-  },
-  contextMenu: {
-    type: Boolean,
-    required: false,
-    default: true,
-  },
-});
+withDefaults(
+  defineProps<{
+    selectedRows?: Map<number | string, Row>;
+    actions: ContextMenuGroup<Row>[];
+    modelValue?: boolean;
+    contextMenu?: boolean;
+  }>(),
+  {
+    contextMenu: true,
+    selectedRows: () => new Map(),
+    modelValue: undefined,
+  }
+);
 
 const emit = defineEmits<{
   (e: 'contextRequest'): void;
