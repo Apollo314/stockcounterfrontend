@@ -63,6 +63,30 @@ const routes: RouteRecordRawExtended[] = [
       },
       // Item
 
+      // Stockunit
+      {
+        path: 'stockunits/',
+        component: () => import('src/pages/StockUnits/ListView.vue'),
+        name: 'stockunit-list',
+        meta: { key: 'stockunit-list' },
+      },
+      {
+        path: 'stockunit/create',
+        component: () => import('pages/StockUnits/DetailView.vue'),
+        name: 'stockunit-create',
+        meta: {
+          key: 'stockunit-create',
+        },
+      },
+      {
+        path: 'stockunit/update/:name(\\w+)',
+        component: () => import('pages/StockUnits/DetailView.vue'),
+        name: 'stockunit-update',
+        meta: { pathAsKey: true },
+        props: true,
+      },
+      // Stockunit
+
       // Category
       {
         path: 'categories/',
