@@ -130,6 +130,9 @@
           {
             "knoxTokenAuth": []
           },
+          {
+            "cookieAuth": []
+          },
           {}
         ],
         "responses": {
@@ -185,6 +188,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -227,6 +233,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -261,6 +270,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -290,6 +302,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -319,6 +334,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -374,6 +392,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -430,6 +451,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -464,6 +488,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -506,6 +533,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -547,6 +577,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -579,6 +612,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -816,6 +852,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1056,6 +1095,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1300,6 +1342,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1540,6 +1585,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1575,6 +1623,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1618,6 +1669,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1660,6 +1714,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1693,6 +1750,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1721,6 +1781,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1764,6 +1827,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1806,6 +1872,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1839,6 +1908,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1980,6 +2052,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2124,6 +2199,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2159,6 +2237,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2202,6 +2283,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2244,6 +2328,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2277,6 +2364,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2332,6 +2422,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2388,6 +2481,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2422,6 +2518,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2464,6 +2563,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2505,6 +2607,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2537,6 +2642,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2582,6 +2690,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2626,6 +2737,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2678,6 +2792,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2727,6 +2844,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2762,6 +2882,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2805,6 +2928,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2847,6 +2973,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2880,6 +3009,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2909,6 +3041,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3067,6 +3202,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3228,6 +3366,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3263,6 +3404,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3306,6 +3450,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3348,6 +3495,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3381,6 +3531,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3410,6 +3563,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3515,6 +3671,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3621,6 +3780,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3656,6 +3818,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3699,6 +3864,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3741,6 +3909,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3774,6 +3945,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3819,6 +3993,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3864,6 +4041,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3899,6 +4079,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3942,6 +4125,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3984,6 +4170,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4017,6 +4206,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4122,6 +4314,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4228,6 +4423,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4263,6 +4461,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4306,6 +4507,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4348,6 +4552,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4381,6 +4588,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4533,6 +4743,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4686,6 +4899,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4721,6 +4937,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4764,6 +4983,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4806,6 +5028,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4839,6 +5064,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4875,6 +5103,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4970,6 +5201,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5009,9 +5243,17 @@
             "x-components": {
               "component": "category-selector"
             }
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SimpleCategory"
+            },
+            "readOnly": true,
+            "title": "Children"
           }
         },
-        "required": ["id", "name"]
+        "required": ["children", "id", "name"]
       },
       "CategoryRequest": {
         "type": "object",
@@ -7371,7 +7613,7 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Miktar"
+            "title": "Amount"
           },
           "invoice_item": {
             "allOf": [
@@ -7503,6 +7745,34 @@
       "RoleEnum": {
         "enum": ["Satıcı", "Müşteri", "Müşteri ve Satıcı"],
         "type": "string"
+      },
+      "SimpleCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Category",
+            "maxLength": 40
+          }
+        },
+        "required": ["id", "name"]
+      },
+      "SimpleCategoryRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Category",
+            "maxLength": 40
+          }
+        },
+        "required": ["name"]
       },
       "Stakeholder": {
         "type": "object",
@@ -7861,7 +8131,7 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Miktar"
+            "title": "Amount"
           },
           "invoice_item": {
             "allOf": [
@@ -7889,7 +8159,7 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Miktar"
+            "title": "Amount"
           },
           "invoice_item": {
             "allOf": [
@@ -8417,6 +8687,11 @@
       }
     },
     "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "sessionid"
+      },
       "knoxTokenAuth": {
         "type": "http",
         "scheme": "bearer"
