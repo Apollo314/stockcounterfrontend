@@ -6,7 +6,6 @@
     "strict": true
   },
   "vueCompilerOptions": {
-    "jsxTemplates": true,
-    "experimentalRfc436": true
+    "jsxTemplates": true
   }
 }
