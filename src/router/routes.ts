@@ -42,7 +42,7 @@ const routes: RouteRecordRawExtended[] = [
       // Item
       {
         path: 'items/',
-        component: () => import('src/pages/Items/ListVİew.vue'),
+        component: () => import('src/pages/Items/ListView.vue'),
         name: 'items-list',
         meta: { key: 'items-list' },
       },
@@ -66,7 +66,7 @@ const routes: RouteRecordRawExtended[] = [
       // Category
       {
         path: 'categories/',
-        component: () => import('src/pages/Categories/ListVİew.vue'),
+        component: () => import('src/pages/Categories/ListView.vue'),
         name: 'category-list',
         meta: { key: 'category-list' },
       },
@@ -90,7 +90,7 @@ const routes: RouteRecordRawExtended[] = [
       // Warehouse
       {
         path: 'warehouses/',
-        component: () => import('src/pages/Warehouses/ListVİew.vue'),
+        component: () => import('src/pages/Warehouses/ListView.vue'),
         name: 'warehouse-list',
         meta: { key: 'warehouse-list' },
       },
@@ -110,6 +110,54 @@ const routes: RouteRecordRawExtended[] = [
         props: true,
       },
       // Warehouse
+
+      // Stakeholder / Customer
+      {
+        path: 'customers/',
+        component: () => import('src/pages/Customers/ListView.vue'),
+        name: 'customer-list',
+        meta: { key: 'customer-list' },
+      },
+      {
+        path: 'customer/create',
+        component: () => import('pages/Customers/DetailView.vue'),
+        name: 'customer-create',
+        meta: {
+          key: 'customer-create',
+        },
+      },
+      {
+        path: 'customer/update/:id(\\d+)',
+        component: () => import('pages/Customers/DetailView.vue'),
+        name: 'customer-update',
+        meta: { pathAsKey: true },
+        props: true,
+      },
+      // Stakeholder / Customer
+
+      // Stakeholder / Supplier
+      {
+        path: 'suppliers/',
+        component: () => import('src/pages/Suppliers/ListView.vue'),
+        name: 'supplier-list',
+        meta: { key: 'supplier-list' },
+      },
+      {
+        path: 'supplier/create',
+        component: () => import('pages/Suppliers/DetailView.vue'),
+        name: 'supplier-create',
+        meta: {
+          key: 'supplier-create',
+        },
+      },
+      {
+        path: 'supplier/update/:id(\\d+)',
+        component: () => import('pages/Suppliers/DetailView.vue'),
+        name: 'supplier-update',
+        meta: { pathAsKey: true },
+        props: true,
+      },
+      // Stakeholder / Supplier
 
       {
         path: '/:id(\\d+)',
