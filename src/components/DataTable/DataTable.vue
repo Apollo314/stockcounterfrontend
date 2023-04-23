@@ -26,7 +26,7 @@
         </Teleport>
       </template>
       <div class="table-parent">
-        <table v-if="!card" flat class="coolshadow data-table">
+        <table v-if="!card" class="coolshadow data-table">
           <thead class="table-head" :class="theadClasses">
             <ActiveColumns></ActiveColumns>
             <tr>
