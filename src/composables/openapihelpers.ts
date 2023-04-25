@@ -323,12 +323,15 @@ export function create_form<
     keyof typeof components.schemas,
     `${string}Request`
   >,
-  Field extends
-    | keyof Extract<C[ComponentName], { properties: unknown }>['properties']
-    | string
+  Field extends keyof Extract<
+    C[ComponentName],
+    { properties: unknown }
+  >['properties'] &
+    string,
+  HiddenField extends Field
 >(
   componentNameOrSchema: ComponentName | SchemaObject | undefined,
-  hidden_fields?: Field[],
+  hidden_fields?: HiddenField[] | string[],
   createValidator = true
 ) {
   const component =
@@ -339,8 +342,11 @@ export function create_form<
     const validator = createValidator
       ? openapiToVeeValidateValidator(component)
       : undefined;
-    const formComponents = new Map<Field, FormComponent>();
-    const hiddenFormComponents = new Map<Field, FormComponent>();
+    const formComponents = new Map<
+      Exclude<Field, HiddenField>,
+      FormComponent
+    >();
+    const hiddenFormComponents = new Map<HiddenField, FormComponent>();
     if (isObject(component) && component.properties !== undefined) {
       for (const propertyKey in component.properties) {
         const property = component.properties[propertyKey] as SchemaObject;
@@ -362,10 +368,13 @@ export function create_form<
           componentString: comp as ComponentStrings,
           props: props,
         };
-        if (hidden_fields?.includes(propertyKey as Field)) {
-          hiddenFormComponents.set(propertyKey as Field, formComp);
+        if (hidden_fields?.includes(propertyKey as HiddenField)) {
+          hiddenFormComponents.set(propertyKey as HiddenField, formComp);
         } else {
-          formComponents.set(propertyKey as Field, formComp);
+          formComponents.set(
+            propertyKey as Exclude<Field, HiddenField>,
+            formComp
+          );
         }
       }
     }
