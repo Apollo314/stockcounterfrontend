@@ -2,11 +2,11 @@
   <div>
     <q-input
       ref="inputRef"
+      v-model="value"
       :outlined="outlined"
       :standout="standout"
       :label="label"
       class="label-top"
-      v-model="value"
       :rules="[dateRangeRule]"
       hide-bottom-space
       mask="####-##-##, ####-##-##"
@@ -19,7 +19,7 @@
       <template #prepend>
         <q-icon name="event" class="cursor-pointer">
           <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-            <q-date bordered v-model="dateRange" mask="YYYY-MM-DD" range>
+            <q-date v-model="dateRange" bordered mask="YYYY-MM-DD" range>
               <div class="row items-center justify-end">
                 <div class="row q-pt-md justify-center q-gutter-sm">
                   <q-btn

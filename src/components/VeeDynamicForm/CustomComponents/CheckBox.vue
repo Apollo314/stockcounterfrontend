@@ -1,8 +1,8 @@
 <template>
   <q-checkbox
+    v-model="value"
     :toggle-indeterminate="toggleIndeterminate"
     :left-label="leftLabel"
-    v-model="value"
     :name="name"
     :error="!!errorMessage"
     :error-message="errorMessage"

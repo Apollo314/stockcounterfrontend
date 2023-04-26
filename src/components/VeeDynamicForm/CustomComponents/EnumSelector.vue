@@ -1,20 +1,20 @@
 <template>
   <q-select
+    v-model="value"
     :standout="standout"
     tabindex="0"
-    v-model="value"
     :options="options"
     :label="label"
     :label-color="labelColor"
     :error="!!errorMessage"
     :error-message="errorMessage"
     :hide-bottom-space="!errorMessage"
-    @input-value="validate()"
-    @blur="validate()"
     :clearable="clearable"
     clear-icon="clear"
     :dense="dense"
     :bg-color="highlight ? 'primary' : undefined"
+    @input-value="validate()"
+    @blur="validate()"
   >
   </q-select>
 </template>

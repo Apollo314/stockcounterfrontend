@@ -1,12 +1,11 @@
 <template>
   <div>
     <q-input
+      v-model="value"
       :standout="standout"
       :outlined="outlined"
-      v-model="value"
       :type="type"
       :label="label"
-      @blur="validate()"
       :clearable="clearable"
       :error="!!errorMessage"
       :error-message="errorMessage"
@@ -15,6 +14,7 @@
       :dense="dense"
       autocomplete="new-password"
       :bg-color="highlight ? 'primary' : undefined"
+      @blur="validate()"
     >
       <template v-if="icon" #prepend>
         <q-icon :name="icon"></q-icon>

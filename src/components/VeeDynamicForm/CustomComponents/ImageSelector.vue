@@ -3,8 +3,8 @@
     <div class="expander" :class="{ 'height-zero': !cropperSrc }">
       <div v-if="cropperSrc">
         <Cropper
-          class="cropper"
           ref="cropper"
+          class="cropper"
           :src="cropperSrc"
           :stencil-props="{
             aspectRatio: aspectRatio,
@@ -51,20 +51,20 @@
             @click="cropperSrc = undefined"
           />
           <q-btn
+            v-close-popup
             class="bg-dark text-negative"
             push
             icon="clear"
             :label="$t('commons.cancel')"
             @click="clear()"
-            v-close-popup
           />
         </q-btn-group>
       </div>
     </div>
     <q-file
+      v-model="inputImage"
       :standout="standout"
       class="label-top hide-file-slot"
-      v-model="inputImage"
       :stack-label="!!(imgUrl || value)"
       :label="label"
       accept="image/*"
@@ -75,7 +75,7 @@
       <template #prepend>
         <q-icon name="image"></q-icon>
       </template>
-      <template #default v-if="imgUrl || value">
+      <template v-if="imgUrl || value" #default>
         <div
           class="q-pa-sm bg-grey-1 coolshadowmore pictureframe"
           style="border-radius: 5px"
@@ -88,7 +88,7 @@
           />
         </div>
       </template>
-      <template #append v-if="imgUrl || value">
+      <template v-if="imgUrl || value" #append>
         <q-icon class="cursor-pointer" name="clear" @click="clear()" />
       </template>
       <template #file> </template>

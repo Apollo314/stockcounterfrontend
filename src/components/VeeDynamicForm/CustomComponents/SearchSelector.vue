@@ -1,14 +1,12 @@
 <template>
   <q-select
     ref="selectRef"
+    v-model="value"
     :multiple="multiple"
     use-input
     :standout="standout"
     class="label-top limit-max-height-input"
-    v-model="value"
-    @update:model-value="$emit('select', $event)"
     :options="options"
-    @filter="onFilter"
     :loading="loading"
     :label="label"
     :option-label="optionLabel"
@@ -21,9 +19,11 @@
     :error="!!errorMessage"
     :error-message="errorMessage"
     :dense="dense"
-    @blur="validate()"
     :hide-bottom-space="hideBottomSpace"
     :bg-color="highlight ? 'primary' : undefined"
+    @update:model-value="$emit('select', $event)"
+    @filter="onFilter"
+    @blur="validate()"
   >
     <template #after-options>
       <div
