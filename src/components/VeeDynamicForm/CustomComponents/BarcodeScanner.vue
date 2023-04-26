@@ -2,11 +2,10 @@
   <div>
     <q-input
       ref="inputRef"
+      v-model="value"
       :standout="standout"
       :outlined="outlined"
-      v-model="value"
       :label="label"
-      @blur="validate()"
       :clearable="clearable"
       :error="!!errorMessage"
       :error-message="errorMessage"
@@ -14,40 +13,40 @@
       :bg-color="highlight ? 'primary' : undefined"
       clear-icon="clear"
       :dense="dense"
+      @blur="validate()"
     >
       <template #before>
         <q-btn flat icon="qr_code_scanner" @click="modalOpen = true" />
       </template>
     </q-input>
-    <q-dialog maximized v-model="modalOpen">
+    <q-dialog v-model="modalOpen" maximized>
       <div>
         <div class="row items-center justify-center scanner-parent">
           <transition name="fade" appear>
             <div
-              @click="modalOpen = false"
               ref="scannerRef"
               class="scanner"
+              @click="modalOpen = false"
             ></div>
           </transition>
           <div style="position: absolute; top: 20px; right: 20px">
             <q-btn
+              v-close-popup
               flat
               class="bg-black text-negative"
               icon="close"
-              v-close-popup
             />
           </div>
           <div
             style="position: absolute; bottom: 10%; width: calc(100% - 50px)"
           >
             <div class="row justify-end q-col-gutter-sm">
-              <div class="col" v-if="zoom?.isSupported">
+              <div v-if="zoom?.isSupported" class="col">
                 <q-slider
                   :model-value="Math.round(zoom.value * 10) / 10"
                   :min="zoom.min"
                   :max="zoom.max"
                   :step="zoom.step"
-                  @update:model-value="applyZoom($event || 1)"
                   label
                   snap
                   markers
@@ -55,6 +54,7 @@
                   track-color="white"
                   track-size="10px"
                   thumb-size="30px"
+                  @update:model-value="applyZoom($event || 1)"
                 />
               </div>
               <div v-if="torchFeature?.isSupported()" class="col-shrink">

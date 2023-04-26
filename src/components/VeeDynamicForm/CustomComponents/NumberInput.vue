@@ -4,7 +4,6 @@
     :label="label"
     :standout="standout"
     :model-value="formattedModel"
-    @update:model-value="update($event as string | null)"
     type="text"
     inputmode="numeric"
     :error="!!errorMessage"
@@ -16,6 +15,7 @@
     :prefix="prefix"
     :suffix="suffix"
     :bg-color="highlight ? 'primary' : undefined"
+    @update:model-value="update($event as string | null)"
     @blur="
       validate();
       $emit('blur');

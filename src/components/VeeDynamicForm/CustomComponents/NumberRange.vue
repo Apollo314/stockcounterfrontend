@@ -4,13 +4,13 @@
     <div class="row q-gutter-sm hide-number-spin-buttons">
       <div class="col">
         <NumberInput
-          @blur="lowerRangeBlur"
           ref="lowerRangeRef"
           :label="leftLabel"
           name="rangeLow"
           :standout="standout"
           :highlight="highlight"
           focus-on-highlight
+          @blur="lowerRangeBlur"
         />
       </div>
       <q-icon
@@ -20,11 +20,11 @@
       />
       <div class="col">
         <NumberInput
-          @blur="higherRangeBlur"
           :label="rightLabel"
           name="rangeHigh"
           :standout="standout"
           :highlight="highlight"
+          @blur="higherRangeBlur"
         />
       </div>
     </div>
