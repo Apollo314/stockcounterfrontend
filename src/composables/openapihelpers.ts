@@ -297,21 +297,26 @@ export type FormComponent = {
   props: ComponentProps;
 };
 
-export function create_filters(operation: OperationObject) {
+export function create_filters(
+  operation: OperationObject,
+  hidden_fields?: string[]
+) {
   const filterComponents: Record<string, FormComponent> = {};
   if (operation.parameters) {
     for (const parameter of operation.parameters as ExtendedParameterObject[]) {
-      const xcomp = parameter.schema?.['x-components'];
-      const props: ComponentProps = {
-        label: parameter.schema?.title || parameter.name,
-        ...parameter.schema,
-        ...xcomp?.props,
-      };
-      const component = xcomp?.component || 'text-input';
-      filterComponents[parameter.name] = {
-        componentString: component as ComponentStrings,
-        props: props,
-      };
+      if (!hidden_fields?.includes(parameter.name)) {
+        const xcomp = parameter.schema?.['x-components'];
+        const props: ComponentProps = {
+          label: parameter.schema?.title || parameter.name,
+          ...parameter.schema,
+          ...xcomp?.props,
+        };
+        const component = xcomp?.component || 'text-input';
+        filterComponents[parameter.name] = {
+          componentString: component as ComponentStrings,
+          props: props,
+        };
+      }
     }
   }
   return filterComponents;
