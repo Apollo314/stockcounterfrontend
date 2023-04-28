@@ -91,7 +91,7 @@ export class InvoiceService {
       | '-updated_by'
       | '-total_with_tax';
     /**
-     * Ara: Fatura Adı
+     * Ara: Fatura adı
      */
     search?: string;
     /**

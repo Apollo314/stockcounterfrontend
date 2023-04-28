@@ -3174,7 +3174,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Fatura Adı",
+            "description": "Ara: Fatura adı",
             "schema": {
               "type": "string"
             }
@@ -3342,7 +3342,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Fatura Adı",
+              "description": "Ara: Fatura adı",
               "schema": {
                 "type": "string"
               }
@@ -5491,11 +5491,11 @@
                 "$ref": "#/components/schemas/InvoiceTypeEnum"
               }
             ],
-            "title": "Fatura Tipi"
+            "title": "Fatura tipi"
           },
           "name": {
             "type": "string",
-            "title": "Fatura Adı",
+            "title": "Fatura adı",
             "maxLength": 100
           },
           "description": {
@@ -5506,12 +5506,12 @@
           "invoice_conditions": {
             "type": "string",
             "nullable": true,
-            "title": "Fatura Koşulları"
+            "title": "Invoice conditions"
           },
           "last_payment_date": {
             "type": "string",
             "format": "date-time",
-            "title": "Son Ödeme Tarihi"
+            "title": "Son ödeme tarihi"
           },
           "currency": {
             "allOf": [
@@ -5520,36 +5520,39 @@
               }
             ],
             "default": "TRY",
-            "title": "Fatura Para Birimi"
+            "title": "Fatura para birimi"
           },
           "currency_exchange_rate": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Döviz Kuru"
+            "title": "Fatura döviz kuru"
           },
           "stakeholder": {
             "type": "integer",
-            "title": "Alakalı Taraf"
+            "title": "Alakalı taraf"
           },
           "warehouse": {
             "type": "integer",
-            "title": "Alakalı Depo"
+            "title": "Depot",
+            "x-components": {
+              "component": "warehouse-selector"
+            }
           },
           "total": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Hariç Tutar"
+            "title": "Vergisiz toplam"
           },
           "total_with_tax": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Dahil Tutar"
+            "title": "Vergiler dahil toplam"
           },
           "related_invoice": {
             "type": "array",
@@ -5570,12 +5573,12 @@
                 "$ref": "#/components/schemas/InvoiceTypeEnum"
               }
             ],
-            "title": "Fatura Tipi"
+            "title": "Fatura tipi"
           },
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Fatura Adı",
+            "title": "Fatura adı",
             "maxLength": 100
           },
           "description": {
@@ -5586,12 +5589,12 @@
           "invoice_conditions": {
             "type": "string",
             "nullable": true,
-            "title": "Fatura Koşulları"
+            "title": "Invoice conditions"
           },
           "last_payment_date": {
             "type": "string",
             "format": "date-time",
-            "title": "Son Ödeme Tarihi"
+            "title": "Son ödeme tarihi"
           },
           "currency": {
             "allOf": [
@@ -5600,36 +5603,39 @@
               }
             ],
             "default": "TRY",
-            "title": "Fatura Para Birimi"
+            "title": "Fatura para birimi"
           },
           "currency_exchange_rate": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Döviz Kuru"
+            "title": "Fatura döviz kuru"
           },
           "stakeholder": {
             "type": "integer",
-            "title": "Alakalı Taraf"
+            "title": "Alakalı taraf"
           },
           "warehouse": {
             "type": "integer",
-            "title": "Alakalı Depo"
+            "title": "Depot",
+            "x-components": {
+              "component": "warehouse-selector"
+            }
           },
           "total": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Hariç Tutar"
+            "title": "Vergisiz toplam"
           },
           "total_with_tax": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Dahil Tutar"
+            "title": "Vergiler dahil toplam"
           },
           "items": {
             "type": "array",
@@ -5669,11 +5675,11 @@
                 "$ref": "#/components/schemas/InvoiceTypeEnum"
               }
             ],
-            "title": "Fatura Tipi"
+            "title": "Fatura tipi"
           },
           "name": {
             "type": "string",
-            "title": "Fatura Adı",
+            "title": "Fatura adı",
             "maxLength": 100
           },
           "description": {
@@ -5684,12 +5690,12 @@
           "invoice_conditions": {
             "type": "string",
             "nullable": true,
-            "title": "Fatura Koşulları"
+            "title": "Invoice conditions"
           },
           "last_payment_date": {
             "type": "string",
             "format": "date-time",
-            "title": "Son Ödeme Tarihi"
+            "title": "Son ödeme tarihi"
           },
           "currency": {
             "allOf": [
@@ -5698,14 +5704,14 @@
               }
             ],
             "default": "TRY",
-            "title": "Fatura Para Birimi"
+            "title": "Fatura para birimi"
           },
           "currency_exchange_rate": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Döviz Kuru"
+            "title": "Fatura döviz kuru"
           },
           "stakeholder": {
             "allOf": [
@@ -5721,21 +5727,24 @@
                 "$ref": "#/components/schemas/Warehouse"
               }
             ],
-            "title": "Warehouse"
+            "title": "Warehouse",
+            "x-components": {
+              "component": "warehouse-selector"
+            }
           },
           "total": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Hariç Tutar"
+            "title": "Vergisiz toplam"
           },
           "total_with_tax": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Dahil Tutar"
+            "title": "Vergiler dahil toplam"
           },
           "items": {
             "type": "array",
@@ -5775,11 +5784,11 @@
                 "$ref": "#/components/schemas/InvoiceTypeEnum"
               }
             ],
-            "title": "Fatura Tipi"
+            "title": "Fatura tipi"
           },
           "name": {
             "type": "string",
-            "title": "Fatura Adı",
+            "title": "Fatura adı",
             "maxLength": 100
           },
           "description": {
@@ -5790,7 +5799,7 @@
           "last_payment_date": {
             "type": "string",
             "format": "date-time",
-            "title": "Son Ödeme Tarihi"
+            "title": "Son ödeme tarihi"
           },
           "currency": {
             "allOf": [
@@ -5799,14 +5808,14 @@
               }
             ],
             "default": "TRY",
-            "title": "Fatura Para Birimi"
+            "title": "Fatura para birimi"
           },
           "currency_exchange_rate": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Döviz Kuru"
+            "title": "Fatura döviz kuru"
           },
           "stakeholder": {
             "allOf": [
@@ -5829,14 +5838,14 @@
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Hariç Tutar"
+            "title": "Vergisiz toplam"
           },
           "total_with_tax": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Dahil Tutar"
+            "title": "Vergiler dahil toplam"
           }
         },
         "required": ["created_by", "id", "invoice_type", "name", "stakeholder"]
@@ -5850,12 +5859,12 @@
                 "$ref": "#/components/schemas/InvoiceTypeEnum"
               }
             ],
-            "title": "Fatura Tipi"
+            "title": "Fatura tipi"
           },
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Fatura Adı",
+            "title": "Fatura adı",
             "maxLength": 100
           },
           "description": {
@@ -5866,7 +5875,7 @@
           "last_payment_date": {
             "type": "string",
             "format": "date-time",
-            "title": "Son Ödeme Tarihi"
+            "title": "Son ödeme tarihi"
           },
           "currency": {
             "allOf": [
@@ -5875,14 +5884,14 @@
               }
             ],
             "default": "TRY",
-            "title": "Fatura Para Birimi"
+            "title": "Fatura para birimi"
           },
           "currency_exchange_rate": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Döviz Kuru"
+            "title": "Fatura döviz kuru"
           },
           "stakeholder": {
             "allOf": [
@@ -5905,14 +5914,14 @@
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Hariç Tutar"
+            "title": "Vergisiz toplam"
           },
           "total_with_tax": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Dahil Tutar"
+            "title": "Vergiler dahil toplam"
           }
         },
         "required": ["created_by", "invoice_type", "name", "stakeholder"]
@@ -6021,7 +6030,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Fatura Adı",
+            "title": "Fatura adı",
             "maxLength": 100
           },
           "description": {
@@ -6032,7 +6041,7 @@
           "last_payment_date": {
             "type": "string",
             "format": "date-time",
-            "title": "Son Ödeme Tarihi"
+            "title": "Son ödeme tarihi"
           },
           "created_by": {
             "type": "integer",
@@ -6063,28 +6072,28 @@
               }
             ],
             "default": "TRY",
-            "title": "Fatura Para Birimi"
+            "title": "Fatura para birimi"
           },
           "currency_exchange_rate": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Döviz Kuru"
+            "title": "Fatura döviz kuru"
           },
           "total": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Hariç Tutar"
+            "title": "Vergisiz toplam"
           },
           "total_with_tax": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Dahil Tutar"
+            "title": "Vergiler dahil toplam"
           },
           "stakeholder": {
             "allOf": [
@@ -6112,7 +6121,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Fatura Adı",
+            "title": "Fatura adı",
             "maxLength": 100
           },
           "description": {
@@ -6123,7 +6132,7 @@
           "last_payment_date": {
             "type": "string",
             "format": "date-time",
-            "title": "Son Ödeme Tarihi"
+            "title": "Son ödeme tarihi"
           },
           "created_by": {
             "type": "integer",
@@ -6147,28 +6156,28 @@
               }
             ],
             "default": "TRY",
-            "title": "Fatura Para Birimi"
+            "title": "Fatura para birimi"
           },
           "currency_exchange_rate": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Döviz Kuru"
+            "title": "Fatura döviz kuru"
           },
           "total": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Hariç Tutar"
+            "title": "Vergisiz toplam"
           },
           "total_with_tax": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Dahil Tutar"
+            "title": "Vergiler dahil toplam"
           },
           "stakeholder": {
             "allOf": [
@@ -7337,7 +7346,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Fatura Adı",
+            "title": "Fatura adı",
             "maxLength": 100
           },
           "description": {
@@ -7348,7 +7357,7 @@
           "last_payment_date": {
             "type": "string",
             "format": "date-time",
-            "title": "Son Ödeme Tarihi"
+            "title": "Son ödeme tarihi"
           },
           "created_by": {
             "type": "integer",
@@ -7372,28 +7381,28 @@
               }
             ],
             "default": "TRY",
-            "title": "Fatura Para Birimi"
+            "title": "Fatura para birimi"
           },
           "currency_exchange_rate": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Döviz Kuru"
+            "title": "Fatura döviz kuru"
           },
           "total": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Hariç Tutar"
+            "title": "Vergisiz toplam"
           },
           "total_with_tax": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
-            "title": "Toplam Kdv Dahil Tutar"
+            "title": "Vergiler dahil toplam"
           },
           "stakeholder": {
             "allOf": [

@@ -23,6 +23,7 @@ export const componentStrings = [
   'unit-selector',
   'user-select',
   'item-select',
+  'warehouse-selector',
   'enum-selector',
   'checkbox',
   'single-image-selector',
@@ -124,6 +125,13 @@ export const componentMap: ComponentMap = {
       optionLabel: (option) => option?.name as string,
     },
   },
+  'warehouse-selector': {
+    component: SearchSelector,
+    props: {
+      queryService: queryServiceFactory('inventory', 'inventoryWarehouseList'),
+      optionLabel: (option) => option.name as string,
+    },
+  },
   'enum-selector': {
     component: EnumSelector,
   },
@@ -167,7 +175,10 @@ export const getComponent = (formComponent: FormComponent) => {
   return componentDefinition.component;
 };
 
-export const getProps = (formComponent: FormComponent) => {
+export const getProps = <FC extends FormComponent>(
+  formComponent: FC | undefined
+) => {
+  if (formComponent === undefined) return { label: 'unknown' };
   let componentDefinition = componentMap[formComponent.componentString];
   if (componentDefinition === undefined) {
     componentDefinition = componentMap['undefined'];

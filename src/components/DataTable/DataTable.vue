@@ -248,7 +248,7 @@
 <script
   setup
   lang="ts"
-  generic="Row extends BaseRow, Column extends BaseColumn<Row>, Filters extends Record<string, string>"
+  generic="Row extends BaseRow, Column extends BaseColumn<Row>, Filters extends Record<string, string | undefined>"
 >
 import { useElementSize, useFullscreen } from '@vueuse/core';
 import { useQuasar } from 'quasar';
