@@ -11,6 +11,7 @@
             emit-full-object
             :name="`${name}.stock_movement.warehouse_item_stock.item`"
             :label="$t('invoice_labels.items.itemname')"
+            :extra-params="{ idNotin: existingIds?.join(',') }"
             @select="setItemProperties($event as ItemOut)"
           ></SearchSelector>
         </div>
@@ -48,6 +49,7 @@ import { queryServiceFactory } from '../../components/VeeDynamicForm/componentMa
 import NumberInput from '../../components/VeeDynamicForm/CustomComponents/NumberInput.vue';
 
 import InvoiceItemPriceSelector from './InvoiceItemPriceSelector.vue';
+import { ExistingIds } from './InvoiceItemsStep.vue';
 
 import type {
   CheckStepErrors,
@@ -67,6 +69,7 @@ const validateField = inject<ValidateField>('validateField');
 const checkStepErrors = inject<CheckStepErrors>('checkStepErrors');
 const setFieldValue = inject<SetFieldValue>('setFieldValue');
 const invoiceType = inject<TypeOfInvoiceType>('invoiceType');
+const existingIds = inject<ExistingIds>('existingIds');
 
 const currency = ref<CurrencyEnum>();
 

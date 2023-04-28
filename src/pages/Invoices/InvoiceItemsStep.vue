@@ -62,24 +62,16 @@
 
 <script setup lang="ts">
 import { useFieldArray } from 'vee-validate';
-import { ref, onActivated, nextTick } from 'vue';
+import { computed, nextTick, onActivated, provide, ref } from 'vue';
 import draggable from 'vuedraggable';
 
 // import InvoiceItem from './InvoiceItem.vue';
 
-import {
-  InvoiceItem as InvoiceItemType,
-  InvoiceItemRequest,
-} from '../../client';
+import { InvoiceItem as InvoiceItemType } from '../../client';
 
 import InvoiceItem from './InvoiceItem.vue';
 
-import type {
-  CheckStepErrors,
-  FormComponents,
-  ValidateField,
-  TypeOfInvoiceType,
-} from './DetailView.vue';
+import type { FormComponents } from './DetailView.vue';
 
 const props = defineProps<{
   formComponents: FormComponents;
@@ -113,9 +105,20 @@ const dragOptions = {
 const drag = ref(false);
 
 const { remove, push, fields, move } = useFieldArray('items');
-// if (!fields.value.length) {
-//   push(defaultItem());
-// }
+if (!fields.value.length) {
+  push(undefined);
+}
+
+const existingIds = computed(() => {
+  return fields.value
+    .map((value) => {
+      const invoiceItem = value.value as InvoiceItemType;
+      return invoiceItem?.stock_movement?.warehouse_item_stock?.item?.id;
+    })
+    .filter((value) => value);
+});
+
+export type ExistingIds = typeof existingIds;
 
 const pushNewLine = () => {
   push(undefined);
@@ -132,6 +135,8 @@ const pushNewLine = () => {
 const deleteLine = (lineIndex: number) => {
   remove(lineIndex);
 };
+
+provide<ExistingIds>('existingIds', existingIds);
 </script>
 
 <style scoped lang="scss">

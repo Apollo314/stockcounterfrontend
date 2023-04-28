@@ -124,6 +124,15 @@ const props = defineProps({
     required: false,
     default: 0,
   },
+  /**
+   * params added to the query while searching.
+   * like {idNotin: '1,2,3,4'} to remove already existing ids from results
+   */
+  extraParams: {
+    type: Object,
+    required: false,
+    default: () => ({}),
+  },
 });
 
 defineEmits<{
@@ -180,7 +189,7 @@ const onFilter: QSelectProps['onFilter'] = (val, update, abort) => {
   loading.value = true;
   endOfItems.value = false;
   props
-    .queryService({ search: val, limit: props.limit })
+    .queryService({ search: val, limit: props.limit, ...props.extraParams })
     .then(
       (response) => {
         if (!response.next) {
@@ -209,6 +218,7 @@ const loadMore = () => {
         search: searchFilter.value,
         offset: offset.value,
         limit: props.limit,
+        ...props.extraParams,
       })
       .then((response) => {
         if (!response.next) {

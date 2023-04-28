@@ -277,6 +277,7 @@ export class InventoryService {
     createdBy,
     updatedBy,
     inactivated,
+    idNotin,
     ordering,
     search,
     limit,
@@ -326,6 +327,10 @@ export class InventoryService {
      * inactivated
      */
     inactivated?: string;
+    /**
+     * id__notin
+     */
+    idNotin?: string;
     /**
      * Which field to use when ordering the results.
      */
@@ -372,6 +377,7 @@ export class InventoryService {
         created_by: createdBy,
         updated_by: updatedBy,
         inactivated: inactivated,
+        id__notin: idNotin,
         ordering: ordering,
         search: search,
         limit: limit,
@@ -402,66 +408,11 @@ export class InventoryService {
    * @throws ApiError
    */
   public inventoryItemHistoryList({
-    categoryIn,
-    categoryIsnull,
-    buypriceRange,
-    sellpriceRange,
-    barcode,
-    stockUnitIn,
-    createdAtRange,
-    updatedAtRange,
-    createdBy,
-    updatedBy,
-    inactivated,
     ordering,
     search,
     limit,
     offset,
   }: {
-    /**
-     * category__in
-     */
-    categoryIn?: string;
-    /**
-     * category__isnull
-     */
-    categoryIsnull?: string;
-    /**
-     * buyprice__range
-     */
-    buypriceRange?: string;
-    /**
-     * sellprice__range
-     */
-    sellpriceRange?: string;
-    /**
-     * barcode
-     */
-    barcode?: string;
-    /**
-     * stock_unit__in
-     */
-    stockUnitIn?: string;
-    /**
-     * created_at__range
-     */
-    createdAtRange?: string;
-    /**
-     * updated_at__range
-     */
-    updatedAtRange?: string;
-    /**
-     * created_by
-     */
-    createdBy?: string;
-    /**
-     * updated_by
-     */
-    updatedBy?: string;
-    /**
-     * inactivated
-     */
-    inactivated?: string;
     /**
      * Which field to use when ordering the results.
      */
@@ -497,17 +448,6 @@ export class InventoryService {
       method: 'GET',
       url: '/inventory/item-history/',
       query: {
-        category__in: categoryIn,
-        category__isnull: categoryIsnull,
-        buyprice__range: buypriceRange,
-        sellprice__range: sellpriceRange,
-        barcode: barcode,
-        stock_unit__in: stockUnitIn,
-        created_at__range: createdAtRange,
-        updated_at__range: updatedAtRange,
-        created_by: createdBy,
-        updated_by: updatedBy,
-        inactivated: inactivated,
         ordering: ordering,
         search: search,
         limit: limit,

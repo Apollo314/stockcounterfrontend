@@ -796,6 +796,18 @@
             }
           },
           {
+            "name": "id__notin",
+            "required": false,
+            "in": "query",
+            "description": "id__notin",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "hidden"
+              }
+            }
+          },
+          {
             "name": "ordering",
             "required": false,
             "in": "query",
@@ -1035,6 +1047,18 @@
                     "label": "Show inactivated Items/Services",
                     "toggleIndeterminate": true
                   }
+                }
+              }
+            },
+            {
+              "name": "id__notin",
+              "required": false,
+              "in": "query",
+              "description": "id__notin",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "hidden"
                 }
               }
             }
@@ -1119,173 +1143,6 @@
         "operationId": "inventory_item_history_list",
         "parameters": [
           {
-            "name": "category__in",
-            "required": false,
-            "in": "query",
-            "description": "category__in",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "multi-category-selector",
-                "props": {
-                  "label": "Category"
-                }
-              }
-            }
-          },
-          {
-            "name": "category__isnull",
-            "required": false,
-            "in": "query",
-            "description": "category__isnull",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "checkbox",
-                "props": {
-                  "label": "Show categoryless",
-                  "toggleIndeterminate": true
-                }
-              }
-            }
-          },
-          {
-            "name": "buyprice__range",
-            "required": false,
-            "in": "query",
-            "description": "buyprice__range",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "money-range",
-                "props": {
-                  "label": "Buy price"
-                }
-              }
-            }
-          },
-          {
-            "name": "sellprice__range",
-            "required": false,
-            "in": "query",
-            "description": "sellprice__range",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "money-range",
-                "props": {
-                  "label": "Sell price"
-                }
-              }
-            }
-          },
-          {
-            "name": "barcode",
-            "required": false,
-            "in": "query",
-            "description": "barcode",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "barcode-scanner",
-                "props": {
-                  "label": "Barcode"
-                }
-              }
-            }
-          },
-          {
-            "name": "stock_unit__in",
-            "required": false,
-            "in": "query",
-            "description": "stock_unit__in",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "multi-stockunit-selector",
-                "props": {
-                  "label": "Stock unit"
-                }
-              }
-            }
-          },
-          {
-            "name": "created_at__range",
-            "required": false,
-            "in": "query",
-            "description": "created_at__range",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Created at"
-                }
-              }
-            }
-          },
-          {
-            "name": "updated_at__range",
-            "required": false,
-            "in": "query",
-            "description": "updated_at__range",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "date-time-range",
-                "props": {
-                  "label": "Updated at"
-                }
-              }
-            }
-          },
-          {
-            "name": "created_by",
-            "required": false,
-            "in": "query",
-            "description": "created_by",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "user-select",
-                "props": {
-                  "label": "Created by"
-                }
-              }
-            }
-          },
-          {
-            "name": "updated_by",
-            "required": false,
-            "in": "query",
-            "description": "updated_by",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "user-select",
-                "props": {
-                  "label": "Updated by"
-                }
-              }
-            }
-          },
-          {
-            "name": "inactivated",
-            "required": false,
-            "in": "query",
-            "description": "inactivated",
-            "schema": {
-              "type": "string",
-              "x-components": {
-                "component": "checkbox",
-                "props": {
-                  "label": "Show inactivated Items/Services",
-                  "toggleIndeterminate": true
-                }
-              }
-            }
-          },
-          {
             "name": "ordering",
             "required": false,
             "in": "query",
@@ -1360,175 +1217,6 @@
           }
         },
         "x-filters": {
-          "DjangoFilterBackend": [
-            {
-              "name": "category__in",
-              "required": false,
-              "in": "query",
-              "description": "category__in",
-              "schema": {
-                "type": "string",
-                "x-components": {
-                  "component": "multi-category-selector",
-                  "props": {
-                    "label": "Category"
-                  }
-                }
-              }
-            },
-            {
-              "name": "category__isnull",
-              "required": false,
-              "in": "query",
-              "description": "category__isnull",
-              "schema": {
-                "type": "string",
-                "x-components": {
-                  "component": "checkbox",
-                  "props": {
-                    "label": "Show categoryless",
-                    "toggleIndeterminate": true
-                  }
-                }
-              }
-            },
-            {
-              "name": "buyprice__range",
-              "required": false,
-              "in": "query",
-              "description": "buyprice__range",
-              "schema": {
-                "type": "string",
-                "x-components": {
-                  "component": "money-range",
-                  "props": {
-                    "label": "Buy price"
-                  }
-                }
-              }
-            },
-            {
-              "name": "sellprice__range",
-              "required": false,
-              "in": "query",
-              "description": "sellprice__range",
-              "schema": {
-                "type": "string",
-                "x-components": {
-                  "component": "money-range",
-                  "props": {
-                    "label": "Sell price"
-                  }
-                }
-              }
-            },
-            {
-              "name": "barcode",
-              "required": false,
-              "in": "query",
-              "description": "barcode",
-              "schema": {
-                "type": "string",
-                "x-components": {
-                  "component": "barcode-scanner",
-                  "props": {
-                    "label": "Barcode"
-                  }
-                }
-              }
-            },
-            {
-              "name": "stock_unit__in",
-              "required": false,
-              "in": "query",
-              "description": "stock_unit__in",
-              "schema": {
-                "type": "string",
-                "x-components": {
-                  "component": "multi-stockunit-selector",
-                  "props": {
-                    "label": "Stock unit"
-                  }
-                }
-              }
-            },
-            {
-              "name": "created_at__range",
-              "required": false,
-              "in": "query",
-              "description": "created_at__range",
-              "schema": {
-                "type": "string",
-                "x-components": {
-                  "component": "date-time-range",
-                  "props": {
-                    "label": "Created at"
-                  }
-                }
-              }
-            },
-            {
-              "name": "updated_at__range",
-              "required": false,
-              "in": "query",
-              "description": "updated_at__range",
-              "schema": {
-                "type": "string",
-                "x-components": {
-                  "component": "date-time-range",
-                  "props": {
-                    "label": "Updated at"
-                  }
-                }
-              }
-            },
-            {
-              "name": "created_by",
-              "required": false,
-              "in": "query",
-              "description": "created_by",
-              "schema": {
-                "type": "string",
-                "x-components": {
-                  "component": "user-select",
-                  "props": {
-                    "label": "Created by"
-                  }
-                }
-              }
-            },
-            {
-              "name": "updated_by",
-              "required": false,
-              "in": "query",
-              "description": "updated_by",
-              "schema": {
-                "type": "string",
-                "x-components": {
-                  "component": "user-select",
-                  "props": {
-                    "label": "Updated by"
-                  }
-                }
-              }
-            },
-            {
-              "name": "inactivated",
-              "required": false,
-              "in": "query",
-              "description": "inactivated",
-              "schema": {
-                "type": "string",
-                "x-components": {
-                  "component": "checkbox",
-                  "props": {
-                    "label": "Show inactivated Items/Services",
-                    "toggleIndeterminate": true
-                  }
-                }
-              }
-            }
-          ],
           "OrderingFilter": [
             {
               "name": "ordering",
