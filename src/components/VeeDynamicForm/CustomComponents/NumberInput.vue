@@ -21,6 +21,7 @@
       $emit('blur');
     "
   >
+    <slot></slot>
   </q-input>
 </template>
 

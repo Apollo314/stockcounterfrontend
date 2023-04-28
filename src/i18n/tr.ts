@@ -94,6 +94,20 @@ export default {
   },
   fourofour: 'Aradık bulamadık.',
   gohome: 'Anasayfaya dön',
+  invoice_labels: {
+    customer: 'Müşteri adı',
+    items: {
+      amount: 'Miktar',
+      itemname: 'Ürün/Hizmet',
+      price: 'Fiyat',
+    },
+    supplier: 'Satıcı adı',
+    tabs: {
+      conditions: 'Koşullar',
+      'general-information': 'Genel fatura bilgileri',
+      items: 'Ürünler/Hizmetler',
+    },
+  },
   labels: {
     maximum: 'Maksimum',
     minimum: 'Minimum',

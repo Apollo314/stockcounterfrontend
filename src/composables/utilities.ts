@@ -22,7 +22,7 @@ export function deepCamelCase(object: NestedRecord): void {
         object[camelizedKey] = element;
         delete object[key];
       }
-      if (typeof element === 'object') {
+      if (typeof element === 'object' && !Array.isArray(element)) {
         deepCamelCase(element);
       }
     }
@@ -30,7 +30,7 @@ export function deepCamelCase(object: NestedRecord): void {
 }
 
 export function queryMaker(
-  pagination: MaybeRef<Pagination<Record<string, string>>>
+  pagination: MaybeRef<Pagination<Record<string, string | undefined>>>
 ) {
   const pg = unref(pagination);
   const query = {

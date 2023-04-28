@@ -119,10 +119,15 @@ const props = defineProps({
     required: false,
     default: false,
   },
+  minLengthToRequest: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
 });
 
 defineEmits<{
-  (e: 'select', value: Record<string, string | object>): void;
+  (e: 'select', value: unknown): void;
 }>();
 
 const { value, errorMessage, validate } = useField(toRef(props, 'name'));
@@ -166,6 +171,10 @@ watch(
 );
 
 const onFilter: QSelectProps['onFilter'] = (val, update, abort) => {
+  if (val.length < props.minLengthToRequest) {
+    abort();
+    return;
+  }
   offset.value = 0;
   searchFilter.value = val;
   loading.value = true;

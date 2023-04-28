@@ -14,13 +14,13 @@ export const menuItems = (): MenuItem[] => {
           title: $t('menu.sale-invoices'),
           shrinkable: true,
           icon: 'article',
-          to: { name: 'nest', params: { id: 1 } },
+          to: { name: 'sale-invoice-list' },
           bgColor: 'green-8',
           children: [
             {
               title: $t('menu.new-sale-invoice'),
               icon: 'post_add',
-              to: { name: 'nest', params: { id: 2 } },
+              to: { name: 'sale-invoice-create' },
             },
           ],
         },

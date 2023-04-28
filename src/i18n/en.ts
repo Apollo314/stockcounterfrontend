@@ -95,6 +95,21 @@ export default {
   },
   fourofour: 'Oops. Nothing here...',
   gohome: 'Go home',
+  invoice_labels: {
+    customer: 'Customer name',
+    items: {
+      amount: 'Amount',
+      itemname: 'Item/Service',
+      price: 'Price',
+    },
+    new_line: 'New line',
+    supplier: 'Supplier name',
+    tabs: {
+      conditions: 'Conditions',
+      'general-information': 'General invoice information',
+      items: 'Items/Services',
+    },
+  },
   labels: {
     maximum: 'Maximum',
     minimum: 'Minimum',

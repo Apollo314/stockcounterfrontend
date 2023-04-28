@@ -183,6 +183,40 @@ const routes: RouteRecordRawExtended[] = [
       },
       // Stakeholder / Supplier
 
+      // Invoice
+      {
+        path: 'sale-invoices/',
+        component: () => import('pages/Invoices/ListView.vue'),
+        name: 'sale-invoice-list',
+        meta: { key: 'sale-invoice-list' },
+        props() {
+          return {
+            invoiceType: 'sale',
+          };
+        },
+      },
+      {
+        path: 'sale-invoices/create',
+        component: () => import('pages/Invoices/DetailView.vue'),
+        name: 'sale-invoice-create',
+        meta: {
+          key: 'sale-invoice-create',
+        },
+        props() {
+          return {
+            invoiceType: 'sale',
+          };
+        },
+      },
+      // {
+      //   path: 'supplier/update/:id(\\d+)',
+      //   component: () => import('pages/Suppliers/DetailView.vue'),
+      //   name: 'supplier-update',
+      //   meta: { pathAsKey: true },
+      //   props: true,
+      // },
+      // Invoice
+
       {
         path: '/:id(\\d+)',
         component: () => import('pages/Index/IndexPage.vue'),
