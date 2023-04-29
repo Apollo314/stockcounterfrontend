@@ -26,6 +26,7 @@
       <template #action-bottom>
         <div class="row full-width justify-end q-pa-sm">
           <q-btn
+            v-if="query !== null"
             flat
             no-caps
             color="negative"
