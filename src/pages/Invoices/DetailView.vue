@@ -43,10 +43,10 @@
           icon="rule"
           :error="stepErros.InvoiceConditionsStep"
         >
-          <!-- TODO: Implement this -->
-          <!-- <InvoiceConditionsStep
-            :component-schema="componentSchema"
-          ></InvoiceConditionsStep> -->
+          <InvoiceConditionsStep
+            class="fit"
+            :form-components="formComponents"
+          ></InvoiceConditionsStep>
         </q-step>
         <template #navigation>
           <q-stepper-navigation>
@@ -103,6 +103,7 @@ import { parseDRFErrors } from 'src/components/VeeDynamicForm/drfErrorToYup';
 import { NestedRecord, create_form } from 'src/composables/openapihelpers';
 
 import GeneralInformationStep from './GeneralInformationStep.vue';
+import InvoiceConditionsStep from './InvoiceConditionsStep.vue';
 import InvoiceItemsStep from './InvoiceItemsStep.vue';
 
 const { formComponents, validator } = create_form(
@@ -301,4 +302,14 @@ provide('invoiceType', invoiceType);
 provide('setFieldValue', setFieldValue);
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.full-height-step {
+  .q-stepper__step-content {
+    height: 100%;
+
+    .q-stepper__step-inner {
+      height: 100%;
+    }
+  }
+}
+</style>

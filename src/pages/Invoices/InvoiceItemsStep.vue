@@ -53,8 +53,12 @@
       </template>
     </draggable>
     <q-btn
+      class="q-mt-md"
+      push
+      color="positive"
       icon="add"
-      :title="$t('invoice_labels.new_line')"
+      no-caps
+      :label="$t('invoice_labels.new_line')"
       @click="pushNewLine"
     />
   </div>
@@ -73,7 +77,7 @@ import InvoiceItem from './InvoiceItem.vue';
 
 import type { FormComponents } from './DetailView.vue';
 
-const props = defineProps<{
+defineProps<{
   formComponents: FormComponents;
 }>();
 
