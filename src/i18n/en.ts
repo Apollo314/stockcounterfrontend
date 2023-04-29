@@ -22,6 +22,32 @@ const ajvErrors = {
     'must NOT have duplicate items (items {j} and {i} are identical)',
 };
 
+const editor = {
+  align_center: 'Align center',
+  align_left: 'Align left',
+  align_right: 'Align right',
+  bold: 'Bold',
+  header4: 'Header 4',
+  header5: 'Header 5',
+  header6: 'Header 6',
+  highlight: 'Highlight',
+  numbered_list: 'Numbered list',
+  paragraph: 'Paragraph',
+  strike: 'Strikethrough',
+  table: {
+    add_column_after: 'Add column after',
+    add_column_before: 'Add column before',
+    add_row_after: 'Add row after',
+    add_row_before: 'Add row before',
+    delete_column: 'Delete column',
+    delete_row: 'Delete row',
+    delete_table: 'Delete table',
+    merge_cells: 'Merge cells',
+    split_cell: 'Split cell',
+  },
+  unordered_list: 'Unordered list',
+};
+
 export default {
   'ajv-errors': ajvErrors,
   appName: 'Stock Counter',
@@ -33,6 +59,7 @@ export default {
   commons: {
     'are-you-sure-you-want-to-delete': 'Are you sure you want to delete this?',
     cancel: 'Cancel',
+    close: 'Close',
     delete: 'Delete',
     dofilter: 'Filter',
     editoropen: 'Edit/Open',
@@ -81,6 +108,7 @@ export default {
     thisweek: 'This week',
     today: 'Today',
   },
+  editor,
   failed: 'Action failed',
   forms: {
     password: 'Password',

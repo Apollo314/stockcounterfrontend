@@ -20,6 +20,32 @@ const ajvErrors = {
   uniqueItems: 'tekrarlayan ögeler olamaz (öge {j} ve {i} birbirinin aynısı)',
 };
 
+const editor = {
+  align_center: 'Ortala',
+  align_left: 'Sola yasla',
+  align_right: 'Sağa yasla',
+  bold: 'Kalın',
+  header4: 'Başlık 4',
+  header5: 'Başlık 5',
+  header6: 'Başlık 6',
+  highlight: 'Vurgula',
+  numbered_list: 'Numaralı liste',
+  paragraph: 'Paragraf',
+  strike: 'Üstünü çiz',
+  table: {
+    add_column_after: 'Sonrasına kolon ekle',
+    add_column_before: 'Öncesine kolon ekle',
+    add_row_after: 'Sonrasına satır ekle',
+    add_row_before: 'Öncesine satır ekle',
+    delete_column: 'Kolonu sil',
+    delete_row: 'Satırı sil',
+    delete_table: 'Tabloyu sil',
+    merge_cells: 'Hücreleri birleştir',
+    split_cell: 'Hücreyi ayır',
+  },
+  unordered_list: 'Sırasız liste',
+};
+
 export default {
   'ajv-errors': ajvErrors,
   appName: 'Stok Takibi',
@@ -32,6 +58,7 @@ export default {
     'are-you-sure-you-want-to-delete':
       'Bu ögenin silinmesini istediğinize emin misiniz?',
     cancel: 'Vazgeç',
+    close: 'Kapat',
     delete: 'Sil',
     dofilter: 'Filtrele',
     editoropen: 'Aç/Değiştir',
@@ -80,6 +107,7 @@ export default {
     thisweek: 'Bu hafta',
     today: 'Bugün',
   },
+  editor,
   failed: 'Başarısız',
   forms: {
     password: 'Parola',
@@ -101,6 +129,7 @@ export default {
       itemname: 'Ürün/Hizmet',
       price: 'Fiyat',
     },
+    new_line: 'Yeni satır',
     supplier: 'Satıcı adı',
     tabs: {
       conditions: 'Koşullar',
