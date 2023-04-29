@@ -29,12 +29,12 @@ export const menuItems = (): MenuItem[] => {
           shrinkable: true,
           icon: 'article',
           bgColor: 'red-8',
-          to: { name: 'nest', params: { id: 3 } },
+          to: { name: 'purchase-invoice-list' },
           children: [
             {
               title: $t('menu.new-purchase-invoice'),
               icon: 'post_add',
-              to: { name: 'nest', params: { id: 4 } },
+              to: { name: 'purchase-invoice-create' },
             },
           ],
         },
@@ -43,13 +43,13 @@ export const menuItems = (): MenuItem[] => {
           shrinkable: true,
           icon: 'article',
           bgColor: 'yellow-10',
-          to: { name: 'nest', params: { id: 5 } },
+          to: { name: 'refund-sale-invoice-list' },
           defaultClosed: true,
           children: [
             {
               title: $t('menu.new-refund-sale-invoice'),
               icon: 'post_add',
-              to: { name: 'nest', params: { id: 6 } },
+              to: { name: 'refund-sale-invoice-create' },
             },
           ],
         },
@@ -58,13 +58,13 @@ export const menuItems = (): MenuItem[] => {
           shrinkable: true,
           icon: 'article',
           bgColor: 'blue-10',
-          to: { name: 'nest', params: { id: 7 } },
+          to: { name: 'refund-purchase-invoice-list' },
           defaultClosed: true,
           children: [
             {
               title: $t('menu.new-refund-purchase-invoice'),
               icon: 'post_add',
-              to: { name: 'nest', params: { id: 8 } },
+              to: { name: 'refund-purchase-invoice-create' },
             },
           ],
         },
