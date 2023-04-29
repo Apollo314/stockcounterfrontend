@@ -32,6 +32,7 @@ export const componentStrings = [
   'barcode-scanner',
   'date-time-range',
   'multi-stockunit-selector',
+  'hidden',
   'undefined',
 ] as const;
 
@@ -159,6 +160,10 @@ export const componentMap: ComponentMap = {
   },
   'barcode-scanner': {
     component: BarcodeScanner,
+    props: {},
+  },
+  hidden: {
+    component: DefaultField,
     props: {},
   },
   undefined: {
