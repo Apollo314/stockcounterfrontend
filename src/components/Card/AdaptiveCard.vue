@@ -89,31 +89,6 @@ defineExpose({
 });
 </script>
 <style lang="scss">
-.virtual-scrollbar {
-  position: absolute;
-  &.vertical {
-    width: 0px;
-    right: 0px;
-  }
-  &.horizontal {
-    height: 0px;
-    bottom: 0px;
-  }
-  .adaptive-card:hover & {
-    &.vertical {
-      width: 4px;
-    }
-    &.horizontal {
-      height: 4px;
-    }
-  }
-  background: $primary;
-  border-radius: 2px;
-  z-index: 10000;
-  transition-property: width, height;
-  transition-duration: 0.1s;
-  transition-timing-function: ease;
-}
 .scroll-section {
   transition: box-shadow 0.2s ease;
 }
