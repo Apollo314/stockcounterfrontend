@@ -104,12 +104,11 @@ const contextmenuactions: ContextMenuGroup<Row>[] = [
   [
     {
       callback: (rows, done) => {
-        // TODO: Implement this
-        // router.push({
-        //   name: 'invoice-update',
-        //   params: { id: Array.from(rows)[0][1].id },
-        // });
-        // done(false);
+        router.push({
+          name: 'invoice-detail',
+          params: { id: Array.from(rows)[0][1].id },
+        });
+        done(false);
       },
       label: $t('commons.editoropen'),
       can_handle_single: true,
