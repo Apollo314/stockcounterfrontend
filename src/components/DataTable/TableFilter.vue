@@ -6,7 +6,12 @@
     icon="search"
   ></DefaultField>
   <template v-for="(formComponent, key) in formComponents" :key="key">
-    <div v-if="keyIsntForPagination(key)" class="full-height q-py-xs">
+    <div
+      v-if="
+        keyIsntForPagination(key) && formComponent.componentString !== 'hidden'
+      "
+      class="full-height q-py-xs"
+    >
       <component
         :is="getComponent(formComponent)"
         v-bind="getProps(formComponent)"
