@@ -280,6 +280,14 @@ const routes: RouteRecordRawExtended[] = [
           };
         },
       },
+      {
+        path: 'invoices/:id(\\d+)',
+        component: () => import('pages/Invoices/DetailView.vue'),
+        name: 'invoice-detail',
+        meta: { pathAsKey: true },
+        props: true,
+      },
+
       // Invoice
 
       {

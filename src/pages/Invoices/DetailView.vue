@@ -203,9 +203,7 @@ export type CheckStepErrors = typeof checkStepErrors;
 const loading = ref(false);
 
 onActivated(() => {
-  console.log('activated yo', props.id);
   if (props.id) {
-    console.log('have id too');
     api.invoice
       .invoiceInvoiceRetrieve({
         id: +props.id,
