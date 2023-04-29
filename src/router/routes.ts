@@ -208,13 +208,78 @@ const routes: RouteRecordRawExtended[] = [
           };
         },
       },
-      // {
-      //   path: 'supplier/update/:id(\\d+)',
-      //   component: () => import('pages/Suppliers/DetailView.vue'),
-      //   name: 'supplier-update',
-      //   meta: { pathAsKey: true },
-      //   props: true,
-      // },
+      {
+        path: 'purchase-invoices/',
+        component: () => import('pages/Invoices/ListView.vue'),
+        name: 'purchase-invoice-list',
+        meta: { key: 'purchase-invoice-list' },
+        props() {
+          return {
+            invoiceType: 'purchase',
+          };
+        },
+      },
+      {
+        path: 'purchase-invoices/create',
+        component: () => import('pages/Invoices/DetailView.vue'),
+        name: 'purchase-invoice-create',
+        meta: {
+          key: 'purchase-invoice-create',
+        },
+        props() {
+          return {
+            invoiceType: 'purchase',
+          };
+        },
+      },
+      {
+        path: 'refund-sale-invoices/',
+        component: () => import('pages/Invoices/ListView.vue'),
+        name: 'refund-sale-invoice-list',
+        meta: { key: 'refund-sale-invoice-list' },
+        props() {
+          return {
+            invoiceType: 'refund-sale',
+          };
+        },
+      },
+      {
+        path: 'refund-sale-invoices/create',
+        component: () => import('pages/Invoices/DetailView.vue'),
+        name: 'refund-sale-invoice-create',
+        meta: {
+          key: 'refund-sale-invoice-create',
+        },
+        props() {
+          return {
+            invoiceType: 'refund-sale',
+          };
+        },
+      },
+      {
+        path: 'refund-purchase-invoices/',
+        component: () => import('pages/Invoices/ListView.vue'),
+        name: 'refund-purchase-invoice-list',
+        meta: { key: 'refund-purchase-invoice-list' },
+        props() {
+          return {
+            invoiceType: 'refund-purchase',
+          };
+        },
+      },
+      {
+        path: 'refund-purchase-invoices/create',
+        component: () => import('pages/Invoices/DetailView.vue'),
+        name: 'refund-purchase-invoice-create',
+        meta: {
+          key: 'refund-purchase-invoice-create',
+        },
+        props() {
+          return {
+            invoiceType: 'refund-purchase',
+          };
+        },
+      },
       // Invoice
 
       {
