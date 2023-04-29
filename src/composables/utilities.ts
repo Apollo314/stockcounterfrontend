@@ -31,7 +31,7 @@ export function deepCamelCase(object: NestedRecord): void {
 
 export function queryMaker(
   pagination: MaybeRef<Pagination<Record<string, string | undefined>>>
-) {
+): Record<string, unknown> {
   const pg = unref(pagination);
   const query = {
     limit: pg.limit,

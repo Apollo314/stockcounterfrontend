@@ -151,7 +151,7 @@ const data = ref<InvoiceList[]>();
 
 const pagination = ref<Pagination<Filters>>({
   count: 100,
-  filters: { invoiceType: props.invoiceType },
+  filters: {},
   limit: 20,
   offset: 0,
 });
@@ -163,8 +163,10 @@ function fetcher({
   pagination: MaybeRef<Pagination<Filters>>;
   done?: () => void;
 }) {
+  const query = queryMaker(requestPagination);
+  query['invoiceType'] = props.invoiceType;
   api.invoice
-    .invoiceInvoiceList(queryMaker(requestPagination))
+    .invoiceInvoiceList(query)
     .then((value) => {
       data.value = value.results;
       pagination.value.count = value.count || 0;
