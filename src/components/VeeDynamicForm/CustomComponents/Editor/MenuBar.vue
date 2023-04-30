@@ -1,10 +1,12 @@
 <template>
   <div>
+    <slot name="extra-buttons-before"></slot>
     <template v-for="(item, index) in items">
       <div v-if="isDivider(item)" :key="`divider${index}`" class="divider" />
       <menu-item v-else :key="index" v-bind="item" />
     </template>
     <TableButtons :editor="editor" />
+    <slot name="extra-buttons-after"></slot>
   </div>
 </template>
 

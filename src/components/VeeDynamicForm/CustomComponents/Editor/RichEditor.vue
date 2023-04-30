@@ -15,7 +15,14 @@
         }
       "
     >
-      <MenuBar class="editor__header" :editor="editor" />
+      <MenuBar class="editor__header" :editor="editor">
+        <template v-if="$slots['extra-buttons-before']" #extra-buttons-before>
+          <slot name="extra-buttons-before"></slot>
+        </template>
+        <template v-if="$slots['extra-buttons-after']" #extra-buttons-after>
+          <slot name="extra-buttons-after"></slot>
+        </template>
+      </MenuBar>
       <editor-content
         v-model="value"
         class="editor__content"
