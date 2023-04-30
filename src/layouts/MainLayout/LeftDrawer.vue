@@ -1,7 +1,6 @@
 <template>
   <q-drawer
     :model-value="modelValue"
-    @update:model-value="$emit('update:model-value', $event)"
     show-if-above
     :width="$q.screen.gt.xs ? 330 : $q.screen.width"
     :class="{
@@ -9,6 +8,7 @@
       'q-pr-none': !isOverlay,
     }"
     class="q-layout-padding transparent"
+    @update:model-value="$emit('update:model-value', $event)"
     @on-layout="isOverlay = !$event"
   >
     <adaptive-card class="bg-transparent shadow-0 full-height">
@@ -25,10 +25,10 @@
           />
           <div class="col">
             <q-input
+              v-model="filter"
               dense
               standout
               class="full-width"
-              v-model="filter"
               type="text"
               :placeholder="$t('nav.search')"
               clearable

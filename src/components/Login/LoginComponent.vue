@@ -3,29 +3,29 @@
     <template #default>
       <div class="q-pa-md" style="height: min(max-content, 100vh)">
         <q-form
-          @submit.prevent="login()"
-          @reset="reset"
           class="q-gutter-md"
           greedy
+          @submit.prevent="login()"
+          @reset="reset"
         >
           <div class="text-h6 text-primary">{{ $t('titles.login') }}</div>
           <q-input
+            v-model="username"
             tabindex="1"
             :rules="[(val) => !!val]"
             hide-bottom-space
             standout
-            v-model="username"
             type="text"
             :placeholder="$t('forms.username')"
           >
             <template #prepend><q-icon name="person" /></template>
           </q-input>
           <q-input
+            v-model="password"
             tabindex="1"
             :rules="[(val) => !!val]"
             hide-bottom-space
             standout
-            v-model="password"
             type="password"
             :placeholder="$t('forms.password')"
           >

@@ -17,7 +17,7 @@
       <template #default>
         <q-separator />
         <q-list v-if="columns" class="listpadding" separator>
-          <q-item v-for="col in columns" :key="col.id" tag="label" v-ripple>
+          <q-item v-for="col in columns" :key="col.id" v-ripple tag="label">
             <q-item-section>
               <q-item-label>{{ callOrGet(col.label) }}</q-item-label>
             </q-item-section>

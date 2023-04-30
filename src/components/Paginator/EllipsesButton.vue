@@ -11,15 +11,15 @@
     />
     <q-input
       v-else
+      ref="inputRef"
+      v-model="localPage"
       style="min-width: 2em"
       :style="{ width: `${page.toString().length / 1.5}em` }"
       class="inline pagination-ellipses"
       input-style="padding: 0px;"
-      ref="inputRef"
       borderless
       dense
       type="number"
-      v-model="localPage"
       autofocus
       :placeholder="initialPage"
       @blur="(evt: any) => {updatePage()}"

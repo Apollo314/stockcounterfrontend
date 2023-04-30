@@ -51,6 +51,8 @@
 </template>
 
 <script setup lang="ts" generic="Row extends BaseRow">
+// this, I believe will be sorted out in next versions of vue and the lint disable below won't be necessary.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ContextMenuGroup, BaseRow } from './DataTable.vue';
 
 withDefaults(
