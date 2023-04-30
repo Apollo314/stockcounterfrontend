@@ -71,12 +71,12 @@
                       <q-item
                         v-for="option in tableTypes"
                         :key="option.label"
-                        clickable
                         v-ripple
-                        @click="toggleCardView(option.value)"
+                        v-close-popup="2"
+                        clickable
                         :active="card === option.value"
                         active-class="active-item"
-                        v-close-popup="2"
+                        @click="toggleCardView(option.value)"
                       >
                         <q-item-section avatar class="col-shrink">
                           <q-icon :name="option.icon" />

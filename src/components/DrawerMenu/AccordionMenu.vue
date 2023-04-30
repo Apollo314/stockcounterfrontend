@@ -13,8 +13,8 @@
     <template v-if="hasContent">
       <DrawerLink
         v-for="menuItem in markedMenuItems"
-        :key="`${menuItem.title}` + menuItem.to || ''"
         v-show="menuItem.visible"
+        :key="`${menuItem.title}` + menuItem.to || ''"
         :item="menuItem"
       />
     </template>

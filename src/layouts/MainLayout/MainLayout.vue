@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hhh LpR lfr">
     <StickyHeader>
-      <div class="row full-width items-center bg-page" ref="subHeader">
+      <div ref="subHeader" class="row full-width items-center bg-page">
         <q-toolbar style="min-height: 40px" class="q-py-xs">
           <q-btn
             flat
@@ -18,9 +18,9 @@
           </q-toolbar-title>
           <q-toggle
             :model-value="$q.dark.isActive"
-            @update:model-value="$q.dark.set($event)"
             checked-icon="dark_mode"
             unchecked-icon="light_mode"
+            @update:model-value="$q.dark.set($event)"
           />
         </q-toolbar>
       </div>
@@ -35,13 +35,13 @@
     >
       <router-view v-slot="{ Component, route }">
         <Transition
+          :name="getTransition(route)"
           @before-enter="transitioning = true"
           @enter="transitioning = true"
           @after-enter="transitioning = false"
           @before-leave="transitioned = false"
           @leave="transitioned = false"
           @after-leave="transitioned = true"
-          :name="getTransition(route)"
         >
           <KeepAlive :max="10">
             <Component :is="Component" :key="getKey(route)" />

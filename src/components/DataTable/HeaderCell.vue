@@ -94,6 +94,8 @@ import { PropType, Ref, computed, inject, provide, ref } from 'vue';
 import { callOrGet } from 'src/composables/utilities';
 
 import ColumnResizer from './ColumnResizer.vue';
+// this, I believe will be sorted out in next versions of vue and the lint disable below won't be necessary.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BaseColumn, BaseRow } from './DataTable.vue';
 import { getAlignClass } from './datatableutilities';
 

@@ -57,7 +57,7 @@
         {{ item.caption }}
       </q-item-label>
     </q-item-section>
-    <q-item-section class="q-pa-none" v-if="item.children?.[0].icon" side>
+    <q-item-section v-if="item.children?.[0].icon" class="q-pa-none" side>
       <router-link
         v-if="item.children?.[0].to"
         clickable

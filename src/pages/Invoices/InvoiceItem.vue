@@ -39,10 +39,10 @@
 </template>
 
 <script setup lang="ts">
-import { useField, useFieldValue } from 'vee-validate';
-import { computed, inject, onDeactivated, ref, toRef } from 'vue';
+import { useField } from 'vee-validate';
+import { computed, inject, onDeactivated, ref } from 'vue';
 
-import { CurrencyEnum, InvoiceItemRequest, ItemOut } from 'src/client';
+import { CurrencyEnum, ItemOut } from 'src/client';
 import SearchSelector from 'src/components/VeeDynamicForm/CustomComponents/SearchSelector.vue';
 
 import { queryServiceFactory } from '../../components/VeeDynamicForm/componentMap';

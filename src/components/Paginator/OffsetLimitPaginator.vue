@@ -1,24 +1,24 @@
 <template>
   <div>
     <q-btn
+      v-if="directionLinks"
       :color="color"
       flat
       dense
-      v-if="directionLinks"
       icon="chevron_left"
-      @click="updatePage(Math.max(currentPage - 1, minPage))"
       style="padding: 3px 2px; min-width: 2em; min-height: 0px"
+      @click="updatePage(Math.max(currentPage - 1, minPage))"
     />
     <template v-for="page in pages" :key="page">
       <q-btn
+        v-if="!page.isEllipses"
         dense
         :color="color"
         :flat="currentPage !== page.number"
         push
-        v-if="!page.isEllipses"
         :label="page.number"
-        @click="updatePage(page.number)"
         style="padding: 3px 2px; min-width: 2em; min-height: 0px"
+        @click="updatePage(page.number)"
       />
       <ellipses
         v-else
@@ -28,13 +28,13 @@
       ></ellipses>
     </template>
     <q-btn
+      v-if="directionLinks"
       :color="color"
       dense
       flat
-      v-if="directionLinks"
       icon="chevron_right"
-      @click="updatePage(Math.min(currentPage + 1, maxPage))"
       style="padding: 3px 2px; min-width: 2em; min-height: 0px"
+      @click="updatePage(Math.min(currentPage + 1, maxPage))"
     />
   </div>
 </template>

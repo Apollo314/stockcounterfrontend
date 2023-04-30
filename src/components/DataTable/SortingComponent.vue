@@ -24,13 +24,13 @@
             <q-item-section>
               <q-btn-group spread flat>
                 <q-btn
-                  flat
                   v-if="column.orderable"
-                  @click="order?.(column, 'ascending')"
+                  flat
                   :class="{
                     'active-button':
                       orderedColumns?.get(column.id)?.order === 'ascending',
                   }"
+                  @click="order?.(column, 'ascending')"
                 >
                   <div
                     class="row"
@@ -38,10 +38,10 @@
                   >
                     <q-icon name="arrow_upward" />
                     <sup
-                      style="font-weight: bolder"
                       v-if="
                         orderedColumns?.get(column.id)?.order === 'ascending'
                       "
+                      style="font-weight: bolder"
                       >({{ orderIndex(column) }})</sup
                     >
                   </div>
@@ -50,13 +50,13 @@
                   }}</q-tooltip>
                 </q-btn>
                 <q-btn
-                  flat
                   v-if="column.orderable"
-                  @click="order?.(column, 'descending')"
+                  flat
                   :class="{
                     'active-button':
                       orderedColumns?.get(column.id)?.order === 'descending',
                   }"
+                  @click="order?.(column, 'descending')"
                 >
                   <div
                     class="row"
@@ -64,10 +64,10 @@
                   >
                     <q-icon name="arrow_downward" />
                     <sup
-                      style="font-weight: bolder"
                       v-if="
                         orderedColumns?.get(column.id)?.order === 'descending'
                       "
+                      style="font-weight: bolder"
                       >({{ orderIndex(column) }})</sup
                     >
                   </div>
@@ -93,6 +93,8 @@ import { inject, Ref } from 'vue';
 
 import { callOrGet } from 'src/composables/utilities';
 
+// this, I believe will be sorted out in next versions of vue and the lint disable below won't be necessary.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BaseColumn, BaseRow } from './DataTable.vue';
 
 defineEmits<{
