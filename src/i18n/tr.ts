@@ -55,6 +55,7 @@ export default {
     login: 'Giriş yap',
   },
   commons: {
+    add_new: 'Yeni ekle',
     'are-you-sure-you-want-to-delete':
       'Bu ögenin silinmesini istediğinize emin misiniz?',
     cancel: 'Vazgeç',
@@ -124,11 +125,15 @@ export default {
   gohome: 'Anasayfaya dön',
   invoice_labels: {
     customer: 'Müşteri adı',
+    invoice_condition_label: 'Şablonlar',
     items: {
       amount: 'Miktar',
       itemname: 'Ürün/Hizmet',
       price: 'Fiyat',
     },
+    new_condition_name: 'Yeni şablon',
+    new_condition_placeholder:
+      'Burayı değiştirerek yeni bir şablon oluşturabilirsiniz. Fatura ile beraber kaydolur.',
     new_line: 'Yeni satır',
     supplier: 'Satıcı adı',
     tabs: {

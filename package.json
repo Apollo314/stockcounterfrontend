@@ -18,7 +18,7 @@
     "test:unit:ci": "vitest run"
   },
   "dependencies": {
-    "@quasar/extras": "^1.0.0",
+    "@quasar/extras": "^1.16.3",
     "@tiptap/extension-highlight": "^2.0.3",
     "@tiptap/extension-placeholder": "^2.0.3",
     "@tiptap/extension-table": "^2.0.3",

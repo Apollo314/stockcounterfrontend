@@ -56,7 +56,7 @@ import { EditorContent, useEditor } from '@tiptap/vue-3';
 import { useFullscreen, useEventListener } from '@vueuse/core';
 import { useQuasar } from 'quasar';
 import { useField } from 'vee-validate';
-import { ref, toRef } from 'vue';
+import { ref, toRef, watch } from 'vue';
 
 import { height as maxHeight } from 'src/composables/maxViewportHeight';
 
@@ -71,7 +71,7 @@ const props = defineProps<{
 const editorRef = ref();
 const fullscrenParent = ref();
 
-const { value } = useField(toRef(props, 'name'));
+const { value } = useField<string | undefined>(toRef(props, 'name'));
 
 const editor = useEditor({
   content: value.value || '',
@@ -110,6 +110,12 @@ if (isSupported) {
     isFullscreen.value = document.fullscreenElement === fullscrenParent.value;
   });
 }
+
+watch(value, () => {
+  if (editor.value && value.value) {
+    editor.value.commands.setContent(value.value);
+  }
+});
 
 const fabPos = ref([18, 18]);
 const draggingFab = ref(false);
