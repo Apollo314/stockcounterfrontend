@@ -95,6 +95,7 @@ import { useQuasar } from 'quasar';
 import { Field, useField, useForm } from 'vee-validate';
 import { provide, ref, toRef, reactive, onActivated, Ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 
 import FullHeightPage from 'components/Page/FullHeightPage.vue';
 import { api } from 'src/boot/axios';
@@ -120,7 +121,7 @@ const initialValues = ref<Partial<InvoiceDetailInRequest | InvoiceDetailOut>>(
 
 const props = defineProps<{
   id?: string | number;
-  invoiceType: 'sale' | 'purchase' | 'refund-purchase' | 'refund-sale';
+  invoiceType?: 'sale' | 'purchase' | 'refund-purchase' | 'refund-sale';
 }>();
 
 const stepErros = reactive({
@@ -219,6 +220,22 @@ onActivated(() => {
 
 const $q = useQuasar();
 const { t: $t } = useI18n();
+const router = useRouter();
+
+const getListRouteName = () => {
+  switch (props.invoiceType || values.invoice_type) {
+    case 'purchase':
+      return 'purchase-invoice-list';
+    case 'sale':
+      return 'sale-invoice-list';
+    case 'refund-purchase':
+      return 'refund-purchase-invoice-list';
+    case 'refund-sale':
+      return 'refund-sale-invoice-list';
+    default:
+      return undefined;
+  }
+};
 
 const submit = (payload: NestedRecord, done: () => void) => {
   if (!props.id) {
@@ -231,7 +248,10 @@ const submit = (payload: NestedRecord, done: () => void) => {
           actions: [{ label: $t('commons.cancel') }],
           position: 'bottom-right',
         });
-        // router.replace({ name: "inventoryItemList" });
+        const list_route_name = getListRouteName();
+        if (list_route_name) {
+          router.push({ name: list_route_name });
+        }
       })
       .catch((reason) => {
         const errors = parseDRFErrors(reason);
@@ -263,6 +283,10 @@ const submit = (payload: NestedRecord, done: () => void) => {
           actions: [{ label: $t('commons.cancel') }],
           position: 'bottom-right',
         });
+        const list_route_name = getListRouteName();
+        if (list_route_name) {
+          router.push({ name: list_route_name });
+        }
       })
       .catch((reason) => {
         const errors = parseDRFErrors(reason);
