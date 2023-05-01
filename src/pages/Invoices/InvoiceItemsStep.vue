@@ -69,8 +69,6 @@ import { useFieldArray } from 'vee-validate';
 import { computed, nextTick, onActivated, provide, ref } from 'vue';
 import draggable from 'vuedraggable';
 
-// import InvoiceItem from './InvoiceItem.vue';
-
 import { InvoiceItem as InvoiceItemType } from '../../client';
 
 import InvoiceItem from './InvoiceItem.vue';

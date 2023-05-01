@@ -130,9 +130,6 @@
           {
             "knoxTokenAuth": []
           },
-          {
-            "cookieAuth": []
-          },
           {}
         ],
         "responses": {
@@ -188,9 +185,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -233,9 +227,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -270,9 +261,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -302,9 +290,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -334,9 +319,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -392,9 +374,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -451,9 +430,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -488,9 +464,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -533,9 +506,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -577,9 +547,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -612,9 +579,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -864,9 +828,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1119,9 +1080,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1199,9 +1157,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1273,9 +1228,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1311,9 +1263,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1357,9 +1306,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1402,9 +1348,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1438,9 +1381,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1469,9 +1409,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1515,9 +1452,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1560,9 +1494,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1596,9 +1527,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1740,9 +1668,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1887,9 +1812,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1925,9 +1847,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1971,9 +1890,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2016,9 +1932,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2052,9 +1965,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2110,9 +2020,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2169,9 +2076,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2206,9 +2110,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2251,9 +2152,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2295,9 +2193,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2330,9 +2225,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2378,9 +2270,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2425,9 +2314,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2480,9 +2366,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2532,9 +2415,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2570,9 +2450,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2616,9 +2493,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2661,9 +2535,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2697,9 +2568,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2729,9 +2597,35 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
+    "/invoice/bulk/invoice/conditions/": {
+      "delete": {
+        "operationId": "invoice_bulk_invoice_conditions_destroy",
+        "parameters": [
           {
-            "cookieAuth": []
+            "in": "query",
+            "name": "pk",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": true
+          }
+        ],
+        "tags": ["invoice"],
+        "security": [
+          {
+            "knoxTokenAuth": []
           }
         ],
         "responses": {
@@ -2755,7 +2649,7 @@
               "x-components": {
                 "component": "date-time-range",
                 "props": {
-                  "label": "Oluşturma tarihi"
+                  "label": "Created at"
                 }
               }
             }
@@ -2770,7 +2664,7 @@
               "x-components": {
                 "component": "date-time-range",
                 "props": {
-                  "label": "Güncellenme tarihi"
+                  "label": "Updated at"
                 }
               }
             }
@@ -2785,7 +2679,7 @@
               "x-components": {
                 "component": "user-select",
                 "props": {
-                  "label": "Oluşturan kullanıcı"
+                  "label": "Created by"
                 }
               }
             }
@@ -2800,7 +2694,7 @@
               "x-components": {
                 "component": "user-select",
                 "props": {
-                  "label": "Güncelleyen kullanıcı"
+                  "label": "Updated by"
                 }
               }
             }
@@ -2890,9 +2784,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2919,7 +2810,7 @@
                 "x-components": {
                   "component": "date-time-range",
                   "props": {
-                    "label": "Oluşturma tarihi"
+                    "label": "Created at"
                   }
                 }
               }
@@ -2934,7 +2825,7 @@
                 "x-components": {
                   "component": "date-time-range",
                   "props": {
-                    "label": "Güncellenme tarihi"
+                    "label": "Updated at"
                   }
                 }
               }
@@ -2949,7 +2840,7 @@
                 "x-components": {
                   "component": "user-select",
                   "props": {
-                    "label": "Oluşturan kullanıcı"
+                    "label": "Created by"
                   }
                 }
               }
@@ -2964,7 +2855,7 @@
                 "x-components": {
                   "component": "user-select",
                   "props": {
-                    "label": "Güncelleyen kullanıcı"
+                    "label": "Updated by"
                   }
                 }
               }
@@ -3054,9 +2945,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3069,6 +2957,474 @@
               }
             },
             "description": ""
+          }
+        }
+      }
+    },
+    "/invoice/invoice-conditions/": {
+      "get": {
+        "operationId": "invoice_invoice_conditions_list",
+        "parameters": [
+          {
+            "name": "created_at__range",
+            "required": false,
+            "in": "query",
+            "description": "created_at__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Created at"
+                }
+              }
+            }
+          },
+          {
+            "name": "updated_at__range",
+            "required": false,
+            "in": "query",
+            "description": "updated_at__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Updated at"
+                }
+              }
+            }
+          },
+          {
+            "name": "created_by",
+            "required": false,
+            "in": "query",
+            "description": "created_by",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Created by"
+                }
+              }
+            }
+          },
+          {
+            "name": "updated_by",
+            "required": false,
+            "in": "query",
+            "description": "updated_by",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Updated by"
+                }
+              }
+            }
+          },
+          {
+            "name": "condition_name__icontains",
+            "required": false,
+            "in": "query",
+            "description": "condition_name__icontains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "hidden",
+                "props": {}
+              }
+            }
+          },
+          {
+            "name": "conditions__icontains",
+            "required": false,
+            "in": "query",
+            "description": "conditions__icontains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Contents"
+                }
+              }
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "condition_name",
+                "created_at",
+                "updated_at",
+                "created_by",
+                "updated_by",
+                "-condition_name",
+                "-created_at",
+                "-updated_at",
+                "-created_by",
+                "-updated_by"
+              ]
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Ara: Condition identifier name(ex: Default conditions)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": ["invoice"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedInvoiceConditionList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "x-filters": {
+          "DjangoFilterBackend": [
+            {
+              "name": "created_at__range",
+              "required": false,
+              "in": "query",
+              "description": "created_at__range",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Created at"
+                  }
+                }
+              }
+            },
+            {
+              "name": "updated_at__range",
+              "required": false,
+              "in": "query",
+              "description": "updated_at__range",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Updated at"
+                  }
+                }
+              }
+            },
+            {
+              "name": "created_by",
+              "required": false,
+              "in": "query",
+              "description": "created_by",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Created by"
+                  }
+                }
+              }
+            },
+            {
+              "name": "updated_by",
+              "required": false,
+              "in": "query",
+              "description": "updated_by",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Updated by"
+                  }
+                }
+              }
+            },
+            {
+              "name": "condition_name__icontains",
+              "required": false,
+              "in": "query",
+              "description": "condition_name__icontains",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "hidden",
+                  "props": {}
+                }
+              }
+            },
+            {
+              "name": "conditions__icontains",
+              "required": false,
+              "in": "query",
+              "description": "conditions__icontains",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "Contents"
+                  }
+                }
+              }
+            }
+          ],
+          "OrderingFilter": [
+            {
+              "name": "ordering",
+              "required": false,
+              "in": "query",
+              "description": "Which field to use when ordering the results.",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "condition_name",
+                  "created_at",
+                  "updated_at",
+                  "created_by",
+                  "updated_by",
+                  "-condition_name",
+                  "-created_at",
+                  "-updated_at",
+                  "-created_by",
+                  "-updated_by"
+                ]
+              }
+            }
+          ],
+          "SearchFilter": [
+            {
+              "name": "search",
+              "required": false,
+              "in": "query",
+              "description": "Ara: Condition identifier name(ex: Default conditions)",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "post": {
+        "operationId": "invoice_invoice_conditions_create",
+        "tags": ["invoice"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvoiceConditionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceCondition"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/invoice/invoice-conditions/{id}/": {
+      "get": {
+        "operationId": "invoice_invoice_conditions_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": null
+            },
+            "description": "A UUID string identifying this invoice condition.",
+            "required": true
+          }
+        ],
+        "tags": ["invoice"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceCondition"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "operationId": "invoice_invoice_conditions_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": null
+            },
+            "description": "A UUID string identifying this invoice condition.",
+            "required": true
+          }
+        ],
+        "tags": ["invoice"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvoiceConditionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceCondition"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "operationId": "invoice_invoice_conditions_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": null
+            },
+            "description": "A UUID string identifying this invoice condition.",
+            "required": true
+          }
+        ],
+        "tags": ["invoice"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedInvoiceConditionRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoiceCondition"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "invoice_invoice_conditions_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": null
+            },
+            "description": "A UUID string identifying this invoice condition.",
+            "required": true
+          }
+        ],
+        "tags": ["invoice"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
           }
         }
       }
@@ -3092,9 +3448,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3138,9 +3491,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3183,9 +3533,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3219,9 +3566,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3251,9 +3595,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3359,9 +3700,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3468,9 +3806,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3506,9 +3841,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3552,9 +3884,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3597,9 +3926,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3633,9 +3959,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3681,9 +4004,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3729,9 +4049,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3767,9 +4084,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3813,9 +4127,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3858,9 +4169,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3894,9 +4202,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4002,9 +4307,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4111,9 +4413,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4149,9 +4448,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4195,9 +4491,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4240,9 +4533,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4276,9 +4566,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4431,9 +4718,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4587,9 +4871,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4625,9 +4906,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4671,9 +4949,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4716,9 +4991,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4752,9 +5024,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4791,9 +5060,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4889,9 +5155,6 @@
         "security": [
           {
             "knoxTokenAuth": []
-          },
-          {
-            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5165,6 +5428,48 @@
         },
         "required": ["name"]
       },
+      "InvoiceCondition": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "condition_name": {
+            "type": "string",
+            "title": "Condition identifier name(ex: Default conditions)",
+            "maxLength": 100
+          },
+          "conditions": {
+            "type": "string",
+            "title": "Invoice conditions"
+          }
+        },
+        "required": ["condition_name", "conditions"]
+      },
+      "InvoiceConditionRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "condition_name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Condition identifier name(ex: Default conditions)",
+            "maxLength": 100
+          },
+          "conditions": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Invoice conditions"
+          }
+        },
+        "required": ["condition_name", "conditions"]
+      },
       "InvoiceDetailIn": {
         "type": "object",
         "properties": {
@@ -5190,11 +5495,6 @@
             "type": "string",
             "nullable": true,
             "title": "Description"
-          },
-          "invoice_conditions": {
-            "type": "string",
-            "nullable": true,
-            "title": "Invoice conditions"
           },
           "last_payment_date": {
             "type": "string",
@@ -5248,6 +5548,14 @@
               "$ref": "#/components/schemas/InvoiceList"
             },
             "title": "Related invoice"
+          },
+          "invoice_conditions": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceCondition"
+              }
+            ],
+            "title": "Invoice conditions"
           }
         },
         "required": ["id", "invoice_type", "name", "stakeholder", "warehouse"]
@@ -5273,11 +5581,6 @@
             "type": "string",
             "nullable": true,
             "title": "Description"
-          },
-          "invoice_conditions": {
-            "type": "string",
-            "nullable": true,
-            "title": "Invoice conditions"
           },
           "last_payment_date": {
             "type": "string",
@@ -5339,6 +5642,14 @@
               "$ref": "#/components/schemas/InvoiceListRequest"
             },
             "title": "Related invoice"
+          },
+          "invoice_conditions": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceConditionRequest"
+              }
+            ],
+            "title": "Invoice conditions"
           }
         },
         "required": [
@@ -5374,11 +5685,6 @@
             "type": "string",
             "nullable": true,
             "title": "Description"
-          },
-          "invoice_conditions": {
-            "type": "string",
-            "nullable": true,
-            "title": "Invoice conditions"
           },
           "last_payment_date": {
             "type": "string",
@@ -5447,6 +5753,14 @@
               "$ref": "#/components/schemas/InvoiceList"
             },
             "title": "Related invoice"
+          },
+          "invoice_conditions": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceCondition"
+              }
+            ],
+            "title": "Invoice conditions"
           }
         },
         "required": [
@@ -6765,6 +7079,33 @@
           }
         }
       },
+      "PaginatedInvoiceConditionList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=400&limit=100"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=200&limit=100"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceCondition"
+            }
+          }
+        }
+      },
       "PaginatedInvoiceListList": {
         "type": "object",
         "properties": {
@@ -7024,6 +7365,27 @@
             "x-components": {
               "component": "category-selector"
             }
+          }
+        }
+      },
+      "PatchedInvoiceConditionRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "condition_name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Condition identifier name(ex: Default conditions)",
+            "maxLength": 100
+          },
+          "conditions": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Invoice conditions"
           }
         }
       },
@@ -8384,11 +8746,6 @@
       }
     },
     "securitySchemes": {
-      "cookieAuth": {
-        "type": "apiKey",
-        "in": "cookie",
-        "name": "sessionid"
-      },
       "knoxTokenAuth": {
         "type": "http",
         "scheme": "bearer"

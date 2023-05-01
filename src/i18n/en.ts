@@ -57,6 +57,7 @@ export default {
     login: 'Log in',
   },
   commons: {
+    add_new: 'Add new',
     'are-you-sure-you-want-to-delete': 'Are you sure you want to delete this?',
     cancel: 'Cancel',
     close: 'Close',
@@ -125,11 +126,15 @@ export default {
   gohome: 'Go home',
   invoice_labels: {
     customer: 'Customer name',
+    invoice_condition_label: 'Templates',
     items: {
       amount: 'Amount',
       itemname: 'Item/Service',
       price: 'Price',
     },
+    new_condition_name: 'New template',
+    new_condition_placeholder:
+      "You can create a new template here. it'll be saved when you save the invoice.",
     new_line: 'New line',
     supplier: 'Supplier name',
     tabs: {

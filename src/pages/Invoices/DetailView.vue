@@ -143,11 +143,13 @@ const {
   validate: validateForm,
   validateField,
   handleSubmit,
+  useFieldModel,
 } = useForm({
   validationSchema: validator,
   initialValues: initialValues as Ref<NestedRecord>,
 });
 
+export type UseFieldModel = typeof useFieldModel;
 export type ValidateField = typeof validateField;
 export type SetFieldValue = typeof setFieldValue;
 
@@ -298,6 +300,7 @@ provide('checkStepErrors', checkStepErrors);
 provide('errors', errors);
 provide('invoiceType', invoiceType);
 provide('setFieldValue', setFieldValue);
+provide('useFieldModel', useFieldModel);
 </script>
 
 <style lang="scss">

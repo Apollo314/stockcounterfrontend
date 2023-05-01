@@ -25,9 +25,8 @@
     @filter="onFilter"
     @blur="validate()"
   >
-    <template #after-options>
+    <template v-if="!endOfItems" #after-options>
       <div
-        v-if="!endOfItems"
         class="full-width q-pt-sm"
         style="display: flex; justify-content: center"
       >
@@ -38,6 +37,9 @@
           @click="loadMore"
         />
       </div>
+    </template>
+    <template v-if="$slots['no-option']" #no-option>
+      <slot name="no-option"></slot>
     </template>
   </q-select>
 </template>
@@ -135,8 +137,14 @@ const props = defineProps({
   },
 });
 
-defineEmits<{
+const emit = defineEmits<{
   (e: 'select', value: unknown): void;
+  (
+    e: 'filter',
+    inputValue: string,
+    doneFn: (callbackFn: () => void, afterFn?: (ref: QSelect) => void) => void,
+    abortFn: () => void
+  ): void;
 }>();
 
 const { value, errorMessage, validate } = useField(toRef(props, 'name'));
@@ -207,6 +215,7 @@ const onFilter: QSelectProps['onFilter'] = (val, update, abort) => {
     .finally(() => {
       loading.value = false;
     });
+  emit('filter', val, update, abort);
 };
 
 const loadMore = () => {
@@ -231,6 +240,8 @@ const loadMore = () => {
       });
   }
 };
+
+defineExpose({ selectRef });
 </script>
 
 <style lang="scss">
