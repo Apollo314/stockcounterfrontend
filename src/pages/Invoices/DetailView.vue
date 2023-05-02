@@ -93,7 +93,7 @@
 <script setup lang="ts">
 import { useQuasar } from 'quasar';
 import { Field, useField, useForm } from 'vee-validate';
-import { provide, ref, toRef, reactive, onActivated, Ref } from 'vue';
+import { provide, ref, toRef, reactive, onActivated } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
@@ -101,7 +101,7 @@ import FullHeightPage from 'components/Page/FullHeightPage.vue';
 import { api } from 'src/boot/axios';
 import { InvoiceDetailInRequest, InvoiceDetailOut } from 'src/client';
 import { parseDRFErrors } from 'src/components/VeeDynamicForm/drfErrorToYup';
-import { NestedRecord, create_form } from 'src/composables/openapihelpers';
+import { create_form } from 'src/composables/openapihelpers';
 
 import GeneralInformationStep from './GeneralInformationStep.vue';
 import InvoiceConditionsStep from './InvoiceConditionsStep.vue';
@@ -145,9 +145,9 @@ const {
   validateField,
   handleSubmit,
   useFieldModel,
-} = useForm({
+} = useForm<InvoiceDetailInRequest | InvoiceDetailOut>({
   validationSchema: validator,
-  initialValues: initialValues as Ref<NestedRecord>,
+  initialValues: initialValues,
 });
 
 export type UseFieldModel = typeof useFieldModel;
@@ -237,7 +237,7 @@ const getListRouteName = () => {
   }
 };
 
-const submit = (payload: NestedRecord, done: () => void) => {
+const submit = (payload: InvoiceDetailInRequest, done: () => void) => {
   if (!props.id) {
     api.invoice
       .invoiceInvoiceCreate({ requestBody: payload as InvoiceDetailInRequest })
@@ -308,12 +308,14 @@ const submit = (payload: NestedRecord, done: () => void) => {
   }
 };
 
-const submissionHandler = async (payload: NestedRecord) => {
+const submissionHandler = async (
+  payload: InvoiceDetailInRequest | InvoiceDetailOut
+) => {
   await new Promise((resolve) => {
     const done = () => {
       resolve(null);
     };
-    submit(payload, done);
+    submit(payload as InvoiceDetailInRequest, done);
   });
 };
 
