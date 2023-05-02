@@ -1,6 +1,6 @@
 <template>
   <template v-for="[key, formComponent] in formComponents" :key="key">
-    <div v-if="$slots[key]" class="q-py-xs">
+    <div v-if="$slots[key]" class="q-py-xs" :class="{ [key]: true }">
       <slot
         :name="key"
         v-bind="{
@@ -12,7 +12,7 @@
         }"
       />
     </div>
-    <div v-if="!$slots[key]" class="q-py-xs">
+    <div v-if="!$slots[key]" class="q-py-xs" :class="{ [key]: true }">
       <component
         :is="getComponent(formComponent)"
         v-bind="getProps(formComponent)"

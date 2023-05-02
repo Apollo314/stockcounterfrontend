@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { ConciseUserRequest } from './ConciseUserRequest';
 import type { CurrencyEnum } from './CurrencyEnum';
 import type { StakeholderBasicRequest } from './StakeholderBasicRequest';
 import type { WarehouseRequest } from './WarehouseRequest';
@@ -13,8 +14,8 @@ export type PatchedInvoiceListRequest = {
   name?: string;
   description?: string | null;
   last_payment_date?: string;
-  created_by?: number | null;
-  updated_by?: number | null;
+  created_by?: ConciseUserRequest;
+  updated_by?: ConciseUserRequest;
   created_at?: string;
   currency?: CurrencyEnum;
   currency_exchange_rate?: string | null;

@@ -32,6 +32,7 @@ export class ApiService {
       | 'br'
       | 'bs'
       | 'ca'
+      | 'ckb'
       | 'cs'
       | 'cy'
       | 'da'

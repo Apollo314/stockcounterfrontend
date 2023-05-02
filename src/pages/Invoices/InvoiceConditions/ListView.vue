@@ -35,64 +35,35 @@ import type {
   ContextMenuGroup,
   Pagination,
 } from 'components/DataTable/DataTable.vue';
-import type { InvoiceList } from 'src/client';
+import type { InvoiceConditionSerializerOut } from 'src/client';
 
-type Row = BaseRow & InvoiceList;
+type Row = BaseRow & InvoiceConditionSerializerOut;
 
 type Column = BaseColumn<Row>;
 
-const props = defineProps<{
-  invoiceType?: 'sale' | 'purchase' | 'refund-purchase' | 'refund-sale';
-}>();
+const operation = get_operation('/invoice/invoice-conditions/', 'get');
+const formComponents = create_filters(operation);
 
-const operation = get_operation('/invoice/invoice/', 'get');
-const formComponents = create_filters(operation, ['invoice_type']);
+type Filters = Record<keyof typeof formComponents, string>;
 
-type Filters = Record<keyof typeof formComponents, string | undefined>;
-
-const { t: $t, n: $n, d: $d } = useI18n();
+const { t: $t, d: $d } = useI18n();
 const card = ref(false);
 
 const co: ColumnsOverride<Column, Row> = {
   id: { hidden: true },
-  name: { width: 250 },
-  last_payment_date: { field: (row) => $d(row.last_payment_date || '') },
-  total: {
-    hidden: true,
-    field: (row) =>
-      `${$n(parseFloat(row.total || '0'), {
-        style: 'currency',
-        currency: 'TRY',
-      })}`,
-  },
-  total_with_tax: {
-    field: (row) =>
-      `${$n(parseFloat(row.total_with_tax || '0'), {
-        style: 'currency',
-        currency: 'TRY',
-      })}`,
-  },
-  currency_exchange_rate: {
-    field: (row) =>
-      row.currency_exchange_rate
-        ? `${$n(1, { style: 'currency', currency: row.currency })} = ${$n(
-            parseFloat(row.currency_exchange_rate),
-            {
-              style: 'currency',
-              currency: 'TRY',
-            }
-          )}`
-        : undefined,
-  },
-  stakeholder: { field: (row) => row.stakeholder.shortname },
-  created_by: { field: (row) => row.created_by.username },
-  updated_by: { hidden: true, field: (row) => row.updated_by.username },
-  warehouse: { hidden: true, field: (row) => row.warehouse.name },
-  description: { hidden: true },
-  created_at: { field: (row) => $d(row.created_at || '') },
+  condition_name: {},
+  conditions: { width: 450 },
   updated_at: {
-    hidden: true,
     field: (row) => $d(row.updated_at || ''),
+  },
+  updated_by: {
+    field: (row) => row.updated_by.username,
+  },
+  created_at: {
+    field: (row) => $d(row.created_at || ''),
+  },
+  created_by: {
+    field: (row) => row.created_by.username,
   },
 };
 
@@ -105,7 +76,7 @@ const contextmenuactions: ContextMenuGroup<Row>[] = [
     {
       callback: (rows, done) => {
         router.push({
-          name: 'invoice-detail',
+          name: 'invoice-condition-update',
           params: { id: Array.from(rows)[0][1].id },
         });
         done(false);
@@ -117,7 +88,7 @@ const contextmenuactions: ContextMenuGroup<Row>[] = [
     },
     {
       callback: (rows, done) => {
-        const names = Array.from(rows, ([, row]) => row.name).join(', ');
+        const names = Array.from(rows, ([, row]) => row.id).join(', ');
         $q.dialog({
           component: RepeatTextConfirmation,
           componentProps: {
@@ -129,7 +100,7 @@ const contextmenuactions: ContextMenuGroup<Row>[] = [
           },
         }).onOk(() => {
           api.invoice
-            .invoiceBulkInvoiceDestroy({
+            .invoiceBulkInvoiceConditionsDestroy({
               pk: Array.from(rows, ([, value]) => value.id.toString()),
             })
             .then(() => {
@@ -147,7 +118,7 @@ const contextmenuactions: ContextMenuGroup<Row>[] = [
   ],
 ];
 
-const data = ref<InvoiceList[]>();
+const data = ref<InvoiceConditionSerializerOut[]>();
 
 const pagination = ref<Pagination<Filters>>({
   count: 100,
@@ -163,10 +134,8 @@ function fetcher({
   pagination: MaybeRef<Pagination<Filters>>;
   done?: () => void;
 }) {
-  const query = queryMaker(requestPagination);
-  query['invoiceType'] = props.invoiceType;
   api.invoice
-    .invoiceInvoiceList(query)
+    .invoiceInvoiceConditionsList(queryMaker(requestPagination))
     .then((value) => {
       data.value = value.results;
       pagination.value.count = value.count || 0;

@@ -35,6 +35,7 @@
                 "br",
                 "bs",
                 "ca",
+                "ckb",
                 "cs",
                 "cy",
                 "da",
@@ -3113,7 +3114,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PaginatedInvoiceConditionList"
+                  "$ref": "#/components/schemas/PaginatedInvoiceConditionSerializerOutList"
                 }
               }
             },
@@ -3254,7 +3255,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvoiceConditionRequest"
+                "$ref": "#/components/schemas/InvoiceConditionSerializerInRequest"
               }
             }
           },
@@ -3270,7 +3271,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InvoiceCondition"
+                  "$ref": "#/components/schemas/InvoiceConditionSerializerIn"
                 }
               }
             },
@@ -3306,7 +3307,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InvoiceCondition"
+                  "$ref": "#/components/schemas/InvoiceConditionSerializerOut"
                 }
               }
             },
@@ -3334,7 +3335,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvoiceConditionRequest"
+                "$ref": "#/components/schemas/InvoiceConditionSerializerInRequest"
               }
             }
           },
@@ -3350,7 +3351,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InvoiceCondition"
+                  "$ref": "#/components/schemas/InvoiceConditionSerializerIn"
                 }
               }
             },
@@ -3378,7 +3379,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchedInvoiceConditionRequest"
+                "$ref": "#/components/schemas/PatchedInvoiceConditionSerializerOutRequest"
               }
             }
           }
@@ -3393,7 +3394,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InvoiceCondition"
+                  "$ref": "#/components/schemas/InvoiceConditionSerializerOut"
                 }
               }
             },
@@ -5428,12 +5429,13 @@
         },
         "required": ["name"]
       },
-      "InvoiceCondition": {
+      "InvoiceConditionSerializerIn": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "format": "uuid",
+            "readOnly": true,
             "title": "Id"
           },
           "condition_name": {
@@ -5443,12 +5445,129 @@
           },
           "conditions": {
             "type": "string",
-            "title": "Invoice conditions"
+            "title": "Invoice conditions",
+            "x-components": {
+              "component": "rich-editor",
+              "props": {
+                "label": "Content of the invoice condition"
+              }
+            }
+          }
+        },
+        "required": ["condition_name", "conditions", "id"]
+      },
+      "InvoiceConditionSerializerInRequest": {
+        "type": "object",
+        "properties": {
+          "condition_name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Condition identifier name(ex: Default conditions)",
+            "maxLength": 100
+          },
+          "conditions": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Invoice conditions",
+            "x-components": {
+              "component": "rich-editor",
+              "props": {
+                "label": "Content of the invoice condition"
+              }
+            }
           }
         },
         "required": ["condition_name", "conditions"]
       },
-      "InvoiceConditionRequest": {
+      "InvoiceConditionSerializerOut": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true,
+            "title": "Id"
+          },
+          "condition_name": {
+            "type": "string",
+            "title": "Condition identifier name(ex: Default conditions)",
+            "maxLength": 100
+          },
+          "conditions": {
+            "type": "string",
+            "title": "Invoice conditions",
+            "x-components": {
+              "component": "rich-editor",
+              "props": {
+                "label": "Content of the invoice condition"
+              }
+            }
+          },
+          "created_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConciseUser"
+              }
+            ],
+            "title": "Created by"
+          },
+          "updated_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConciseUser"
+              }
+            ],
+            "title": "Updated by"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created at"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Updated at"
+          }
+        },
+        "required": [
+          "condition_name",
+          "conditions",
+          "created_by",
+          "id",
+          "updated_at",
+          "updated_by"
+        ]
+      },
+      "InvoiceConditionWithIdSerializerIn": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "condition_name": {
+            "type": "string",
+            "title": "Condition identifier name(ex: Default conditions)",
+            "maxLength": 100
+          },
+          "conditions": {
+            "type": "string",
+            "title": "Invoice conditions",
+            "x-components": {
+              "component": "rich-editor",
+              "props": {
+                "label": "Content of the invoice condition"
+              }
+            }
+          }
+        },
+        "required": ["condition_name", "conditions"]
+      },
+      "InvoiceConditionWithIdSerializerInRequest": {
         "type": "object",
         "properties": {
           "id": {
@@ -5465,7 +5584,13 @@
           "conditions": {
             "type": "string",
             "minLength": 1,
-            "title": "Invoice conditions"
+            "title": "Invoice conditions",
+            "x-components": {
+              "component": "rich-editor",
+              "props": {
+                "label": "Content of the invoice condition"
+              }
+            }
           }
         },
         "required": ["condition_name", "conditions"]
@@ -5552,7 +5677,7 @@
           "invoice_conditions": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/InvoiceCondition"
+                "$ref": "#/components/schemas/InvoiceConditionWithIdSerializerIn"
               }
             ],
             "title": "Invoice conditions"
@@ -5646,7 +5771,7 @@
           "invoice_conditions": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/InvoiceConditionRequest"
+                "$ref": "#/components/schemas/InvoiceConditionWithIdSerializerInRequest"
               }
             ],
             "title": "Invoice conditions"
@@ -5757,7 +5882,7 @@
           "invoice_conditions": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/InvoiceCondition"
+                "$ref": "#/components/schemas/InvoiceConditionSerializerIn"
               }
             ],
             "title": "Invoice conditions"
@@ -6046,14 +6171,20 @@
             "title": "Last payment date"
           },
           "created_by": {
-            "type": "integer",
-            "title": "Created by",
-            "nullable": true
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConciseUser"
+              }
+            ],
+            "title": "Created by"
           },
           "updated_by": {
-            "type": "integer",
-            "title": "Updated by",
-            "nullable": true
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConciseUser"
+              }
+            ],
+            "title": "Updated by"
           },
           "created_at": {
             "type": "string",
@@ -6111,10 +6242,18 @@
                 "$ref": "#/components/schemas/Warehouse"
               }
             ],
-            "title": "Warehouse"
+            "title": "Depot"
           }
         },
-        "required": ["id", "name", "stakeholder", "updated_at", "warehouse"]
+        "required": [
+          "created_by",
+          "id",
+          "name",
+          "stakeholder",
+          "updated_at",
+          "updated_by",
+          "warehouse"
+        ]
       },
       "InvoiceListRequest": {
         "type": "object",
@@ -6137,14 +6276,20 @@
             "title": "Last payment date"
           },
           "created_by": {
-            "type": "integer",
-            "title": "Created by",
-            "nullable": true
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConciseUserRequest"
+              }
+            ],
+            "title": "Created by"
           },
           "updated_by": {
-            "type": "integer",
-            "title": "Updated by",
-            "nullable": true
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConciseUserRequest"
+              }
+            ],
+            "title": "Updated by"
           },
           "created_at": {
             "type": "string",
@@ -6195,10 +6340,16 @@
                 "$ref": "#/components/schemas/WarehouseRequest"
               }
             ],
-            "title": "Warehouse"
+            "title": "Depot"
           }
         },
-        "required": ["name", "stakeholder", "warehouse"]
+        "required": [
+          "created_by",
+          "name",
+          "stakeholder",
+          "updated_by",
+          "warehouse"
+        ]
       },
       "InvoiceTypeEnum": {
         "enum": ["purchase", "sale", "refund-purchase", "refund-sale"],
@@ -7079,7 +7230,7 @@
           }
         }
       },
-      "PaginatedInvoiceConditionList": {
+      "PaginatedInvoiceConditionSerializerOutList": {
         "type": "object",
         "properties": {
           "count": {
@@ -7101,7 +7252,7 @@
           "results": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InvoiceCondition"
+              "$ref": "#/components/schemas/InvoiceConditionSerializerOut"
             }
           }
         }
@@ -7368,14 +7519,9 @@
           }
         }
       },
-      "PatchedInvoiceConditionRequest": {
+      "PatchedInvoiceConditionSerializerOutRequest": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Id"
-          },
           "condition_name": {
             "type": "string",
             "minLength": 1,
@@ -7385,7 +7531,34 @@
           "conditions": {
             "type": "string",
             "minLength": 1,
-            "title": "Invoice conditions"
+            "title": "Invoice conditions",
+            "x-components": {
+              "component": "rich-editor",
+              "props": {
+                "label": "Content of the invoice condition"
+              }
+            }
+          },
+          "created_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConciseUserRequest"
+              }
+            ],
+            "title": "Created by"
+          },
+          "updated_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConciseUserRequest"
+              }
+            ],
+            "title": "Updated by"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created at"
           }
         }
       },
@@ -7410,14 +7583,20 @@
             "title": "Last payment date"
           },
           "created_by": {
-            "type": "integer",
-            "title": "Created by",
-            "nullable": true
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConciseUserRequest"
+              }
+            ],
+            "title": "Created by"
           },
           "updated_by": {
-            "type": "integer",
-            "title": "Updated by",
-            "nullable": true
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConciseUserRequest"
+              }
+            ],
+            "title": "Updated by"
           },
           "created_at": {
             "type": "string",
@@ -7468,7 +7647,7 @@
                 "$ref": "#/components/schemas/WarehouseRequest"
               }
             ],
-            "title": "Warehouse"
+            "title": "Depot"
           }
         }
       },

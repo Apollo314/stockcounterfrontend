@@ -68,6 +68,21 @@ export const menuItems = (): MenuItem[] => {
             },
           ],
         },
+        {
+          title: $t('menu.invoice_conditions'),
+          shrinkable: true,
+          icon: 'rule_folder',
+          bgColor: 'grey-7',
+          to: { name: 'invoice-condition-list' },
+          defaultClosed: true,
+          children: [
+            {
+              title: $t('menu.new-invoice-condition'),
+              icon: 'rule',
+              to: { name: 'invoice-condition-create' },
+            },
+          ],
+        },
       ],
     },
     {
