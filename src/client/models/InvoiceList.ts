@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { ConciseUser } from './ConciseUser';
 import type { CurrencyEnum } from './CurrencyEnum';
 import type { StakeholderBasic } from './StakeholderBasic';
 import type { Warehouse } from './Warehouse';
@@ -14,8 +15,8 @@ export type InvoiceList = {
   name: string;
   description?: string | null;
   last_payment_date?: string;
-  created_by?: number | null;
-  updated_by?: number | null;
+  created_by: ConciseUser;
+  updated_by: ConciseUser;
   created_at?: string;
   readonly updated_at: string | null;
   currency?: CurrencyEnum;

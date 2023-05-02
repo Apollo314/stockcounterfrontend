@@ -287,8 +287,34 @@ const routes: RouteRecordRawExtended[] = [
         meta: { pathAsKey: true },
         props: true,
       },
-
       // Invoice
+
+      // invoice condition
+      {
+        path: 'invoice/conditions',
+        component: () =>
+          import('src/pages/Invoices/InvoiceConditions/ListView.vue'),
+        name: 'invoice-condition-list',
+        meta: { key: 'invoice-condition-list' },
+      },
+      {
+        path: 'invoice/conditions/create',
+        component: () =>
+          import('pages/Invoices/InvoiceConditions/DetailView.vue'),
+        name: 'invoice-condition-create',
+        meta: {
+          key: 'invoice-condition-create',
+        },
+      },
+      {
+        path: 'invoice/conditions/:id([\\w-]+)',
+        component: () =>
+          import('pages/Invoices/InvoiceConditions/DetailView.vue'),
+        name: 'invoice-condition-update',
+        meta: { pathAsKey: true },
+        props: true,
+      },
+      // invoice condition
 
       {
         path: '/:id(\\d+)',

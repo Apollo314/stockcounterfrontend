@@ -6,13 +6,13 @@
     :initial-values="initialData"
     @submit="submit($event)"
   >
-    <AdaptiveCard back-button style="max-width: 650px">
+    <AdaptiveCard back-button :class="{ fit }">
       <template #title-sticky>
         <div class="text-h6" :class="{ 'text-positive': props.query }">
           {{ query ? updateTitle : createTitle }}
         </div>
       </template>
-      <div class="q-px-md">
+      <div class="q-px-md form-parent">
         <DynamicForm :form-components="formComponents">
           <template
             v-for="(slot, slotKey) in $slots"
@@ -194,6 +194,14 @@ const props = defineProps({
   hiddenFields: {
     type: Array as PropType<string[]>,
     required: false,
+  },
+  /**
+   * whether or not to have fit class in card
+   */
+  fit: {
+    type: Boolean,
+    required: false,
+    default: false,
   },
 });
 
