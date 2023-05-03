@@ -28,13 +28,7 @@ import { ref } from 'vue';
 
 import FullHeightPage from 'components/Page/FullHeightPage.vue';
 import AutoCrud from 'components/VeeDynamicForm/AutoCrud/AutoCrud.vue';
-
-import {
-  getComponent,
-  getProps,
-} from '../../../components/VeeDynamicForm/componentMap';
-import DefaultField from '../../../components/VeeDynamicForm/CustomComponents/DefaultField.vue';
-import RichEditor from '../../../components/VeeDynamicForm/CustomComponents/Editor/RichEditor.vue';
+import RichEditor from 'components/VeeDynamicForm/CustomComponents/Editor/RichEditor.vue';
 
 defineProps<{
   id?: string;
