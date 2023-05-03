@@ -4,7 +4,7 @@
 
 import type { ConciseUserRequest } from './ConciseUserRequest';
 
-export type PatchedInvoiceConditionSerializerOutRequest = {
+export type PatchedInvoiceConditionTemplateOutRequest = {
   condition_name?: string;
   conditions?: string;
   created_by?: ConciseUserRequest;

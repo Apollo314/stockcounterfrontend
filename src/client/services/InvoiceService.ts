@@ -1,16 +1,16 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { InvoiceConditionSerializerIn } from '../models/InvoiceConditionSerializerIn';
-import type { InvoiceConditionSerializerInRequest } from '../models/InvoiceConditionSerializerInRequest';
-import type { InvoiceConditionSerializerOut } from '../models/InvoiceConditionSerializerOut';
+import type { InvoiceConditionTemplateIn } from '../models/InvoiceConditionTemplateIn';
+import type { InvoiceConditionTemplateInRequest } from '../models/InvoiceConditionTemplateInRequest';
+import type { InvoiceConditionTemplateOut } from '../models/InvoiceConditionTemplateOut';
 import type { InvoiceDetailIn } from '../models/InvoiceDetailIn';
 import type { InvoiceDetailInRequest } from '../models/InvoiceDetailInRequest';
 import type { InvoiceDetailOut } from '../models/InvoiceDetailOut';
 import type { InvoiceList } from '../models/InvoiceList';
-import type { PaginatedInvoiceConditionSerializerOutList } from '../models/PaginatedInvoiceConditionSerializerOutList';
+import type { PaginatedInvoiceConditionTemplateOutList } from '../models/PaginatedInvoiceConditionTemplateOutList';
 import type { PaginatedInvoiceListList } from '../models/PaginatedInvoiceListList';
-import type { PatchedInvoiceConditionSerializerOutRequest } from '../models/PatchedInvoiceConditionSerializerOutRequest';
+import type { PatchedInvoiceConditionTemplateOutRequest } from '../models/PatchedInvoiceConditionTemplateOutRequest';
 import type { PatchedInvoiceListRequest } from '../models/PatchedInvoiceListRequest';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -163,7 +163,7 @@ export class InvoiceService {
   }
 
   /**
-   * @returns PaginatedInvoiceConditionSerializerOutList
+   * @returns PaginatedInvoiceConditionTemplateOutList
    * @throws ApiError
    */
   public invoiceInvoiceConditionsList({
@@ -217,7 +217,7 @@ export class InvoiceService {
       | '-created_by'
       | '-updated_by';
     /**
-     * Ara: Fatura koşulu tanımlayıcı (ör: Standart koşullar)
+     * Ara: Condition identifier name (ex: Default conditions)
      */
     search?: string;
     /**
@@ -228,7 +228,7 @@ export class InvoiceService {
      * The initial index from which to return the results.
      */
     offset?: number;
-  }): CancelablePromise<PaginatedInvoiceConditionSerializerOutList> {
+  }): CancelablePromise<PaginatedInvoiceConditionTemplateOutList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/invoice/invoice-conditions/',
@@ -248,14 +248,14 @@ export class InvoiceService {
   }
 
   /**
-   * @returns InvoiceConditionSerializerIn
+   * @returns InvoiceConditionTemplateIn
    * @throws ApiError
    */
   public invoiceInvoiceConditionsCreate({
     requestBody,
   }: {
-    requestBody: InvoiceConditionSerializerInRequest;
-  }): CancelablePromise<InvoiceConditionSerializerIn> {
+    requestBody: InvoiceConditionTemplateInRequest;
+  }): CancelablePromise<InvoiceConditionTemplateIn> {
     return this.httpRequest.request({
       method: 'POST',
       url: '/invoice/invoice-conditions/',
@@ -265,17 +265,17 @@ export class InvoiceService {
   }
 
   /**
-   * @returns InvoiceConditionSerializerOut
+   * @returns InvoiceConditionTemplateOut
    * @throws ApiError
    */
   public invoiceInvoiceConditionsRetrieve({
     id,
   }: {
     /**
-     * A UUID string identifying this invoice condition.
+     * A UUID string identifying this invoice condition template.
      */
     id: string;
-  }): CancelablePromise<InvoiceConditionSerializerOut> {
+  }): CancelablePromise<InvoiceConditionTemplateOut> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/invoice/invoice-conditions/{id}/',
@@ -286,7 +286,7 @@ export class InvoiceService {
   }
 
   /**
-   * @returns InvoiceConditionSerializerIn
+   * @returns InvoiceConditionTemplateIn
    * @throws ApiError
    */
   public invoiceInvoiceConditionsUpdate({
@@ -294,11 +294,11 @@ export class InvoiceService {
     requestBody,
   }: {
     /**
-     * A UUID string identifying this invoice condition.
+     * A UUID string identifying this invoice condition template.
      */
     id: string;
-    requestBody: InvoiceConditionSerializerInRequest;
-  }): CancelablePromise<InvoiceConditionSerializerIn> {
+    requestBody: InvoiceConditionTemplateInRequest;
+  }): CancelablePromise<InvoiceConditionTemplateIn> {
     return this.httpRequest.request({
       method: 'PUT',
       url: '/invoice/invoice-conditions/{id}/',
@@ -311,7 +311,7 @@ export class InvoiceService {
   }
 
   /**
-   * @returns InvoiceConditionSerializerOut
+   * @returns InvoiceConditionTemplateOut
    * @throws ApiError
    */
   public invoiceInvoiceConditionsPartialUpdate({
@@ -319,11 +319,11 @@ export class InvoiceService {
     requestBody,
   }: {
     /**
-     * A UUID string identifying this invoice condition.
+     * A UUID string identifying this invoice condition template.
      */
     id: string;
-    requestBody?: PatchedInvoiceConditionSerializerOutRequest;
-  }): CancelablePromise<InvoiceConditionSerializerOut> {
+    requestBody?: PatchedInvoiceConditionTemplateOutRequest;
+  }): CancelablePromise<InvoiceConditionTemplateOut> {
     return this.httpRequest.request({
       method: 'PATCH',
       url: '/invoice/invoice-conditions/{id}/',
@@ -343,7 +343,7 @@ export class InvoiceService {
     id,
   }: {
     /**
-     * A UUID string identifying this invoice condition.
+     * A UUID string identifying this invoice condition template.
      */
     id: string;
   }): CancelablePromise<void> {

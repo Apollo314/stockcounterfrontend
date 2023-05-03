@@ -2,8 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type InvoiceConditionSerializerIn = {
-  readonly id: string;
+export type InvoiceConditionTemplateInRequest = {
   condition_name: string;
   conditions: string;
 };

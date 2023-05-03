@@ -4,7 +4,7 @@
 
 import type { ConciseUser } from './ConciseUser';
 
-export type InvoiceConditionSerializerOut = {
+export type InvoiceConditionTemplateOut = {
   readonly id: string;
   condition_name: string;
   conditions: string;

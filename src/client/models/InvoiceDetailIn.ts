@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 import type { CurrencyEnum } from './CurrencyEnum';
-import type { InvoiceConditionWithIdSerializerIn } from './InvoiceConditionWithIdSerializerIn';
+import type { InvoiceConditionIn } from './InvoiceConditionIn';
 import type { InvoiceList } from './InvoiceList';
 import type { InvoiceTypeEnum } from './InvoiceTypeEnum';
 
@@ -20,5 +20,5 @@ export type InvoiceDetailIn = {
   total?: string | null;
   total_with_tax?: string | null;
   related_invoice?: Array<InvoiceList>;
-  invoice_conditions?: InvoiceConditionWithIdSerializerIn;
+  invoice_condition?: InvoiceConditionIn;
 };

@@ -1,8 +1,8 @@
 <template>
   <RichEditor
-    name="invoice_conditions.conditions"
+    name="invoice_condition.conditions"
     :fullscreen-on-click="true"
-    :placeholder="() => formComponents?.get('invoice_conditions')?.props.label"
+    :placeholder="() => formComponents?.get('invoice_condition')?.props.label"
   >
     <template #extra-buttons-before>
       <SearchSelector
@@ -12,25 +12,15 @@
         "
         :label="$t('invoice_labels.invoice_condition_label')"
         :option-label="optionLabel"
-        emit-full-object
         dense
+        emit-full-object
         hide-selected
         fill-input
         class="q-mr-xs dark__search_input"
-        name="invoice_conditions"
-        @new-value="createValue"
+        name="invoice_condition_template"
+        @select="onSelect"
         @filter="onFilter"
       >
-        <template #no-option>
-          <q-item clickable @click="onNoOptionClick">
-            <q-item-section top avatar>
-              <q-avatar color="primary" text-color="white" icon="add" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>{{ $t('commons.add_new') }}</q-item-label>
-            </q-item-section>
-          </q-item>
-        </template>
       </SearchSelector>
     </template>
   </RichEditor>
@@ -38,32 +28,35 @@
 
 <script setup lang="ts">
 import { QSelectProps } from 'quasar';
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 
+import { $t } from 'boot/i18n';
 import { queryServiceFactory } from 'components/VeeDynamicForm/componentMap';
 import RichEditor from 'components/VeeDynamicForm/CustomComponents/Editor/RichEditor.vue';
 import SearchSelector from 'components/VeeDynamicForm/CustomComponents/SearchSelector.vue';
+import { InvoiceConditionTemplateOut } from 'src/client';
 
-import { $t } from '../../boot/i18n';
-
-import type { FormComponents } from './DetailView.vue';
+import type { FormComponents, UseFieldModel } from './DetailView.vue';
 
 defineProps<{
   formComponents: FormComponents;
 }>();
 
 const searhSelectorRef = ref<InstanceType<typeof SearchSelector>>();
+const useFieldModel = inject<UseFieldModel>('useFieldModel');
 
-const getNewObj = (condition_name: string) => {
-  return {
-    condition_name,
-    conditions: $t('invoice_labels.new_condition_placeholder'),
-  };
-};
+const invoice_condition = useFieldModel?.('invoice_condition');
 
-const createValue: QSelectProps['onNewValue'] = (val, done) => {
-  const obj = getNewObj(val);
-  done(obj, 'add-unique');
+const onSelect = (val: unknown) => {
+  const template = val as InvoiceConditionTemplateOut;
+  console.log('before', invoice_condition?.value);
+  if (invoice_condition?.value) {
+    console.log(template);
+    console.log('its a thing yo');
+    invoice_condition.value.conditions = template.conditions;
+    invoice_condition.value.invoice_condition_template = template.id;
+  }
+  console.log('invoice_condition', invoice_condition?.value);
 };
 
 const optionLabel = (val: Record<string, string>) => {
@@ -74,15 +67,6 @@ const lastFilteredValue = ref<string>();
 
 const onFilter: QSelectProps['onFilter'] = (val) => {
   lastFilteredValue.value = val;
-};
-
-const onNoOptionClick = () => {
-  searhSelectorRef.value?.selectRef?.add(
-    getNewObj(
-      lastFilteredValue.value || $t('invoice_labels.new_condition_name')
-    ),
-    true
-  );
 };
 </script>
 
