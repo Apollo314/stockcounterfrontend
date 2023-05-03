@@ -4,6 +4,7 @@
 
 import type { ConciseUser } from './ConciseUser';
 import type { CurrencyEnum } from './CurrencyEnum';
+import type { InvoiceConditionIn } from './InvoiceConditionIn';
 import type { InvoiceTypeEnum } from './InvoiceTypeEnum';
 import type { StakeholderBasic } from './StakeholderBasic';
 
@@ -19,4 +20,5 @@ export type InvoiceDetailOutForInvoiceItem = {
   created_by: ConciseUser;
   total?: string | null;
   total_with_tax?: string | null;
+  invoice_condition?: InvoiceConditionIn;
 };

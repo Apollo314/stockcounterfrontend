@@ -3079,7 +3079,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Condition identifier name(ex: Default conditions)",
+            "description": "Ara: Condition identifier name (ex: Default conditions)",
             "schema": {
               "type": "string"
             }
@@ -3114,7 +3114,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PaginatedInvoiceConditionSerializerOutList"
+                  "$ref": "#/components/schemas/PaginatedInvoiceConditionTemplateOutList"
                 }
               }
             },
@@ -3240,7 +3240,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Condition identifier name(ex: Default conditions)",
+              "description": "Ara: Condition identifier name (ex: Default conditions)",
               "schema": {
                 "type": "string"
               }
@@ -3255,7 +3255,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvoiceConditionSerializerInRequest"
+                "$ref": "#/components/schemas/InvoiceConditionTemplateInRequest"
               }
             }
           },
@@ -3271,7 +3271,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InvoiceConditionSerializerIn"
+                  "$ref": "#/components/schemas/InvoiceConditionTemplateIn"
                 }
               }
             },
@@ -3292,7 +3292,7 @@
               "format": "uuid",
               "title": null
             },
-            "description": "A UUID string identifying this invoice condition.",
+            "description": "A UUID string identifying this invoice condition template.",
             "required": true
           }
         ],
@@ -3307,7 +3307,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InvoiceConditionSerializerOut"
+                  "$ref": "#/components/schemas/InvoiceConditionTemplateOut"
                 }
               }
             },
@@ -3326,7 +3326,7 @@
               "format": "uuid",
               "title": null
             },
-            "description": "A UUID string identifying this invoice condition.",
+            "description": "A UUID string identifying this invoice condition template.",
             "required": true
           }
         ],
@@ -3335,7 +3335,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/InvoiceConditionSerializerInRequest"
+                "$ref": "#/components/schemas/InvoiceConditionTemplateInRequest"
               }
             }
           },
@@ -3351,7 +3351,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InvoiceConditionSerializerIn"
+                  "$ref": "#/components/schemas/InvoiceConditionTemplateIn"
                 }
               }
             },
@@ -3370,7 +3370,7 @@
               "format": "uuid",
               "title": null
             },
-            "description": "A UUID string identifying this invoice condition.",
+            "description": "A UUID string identifying this invoice condition template.",
             "required": true
           }
         ],
@@ -3379,7 +3379,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchedInvoiceConditionSerializerOutRequest"
+                "$ref": "#/components/schemas/PatchedInvoiceConditionTemplateOutRequest"
               }
             }
           }
@@ -3394,7 +3394,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InvoiceConditionSerializerOut"
+                  "$ref": "#/components/schemas/InvoiceConditionTemplateOut"
                 }
               }
             },
@@ -3413,7 +3413,7 @@
               "format": "uuid",
               "title": null
             },
-            "description": "A UUID string identifying this invoice condition.",
+            "description": "A UUID string identifying this invoice condition template.",
             "required": true
           }
         ],
@@ -5429,7 +5429,67 @@
         },
         "required": ["name"]
       },
-      "InvoiceConditionSerializerIn": {
+      "InvoiceConditionIn": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "invoice_condition_template": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Invoice Condition Template",
+            "nullable": true
+          },
+          "conditions": {
+            "type": "string",
+            "title": "Invoice conditions",
+            "x-components": {
+              "component": "rich-editor",
+              "props": {
+                "label": "Content of the invoice condition"
+              }
+            }
+          }
+        },
+        "required": ["conditions"]
+      },
+      "InvoiceConditionInRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "invoice_condition_template": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Invoice Condition Template",
+            "nullable": true
+          },
+          "invoice": {
+            "type": "integer",
+            "writeOnly": true,
+            "title": "Invoice"
+          },
+          "conditions": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Invoice conditions",
+            "x-components": {
+              "component": "rich-editor",
+              "props": {
+                "label": "Content of the invoice condition"
+              }
+            }
+          }
+        },
+        "required": ["conditions"]
+      },
+      "InvoiceConditionTemplateIn": {
         "type": "object",
         "properties": {
           "id": {
@@ -5440,7 +5500,7 @@
           },
           "condition_name": {
             "type": "string",
-            "title": "Condition identifier name(ex: Default conditions)",
+            "title": "Condition identifier name (ex: Default conditions)",
             "maxLength": 100
           },
           "conditions": {
@@ -5456,13 +5516,13 @@
         },
         "required": ["condition_name", "conditions", "id"]
       },
-      "InvoiceConditionSerializerInRequest": {
+      "InvoiceConditionTemplateInRequest": {
         "type": "object",
         "properties": {
           "condition_name": {
             "type": "string",
             "minLength": 1,
-            "title": "Condition identifier name(ex: Default conditions)",
+            "title": "Condition identifier name (ex: Default conditions)",
             "maxLength": 100
           },
           "conditions": {
@@ -5479,7 +5539,7 @@
         },
         "required": ["condition_name", "conditions"]
       },
-      "InvoiceConditionSerializerOut": {
+      "InvoiceConditionTemplateOut": {
         "type": "object",
         "properties": {
           "id": {
@@ -5490,7 +5550,7 @@
           },
           "condition_name": {
             "type": "string",
-            "title": "Condition identifier name(ex: Default conditions)",
+            "title": "Condition identifier name (ex: Default conditions)",
             "maxLength": 100
           },
           "conditions": {
@@ -5540,60 +5600,6 @@
           "updated_at",
           "updated_by"
         ]
-      },
-      "InvoiceConditionWithIdSerializerIn": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Id"
-          },
-          "condition_name": {
-            "type": "string",
-            "title": "Condition identifier name(ex: Default conditions)",
-            "maxLength": 100
-          },
-          "conditions": {
-            "type": "string",
-            "title": "Invoice conditions",
-            "x-components": {
-              "component": "rich-editor",
-              "props": {
-                "label": "Content of the invoice condition"
-              }
-            }
-          }
-        },
-        "required": ["condition_name", "conditions"]
-      },
-      "InvoiceConditionWithIdSerializerInRequest": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Id"
-          },
-          "condition_name": {
-            "type": "string",
-            "minLength": 1,
-            "title": "Condition identifier name(ex: Default conditions)",
-            "maxLength": 100
-          },
-          "conditions": {
-            "type": "string",
-            "minLength": 1,
-            "title": "Invoice conditions",
-            "x-components": {
-              "component": "rich-editor",
-              "props": {
-                "label": "Content of the invoice condition"
-              }
-            }
-          }
-        },
-        "required": ["condition_name", "conditions"]
       },
       "InvoiceDetailIn": {
         "type": "object",
@@ -5674,13 +5680,13 @@
             },
             "title": "Related invoice"
           },
-          "invoice_conditions": {
+          "invoice_condition": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/InvoiceConditionWithIdSerializerIn"
+                "$ref": "#/components/schemas/InvoiceConditionIn"
               }
             ],
-            "title": "Invoice conditions"
+            "title": "Invoice condition"
           }
         },
         "required": ["id", "invoice_type", "name", "stakeholder", "warehouse"]
@@ -5768,13 +5774,13 @@
             },
             "title": "Related invoice"
           },
-          "invoice_conditions": {
+          "invoice_condition": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/InvoiceConditionWithIdSerializerInRequest"
+                "$ref": "#/components/schemas/InvoiceConditionInRequest"
               }
             ],
-            "title": "Invoice conditions"
+            "title": "Invoice condition"
           }
         },
         "required": [
@@ -5879,13 +5885,13 @@
             },
             "title": "Related invoice"
           },
-          "invoice_conditions": {
+          "invoice_condition": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/InvoiceConditionSerializerIn"
+                "$ref": "#/components/schemas/InvoiceConditionIn"
               }
             ],
-            "title": "Invoice conditions"
+            "title": "Invoice condition"
           }
         },
         "required": [
@@ -5973,6 +5979,14 @@
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
             "title": "Total with tax"
+          },
+          "invoice_condition": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceConditionIn"
+              }
+            ],
+            "title": "Invoice condition"
           }
         },
         "required": ["created_by", "id", "invoice_type", "name", "stakeholder"]
@@ -6049,6 +6063,14 @@
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "nullable": true,
             "title": "Total with tax"
+          },
+          "invoice_condition": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceConditionInRequest"
+              }
+            ],
+            "title": "Invoice condition"
           }
         },
         "required": ["created_by", "invoice_type", "name", "stakeholder"]
@@ -7230,7 +7252,7 @@
           }
         }
       },
-      "PaginatedInvoiceConditionSerializerOutList": {
+      "PaginatedInvoiceConditionTemplateOutList": {
         "type": "object",
         "properties": {
           "count": {
@@ -7252,7 +7274,7 @@
           "results": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/InvoiceConditionSerializerOut"
+              "$ref": "#/components/schemas/InvoiceConditionTemplateOut"
             }
           }
         }
@@ -7519,13 +7541,13 @@
           }
         }
       },
-      "PatchedInvoiceConditionSerializerOutRequest": {
+      "PatchedInvoiceConditionTemplateOutRequest": {
         "type": "object",
         "properties": {
           "condition_name": {
             "type": "string",
             "minLength": 1,
-            "title": "Condition identifier name(ex: Default conditions)",
+            "title": "Condition identifier name (ex: Default conditions)",
             "maxLength": 100
           },
           "conditions": {

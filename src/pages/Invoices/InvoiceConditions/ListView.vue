@@ -35,9 +35,9 @@ import type {
   ContextMenuGroup,
   Pagination,
 } from 'components/DataTable/DataTable.vue';
-import type { InvoiceConditionSerializerOut } from 'src/client';
+import type { InvoiceConditionTemplateOut } from 'src/client';
 
-type Row = BaseRow & InvoiceConditionSerializerOut;
+type Row = BaseRow & InvoiceConditionTemplateOut;
 
 type Column = BaseColumn<Row>;
 
@@ -118,7 +118,7 @@ const contextmenuactions: ContextMenuGroup<Row>[] = [
   ],
 ];
 
-const data = ref<InvoiceConditionSerializerOut[]>();
+const data = ref<InvoiceConditionTemplateOut[]>();
 
 const pagination = ref<Pagination<Filters>>({
   count: 100,
