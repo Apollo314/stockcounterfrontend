@@ -24,7 +24,6 @@
         </template>
       </MenuBar>
       <editor-content
-        v-model="value"
         class="editor__content"
         spellcheck="false"
         :editor="editor"
@@ -72,6 +71,7 @@ const editorRef = ref();
 const fullscrenParent = ref();
 
 const { value } = useField<string | undefined>(toRef(props, 'name'));
+const localvaluecopy = ref();
 
 const editor = useEditor({
   content: value.value || '',
@@ -97,6 +97,7 @@ const editor = useEditor({
   ],
   onUpdate: () => {
     value.value = editor.value?.getHTML();
+    localvaluecopy.value = value.value;
   },
 });
 
@@ -112,8 +113,9 @@ if (isSupported) {
 }
 
 watch(value, () => {
-  if (editor.value && value.value) {
+  if (editor.value && value.value && localvaluecopy.value !== value.value) {
     editor.value.commands.setContent(value.value);
+    localvaluecopy.value = value.value;
   }
 });
 
