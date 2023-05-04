@@ -17,10 +17,22 @@
         hide-selected
         fill-input
         class="q-mr-xs dark__search_input"
-        name="invoice_condition_template"
+        :class="{
+          modified: isModified,
+        }"
+        name="invoice_condition.invoice_condition_template"
         @select="onSelect"
         @filter="onFilter"
       >
+        <q-tooltip
+          v-if="isModified"
+          :anchor="'top middle'"
+          self="bottom middle"
+          class="bg-yellow-10"
+        >
+          <q-icon name="manage_history" />
+          {{ $t('invoice_labels.template_is_modified') }}
+        </q-tooltip>
       </SearchSelector>
     </template>
   </RichEditor>
@@ -28,7 +40,7 @@
 
 <script setup lang="ts">
 import { QSelectProps } from 'quasar';
-import { inject, ref } from 'vue';
+import { computed, inject, ref } from 'vue';
 
 import { $t } from 'boot/i18n';
 import { queryServiceFactory } from 'components/VeeDynamicForm/componentMap';
@@ -49,14 +61,9 @@ const invoice_condition = useFieldModel?.('invoice_condition');
 
 const onSelect = (val: unknown) => {
   const template = val as InvoiceConditionTemplateOut;
-  console.log('before', invoice_condition?.value);
   if (invoice_condition?.value) {
-    console.log(template);
-    console.log('its a thing yo');
     invoice_condition.value.conditions = template.conditions;
-    invoice_condition.value.invoice_condition_template = template.id;
   }
-  console.log('invoice_condition', invoice_condition?.value);
 };
 
 const optionLabel = (val: Record<string, string>) => {
@@ -64,6 +71,14 @@ const optionLabel = (val: Record<string, string>) => {
 };
 
 const lastFilteredValue = ref<string>();
+
+const isModified = computed(() => {
+  return (
+    invoice_condition?.value?.conditions !==
+      invoice_condition?.value?.invoice_condition_template?.conditions &&
+    invoice_condition?.value?.invoice_condition_template
+  );
+});
 
 const onFilter: QSelectProps['onFilter'] = (val) => {
   lastFilteredValue.value = val;
@@ -77,6 +92,11 @@ const onFilter: QSelectProps['onFilter'] = (val) => {
     .q-field__label,
     * {
       color: white !important;
+    }
+  }
+  &.modified {
+    .q-field__control {
+      background-color: $yellow-10 !important;
     }
   }
 }

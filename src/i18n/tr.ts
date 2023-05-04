@@ -141,6 +141,8 @@ export default {
       'general-information': 'Genel fatura bilgileri',
       items: 'Ürünler/Hizmetler',
     },
+    template_is_modified:
+      'Şablondan farklılık gösteriyor. Ya şablon ya da fatura koşulları değiştirilmiş.',
   },
   labels: {
     maximum: 'Maksimum',

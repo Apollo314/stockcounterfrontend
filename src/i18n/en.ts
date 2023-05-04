@@ -142,6 +142,8 @@ export default {
       'general-information': 'General invoice information',
       items: 'Items/Services',
     },
+    template_is_modified:
+      'Different than the template. Either template or invoice condition is modified.',
   },
   labels: {
     maximum: 'Maximum',
