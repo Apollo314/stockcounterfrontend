@@ -41,6 +41,7 @@
     <template v-if="$slots['no-option']" #no-option>
       <slot name="no-option"></slot>
     </template>
+    <template v-if="$slots['default']" #default><slot></slot></template>
   </q-select>
 </template>
 

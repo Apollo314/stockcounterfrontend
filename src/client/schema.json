@@ -5438,10 +5438,12 @@
             "title": "Id"
           },
           "invoice_condition_template": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Invoice Condition Template",
-            "nullable": true
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceConditionTemplateWithId"
+              }
+            ],
+            "title": "Invoice Condition Template"
           },
           "conditions": {
             "type": "string",
@@ -5454,7 +5456,7 @@
             }
           }
         },
-        "required": ["conditions"]
+        "required": ["conditions", "invoice_condition_template"]
       },
       "InvoiceConditionInRequest": {
         "type": "object",
@@ -5465,10 +5467,12 @@
             "title": "Id"
           },
           "invoice_condition_template": {
-            "type": "string",
-            "format": "uuid",
-            "title": "Invoice Condition Template",
-            "nullable": true
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceConditionTemplateWithIdRequest"
+              }
+            ],
+            "title": "Invoice Condition Template"
           },
           "invoice": {
             "type": "integer",
@@ -5487,7 +5491,7 @@
             }
           }
         },
-        "required": ["conditions"]
+        "required": ["conditions", "invoice_condition_template"]
       },
       "InvoiceConditionTemplateIn": {
         "type": "object",
@@ -5600,6 +5604,60 @@
           "updated_at",
           "updated_by"
         ]
+      },
+      "InvoiceConditionTemplateWithId": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "condition_name": {
+            "type": "string",
+            "title": "Condition identifier name (ex: Default conditions)",
+            "maxLength": 100
+          },
+          "conditions": {
+            "type": "string",
+            "title": "Invoice conditions",
+            "x-components": {
+              "component": "rich-editor",
+              "props": {
+                "label": "Content of the invoice condition"
+              }
+            }
+          }
+        },
+        "required": ["condition_name", "conditions"]
+      },
+      "InvoiceConditionTemplateWithIdRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "condition_name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Condition identifier name (ex: Default conditions)",
+            "maxLength": 100
+          },
+          "conditions": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Invoice conditions",
+            "x-components": {
+              "component": "rich-editor",
+              "props": {
+                "label": "Content of the invoice condition"
+              }
+            }
+          }
+        },
+        "required": ["condition_name", "conditions"]
       },
       "InvoiceDetailIn": {
         "type": "object",

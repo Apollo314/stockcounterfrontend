@@ -22,6 +22,8 @@ export type { InvoiceConditionInRequest } from './models/InvoiceConditionInReque
 export type { InvoiceConditionTemplateIn } from './models/InvoiceConditionTemplateIn';
 export type { InvoiceConditionTemplateInRequest } from './models/InvoiceConditionTemplateInRequest';
 export type { InvoiceConditionTemplateOut } from './models/InvoiceConditionTemplateOut';
+export type { InvoiceConditionTemplateWithId } from './models/InvoiceConditionTemplateWithId';
+export type { InvoiceConditionTemplateWithIdRequest } from './models/InvoiceConditionTemplateWithIdRequest';
 export type { InvoiceDetailIn } from './models/InvoiceDetailIn';
 export type { InvoiceDetailInRequest } from './models/InvoiceDetailInRequest';
 export type { InvoiceDetailOut } from './models/InvoiceDetailOut';
