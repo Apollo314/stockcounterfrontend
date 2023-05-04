@@ -1,92 +1,107 @@
 <template>
   <FullHeightPage padding :fit="$q.screen.gt.sm">
-    <form
-      class="full-height"
-      @submit.prevent="handleSubmit(submissionHandler)()"
-    >
-      <q-stepper
-        ref="stepper"
-        v-model="step"
-        class="adaptive-stepper compact-scrollbar"
-        :contracted="!$q.screen.gt.md"
-        keep-alive
-        color="primary"
-        animated
-        header-nav
-        alternative-labels
+    <div class="fit" style="display: flex; flex-direction: column">
+      <div class="q-pb-sm">
+        <BackButton></BackButton>
+      </div>
+      <div
+        style="
+          flex-grow: 1;
+          position: relative;
+          overflow-y: auto;
+          margin: -10px;
+          padding: 10px;
+        "
       >
-        <q-step
-          name="general-information"
-          :title="$t('invoice_labels.tabs.general-information')"
-          icon="person"
-          :error="stepErros.GeneralInformationStep"
+        <form
+          class="full-height"
+          @submit.prevent="handleSubmit(submissionHandler)()"
         >
-          <GeneralInformationStep
-            :form-components="formComponents"
-          ></GeneralInformationStep>
-        </q-step>
-        <q-step
-          name="items"
-          :title="$t('invoice_labels.tabs.items')"
-          icon="create_new_folder"
-          :error="shownSteps.InvoiceItemsStep && stepErros.InvoiceItemsStep"
-        >
-          <InvoiceItemsStep
-            v-model:shown="shownSteps.InvoiceItemsStep"
-            :form-components="formComponents"
-          ></InvoiceItemsStep>
-        </q-step>
-        <q-step
-          name="conditions"
-          :title="$t('invoice_labels.tabs.conditions')"
-          class="full-height-step"
-          icon="rule"
-          :error="stepErros.InvoiceConditionsStep"
-        >
-          <InvoiceConditionsStep
-            class="fit"
-            :form-components="formComponents"
-          ></InvoiceConditionsStep>
-        </q-step>
-        <template #navigation>
-          <q-stepper-navigation>
-            <div class="row full-width justify-around">
-              <div class="col-shrink" style="width: 100px">
-                <q-btn
-                  v-if="step !== 'general-information'"
-                  flat
-                  no-caps
-                  color="primary"
-                  :label="$t('buttons.back')"
-                  style="width: 100px"
-                  class="q-ml-sm"
-                  @click="stepper.previous()"
-                />
-              </div>
-              <div class="col-shrink" style="width: 100px">
-                <q-btn
-                  v-if="step === 'conditions'"
-                  no-caps
-                  color="positive"
-                  type="submit"
-                  style="width: 100px"
-                  :label="$t('commons.ok')"
-                />
-                <q-btn
-                  v-else
-                  no-caps
-                  color="primary"
-                  style="width: 100px"
-                  label=">"
-                  @click="stepper.next()"
-                />
-              </div>
-            </div>
-          </q-stepper-navigation>
-        </template>
-      </q-stepper>
-      <Field type="hidden" name="invoice_type" />
-    </form>
+          <q-stepper
+            ref="stepper"
+            v-model="step"
+            class="adaptive-stepper compact-scrollbar"
+            :contracted="!$q.screen.gt.md"
+            keep-alive
+            color="primary"
+            animated
+            header-nav
+            alternative-labels
+          >
+            <q-step
+              name="general-information"
+              :title="$t('invoice_labels.tabs.general-information')"
+              icon="person"
+              :error="stepErros.GeneralInformationStep"
+            >
+              <GeneralInformationStep
+                :form-components="formComponents"
+              ></GeneralInformationStep>
+            </q-step>
+            <q-step
+              name="items"
+              :title="$t('invoice_labels.tabs.items')"
+              icon="create_new_folder"
+              :error="shownSteps.InvoiceItemsStep && stepErros.InvoiceItemsStep"
+            >
+              <InvoiceItemsStep
+                v-model:shown="shownSteps.InvoiceItemsStep"
+                :form-components="formComponents"
+              ></InvoiceItemsStep>
+            </q-step>
+            <q-step
+              name="conditions"
+              :title="$t('invoice_labels.tabs.conditions')"
+              class="full-height-step"
+              icon="rule"
+              :error="stepErros.InvoiceConditionsStep"
+            >
+              <InvoiceConditionsStep
+                class="fit"
+                :form-components="formComponents"
+              ></InvoiceConditionsStep>
+            </q-step>
+            <template #navigation>
+              <q-stepper-navigation>
+                <div class="row full-width justify-around">
+                  <div class="col-shrink" style="width: 100px">
+                    <q-btn
+                      v-if="step !== 'general-information'"
+                      flat
+                      no-caps
+                      color="primary"
+                      :label="$t('buttons.back')"
+                      style="width: 100px"
+                      class="q-ml-sm"
+                      @click="stepper.previous()"
+                    />
+                  </div>
+                  <div class="col-shrink" style="width: 100px">
+                    <q-btn
+                      v-if="step === 'conditions'"
+                      no-caps
+                      color="positive"
+                      type="submit"
+                      style="width: 100px"
+                      :label="$t('commons.ok')"
+                    />
+                    <q-btn
+                      v-else
+                      no-caps
+                      color="primary"
+                      style="width: 100px"
+                      label=">"
+                      @click="stepper.next()"
+                    />
+                  </div>
+                </div>
+              </q-stepper-navigation>
+            </template>
+          </q-stepper>
+          <Field type="hidden" name="invoice_type" />
+        </form>
+      </div>
+    </div>
   </FullHeightPage>
 </template>
 
@@ -102,6 +117,8 @@ import { api } from 'src/boot/axios';
 import { InvoiceDetailInRequest, InvoiceDetailOut } from 'src/client';
 import { parseDRFErrors } from 'src/components/VeeDynamicForm/drfErrorToYup';
 import { create_form } from 'src/composables/openapihelpers';
+
+import BackButton from '../../components/Commons/BackButton.vue';
 
 import GeneralInformationStep from './GeneralInformationStep.vue';
 import InvoiceConditionsStep from './InvoiceConditionsStep.vue';
