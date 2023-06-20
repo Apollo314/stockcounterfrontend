@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/attribute-hyphenation -->
 <template>
   <div ref="tableParentRef" class="row data-table fit">
     <adaptive-card
@@ -71,7 +72,7 @@
             >
               <context-menu
                 :actions="contextmenuactions"
-                :selected-rows="selectedMap"
+                :selectedRows="selectedMap"
                 @context-request="
                   () => {
                     if (!selectedMap.has(row.id)) {
@@ -119,7 +120,7 @@
               <context-menu
                 v-model="contextMenus[row.id]"
                 :actions="contextmenuactions"
-                :selected-rows="selectedMap"
+                :selectedRows="selectedMap"
                 @context-request="
                   () => {
                     if (!selectedMap.has(row.id)) {
@@ -208,7 +209,7 @@
         <form
           class="full-height"
           @submit="
-            handleSubmit($event, () =>
+            handleSubmit($event as Event, () =>
               request({ offset: -1, filters: values as Filters })
             )
           "
@@ -219,7 +220,7 @@
               <div class="text-h6">{{ $t('titles.filter') }}</div>
               <TableFilter
                 ref="tableFilterRef"
-                :form-components="filterComponents"
+                :formComponents="filterComponents"
               ></TableFilter>
             </div>
             <template #action-bottom>

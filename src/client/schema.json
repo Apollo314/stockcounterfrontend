@@ -7223,6 +7223,11 @@
             ],
             "readOnly": true,
             "title": "User"
+          },
+          "remember_me": {
+            "type": "boolean",
+            "default": false,
+            "title": "Remember me"
           }
         },
         "required": ["user"]
@@ -7241,6 +7246,11 @@
             "writeOnly": true,
             "minLength": 1,
             "title": "Password"
+          },
+          "remember_me": {
+            "type": "boolean",
+            "default": false,
+            "title": "Remember me"
           }
         },
         "required": ["password", "username"]

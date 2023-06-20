@@ -6,4 +6,5 @@ import type { User } from './User';
 
 export type Login = {
   readonly user: User;
+  remember_me?: boolean;
 };

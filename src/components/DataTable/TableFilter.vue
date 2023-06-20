@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts" generic="Filters extends Record<string, unknown>">
-import { PropType, ref } from 'vue';
+import { ref } from 'vue';
 
 import { getComponent, getProps } from 'components/VeeDynamicForm/componentMap';
 import { FormComponent } from 'src/composables/openapihelpers';
@@ -32,16 +32,10 @@ import DefaultField from '../VeeDynamicForm/CustomComponents/DefaultField.vue';
 
 import { FILTER_SUFFIXES } from './datatableutilities';
 
-const props = defineProps({
-  formComponents: {
-    type: Object as PropType<Record<string, FormComponent>>,
-    required: true,
-  },
-  initialFilters: {
-    type: Object as PropType<Filters>,
-    required: false,
-  },
-});
+const props = defineProps<{
+  formComponents: Record<string, FormComponent>;
+  initialFilters?: Filters;
+}>();
 
 const keyIsntForPagination = (key: string) => {
   if (['limit', 'offset', 'ordering', 'search'].includes(key)) {
