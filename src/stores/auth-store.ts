@@ -16,9 +16,16 @@ export const useAuthStore = defineStore('AuthStore', {
   }),
   getters: {},
   actions: {
-    login(username: string, password: string, successCallback: () => void) {
+    login(
+      username: string,
+      password: string,
+      remember_me: boolean,
+      successCallback: () => void
+    ) {
       api.user
-        .userLoginCreate({ requestBody: { username, password } })
+        .userLoginCreate({
+          requestBody: { username, password, remember_me },
+        })
         .then((value) => {
           this.loggedIn = true;
           Notify.create({

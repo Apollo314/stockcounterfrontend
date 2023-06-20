@@ -32,7 +32,7 @@
             <template #prepend><q-icon name="lock" /></template>
           </q-input>
           <q-checkbox
-            v-model="authStore.rememberMe"
+            v-model="rememberMe"
             tabindex="1"
             :label="$t('forms.rememberMe')"
           />
@@ -72,10 +72,11 @@ const emit = defineEmits<{
 
 const username = ref('');
 const password = ref('');
+const rememberMe = ref(false);
 const authStore = useAuthStore();
 
 const login = () => {
-  authStore.login(username.value, password.value, () => {
+  authStore.login(username.value, password.value, rememberMe.value, () => {
     emit('success');
   });
 };
@@ -83,7 +84,7 @@ const login = () => {
 const reset = () => {
   username.value = '';
   password.value = '';
-  authStore.rememberMe = true;
+  rememberMe.value = false;
 };
 </script>
 
