@@ -10,6 +10,6 @@ export type InvoiceConditionTemplateOut = {
   conditions: string;
   created_by: ConciseUser;
   updated_by: ConciseUser;
-  created_at?: string;
+  readonly created_at: string | null;
   readonly updated_at: string | null;
 };

@@ -48,7 +48,7 @@ export class StakeholderService {
     offset,
   }: {
     /**
-     * Ara: Tam Adı, Telefon, E-Posta, VKN/TCKN
+     * Ara: Full name, Telefon, E-posta, VKN/TCKN
      */
     search?: string;
     /**
@@ -346,6 +346,148 @@ export class StakeholderService {
    * @returns PaginatedStakeholderList
    * @throws ApiError
    */
+  public stakeholderStakeholdersList({
+    search,
+    limit,
+    offset,
+  }: {
+    /**
+     * A search term.
+     */
+    search?: string;
+    /**
+     * Number of results to return per page.
+     */
+    limit?: number;
+    /**
+     * The initial index from which to return the results.
+     */
+    offset?: number;
+  }): CancelablePromise<PaginatedStakeholderList> {
+    return this.httpRequest.request({
+      method: 'GET',
+      url: '/stakeholder/stakeholders/',
+      query: {
+        search: search,
+        limit: limit,
+        offset: offset,
+      },
+    });
+  }
+
+  /**
+   * @returns Stakeholder
+   * @throws ApiError
+   */
+  public stakeholderStakeholdersCreate({
+    requestBody,
+  }: {
+    requestBody: StakeholderRequest;
+  }): CancelablePromise<Stakeholder> {
+    return this.httpRequest.request({
+      method: 'POST',
+      url: '/stakeholder/stakeholders/',
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns Stakeholder
+   * @throws ApiError
+   */
+  public stakeholderStakeholdersRetrieve({
+    id,
+  }: {
+    /**
+     * A unique integer value identifying this stakeholder.
+     */
+    id: number;
+  }): CancelablePromise<Stakeholder> {
+    return this.httpRequest.request({
+      method: 'GET',
+      url: '/stakeholder/stakeholders/{id}/',
+      path: {
+        id: id,
+      },
+    });
+  }
+
+  /**
+   * @returns Stakeholder
+   * @throws ApiError
+   */
+  public stakeholderStakeholdersUpdate({
+    id,
+    requestBody,
+  }: {
+    /**
+     * A unique integer value identifying this stakeholder.
+     */
+    id: number;
+    requestBody: StakeholderRequest;
+  }): CancelablePromise<Stakeholder> {
+    return this.httpRequest.request({
+      method: 'PUT',
+      url: '/stakeholder/stakeholders/{id}/',
+      path: {
+        id: id,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns Stakeholder
+   * @throws ApiError
+   */
+  public stakeholderStakeholdersPartialUpdate({
+    id,
+    requestBody,
+  }: {
+    /**
+     * A unique integer value identifying this stakeholder.
+     */
+    id: number;
+    requestBody?: PatchedStakeholderRequest;
+  }): CancelablePromise<Stakeholder> {
+    return this.httpRequest.request({
+      method: 'PATCH',
+      url: '/stakeholder/stakeholders/{id}/',
+      path: {
+        id: id,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns void
+   * @throws ApiError
+   */
+  public stakeholderStakeholdersDestroy({
+    id,
+  }: {
+    /**
+     * A unique integer value identifying this stakeholder.
+     */
+    id: number;
+  }): CancelablePromise<void> {
+    return this.httpRequest.request({
+      method: 'DELETE',
+      url: '/stakeholder/stakeholders/{id}/',
+      path: {
+        id: id,
+      },
+    });
+  }
+
+  /**
+   * @returns PaginatedStakeholderList
+   * @throws ApiError
+   */
   public stakeholderSuppliersList({
     search,
     shortnameIcontains,
@@ -356,7 +498,7 @@ export class StakeholderService {
     offset,
   }: {
     /**
-     * Ara: Tam Adı, Telefon, E-Posta, VKN/TCKN
+     * Ara: Full name, Telefon, E-posta, VKN/TCKN
      */
     search?: string;
     /**

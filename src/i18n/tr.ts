@@ -149,6 +149,7 @@ export default {
     minimum: 'Minimum',
   },
   menu: {
+    bank: 'Banka | Bankalar',
     'business-relations': 'İş İlişkileri',
     category: 'Kategori | Kategoriler',
     customer: 'Müşteri | Müşteriler',
@@ -161,6 +162,8 @@ export default {
     'new-refund-purchase-invoice': 'Yeni Alış İade',
     'new-refund-sale-invoice': 'Yeni Satış İade',
     'new-sale-invoice': 'Yeni Satış',
+    'payment-account': 'Ödeme Hesabı | Ödeme Hesapları',
+    payments: 'Ödemeler',
     'purchase-invoices': 'Alış Faturaları',
     'refund-purchase-invoices': 'Alış İade Faturaları',
     'refund-sale-invoices': 'Satış İade Faturaları',

@@ -8,6 +8,7 @@ import { AxiosHttpRequest } from './core/AxiosHttpRequest';
 import { ApiService } from './services/ApiService';
 import { InventoryService } from './services/InventoryService';
 import { InvoiceService } from './services/InvoiceService';
+import { PaymentsService } from './services/PaymentsService';
 import { StakeholderService } from './services/StakeholderService';
 import { UserService } from './services/UserService';
 
@@ -17,6 +18,7 @@ export class AppClient {
   public readonly api: ApiService;
   public readonly inventory: InventoryService;
   public readonly invoice: InvoiceService;
+  public readonly payments: PaymentsService;
   public readonly stakeholder: StakeholderService;
   public readonly user: UserService;
 
@@ -41,6 +43,7 @@ export class AppClient {
     this.api = new ApiService(this.request);
     this.inventory = new InventoryService(this.request);
     this.invoice = new InvoiceService(this.request);
+    this.payments = new PaymentsService(this.request);
     this.stakeholder = new StakeholderService(this.request);
     this.user = new UserService(this.request);
   }

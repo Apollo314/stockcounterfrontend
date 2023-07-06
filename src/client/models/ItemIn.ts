@@ -19,7 +19,7 @@ export type ItemIn = {
   stock_code?: string | null;
   readonly stocks: Array<WarehouseItemStock>;
   barcode?: string | null;
-  readonly created_at: string;
+  readonly created_at: string | null;
   readonly updated_at: string | null;
   description?: string | null;
   category?: number | null;

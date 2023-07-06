@@ -316,6 +316,66 @@ const routes: RouteRecordRawExtended[] = [
       },
       // invoice condition
 
+      // payments
+      // payment accounts
+      {
+        path: 'payment/accounts',
+        component: () =>
+          import('src/pages/Payments/PaymentAccounts/ListView.vue'),
+        name: 'payment-accounts-list',
+        meta: { key: 'payment-accounts-list' },
+      },
+      {
+        path: 'payment/accounts/create',
+        component: () =>
+          import('src/pages/Payments/PaymentAccounts/DetailView.vue'),
+        name: 'payment-accounts-create',
+        meta: {
+          key: 'payment-accounts-create',
+        },
+      },
+      {
+        path: 'payment/accounts/:id([\\w-]+)',
+        component: () =>
+          import('src/pages/Payments/PaymentAccounts/DetailView.vue'),
+        name: 'payment-account-update',
+        meta: { pathAsKey: true },
+        props: true,
+      },
+      // payment accounts
+      // banks
+      {
+        path: 'banks',
+        component: () => import('src/pages/Payments/Banks/ListView.vue'),
+        name: 'bank-list',
+        meta: { key: 'bank-list' },
+      },
+      {
+        path: 'banks/create',
+        component: () => import('src/pages/Payments/Banks/DetailView.vue'),
+        name: 'bank-create',
+        meta: {
+          key: 'bank-create',
+        },
+      },
+      {
+        path: 'banks/:id([\\w-]+)',
+        component: () => import('src/pages/Payments/Banks/DetailView.vue'),
+        name: 'bank-update',
+        meta: { pathAsKey: true },
+        props: true,
+      },
+      // banks
+      // {
+      //   path: 'invoice/conditions/:id([\\w-]+)',
+      //   component: () =>
+      //     import('pages/Invoices/InvoiceConditions/DetailView.vue'),
+      //   name: 'invoice-condition-update',
+      //   meta: { pathAsKey: true },
+      //   props: true,
+      // },
+      // payments
+
       {
         path: '/:id(\\d+)',
         component: () => import('pages/Index/IndexPage.vue'),
