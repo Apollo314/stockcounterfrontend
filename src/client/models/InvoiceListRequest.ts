@@ -16,7 +16,6 @@ export type InvoiceListRequest = {
   last_payment_date?: string;
   created_by: ConciseUserRequest;
   updated_by: ConciseUserRequest;
-  created_at?: string;
   currency?: CurrencyEnum;
   currency_exchange_rate?: string | null;
   total?: string | null;

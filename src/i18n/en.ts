@@ -150,6 +150,7 @@ export default {
     minimum: 'Minimum',
   },
   menu: {
+    bank: 'Bank | Banks',
     'business-relations': 'Business Relations',
     category: 'Category | Categories',
     customer: 'Customer | Customers',
@@ -162,6 +163,8 @@ export default {
     'new-refund-purchase-invoice': 'New Purchase Refund',
     'new-refund-sale-invoice': 'New Sale Refund',
     'new-sale-invoice': 'New Sales',
+    'payment-account': 'Payment Account | Payment Accounts',
+    payments: 'Payments',
     'purchase-invoices': 'Purchase Invoices',
     'refund-purchase-invoices': 'Refund Purchase Invoices',
     'refund-sale-invoices': 'Refund Sale Invoices',

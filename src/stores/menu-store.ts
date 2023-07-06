@@ -189,5 +189,42 @@ export const menuItems = (): MenuItem[] => {
         },
       ],
     },
+    {
+      title: $t('menu.payments'),
+      shrinkable: true,
+      icon: 'payments',
+      iconColor: 'green-8',
+      children: [
+        {
+          shrinkable: true,
+          title: $t('menu.bank', 2),
+          bgColor: 'negative',
+          icon: 'account_balance',
+          to: { name: 'bank-list' },
+          children: [
+            {
+              title: $t('commons.new', ['menu.bank']),
+              icon: 'add',
+              to: { name: 'bank-create' },
+            },
+          ],
+        },
+        {
+          shrinkable: true,
+          title: $t('menu.payment-account', 2),
+          icon: 'contact_page',
+          bgColor: 'positive',
+          to: { name: 'payment-accounts-list' },
+          children: [
+            {
+              shrinkable: true,
+              title: $t('commons.new', ['menu.payment-account']),
+              icon: 'account_balance_wallet',
+              to: { name: 'payment-accounts-create' },
+            },
+          ],
+        },
+      ],
+    },
   ];
 };

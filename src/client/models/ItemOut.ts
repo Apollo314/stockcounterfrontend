@@ -22,7 +22,7 @@ export type ItemOut = {
   stock_code?: string | null;
   readonly stocks: Array<WarehouseItemStock>;
   barcode?: string | null;
-  readonly created_at: string;
+  readonly created_at: string | null;
   readonly updated_at: string | null;
   created_by: ConciseUser;
   updated_by: ConciseUser;

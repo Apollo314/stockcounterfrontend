@@ -23,6 +23,8 @@ export const componentStrings = [
   'unit-selector',
   'user-select',
   'item-select',
+  'bank-selector',
+  'stakeholder-selector',
   'warehouse-selector',
   'enum-selector',
   'checkbox',
@@ -130,6 +132,23 @@ export const componentMap: ComponentMap = {
     component: SearchSelector,
     props: {
       queryService: queryServiceFactory('inventory', 'inventoryWarehouseList'),
+      optionLabel: (option) => option.name as string,
+    },
+  },
+  'bank-selector': {
+    component: SearchSelector,
+    props: {
+      queryService: queryServiceFactory('payments', 'paymentsBanksList'),
+      optionLabel: (option) => option.name as string,
+    },
+  },
+  'stakeholder-selector': {
+    component: SearchSelector,
+    props: {
+      queryService: queryServiceFactory(
+        'stakeholder',
+        'stakeholderStakeholdersList'
+      ),
       optionLabel: (option) => option.name as string,
     },
   },

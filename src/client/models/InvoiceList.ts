@@ -17,7 +17,7 @@ export type InvoiceList = {
   last_payment_date?: string;
   created_by: ConciseUser;
   updated_by: ConciseUser;
-  created_at?: string;
+  readonly created_at: string | null;
   readonly updated_at: string | null;
   currency?: CurrencyEnum;
   currency_exchange_rate?: string | null;

@@ -3576,6 +3576,780 @@
         }
       }
     },
+    "/payments/banks/": {
+      "get": {
+        "operationId": "payments_banks_list",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Ara: Bank name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedBankOutList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "x-filters": {
+          "SearchFilter": [
+            {
+              "name": "search",
+              "required": false,
+              "in": "query",
+              "description": "Ara: Bank name",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "post": {
+        "operationId": "payments_banks_create",
+        "tags": ["payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BankRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bank"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/payments/banks/{id}/": {
+      "get": {
+        "operationId": "payments_banks_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this bank.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bank"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "operationId": "payments_banks_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this bank.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BankRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bank"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "operationId": "payments_banks_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this bank.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedBankRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Bank"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "payments_banks_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this bank.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
+    "/payments/payment-accounts/": {
+      "get": {
+        "operationId": "payments_payment_accounts_list",
+        "parameters": [
+          {
+            "name": "name__icontains",
+            "required": false,
+            "in": "query",
+            "description": "name__icontains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Account name"
+                }
+              }
+            }
+          },
+          {
+            "name": "created_at__range",
+            "required": false,
+            "in": "query",
+            "description": "created_at__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Created at"
+                }
+              }
+            }
+          },
+          {
+            "name": "updated_at__range",
+            "required": false,
+            "in": "query",
+            "description": "updated_at__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Updated at"
+                }
+              }
+            }
+          },
+          {
+            "name": "created_by",
+            "required": false,
+            "in": "query",
+            "description": "created_by",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Created by"
+                }
+              }
+            }
+          },
+          {
+            "name": "updated_by",
+            "required": false,
+            "in": "query",
+            "description": "updated_by",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Updated by"
+                }
+              }
+            }
+          },
+          {
+            "name": "stakeholder",
+            "required": false,
+            "in": "query",
+            "description": "stakeholder",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "stakeholder-selector",
+                "props": {
+                  "label": "Stakeholder"
+                }
+              }
+            }
+          },
+          {
+            "name": "account_number__contains",
+            "required": false,
+            "in": "query",
+            "description": "account_number__contains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Account Number"
+                }
+              }
+            }
+          },
+          {
+            "name": "bank",
+            "required": false,
+            "in": "query",
+            "description": "bank",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "bank-selector",
+                "props": {
+                  "label": "Bank"
+                }
+              }
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "id",
+                "name",
+                "created_at",
+                "updated_at",
+                "created_by",
+                "updated_by",
+                "-id",
+                "-name",
+                "-created_at",
+                "-updated_at",
+                "-created_by",
+                "-updated_by"
+              ]
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Ara: Payment account name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedPaymentAccountOutList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "x-filters": {
+          "DjangoFilterBackend": [
+            {
+              "name": "name__icontains",
+              "required": false,
+              "in": "query",
+              "description": "name__icontains",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "Account name"
+                  }
+                }
+              }
+            },
+            {
+              "name": "created_at__range",
+              "required": false,
+              "in": "query",
+              "description": "created_at__range",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Created at"
+                  }
+                }
+              }
+            },
+            {
+              "name": "updated_at__range",
+              "required": false,
+              "in": "query",
+              "description": "updated_at__range",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Updated at"
+                  }
+                }
+              }
+            },
+            {
+              "name": "created_by",
+              "required": false,
+              "in": "query",
+              "description": "created_by",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Created by"
+                  }
+                }
+              }
+            },
+            {
+              "name": "updated_by",
+              "required": false,
+              "in": "query",
+              "description": "updated_by",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Updated by"
+                  }
+                }
+              }
+            },
+            {
+              "name": "stakeholder",
+              "required": false,
+              "in": "query",
+              "description": "stakeholder",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "stakeholder-selector",
+                  "props": {
+                    "label": "Stakeholder"
+                  }
+                }
+              }
+            },
+            {
+              "name": "account_number__contains",
+              "required": false,
+              "in": "query",
+              "description": "account_number__contains",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "Account Number"
+                  }
+                }
+              }
+            },
+            {
+              "name": "bank",
+              "required": false,
+              "in": "query",
+              "description": "bank",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "bank-selector",
+                  "props": {
+                    "label": "Bank"
+                  }
+                }
+              }
+            }
+          ],
+          "OrderingFilter": [
+            {
+              "name": "ordering",
+              "required": false,
+              "in": "query",
+              "description": "Which field to use when ordering the results.",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "id",
+                  "name",
+                  "created_at",
+                  "updated_at",
+                  "created_by",
+                  "updated_by",
+                  "-id",
+                  "-name",
+                  "-created_at",
+                  "-updated_at",
+                  "-created_by",
+                  "-updated_by"
+                ]
+              }
+            }
+          ],
+          "SearchFilter": [
+            {
+              "name": "search",
+              "required": false,
+              "in": "query",
+              "description": "Ara: Payment account name",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "post": {
+        "operationId": "payments_payment_accounts_create",
+        "tags": ["payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentAccountInRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAccountIn"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/payments/payment-accounts/{id}/": {
+      "get": {
+        "operationId": "payments_payment_accounts_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this payment account.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAccountOut"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "operationId": "payments_payment_accounts_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this payment account.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentAccountInRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAccountIn"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "operationId": "payments_payment_accounts_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this payment account.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPaymentAccountOutRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAccountOut"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "payments_payment_accounts_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this payment account.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
     "/stakeholder/bulk/stakeholder/": {
       "delete": {
         "operationId": "stakeholder_bulk_stakeholder_destroy",
@@ -3613,7 +4387,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Tam Adı, Telefon, E-Posta, VKN/TCKN",
+            "description": "Ara: Full name, Phone, Email, VKN/TCKN",
             "schema": {
               "type": "string"
             }
@@ -3721,7 +4495,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Tam Adı, Telefon, E-Posta, VKN/TCKN",
+              "description": "Ara: Full name, Phone, Email, VKN/TCKN",
               "schema": {
                 "type": "string"
               }
@@ -4212,6 +4986,249 @@
         }
       }
     },
+    "/stakeholder/stakeholders/": {
+      "get": {
+        "operationId": "stakeholder_stakeholders_list",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": ["stakeholder"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedStakeholderList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "x-filters": {
+          "SearchFilter": [
+            {
+              "name": "search",
+              "required": false,
+              "in": "query",
+              "description": "A search term.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "DjangoFilterBackend": []
+        }
+      },
+      "post": {
+        "operationId": "stakeholder_stakeholders_create",
+        "tags": ["stakeholder"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StakeholderRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stakeholder"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/stakeholder/stakeholders/{id}/": {
+      "get": {
+        "operationId": "stakeholder_stakeholders_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this stakeholder.",
+            "required": true
+          }
+        ],
+        "tags": ["stakeholder"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stakeholder"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "operationId": "stakeholder_stakeholders_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this stakeholder.",
+            "required": true
+          }
+        ],
+        "tags": ["stakeholder"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StakeholderRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stakeholder"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "operationId": "stakeholder_stakeholders_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this stakeholder.",
+            "required": true
+          }
+        ],
+        "tags": ["stakeholder"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedStakeholderRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Stakeholder"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "stakeholder_stakeholders_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this stakeholder.",
+            "required": true
+          }
+        ],
+        "tags": ["stakeholder"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
     "/stakeholder/suppliers/": {
       "get": {
         "operationId": "stakeholder_suppliers_list",
@@ -4220,7 +5237,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Tam Adı, Telefon, E-Posta, VKN/TCKN",
+            "description": "Ara: Full name, Phone, Email, VKN/TCKN",
             "schema": {
               "type": "string"
             }
@@ -4328,7 +5345,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Tam Adı, Telefon, E-Posta, VKN/TCKN",
+              "description": "Ara: Full name, Phone, Email, VKN/TCKN",
               "schema": {
                 "type": "string"
               }
@@ -5175,6 +6192,101 @@
   },
   "components": {
     "schemas": {
+      "Bank": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Created at"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Updated at"
+          },
+          "name": {
+            "type": "string",
+            "title": "Bank name",
+            "maxLength": 50
+          }
+        },
+        "required": ["created_at", "id", "name", "updated_at"]
+      },
+      "BankOut": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "created_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ],
+            "title": "Created by"
+          },
+          "updated_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ],
+            "title": "Updated by"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Created at"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Updated at"
+          },
+          "name": {
+            "type": "string",
+            "title": "Bank name",
+            "maxLength": 50
+          }
+        },
+        "required": [
+          "created_at",
+          "created_by",
+          "id",
+          "name",
+          "updated_at",
+          "updated_by"
+        ]
+      },
+      "BankRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Bank name",
+            "maxLength": 50
+          }
+        },
+        "required": ["name"]
+      },
       "Category": {
         "type": "object",
         "properties": {
@@ -5586,6 +6698,8 @@
           "created_at": {
             "type": "string",
             "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
             "title": "Created at"
           },
           "updated_at": {
@@ -5599,6 +6713,7 @@
         "required": [
           "condition_name",
           "conditions",
+          "created_at",
           "created_by",
           "id",
           "updated_at",
@@ -6269,6 +7384,8 @@
           "created_at": {
             "type": "string",
             "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
             "title": "Created at"
           },
           "updated_at": {
@@ -6326,6 +7443,7 @@
           }
         },
         "required": [
+          "created_at",
           "created_by",
           "id",
           "name",
@@ -6370,11 +7488,6 @@
               }
             ],
             "title": "Updated by"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Created at"
           },
           "currency": {
             "allOf": [
@@ -6542,6 +7655,7 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true,
+            "nullable": true,
             "title": "Created at"
           },
           "updated_at": {
@@ -6715,6 +7829,7 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true,
+            "nullable": true,
             "title": "Created at"
           },
           "updated_at": {
@@ -7151,6 +8266,7 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true,
+            "nullable": true,
             "title": "Created at"
           },
           "updated_at": {
@@ -7263,6 +8379,33 @@
             "writeOnly": true,
             "minLength": 1,
             "title": "Token digest"
+          }
+        }
+      },
+      "PaginatedBankOutList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=400&limit=100"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=200&limit=100"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BankOut"
+            }
           }
         }
       },
@@ -7397,6 +8540,33 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ItemOut"
+            }
+          }
+        }
+      },
+      "PaginatedPaymentAccountOutList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=400&limit=100"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=200&limit=100"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentAccountOut"
             }
           }
         }
@@ -7590,6 +8760,17 @@
           }
         }
       },
+      "PatchedBankRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Bank name",
+            "maxLength": 50
+          }
+        }
+      },
       "PatchedCategoryRequest": {
         "type": "object",
         "properties": {
@@ -7644,11 +8825,6 @@
               }
             ],
             "title": "Updated by"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Created at"
           }
         }
       },
@@ -7687,11 +8863,6 @@
               }
             ],
             "title": "Updated by"
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Created at"
           },
           "currency": {
             "allOf": [
@@ -7843,6 +9014,59 @@
           }
         }
       },
+      "PatchedPaymentAccountOutRequest": {
+        "type": "object",
+        "properties": {
+          "created_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            ],
+            "title": "Created by"
+          },
+          "updated_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            ],
+            "title": "Updated by"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Payment account name",
+            "maxLength": 50
+          },
+          "bank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BankRequest"
+              }
+            ],
+            "title": "Bank"
+          },
+          "account_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "Account number"
+          },
+          "iban": {
+            "type": "string",
+            "nullable": true,
+            "title": "IBAN"
+          },
+          "stakeholder": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StakeholderRequest"
+              }
+            ],
+            "title": "Stakeholder"
+          }
+        }
+      },
       "PatchedStakeholderEmployeeRequest": {
         "type": "object",
         "properties": {
@@ -7882,7 +9106,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Tam Adı",
+            "title": "Full name",
             "maxLength": 400
           },
           "role": {
@@ -7891,25 +9115,25 @@
                 "$ref": "#/components/schemas/RoleEnum"
               }
             ],
-            "title": "Rolü"
+            "title": "Role"
           },
           "shortname": {
             "type": "string",
             "minLength": 1,
-            "title": "Kısa/Takma Adı",
+            "title": "Short name",
             "maxLength": 100
           },
           "phone": {
             "type": "string",
             "nullable": true,
-            "title": "Telefon",
+            "title": "Phone",
             "maxLength": 20
           },
           "email": {
             "type": "string",
             "format": "email",
             "nullable": true,
-            "title": "E-Posta",
+            "title": "Email",
             "maxLength": 100
           },
           "vkntckn": {
@@ -7921,7 +9145,7 @@
           "address": {
             "type": "string",
             "nullable": true,
-            "title": "Adres",
+            "title": "Address",
             "maxLength": 1000
           }
         }
@@ -8070,6 +9294,187 @@
           }
         }
       },
+      "PaymentAccountIn": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Created at"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Updated at"
+          },
+          "name": {
+            "type": "string",
+            "title": "Payment account name",
+            "maxLength": 50
+          },
+          "bank": {
+            "type": "integer",
+            "title": "Bank",
+            "nullable": true,
+            "x-components": {
+              "component": "bank-selector"
+            }
+          },
+          "account_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "Account number"
+          },
+          "iban": {
+            "type": "string",
+            "nullable": true,
+            "title": "IBAN"
+          },
+          "stakeholder": {
+            "type": "integer",
+            "title": "Stakeholder",
+            "nullable": true,
+            "x-components": {
+              "component": "stakeholder-selector"
+            }
+          }
+        },
+        "required": [
+          "bank",
+          "created_at",
+          "id",
+          "name",
+          "stakeholder",
+          "updated_at"
+        ]
+      },
+      "PaymentAccountInRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Payment account name",
+            "maxLength": 50
+          },
+          "bank": {
+            "type": "integer",
+            "title": "Bank",
+            "nullable": true,
+            "x-components": {
+              "component": "bank-selector"
+            }
+          },
+          "account_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "Account number"
+          },
+          "iban": {
+            "type": "string",
+            "nullable": true,
+            "title": "IBAN"
+          },
+          "stakeholder": {
+            "type": "integer",
+            "title": "Stakeholder",
+            "nullable": true,
+            "x-components": {
+              "component": "stakeholder-selector"
+            }
+          }
+        },
+        "required": ["bank", "name", "stakeholder"]
+      },
+      "PaymentAccountOut": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "created_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ],
+            "title": "Created by"
+          },
+          "updated_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ],
+            "title": "Updated by"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Created at"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Updated at"
+          },
+          "name": {
+            "type": "string",
+            "title": "Payment account name",
+            "maxLength": 50
+          },
+          "bank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Bank"
+              }
+            ],
+            "title": "Bank"
+          },
+          "account_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "Account number"
+          },
+          "iban": {
+            "type": "string",
+            "nullable": true,
+            "title": "IBAN"
+          },
+          "stakeholder": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Stakeholder"
+              }
+            ],
+            "title": "Stakeholder"
+          }
+        },
+        "required": [
+          "bank",
+          "created_at",
+          "created_by",
+          "id",
+          "name",
+          "updated_at",
+          "updated_by"
+        ]
+      },
       "RoleEnum": {
         "enum": ["Satıcı", "Müşteri", "Müşteri ve Satıcı"],
         "type": "string"
@@ -8112,7 +9517,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Tam Adı",
+            "title": "Full name",
             "maxLength": 400
           },
           "role": {
@@ -8121,24 +9526,24 @@
                 "$ref": "#/components/schemas/RoleEnum"
               }
             ],
-            "title": "Rolü"
+            "title": "Role"
           },
           "shortname": {
             "type": "string",
-            "title": "Kısa/Takma Adı",
+            "title": "Short name",
             "maxLength": 100
           },
           "phone": {
             "type": "string",
             "nullable": true,
-            "title": "Telefon",
+            "title": "Phone",
             "maxLength": 20
           },
           "email": {
             "type": "string",
             "format": "email",
             "nullable": true,
-            "title": "E-Posta",
+            "title": "Email",
             "maxLength": 100
           },
           "vkntckn": {
@@ -8150,7 +9555,7 @@
           "address": {
             "type": "string",
             "nullable": true,
-            "title": "Adres",
+            "title": "Address",
             "maxLength": 1000
           },
           "employees": {
@@ -8174,7 +9579,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Tam Adı",
+            "title": "Full name",
             "maxLength": 400
           },
           "role": {
@@ -8183,24 +9588,24 @@
                 "$ref": "#/components/schemas/RoleEnum"
               }
             ],
-            "title": "Rolü"
+            "title": "Role"
           },
           "shortname": {
             "type": "string",
-            "title": "Kısa/Takma Adı",
+            "title": "Short name",
             "maxLength": 100
           },
           "phone": {
             "type": "string",
             "nullable": true,
-            "title": "Telefon",
+            "title": "Phone",
             "maxLength": 20
           },
           "email": {
             "type": "string",
             "format": "email",
             "nullable": true,
-            "title": "E-Posta",
+            "title": "Email",
             "maxLength": 100
           },
           "vkntckn": {
@@ -8212,7 +9617,7 @@
           "address": {
             "type": "string",
             "nullable": true,
-            "title": "Adres",
+            "title": "Address",
             "maxLength": 1000
           }
         },
@@ -8224,7 +9629,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Tam Adı",
+            "title": "Full name",
             "maxLength": 400
           },
           "role": {
@@ -8233,25 +9638,25 @@
                 "$ref": "#/components/schemas/RoleEnum"
               }
             ],
-            "title": "Rolü"
+            "title": "Role"
           },
           "shortname": {
             "type": "string",
             "minLength": 1,
-            "title": "Kısa/Takma Adı",
+            "title": "Short name",
             "maxLength": 100
           },
           "phone": {
             "type": "string",
             "nullable": true,
-            "title": "Telefon",
+            "title": "Phone",
             "maxLength": 20
           },
           "email": {
             "type": "string",
             "format": "email",
             "nullable": true,
-            "title": "E-Posta",
+            "title": "Email",
             "maxLength": 100
           },
           "vkntckn": {
@@ -8263,7 +9668,7 @@
           "address": {
             "type": "string",
             "nullable": true,
-            "title": "Adres",
+            "title": "Address",
             "maxLength": 1000
           }
         },
@@ -8342,7 +9747,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Tam Adı",
+            "title": "Full name",
             "maxLength": 400
           },
           "role": {
@@ -8351,25 +9756,25 @@
                 "$ref": "#/components/schemas/RoleEnum"
               }
             ],
-            "title": "Rolü"
+            "title": "Role"
           },
           "shortname": {
             "type": "string",
             "minLength": 1,
-            "title": "Kısa/Takma Adı",
+            "title": "Short name",
             "maxLength": 100
           },
           "phone": {
             "type": "string",
             "nullable": true,
-            "title": "Telefon",
+            "title": "Phone",
             "maxLength": 20
           },
           "email": {
             "type": "string",
             "format": "email",
             "nullable": true,
-            "title": "E-Posta",
+            "title": "Email",
             "maxLength": 100
           },
           "vkntckn": {
@@ -8381,7 +9786,7 @@
           "address": {
             "type": "string",
             "nullable": true,
-            "title": "Adres",
+            "title": "Address",
             "maxLength": 1000
           }
         },
