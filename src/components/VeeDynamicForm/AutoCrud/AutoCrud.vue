@@ -1,10 +1,8 @@
 <template>
-  <Form
-    ref="formRef"
+  <form
     class="full-height"
     :validation-schema="validator"
-    :initial-values="initialData"
-    @submit="submit($event)"
+    @submit.prevent="handleSubmit(submit)()"
   >
     <AdaptiveCard back-button :class="{ fit }">
       <template #title-sticky>
@@ -52,13 +50,13 @@
         </div>
       </template>
     </AdaptiveCard>
-  </Form>
+  </form>
 </template>
 
 <script setup lang="ts">
 import camelCase from 'camelcase';
 import { QDialogOptions, QNotifyCreateOptions, useQuasar } from 'quasar';
-import { Form } from 'vee-validate';
+import { Path, useForm } from 'vee-validate';
 import { PropType, onBeforeMount, ref } from 'vue';
 import { RouteLocationRaw, useRouter } from 'vue-router';
 
@@ -205,10 +203,9 @@ const props = defineProps({
   },
 });
 
-const initialData = ref();
+const initialValues = ref();
 const $q = useQuasar();
 const router = useRouter();
-const formRef = ref<InstanceType<typeof Form>>();
 
 type QueryService = (query: unknown) => CancelablePromise<unknown>;
 
@@ -230,6 +227,20 @@ const { formComponents, hiddenFormComponents, validator } = create_form(
   props.hiddenFields
 );
 
+const {
+  values,
+  errors,
+  setFieldValue,
+  setErrors,
+  validate: validateForm,
+  validateField,
+  handleSubmit,
+  useFieldModel,
+} = useForm<NestedRecord>({
+  validationSchema: validator,
+  initialValues: initialValues,
+});
+
 function requestServiceFromOp(operation: OperationObject) {
   if (operation.operationId && operation.tags) {
     const operationId = camelCase(operation.operationId);
@@ -250,7 +261,7 @@ const confirmDelete = () => {
       icon: 'delete',
       color: 'negative',
     },
-    ...callOrGet(props.deleteDialogProps, [formRef.value?.getValues() || {}]),
+    ...callOrGet(props.deleteDialogProps, [values]),
   }).onOk(() => {
     if (props.query) {
       const requester = requestServiceFromOp(
@@ -270,7 +281,11 @@ const confirmDelete = () => {
           .catch((reason) => {
             const errors = parseDRFErrors(reason);
             if (errors) {
-              formRef.value?.setErrors(errors);
+              setErrors(
+                errors as Partial<
+                  Record<Path<NestedRecord>, string | undefined>
+                >
+              );
             } else {
               $q.notify({
                 position: 'bottom-right',
@@ -294,7 +309,7 @@ onBeforeMount(() => {
     );
     if (requester) {
       requester(props.query).then((result) => {
-        initialData.value = result;
+        initialValues.value = result;
       });
     }
   }
@@ -319,7 +334,9 @@ function submit(event: NestedRecord) {
         .catch((reason) => {
           const errors = parseDRFErrors(reason);
           if (errors) {
-            formRef.value?.setErrors(errors);
+            setErrors(
+              errors as Partial<Record<Path<NestedRecord>, string | undefined>>
+            );
           } else {
             $q.notify({
               position: 'bottom-right',
@@ -352,7 +369,9 @@ function submit(event: NestedRecord) {
         .catch((reason) => {
           const errors = parseDRFErrors(reason);
           if (errors) {
-            formRef.value?.setErrors(errors);
+            setErrors(
+              errors as Partial<Record<Path<NestedRecord>, string | undefined>>
+            );
           } else {
             $q.notify({
               position: 'bottom-right',
@@ -369,6 +388,14 @@ function submit(event: NestedRecord) {
 }
 
 defineExpose({
+  values,
+  errors,
+  setErrors,
+  setFieldValue,
+  validateForm,
+  validateField,
+  useFieldModel,
+  initialValues,
   formComponents,
   hiddenFormComponents,
   validator,
