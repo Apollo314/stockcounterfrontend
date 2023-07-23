@@ -131,6 +131,9 @@
           {
             "knoxTokenAuth": []
           },
+          {
+            "cookieAuth": []
+          },
           {}
         ],
         "responses": {
@@ -186,6 +189,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -228,6 +234,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -262,6 +271,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -291,6 +303,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -320,6 +335,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -375,6 +393,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -431,6 +452,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -465,6 +489,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -507,6 +534,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -548,6 +578,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -580,6 +613,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -829,6 +865,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1081,6 +1120,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1158,6 +1200,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1229,6 +1274,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1264,6 +1312,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1307,6 +1358,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1349,6 +1403,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1382,6 +1439,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1410,6 +1470,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1453,6 +1516,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1495,6 +1561,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1528,6 +1597,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1669,6 +1741,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1813,6 +1888,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1848,6 +1926,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1891,6 +1972,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1933,6 +2017,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -1966,6 +2053,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2021,6 +2111,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2077,6 +2170,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2111,6 +2207,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2153,6 +2252,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2194,6 +2296,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2226,6 +2331,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2271,6 +2379,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2315,6 +2426,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2367,6 +2481,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2416,6 +2533,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2451,6 +2571,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2494,6 +2617,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2536,6 +2662,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2569,6 +2698,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2598,6 +2730,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2627,6 +2762,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2785,6 +2923,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -2946,6 +3087,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3107,6 +3251,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3264,6 +3411,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3300,6 +3450,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3344,6 +3497,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3387,6 +3543,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3421,6 +3580,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3449,6 +3611,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3492,6 +3657,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3534,6 +3702,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3567,6 +3738,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3612,6 +3786,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3656,6 +3833,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3691,6 +3871,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3734,6 +3917,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3776,6 +3962,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3809,6 +3998,248 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
+    "/payments/invoice-payments/": {
+      "get": {
+        "operationId": "payments_invoice_payments_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedInvoicePaymentList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "x-filters": {}
+      },
+      "post": {
+        "operationId": "payments_invoice_payments_create",
+        "tags": ["payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvoicePaymentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoicePayment"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/payments/invoice-payments/{id}/": {
+      "get": {
+        "operationId": "payments_invoice_payments_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this invoice payment.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoicePayment"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "operationId": "payments_invoice_payments_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this invoice payment.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvoicePaymentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoicePayment"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "operationId": "payments_invoice_payments_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this invoice payment.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedInvoicePaymentRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvoicePayment"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "payments_invoice_payments_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this invoice payment.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -3997,6 +4428,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4188,6 +4622,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4223,6 +4660,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4266,6 +4706,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4308,6 +4751,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4341,6 +4787,603 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
+    "/payments/payments/": {
+      "get": {
+        "operationId": "payments_payments_list",
+        "parameters": [
+          {
+            "name": "payer",
+            "required": false,
+            "in": "query",
+            "description": "payer",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "payment-account-select",
+                "props": {
+                  "label": "Payer"
+                }
+              }
+            }
+          },
+          {
+            "name": "receiver",
+            "required": false,
+            "in": "query",
+            "description": "receiver",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "payment-account-select",
+                "props": {
+                  "label": "Receiver"
+                }
+              }
+            }
+          },
+          {
+            "name": "created_at__range",
+            "required": false,
+            "in": "query",
+            "description": "created_at__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Oluşturulma tarihi"
+                }
+              }
+            }
+          },
+          {
+            "name": "updated_at__range",
+            "required": false,
+            "in": "query",
+            "description": "updated_at__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Güncelleme tarihi"
+                }
+              }
+            }
+          },
+          {
+            "name": "created_by",
+            "required": false,
+            "in": "query",
+            "description": "created_by",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Oluşturan"
+                }
+              }
+            }
+          },
+          {
+            "name": "updated_by",
+            "required": false,
+            "in": "query",
+            "description": "updated_by",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "user-select",
+                "props": {
+                  "label": "Güncelleyen"
+                }
+              }
+            }
+          },
+          {
+            "name": "due_date__range",
+            "required": false,
+            "in": "query",
+            "description": "due_date__range",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "date-time-range",
+                "props": {
+                  "label": "Due date"
+                }
+              }
+            }
+          },
+          {
+            "name": "additional_info__icontains",
+            "required": false,
+            "in": "query",
+            "description": "additional_info__icontains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Additional info"
+                }
+              }
+            }
+          },
+          {
+            "name": "payment_type",
+            "required": false,
+            "in": "query",
+            "description": "payment_type",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "payment-type-select",
+                "props": {
+                  "label": "Payment type"
+                }
+              },
+              "enum": ["cash", "cheque"]
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "id",
+                "amount",
+                "currency",
+                "payer",
+                "receiver",
+                "created_at",
+                "updated_at",
+                "created_by",
+                "updated_by",
+                "-id",
+                "-amount",
+                "-currency",
+                "-payer",
+                "-receiver",
+                "-created_at",
+                "-updated_at",
+                "-created_by",
+                "-updated_by"
+              ]
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Ara: Payment account name, Full name, IBAN, Payer, Full name, IBAN, Account number",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedPaymentOutList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "x-filters": {
+          "DjangoFilterBackend": [
+            {
+              "name": "payer",
+              "required": false,
+              "in": "query",
+              "description": "payer",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "payment-account-select",
+                  "props": {
+                    "label": "Payer"
+                  }
+                }
+              }
+            },
+            {
+              "name": "receiver",
+              "required": false,
+              "in": "query",
+              "description": "receiver",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "payment-account-select",
+                  "props": {
+                    "label": "Receiver"
+                  }
+                }
+              }
+            },
+            {
+              "name": "created_at__range",
+              "required": false,
+              "in": "query",
+              "description": "created_at__range",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Oluşturulma tarihi"
+                  }
+                }
+              }
+            },
+            {
+              "name": "updated_at__range",
+              "required": false,
+              "in": "query",
+              "description": "updated_at__range",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Güncelleme tarihi"
+                  }
+                }
+              }
+            },
+            {
+              "name": "created_by",
+              "required": false,
+              "in": "query",
+              "description": "created_by",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Oluşturan"
+                  }
+                }
+              }
+            },
+            {
+              "name": "updated_by",
+              "required": false,
+              "in": "query",
+              "description": "updated_by",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "user-select",
+                  "props": {
+                    "label": "Güncelleyen"
+                  }
+                }
+              }
+            },
+            {
+              "name": "due_date__range",
+              "required": false,
+              "in": "query",
+              "description": "due_date__range",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "date-time-range",
+                  "props": {
+                    "label": "Due date"
+                  }
+                }
+              }
+            },
+            {
+              "name": "additional_info__icontains",
+              "required": false,
+              "in": "query",
+              "description": "additional_info__icontains",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "Additional info"
+                  }
+                }
+              }
+            },
+            {
+              "name": "payment_type",
+              "required": false,
+              "in": "query",
+              "description": "payment_type",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "payment-type-select",
+                  "props": {
+                    "label": "Payment type"
+                  }
+                },
+                "enum": ["cash", "cheque"]
+              }
+            }
+          ],
+          "OrderingFilter": [
+            {
+              "name": "ordering",
+              "required": false,
+              "in": "query",
+              "description": "Which field to use when ordering the results.",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "id",
+                  "amount",
+                  "currency",
+                  "payer",
+                  "receiver",
+                  "created_at",
+                  "updated_at",
+                  "created_by",
+                  "updated_by",
+                  "-id",
+                  "-amount",
+                  "-currency",
+                  "-payer",
+                  "-receiver",
+                  "-created_at",
+                  "-updated_at",
+                  "-created_by",
+                  "-updated_by"
+                ]
+              }
+            }
+          ],
+          "SearchFilter": [
+            {
+              "name": "search",
+              "required": false,
+              "in": "query",
+              "description": "Ara: Payment account name, Full name, IBAN, Payer, Full name, IBAN, Account number",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "post": {
+        "operationId": "payments_payments_create",
+        "tags": ["payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentOutRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentOut"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/payments/payments/{id}/": {
+      "get": {
+        "operationId": "payments_payments_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this payment.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentOut"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "operationId": "payments_payments_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this payment.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentOutRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentOut"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "operationId": "payments_payments_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this payment.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPaymentOutRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentOut"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "payments_payments_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this payment.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4370,6 +5413,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4475,6 +5521,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4581,6 +5630,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4616,6 +5668,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4659,6 +5714,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4701,6 +5759,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4734,6 +5795,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4779,6 +5843,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4824,6 +5891,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4859,6 +5929,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4902,6 +5975,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4944,6 +6020,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -4977,6 +6056,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5022,6 +6104,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5067,6 +6152,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5102,6 +6190,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5145,6 +6236,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5187,6 +6281,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5220,6 +6317,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5325,6 +6425,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5431,6 +6534,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5466,6 +6572,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5509,6 +6618,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5551,6 +6663,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5584,6 +6699,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5736,6 +6854,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5889,6 +7010,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5924,6 +7048,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -5967,6 +7094,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -6009,6 +7139,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -6042,6 +7175,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -6078,6 +7214,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -6173,6 +7312,9 @@
         "security": [
           {
             "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
           }
         ],
         "responses": {
@@ -6221,6 +7363,29 @@
           }
         },
         "required": ["created_at", "id", "name", "updated_at"]
+      },
+      "BankForStakeholderPaymentAccount": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Bank name",
+            "maxLength": 50
+          }
+        },
+        "required": ["name"]
+      },
+      "BankForStakeholderPaymentAccountRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Bank name",
+            "maxLength": 50
+          }
+        },
+        "required": ["name"]
       },
       "BankOut": {
         "type": "object",
@@ -7544,6 +8709,42 @@
           "warehouse"
         ]
       },
+      "InvoicePayment": {
+        "type": "object",
+        "properties": {
+          "payment": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Payment"
+              }
+            ],
+            "title": "Payment Info"
+          },
+          "invoice": {
+            "type": "integer",
+            "title": "Invoice"
+          }
+        },
+        "required": ["invoice", "payment"]
+      },
+      "InvoicePaymentRequest": {
+        "type": "object",
+        "properties": {
+          "payment": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            ],
+            "title": "Payment Info"
+          },
+          "invoice": {
+            "type": "integer",
+            "title": "Invoice"
+          }
+        },
+        "required": ["invoice", "payment"]
+      },
       "InvoiceTypeEnum": {
         "enum": ["purchase", "sale", "refund-purchase", "refund-sale"],
         "type": "string"
@@ -8517,6 +9718,33 @@
           }
         }
       },
+      "PaginatedInvoicePaymentList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=400&limit=100"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=200&limit=100"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoicePayment"
+            }
+          }
+        }
+      },
       "PaginatedItemOutList": {
         "type": "object",
         "properties": {
@@ -8567,6 +9795,33 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PaymentAccountOut"
+            }
+          }
+        }
+      },
+      "PaginatedPaymentOutList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=400&limit=100"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=200&limit=100"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentOut"
             }
           }
         }
@@ -8912,6 +10167,23 @@
           }
         }
       },
+      "PatchedInvoicePaymentRequest": {
+        "type": "object",
+        "properties": {
+          "payment": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            ],
+            "title": "Payment Info"
+          },
+          "invoice": {
+            "type": "integer",
+            "title": "Invoice"
+          }
+        }
+      },
       "PatchedItemInRequest": {
         "type": "object",
         "properties": {
@@ -9064,6 +10336,78 @@
               }
             ],
             "title": "Stakeholder"
+          }
+        }
+      },
+      "PatchedPaymentOutRequest": {
+        "type": "object",
+        "properties": {
+          "created_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            ],
+            "title": "Created by"
+          },
+          "updated_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            ],
+            "title": "Updated by"
+          },
+          "payer": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentAccountOutSimpleRequest"
+              }
+            ],
+            "title": "Payer"
+          },
+          "receiver": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentAccountOutSimpleRequest"
+              }
+            ],
+            "title": "Receiver"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "title": "Miktar"
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Currency"
+          },
+          "additional_info": {
+            "type": "string",
+            "nullable": true,
+            "title": "Additional info"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "title": "Due date"
+          },
+          "payment_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentTypeEnum"
+              }
+            ],
+            "default": "cash",
+            "title": "Payment type"
           }
         }
       },
@@ -9294,6 +10638,147 @@
           }
         }
       },
+      "Payment": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Oluşturulma tarihi"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Güncelleme tarihi"
+          },
+          "payer": {
+            "type": "integer",
+            "title": "Payer"
+          },
+          "receiver": {
+            "type": "integer",
+            "title": "Receiver"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "title": "Miktar"
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Currency"
+          },
+          "additional_info": {
+            "type": "string",
+            "nullable": true,
+            "title": "Additional info"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "title": "Due date"
+          },
+          "payment_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentTypeEnum"
+              }
+            ],
+            "default": "cash",
+            "title": "Payment type"
+          }
+        },
+        "required": ["created_at", "payer", "receiver", "updated_at"]
+      },
+      "PaymentAccountForStakeholder": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Oluşturulma tarihi"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Güncelleme tarihi"
+          },
+          "name": {
+            "type": "string",
+            "title": "Payment account name",
+            "maxLength": 50
+          },
+          "bank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BankForStakeholderPaymentAccount"
+              }
+            ],
+            "title": "Bank"
+          },
+          "account_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "Account number"
+          },
+          "iban": {
+            "type": "string",
+            "nullable": true,
+            "title": "IBAN"
+          }
+        },
+        "required": ["bank", "created_at", "id", "name", "updated_at"]
+      },
+      "PaymentAccountForStakeholderRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Payment account name",
+            "maxLength": 50
+          },
+          "bank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BankForStakeholderPaymentAccountRequest"
+              }
+            ],
+            "title": "Bank"
+          },
+          "account_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "Account number"
+          },
+          "iban": {
+            "type": "string",
+            "nullable": true,
+            "title": "IBAN"
+          }
+        },
+        "required": ["bank", "name"]
+      },
       "PaymentAccountIn": {
         "type": "object",
         "properties": {
@@ -9475,6 +10960,265 @@
           "updated_by"
         ]
       },
+      "PaymentAccountOutSimple": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Payment account name",
+            "maxLength": 50
+          },
+          "stakeholder": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Stakeholder"
+              }
+            ],
+            "title": "Stakeholder"
+          }
+        },
+        "required": ["name"]
+      },
+      "PaymentAccountOutSimpleRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Payment account name",
+            "maxLength": 50
+          },
+          "stakeholder": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StakeholderRequest"
+              }
+            ],
+            "title": "Stakeholder"
+          }
+        },
+        "required": ["name"]
+      },
+      "PaymentOut": {
+        "type": "object",
+        "properties": {
+          "created_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ],
+            "title": "Created by"
+          },
+          "updated_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ],
+            "title": "Updated by"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Oluşturulma tarihi"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Güncelleme tarihi"
+          },
+          "payer": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentAccountOutSimple"
+              }
+            ],
+            "title": "Payer"
+          },
+          "receiver": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentAccountOutSimple"
+              }
+            ],
+            "title": "Receiver"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "title": "Miktar"
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Currency"
+          },
+          "additional_info": {
+            "type": "string",
+            "nullable": true,
+            "title": "Additional info"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "title": "Due date"
+          },
+          "payment_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentTypeEnum"
+              }
+            ],
+            "default": "cash",
+            "title": "Payment type"
+          }
+        },
+        "required": [
+          "created_at",
+          "created_by",
+          "payer",
+          "receiver",
+          "updated_at",
+          "updated_by"
+        ]
+      },
+      "PaymentOutRequest": {
+        "type": "object",
+        "properties": {
+          "created_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            ],
+            "title": "Created by"
+          },
+          "updated_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            ],
+            "title": "Updated by"
+          },
+          "payer": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentAccountOutSimpleRequest"
+              }
+            ],
+            "title": "Payer"
+          },
+          "receiver": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentAccountOutSimpleRequest"
+              }
+            ],
+            "title": "Receiver"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "title": "Miktar"
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Currency"
+          },
+          "additional_info": {
+            "type": "string",
+            "nullable": true,
+            "title": "Additional info"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "title": "Due date"
+          },
+          "payment_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentTypeEnum"
+              }
+            ],
+            "default": "cash",
+            "title": "Payment type"
+          }
+        },
+        "required": ["created_by", "payer", "receiver", "updated_by"]
+      },
+      "PaymentRequest": {
+        "type": "object",
+        "properties": {
+          "payer": {
+            "type": "integer",
+            "title": "Payer"
+          },
+          "receiver": {
+            "type": "integer",
+            "title": "Receiver"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "title": "Miktar"
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Currency"
+          },
+          "additional_info": {
+            "type": "string",
+            "nullable": true,
+            "title": "Additional info"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "title": "Due date"
+          },
+          "payment_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentTypeEnum"
+              }
+            ],
+            "default": "cash",
+            "title": "Payment type"
+          }
+        },
+        "required": ["payer", "receiver"]
+      },
+      "PaymentTypeEnum": {
+        "enum": ["cash", "cheque"],
+        "type": "string"
+      },
       "RoleEnum": {
         "enum": ["Satıcı", "Müşteri", "Müşteri ve Satıcı"],
         "type": "string"
@@ -9565,9 +11309,24 @@
             },
             "readOnly": true,
             "title": "Employees"
+          },
+          "paymentaccount_set": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentAccountForStakeholder"
+            },
+            "readOnly": true,
+            "title": "Paymentaccount set"
           }
         },
-        "required": ["employees", "id", "name", "role", "shortname"]
+        "required": [
+          "employees",
+          "id",
+          "name",
+          "paymentaccount_set",
+          "role",
+          "shortname"
+        ]
       },
       "StakeholderBasic": {
         "type": "object",
@@ -10420,6 +12179,11 @@
       }
     },
     "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "sessionid"
+      },
       "knoxTokenAuth": {
         "type": "http",
         "scheme": "bearer"

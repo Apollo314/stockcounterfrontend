@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { PaymentAccountForStakeholder } from './PaymentAccountForStakeholder';
 import type { RoleEnum } from './RoleEnum';
 import type { StakeholderEmployee } from './StakeholderEmployee';
 
@@ -15,4 +16,5 @@ export type Stakeholder = {
   vkntckn?: string | null;
   address?: string | null;
   readonly employees: Array<StakeholderEmployee>;
+  readonly paymentaccount_set: Array<PaymentAccountForStakeholder>;
 };
