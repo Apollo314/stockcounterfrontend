@@ -326,13 +326,14 @@ const routes: RouteRecordRawExtended[] = [
         meta: { key: 'payment-accounts-list' },
       },
       {
-        path: 'payment/accounts/create',
+        path: 'payment/accounts/create/:stakeholderId([\\w-]+)?',
         component: () =>
           import('src/pages/Payments/PaymentAccounts/DetailView.vue'),
         name: 'payment-accounts-create',
         meta: {
           key: 'payment-accounts-create',
         },
+        props: true,
       },
       {
         path: 'payment/accounts/:id([\\w-]+)',
