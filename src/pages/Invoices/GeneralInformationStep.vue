@@ -47,9 +47,17 @@
       <div class="col col-xs-12 col-md-6">
         <SearchSelector
           name="stakeholder"
-          :query-service="getStakeholderQueryService()"
+          :query-service="
+            queryServiceFactory('stakeholder', 'stakeholderStakeholdersList')
+          "
           :label="getStakeholderLabel()"
           :option-label="stakeholderOption"
+          :extra-params="{
+            roleIn:
+              invoice_type === 'purchase' || invoice_type === 'refund-purchase'
+                ? ['Satıcı', 'Müşteri ve Satıcı'] as RoleEnum[]
+                : ['Müşteri', 'Müşteri ve Satıcı'] as RoleEnum[],
+          }"
         ></SearchSelector>
       </div>
       <div class="col col-xs-12 col-md-6">
@@ -78,6 +86,8 @@ import EnumSelector from 'src/components/VeeDynamicForm/CustomComponents/EnumSel
 import SearchSelector from 'src/components/VeeDynamicForm/CustomComponents/SearchSelector.vue';
 import { NestedRecord } from 'src/composables/openapihelpers';
 
+import { RoleEnum } from '../../client';
+
 import type {
   CheckStepErrors,
   FormComponents,
@@ -91,17 +101,6 @@ const props = defineProps<{
 
 const invoice_type = inject<TypeOfInvoiceType>('invoiceType');
 const validateField = inject<ValidateField>('validateField');
-
-function getStakeholderQueryService() {
-  if (
-    invoice_type?.value === 'purchase' ||
-    invoice_type?.value === 'refund-purchase'
-  ) {
-    return queryServiceFactory('stakeholder', 'stakeholderSuppliersList');
-  } else {
-    return queryServiceFactory('stakeholder', 'stakeholderCustomersList');
-  }
-}
 
 function getStakeholderLabel() {
   if (
