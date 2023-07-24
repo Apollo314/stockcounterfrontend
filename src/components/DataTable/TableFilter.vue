@@ -4,6 +4,7 @@
     name="search"
     :label="$t('commons.search')"
     icon="search"
+    class="q-py-xs"
   ></DefaultField>
   <template v-for="(formComponent, key) in formComponents" :key="key">
     <div
