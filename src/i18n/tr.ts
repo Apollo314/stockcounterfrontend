@@ -153,6 +153,7 @@ export default {
     'business-relations': 'İş İlişkileri',
     category: 'Kategori | Kategoriler',
     customer: 'Müşteri | Müşteriler',
+    employee: 'Çalışan | Çalışanlar',
     inventory: 'Envanter',
     invoice_conditions: 'Fatura koşulları',
     invoices: 'Faturalar',
@@ -185,6 +186,10 @@ export default {
     deleted_successfully: 'Başarıyla silindi!',
     request_failed: 'İstek başarısızlıkla sonuçlandı',
     updated_successfully: 'Başarıyla güncellendi!',
+  },
+  payment_account: {
+    account_number: 'Account number',
+    iban: 'IBAN',
   },
   settings: {
     language: {

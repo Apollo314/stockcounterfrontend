@@ -6076,9 +6076,82 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "A search term.",
+            "description": "Ara: Full name, Telefon, E-posta, VKN/TCKN",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "role__in",
+            "required": false,
+            "in": "query",
+            "description": "role__in",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "hidden",
+                "props": {}
+              }
+            }
+          },
+          {
+            "name": "shortname__icontains",
+            "required": false,
+            "in": "query",
+            "description": "shortname__icontains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Kısa Adı"
+                }
+              }
+            }
+          },
+          {
+            "name": "vkntckn__icontains",
+            "required": false,
+            "in": "query",
+            "description": "vkntckn__icontains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "VKN/TCKN"
+                }
+              }
+            }
+          },
+          {
+            "name": "email__icontains",
+            "required": false,
+            "in": "query",
+            "description": "email__icontains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "E-Posta"
+                }
+              }
+            }
+          },
+          {
+            "name": "phone__icontains",
+            "required": false,
+            "in": "query",
+            "description": "phone__icontains",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "text-input",
+                "props": {
+                  "label": "Telefon"
+                }
+              }
             }
           },
           {
@@ -6127,13 +6200,87 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "A search term.",
+              "description": "Ara: Full name, Telefon, E-posta, VKN/TCKN",
               "schema": {
                 "type": "string"
               }
             }
           ],
-          "DjangoFilterBackend": []
+          "DjangoFilterBackend": [
+            {
+              "name": "role__in",
+              "required": false,
+              "in": "query",
+              "description": "role__in",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "hidden",
+                  "props": {}
+                }
+              }
+            },
+            {
+              "name": "shortname__icontains",
+              "required": false,
+              "in": "query",
+              "description": "shortname__icontains",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "Kısa Adı"
+                  }
+                }
+              }
+            },
+            {
+              "name": "vkntckn__icontains",
+              "required": false,
+              "in": "query",
+              "description": "vkntckn__icontains",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "VKN/TCKN"
+                  }
+                }
+              }
+            },
+            {
+              "name": "email__icontains",
+              "required": false,
+              "in": "query",
+              "description": "email__icontains",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "E-Posta"
+                  }
+                }
+              }
+            },
+            {
+              "name": "phone__icontains",
+              "required": false,
+              "in": "query",
+              "description": "phone__icontains",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "text-input",
+                  "props": {
+                    "label": "Telefon"
+                  }
+                }
+              }
+            }
+          ]
         }
       },
       "post": {

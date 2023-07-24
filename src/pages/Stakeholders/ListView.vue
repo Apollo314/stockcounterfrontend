@@ -18,7 +18,7 @@ import { MaybeRef } from '@vueuse/shared';
 import { useQuasar } from 'quasar';
 import { onActivated, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 import { api } from 'boot/axios';
 import DataTable from 'components/DataTable/DataTable.vue';
@@ -35,13 +35,13 @@ import type {
   ContextMenuGroup,
   Pagination,
 } from 'components/DataTable/DataTable.vue';
-import type { Stakeholder } from 'src/client';
+import type { RoleEnum, Stakeholder } from 'src/client';
 
 type Row = BaseRow & Stakeholder;
 
 type Column = BaseColumn<Row>;
 
-const operation = get_operation('/stakeholder/suppliers/', 'get');
+const operation = get_operation('/stakeholder/stakeholders/', 'get');
 const formComponents = create_filters(operation);
 
 type Filters = Record<keyof typeof formComponents, string>;
@@ -61,6 +61,7 @@ const co: ColumnsOverride<Column, Row> = {
 
 const columns = ColumnsGenerator<Column, Row>(co, operation);
 const router = useRouter();
+const route = useRoute();
 const $q = useQuasar();
 
 const contextmenuactions: ContextMenuGroup<Row>[] = [
@@ -68,7 +69,10 @@ const contextmenuactions: ContextMenuGroup<Row>[] = [
     {
       callback: (rows, done) => {
         router.push({
-          name: 'supplier-update',
+          name:
+            route.meta.role === 'customer'
+              ? 'customer-update'
+              : 'supplier-update',
           params: { id: Array.from(rows)[0][1].id },
         });
         done(false);
@@ -126,8 +130,13 @@ function fetcher({
   pagination: MaybeRef<Pagination<Filters>>;
   done?: () => void;
 }) {
+  const query = queryMaker(requestPagination);
+  const customer_roles: RoleEnum[] = ['Müşteri', 'Müşteri ve Satıcı'];
+  const supplier_roles: RoleEnum[] = ['Satıcı', 'Müşteri ve Satıcı'];
+  query['roleIn'] =
+    route.meta.role === 'customer' ? customer_roles : supplier_roles;
   api.stakeholder
-    .stakeholderSuppliersList(queryMaker(requestPagination))
+    .stakeholderStakeholdersList(query)
     .then((value) => {
       data.value = value.results;
       pagination.value.count = value.count || 0;

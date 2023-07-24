@@ -64,6 +64,7 @@ export default {
     delete: 'Delete',
     dofilter: 'Filter',
     editoropen: 'Edit/Open',
+    email: 'Email',
     fields: {
       created_at: 'Create Date',
       created_by: 'Created By',
@@ -73,6 +74,7 @@ export default {
     new: 'New @:{0}',
     'no-result': 'No Result',
     ok: 'Okay',
+    phone: 'Phone',
     refresh: 'Refresh',
     reset: 'Reset',
     search: 'Search',
@@ -154,6 +156,7 @@ export default {
     'business-relations': 'Business Relations',
     category: 'Category | Categories',
     customer: 'Customer | Customers',
+    employee: 'Employee | Employees',
     inventory: 'Inventory',
     invoice_conditions: 'Invoice Conditions',
     invoices: 'Invoices',
@@ -186,6 +189,10 @@ export default {
     deleted_successfully: 'Deleted successfully!',
     request_failed: 'Request failed',
     updated_successfully: 'Updated succesfully!',
+  },
+  payment_account: {
+    account_number: 'Account number',
+    iban: 'IBAN',
   },
   settings: {
     language: {

@@ -4,11 +4,21 @@
       <div class="col-xs-12 col-lg-6">
         <AutoCrud
           ref="autoCrudRef"
-          create-path="/stakeholder/customers/"
-          update-retrieve-destroy-path="/stakeholder/customers/{id}/"
+          create-path="/stakeholder/stakeholders/"
+          update-retrieve-destroy-path="/stakeholder/stakeholders/{id}/"
           :query="id ? { id } : undefined"
-          :create-redirect="{ name: 'customer-list' }"
-          :delete-redirect="{ name: 'customer-list' }"
+          :create-redirect="{
+            name:
+              $route.meta.role === 'customer'
+                ? 'customer-list'
+                : 'supplier-list',
+          }"
+          :delete-redirect="{
+            name:
+              $route.meta.role === 'customer'
+                ? 'customer-list'
+                : 'supplier-list',
+          }"
         >
         </AutoCrud>
       </div>
@@ -46,7 +56,9 @@
                 >
                   <q-item v-if="payment_account.iban">
                     <q-item-section>
-                      <q-item-label>{{ $t('stakeholder.iban') }}</q-item-label>
+                      <q-item-label>{{
+                        $t('payment_account.iban')
+                      }}</q-item-label>
                       <q-item-label caption lines="2">{{
                         payment_account.iban
                       }}</q-item-label>
@@ -55,7 +67,7 @@
                   <q-item v-if="payment_account.account_number">
                     <q-item-section>
                       <q-item-label>{{
-                        $t('stakeholder.account_number')
+                        $t('payment_account.account_number')
                       }}</q-item-label>
                       <q-item-label caption lines="2">{{
                         payment_account.account_number

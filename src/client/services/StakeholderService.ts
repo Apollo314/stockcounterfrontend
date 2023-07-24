@@ -348,13 +348,38 @@ export class StakeholderService {
    */
   public stakeholderStakeholdersList({
     search,
+    roleIn,
+    shortnameIcontains,
+    vkntcknIcontains,
+    emailIcontains,
+    phoneIcontains,
     limit,
     offset,
   }: {
     /**
-     * A search term.
+     * Ara: Full name, Telefon, E-posta, VKN/TCKN
      */
     search?: string;
+    /**
+     * role__in
+     */
+    roleIn?: string;
+    /**
+     * shortname__icontains
+     */
+    shortnameIcontains?: string;
+    /**
+     * vkntckn__icontains
+     */
+    vkntcknIcontains?: string;
+    /**
+     * email__icontains
+     */
+    emailIcontains?: string;
+    /**
+     * phone__icontains
+     */
+    phoneIcontains?: string;
     /**
      * Number of results to return per page.
      */
@@ -369,6 +394,11 @@ export class StakeholderService {
       url: '/stakeholder/stakeholders/',
       query: {
         search: search,
+        role__in: roleIn,
+        shortname__icontains: shortnameIcontains,
+        vkntckn__icontains: vkntcknIcontains,
+        email__icontains: emailIcontains,
+        phone__icontains: phoneIcontains,
         limit: limit,
         offset: offset,
       },
