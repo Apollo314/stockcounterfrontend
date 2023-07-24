@@ -149,6 +149,7 @@ export default {
     minimum: 'Minimum',
   },
   menu: {
+    finance: 'Finans',
     bank: 'Banka | Bankalar',
     'business-relations': 'İş İlişkileri',
     category: 'Kategori | Kategoriler',

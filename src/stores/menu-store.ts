@@ -190,7 +190,7 @@ export const menuItems = (): MenuItem[] => {
       ],
     },
     {
-      title: $t('menu.payments'),
+      title: $t('menu.finance'),
       shrinkable: true,
       icon: 'payments',
       iconColor: 'green-8',
@@ -223,6 +223,13 @@ export const menuItems = (): MenuItem[] => {
               to: { name: 'payment-accounts-create' },
             },
           ],
+        },
+        {
+          shrinkable: true,
+          title: $t('menu.payments'),
+          icon: 'savings',
+          bgColor: 'positive',
+          to: { name: 'payments-list' },
         },
       ],
     },

@@ -368,14 +368,13 @@ const routes: RouteRecordRawExtended[] = [
         props: true,
       },
       // banks
-      // {
-      //   path: 'invoice/conditions/:id([\\w-]+)',
-      //   component: () =>
-      //     import('pages/Invoices/InvoiceConditions/DetailView.vue'),
-      //   name: 'invoice-condition-update',
-      //   meta: { pathAsKey: true },
-      //   props: true,
-      // },
+      // payments
+      {
+        path: 'payments',
+        component: () => import('src/pages/Payments/Payments/ListView.vue'),
+        name: 'payments-list',
+        meta: { key: 'payments-list' },
+      },
       // payments
 
       {

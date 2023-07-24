@@ -10,7 +10,7 @@ export type Payment = {
   readonly updated_at: string | null;
   payer: number;
   receiver: number;
-  amount?: string;
+  amount: string;
   currency?: CurrencyEnum;
   additional_info?: string | null;
   due_date?: string | null;
