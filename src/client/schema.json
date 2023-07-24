@@ -10082,7 +10082,7 @@
             "title": "Payment type"
           }
         },
-        "required": ["created_at", "payer", "receiver", "updated_at"]
+        "required": ["amount", "created_at", "payer", "receiver", "updated_at"]
       },
       "PaymentAccountForStakeholder": {
         "type": "object",
@@ -10385,6 +10385,11 @@
       "PaymentOut": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
           "created_by": {
             "allOf": [
               {
@@ -10468,8 +10473,10 @@
           }
         },
         "required": [
+          "amount",
           "created_at",
           "created_by",
+          "id",
           "payer",
           "receiver",
           "updated_at",
@@ -10547,7 +10554,7 @@
             "title": "Payment type"
           }
         },
-        "required": ["created_by", "payer", "receiver", "updated_by"]
+        "required": ["amount", "created_by", "payer", "receiver", "updated_by"]
       },
       "PaymentRequest": {
         "type": "object",
@@ -10596,7 +10603,7 @@
             "title": "Payment type"
           }
         },
-        "required": ["payer", "receiver"]
+        "required": ["amount", "payer", "receiver"]
       },
       "PaymentTypeEnum": {
         "enum": ["cash", "cheque"],

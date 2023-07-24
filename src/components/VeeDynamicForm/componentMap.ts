@@ -1,6 +1,6 @@
 import { api } from 'boot/axios';
 import { $t } from 'boot/i18n';
-import { CancelablePromise } from 'src/client';
+import { CancelablePromise, PaymentTypeEnum } from 'src/client';
 import { FormComponent } from 'src/composables/openapihelpers';
 
 import BarcodeScanner from './CustomComponents/BarcodeScanner.vue';
@@ -34,6 +34,8 @@ export const componentStrings = [
   'barcode-scanner',
   'date-time-range',
   'multi-stockunit-selector',
+  'payment-account-select',
+  'payment-type-select',
   'hidden',
   'undefined',
 ] as const;
@@ -82,6 +84,24 @@ type ComponentMap = {
 
 export const componentMap: ComponentMap = {
   'text-input': { component: DefaultField },
+  'payment-account-select': {
+    component: SearchSelector,
+    props: {
+      queryService: queryServiceFactory(
+        'payments',
+        'paymentsPaymentAccountsList'
+      ),
+      optionLabel: (option) => option.name,
+    },
+  },
+  'payment-type-select': {
+    component: EnumSelector,
+    props: {
+      options: ['cash', 'cheque'] as PaymentTypeEnum[],
+      optionLabel: (option) => option,
+      clearable: true,
+    },
+  },
   'category-selector': {
     component: SearchSelector,
     props: {

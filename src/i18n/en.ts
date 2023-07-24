@@ -152,6 +152,7 @@ export default {
     minimum: 'Minimum',
   },
   menu: {
+    finance: 'Finance',
     bank: 'Bank | Banks',
     'business-relations': 'Business Relations',
     category: 'Category | Categories',

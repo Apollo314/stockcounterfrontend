@@ -12,7 +12,7 @@ export type PaymentOutRequest = {
   updated_by: UserRequest;
   payer: PaymentAccountOutSimpleRequest;
   receiver: PaymentAccountOutSimpleRequest;
-  amount?: string;
+  amount: string;
   currency?: CurrencyEnum;
   additional_info?: string | null;
   due_date?: string | null;
