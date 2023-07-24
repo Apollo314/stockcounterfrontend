@@ -138,23 +138,24 @@ const routes: RouteRecordRawExtended[] = [
       // Stakeholder / Customer
       {
         path: 'customers/',
-        component: () => import('src/pages/Customers/ListView.vue'),
+        component: () => import('src/pages/Stakeholders/ListView.vue'),
         name: 'customer-list',
-        meta: { key: 'customer-list' },
+        meta: { key: 'customer-list', role: 'customer' },
       },
       {
         path: 'customer/create',
-        component: () => import('pages/Customers/DetailView.vue'),
+        component: () => import('pages/Stakeholders/DetailView.vue'),
         name: 'customer-create',
         meta: {
           key: 'customer-create',
+          role: 'customer',
         },
       },
       {
         path: 'customer/update/:id(\\d+)',
-        component: () => import('pages/Customers/DetailView.vue'),
+        component: () => import('pages/Stakeholders/DetailView.vue'),
         name: 'customer-update',
-        meta: { pathAsKey: true },
+        meta: { pathAsKey: true, role: 'customer' },
         props: true,
       },
       // Stakeholder / Customer
@@ -162,13 +163,13 @@ const routes: RouteRecordRawExtended[] = [
       // Stakeholder / Supplier
       {
         path: 'suppliers/',
-        component: () => import('src/pages/Suppliers/ListView.vue'),
+        component: () => import('src/pages/Stakeholders/ListView.vue'),
         name: 'supplier-list',
         meta: { key: 'supplier-list' },
       },
       {
         path: 'supplier/create',
-        component: () => import('pages/Suppliers/DetailView.vue'),
+        component: () => import('pages/Stakeholders/DetailView.vue'),
         name: 'supplier-create',
         meta: {
           key: 'supplier-create',
@@ -176,7 +177,7 @@ const routes: RouteRecordRawExtended[] = [
       },
       {
         path: 'supplier/update/:id(\\d+)',
-        component: () => import('pages/Suppliers/DetailView.vue'),
+        component: () => import('pages/Stakeholders/DetailView.vue'),
         name: 'supplier-update',
         meta: { pathAsKey: true },
         props: true,
