@@ -1,6 +1,6 @@
 import { dotIndexToBrackets } from './openapiToYup';
 
-type Reason = {
+export type Reason = {
   body: {
     type: 'validation_error' | 'client_error' | 'server_error';
     errors: {
