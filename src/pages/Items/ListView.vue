@@ -25,6 +25,7 @@ import DataTable from 'components/DataTable/DataTable.vue';
 import { ColumnsGenerator } from 'components/DataTable/datatableutilities';
 import RepeatTextConfirmation from 'components/Dialogs/RepeatTextConfirmation.vue';
 import FullHeightPage from 'components/Page/FullHeightPage.vue';
+import { notifyErrors } from 'src/composables/errorhandlers';
 import { create_filters, get_operation } from 'src/composables/openapihelpers';
 import { queryMaker } from 'src/composables/utilities';
 
@@ -137,6 +138,9 @@ const contextmenuactions: ContextMenuGroup<Row>[] = [
             .then(() => {
               done(true);
               fetcher({ pagination: pagination.value });
+            })
+            .catch((reason) => {
+              notifyErrors(reason);
             });
         });
       },
