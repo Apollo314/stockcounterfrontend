@@ -25,6 +25,7 @@ import DataTable from 'components/DataTable/DataTable.vue';
 import { ColumnsGenerator } from 'components/DataTable/datatableutilities';
 import RepeatTextConfirmation from 'components/Dialogs/RepeatTextConfirmation.vue';
 import FullHeightPage from 'components/Page/FullHeightPage.vue';
+import { notifyErrors } from 'src/composables/errorhandlers';
 import { create_filters, get_operation } from 'src/composables/openapihelpers';
 import { queryMaker } from 'src/composables/utilities';
 
@@ -105,26 +106,39 @@ const contextmenuactions: ContextMenuGroup<Row>[] = [
     },
     {
       callback: (rows, done) => {
-        // const names = Array.from(rows, ([, row]) => row.name).join(', ');
-        // $q.dialog({
-        //   component: RepeatTextConfirmation,
-        //   componentProps: {
-        //     explanation: $t('confirmations.will-be-deleted', {
-        //       objects: `[${names}]`,
-        //     }),
-        //     icon: 'delete',
-        //     color: 'negative',
-        //   },
-        // }).onOk(() => {
-        //   api.payments
-        //     .payments({
-        //       pk: Array.from(rows, ([, value]) => value.id.toString()),
-        //     })
-        //     .then(() => {
-        //       done(true);
-        //       fetcher({ pagination: pagination.value });
-        //     });
-        // });
+        const names = Array.from(
+          rows,
+          ([, row]) =>
+            `${row.payer.name} > ${row.receiver.name} (${$n(
+              parseFloat(row.amount),
+              {
+                style: 'currency',
+                currency: row.currency,
+              }
+            )})`
+        ).join(', ');
+        $q.dialog({
+          component: RepeatTextConfirmation,
+          componentProps: {
+            explanation: $t('confirmations.will-be-deleted', {
+              objects: `[${names}]`,
+            }),
+            icon: 'delete',
+            color: 'negative',
+          },
+        }).onOk(() => {
+          api.payments
+            .paymentsBulkPaymentsDestroy({
+              pk: Array.from(rows, ([, value]) => value.id.toString()),
+            })
+            .then(() => {
+              done(true);
+              fetcher({ pagination: pagination.value });
+            })
+            .catch((reason) => {
+              notifyErrors(reason);
+            });
+        });
       },
       label: $t('commons.delete'),
       can_handle_single: true,

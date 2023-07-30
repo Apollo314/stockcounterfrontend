@@ -191,7 +191,7 @@ export class StakeholderService {
     offset,
   }: {
     /**
-     * Ara: Full name, Telefon, E-posta, VKN/TCKN
+     * Ara: Tam ad, Telefon, Eposta, VKN/TCKN
      */
     search?: string;
     /**

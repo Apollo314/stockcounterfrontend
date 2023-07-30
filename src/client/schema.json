@@ -4010,6 +4010,102 @@
         }
       }
     },
+    "/payments/bulk/banks/": {
+      "delete": {
+        "operationId": "payments_bulk_banks_destroy",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pk",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
+    "/payments/bulk/payment-accounts/": {
+      "delete": {
+        "operationId": "payments_bulk_payment_accounts_destroy",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pk",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
+    "/payments/bulk/payments/": {
+      "delete": {
+        "operationId": "payments_bulk_payments_destroy",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pk",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
     "/payments/invoice-payments/": {
       "get": {
         "operationId": "payments_invoice_payments_list",
