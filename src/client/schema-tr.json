@@ -790,7 +790,7 @@
               "x-components": {
                 "component": "checkbox",
                 "props": {
-                  "label": "İnaktif Ürün/Hizmetleri göster",
+                  "label": "Devre dışı Ürün/Hizmetleri göster",
                   "toggleIndeterminate": true
                 }
               }
@@ -1045,7 +1045,7 @@
                 "x-components": {
                   "component": "checkbox",
                   "props": {
-                    "label": "İnaktif Ürün/Hizmetleri göster",
+                    "label": "Devre dışı Ürün/Hizmetleri göster",
                     "toggleIndeterminate": true
                   }
                 }
@@ -3758,7 +3758,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Bank name",
+            "description": "Ara: Banka adı",
             "schema": {
               "type": "string"
             }
@@ -3809,7 +3809,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Bank name",
+              "description": "Ara: Banka adı",
               "schema": {
                 "type": "string"
               }
@@ -3991,6 +3991,102 @@
               "title": "ID"
             },
             "description": "A unique integer value identifying this bank.",
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
+    "/payments/bulk/banks/": {
+      "delete": {
+        "operationId": "payments_bulk_banks_destroy",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pk",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
+    "/payments/bulk/payment-accounts/": {
+      "delete": {
+        "operationId": "payments_bulk_payment_accounts_destroy",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pk",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": true
+          }
+        ],
+        "tags": ["payments"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
+    "/payments/bulk/payments/": {
+      "delete": {
+        "operationId": "payments_bulk_payments_destroy",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pk",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
             "required": true
           }
         ],
@@ -4263,7 +4359,7 @@
               "x-components": {
                 "component": "text-input",
                 "props": {
-                  "label": "Account name"
+                  "label": "Hesap adı"
                 }
               }
             }
@@ -4353,7 +4449,7 @@
               "x-components": {
                 "component": "text-input",
                 "props": {
-                  "label": "Account Number"
+                  "label": "Hesap Numarası"
                 }
               }
             }
@@ -4368,7 +4464,7 @@
               "x-components": {
                 "component": "bank-selector",
                 "props": {
-                  "label": "Bank"
+                  "label": "Banka"
                 }
               }
             }
@@ -4400,7 +4496,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Payment account name",
+            "description": "Ara: Ödeme hesabı adı",
             "schema": {
               "type": "string"
             }
@@ -4457,7 +4553,7 @@
                 "x-components": {
                   "component": "text-input",
                   "props": {
-                    "label": "Account name"
+                    "label": "Hesap adı"
                   }
                 }
               }
@@ -4547,7 +4643,7 @@
                 "x-components": {
                   "component": "text-input",
                   "props": {
-                    "label": "Account Number"
+                    "label": "Hesap Numarası"
                   }
                 }
               }
@@ -4562,7 +4658,7 @@
                 "x-components": {
                   "component": "bank-selector",
                   "props": {
-                    "label": "Bank"
+                    "label": "Banka"
                   }
                 }
               }
@@ -4598,7 +4694,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Payment account name",
+              "description": "Ara: Ödeme hesabı adı",
               "schema": {
                 "type": "string"
               }
@@ -4813,7 +4909,7 @@
               "x-components": {
                 "component": "payment-account-select",
                 "props": {
-                  "label": "Payer"
+                  "label": "Ödeyen"
                 }
               }
             }
@@ -4828,7 +4924,7 @@
               "x-components": {
                 "component": "payment-account-select",
                 "props": {
-                  "label": "Receiver"
+                  "label": "Tahsildar"
                 }
               }
             }
@@ -4903,7 +4999,7 @@
               "x-components": {
                 "component": "date-time-range",
                 "props": {
-                  "label": "Due date"
+                  "label": "Son ödeme tarihi"
                 }
               }
             }
@@ -4918,7 +5014,7 @@
               "x-components": {
                 "component": "text-input",
                 "props": {
-                  "label": "Additional info"
+                  "label": "Ek bilgi"
                 }
               }
             }
@@ -4933,7 +5029,7 @@
               "x-components": {
                 "component": "payment-type-select",
                 "props": {
-                  "label": "Payment type"
+                  "label": "Ödeme tipi"
                 }
               },
               "enum": ["cash", "cheque"]
@@ -4972,7 +5068,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Payment account name, Full name, IBAN, Payer, Full name, IBAN, Account number",
+            "description": "Ara: Ödeme hesabı adı, Tam ad, IBAN, Ödeyen, Tam ad, IBAN, Hesap numarası",
             "schema": {
               "type": "string"
             }
@@ -5029,7 +5125,7 @@
                 "x-components": {
                   "component": "payment-account-select",
                   "props": {
-                    "label": "Payer"
+                    "label": "Ödeyen"
                   }
                 }
               }
@@ -5044,7 +5140,7 @@
                 "x-components": {
                   "component": "payment-account-select",
                   "props": {
-                    "label": "Receiver"
+                    "label": "Tahsildar"
                   }
                 }
               }
@@ -5119,7 +5215,7 @@
                 "x-components": {
                   "component": "date-time-range",
                   "props": {
-                    "label": "Due date"
+                    "label": "Son ödeme tarihi"
                   }
                 }
               }
@@ -5134,7 +5230,7 @@
                 "x-components": {
                   "component": "text-input",
                   "props": {
-                    "label": "Additional info"
+                    "label": "Ek bilgi"
                   }
                 }
               }
@@ -5149,7 +5245,7 @@
                 "x-components": {
                   "component": "payment-type-select",
                   "props": {
-                    "label": "Payment type"
+                    "label": "Ödeme tipi"
                   }
                 },
                 "enum": ["cash", "cheque"]
@@ -5192,7 +5288,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Payment account name, Full name, IBAN, Payer, Full name, IBAN, Account number",
+              "description": "Ara: Ödeme hesabı adı, Tam ad, IBAN, Ödeyen, Tam ad, IBAN, Hesap numarası",
               "schema": {
                 "type": "string"
               }
@@ -5694,7 +5790,7 @@
             "name": "search",
             "required": false,
             "in": "query",
-            "description": "Ara: Full name, Telefon, E-posta, VKN/TCKN",
+            "description": "Ara: Tam ad, Telefon, Eposta, VKN/TCKN",
             "schema": {
               "type": "string"
             }
@@ -5818,7 +5914,7 @@
               "name": "search",
               "required": false,
               "in": "query",
-              "description": "Ara: Full name, Telefon, E-posta, VKN/TCKN",
+              "description": "Ara: Tam ad, Telefon, Eposta, VKN/TCKN",
               "schema": {
                 "type": "string"
               }
@@ -6741,7 +6837,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Bank name",
+            "title": "Banka adı",
             "maxLength": 50
           }
         },
@@ -6752,7 +6848,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "title": "Bank name",
+            "title": "Banka adı",
             "maxLength": 50
           }
         },
@@ -6764,7 +6860,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Bank name",
+            "title": "Banka adı",
             "maxLength": 50
           }
         },
@@ -6810,7 +6906,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Bank name",
+            "title": "Banka adı",
             "maxLength": 50
           }
         },
@@ -6829,7 +6925,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Bank name",
+            "title": "Banka adı",
             "maxLength": 50
           }
         },
@@ -8101,7 +8197,7 @@
                 "$ref": "#/components/schemas/Payment"
               }
             ],
-            "title": "Payment Info"
+            "title": "Ödeme Bilgisi"
           },
           "invoice": {
             "type": "integer",
@@ -8119,7 +8215,7 @@
                 "$ref": "#/components/schemas/PaymentRequest"
               }
             ],
-            "title": "Payment Info"
+            "title": "Ödeme Bilgisi"
           },
           "invoice": {
             "type": "integer",
@@ -8927,7 +9023,7 @@
           "remember_me": {
             "type": "boolean",
             "default": false,
-            "title": "Remember me"
+            "title": "Beni hatırla"
           }
         },
         "required": ["user"]
@@ -8950,7 +9046,7 @@
           "remember_me": {
             "type": "boolean",
             "default": false,
-            "title": "Remember me"
+            "title": "Beni hatırla"
           }
         },
         "required": ["password", "username"]
@@ -9404,7 +9500,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Bank name",
+            "title": "Banka adı",
             "maxLength": 50
           }
         }
@@ -9559,7 +9655,7 @@
                 "$ref": "#/components/schemas/PaymentRequest"
               }
             ],
-            "title": "Payment Info"
+            "title": "Ödeme Bilgisi"
           },
           "invoice": {
             "type": "integer",
@@ -9691,7 +9787,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Payment account name",
+            "title": "Ödeme hesabı adı",
             "maxLength": 50
           },
           "bank": {
@@ -9705,7 +9801,7 @@
           "account_number": {
             "type": "string",
             "nullable": true,
-            "title": "Account number"
+            "title": "Hesap numarası"
           },
           "iban": {
             "type": "string",
@@ -9770,18 +9866,18 @@
               }
             ],
             "default": "TRY",
-            "title": "Currency"
+            "title": "Para birimi"
           },
           "additional_info": {
             "type": "string",
             "nullable": true,
-            "title": "Additional info"
+            "title": "Ek bilgi"
           },
           "due_date": {
             "type": "string",
             "format": "date",
             "nullable": true,
-            "title": "Due date"
+            "title": "Son ödeme tarihi"
           },
           "payment_type": {
             "allOf": [
@@ -9790,7 +9886,7 @@
               }
             ],
             "default": "cash",
-            "title": "Payment type"
+            "title": "Ödeme tipi"
           }
         }
       },
@@ -9833,7 +9929,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Full name",
+            "title": "Tam ad",
             "maxLength": 400
           },
           "role": {
@@ -9842,7 +9938,7 @@
                 "$ref": "#/components/schemas/RoleEnum"
               }
             ],
-            "title": "Role"
+            "title": "Rol"
           },
           "shortname": {
             "type": "string",
@@ -9860,7 +9956,7 @@
             "type": "string",
             "format": "email",
             "nullable": true,
-            "title": "E-posta",
+            "title": "Eposta",
             "maxLength": 100
           },
           "vkntckn": {
@@ -10040,11 +10136,11 @@
           },
           "payer": {
             "type": "integer",
-            "title": "Payer"
+            "title": "Ödeyen"
           },
           "receiver": {
             "type": "integer",
-            "title": "Receiver"
+            "title": "Tahsildar"
           },
           "amount": {
             "type": "string",
@@ -10059,18 +10155,18 @@
               }
             ],
             "default": "TRY",
-            "title": "Currency"
+            "title": "Para birimi"
           },
           "additional_info": {
             "type": "string",
             "nullable": true,
-            "title": "Additional info"
+            "title": "Ek bilgi"
           },
           "due_date": {
             "type": "string",
             "format": "date",
             "nullable": true,
-            "title": "Due date"
+            "title": "Son ödeme tarihi"
           },
           "payment_type": {
             "allOf": [
@@ -10079,7 +10175,7 @@
               }
             ],
             "default": "cash",
-            "title": "Payment type"
+            "title": "Ödeme tipi"
           }
         },
         "required": ["amount", "created_at", "payer", "receiver", "updated_at"]
@@ -10108,7 +10204,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Payment account name",
+            "title": "Ödeme hesabı adı",
             "maxLength": 50
           },
           "bank": {
@@ -10122,7 +10218,7 @@
           "account_number": {
             "type": "string",
             "nullable": true,
-            "title": "Account number"
+            "title": "Hesap numarası"
           },
           "iban": {
             "type": "string",
@@ -10138,7 +10234,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Payment account name",
+            "title": "Ödeme hesabı adı",
             "maxLength": 50
           },
           "bank": {
@@ -10152,7 +10248,7 @@
           "account_number": {
             "type": "string",
             "nullable": true,
-            "title": "Account number"
+            "title": "Hesap numarası"
           },
           "iban": {
             "type": "string",
@@ -10186,12 +10282,12 @@
           },
           "name": {
             "type": "string",
-            "title": "Payment account name",
+            "title": "Ödeme hesabı adı",
             "maxLength": 50
           },
           "bank": {
             "type": "integer",
-            "title": "Bank",
+            "title": "Banka",
             "nullable": true,
             "x-components": {
               "component": "bank-selector"
@@ -10200,7 +10296,7 @@
           "account_number": {
             "type": "string",
             "nullable": true,
-            "title": "Account number"
+            "title": "Hesap numarası"
           },
           "iban": {
             "type": "string",
@@ -10231,12 +10327,12 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Payment account name",
+            "title": "Ödeme hesabı adı",
             "maxLength": 50
           },
           "bank": {
             "type": "integer",
-            "title": "Bank",
+            "title": "Banka",
             "nullable": true,
             "x-components": {
               "component": "bank-selector"
@@ -10245,7 +10341,7 @@
           "account_number": {
             "type": "string",
             "nullable": true,
-            "title": "Account number"
+            "title": "Hesap numarası"
           },
           "iban": {
             "type": "string",
@@ -10303,7 +10399,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Payment account name",
+            "title": "Ödeme hesabı adı",
             "maxLength": 50
           },
           "bank": {
@@ -10317,7 +10413,7 @@
           "account_number": {
             "type": "string",
             "nullable": true,
-            "title": "Account number"
+            "title": "Hesap numarası"
           },
           "iban": {
             "type": "string",
@@ -10348,7 +10444,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "title": "Payment account name",
+            "title": "Ödeme hesabı adı",
             "maxLength": 50
           },
           "stakeholder": {
@@ -10368,7 +10464,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Payment account name",
+            "title": "Ödeme hesabı adı",
             "maxLength": 50
           },
           "stakeholder": {
@@ -10449,18 +10545,18 @@
               }
             ],
             "default": "TRY",
-            "title": "Currency"
+            "title": "Para birimi"
           },
           "additional_info": {
             "type": "string",
             "nullable": true,
-            "title": "Additional info"
+            "title": "Ek bilgi"
           },
           "due_date": {
             "type": "string",
             "format": "date",
             "nullable": true,
-            "title": "Due date"
+            "title": "Son ödeme tarihi"
           },
           "payment_type": {
             "allOf": [
@@ -10469,7 +10565,7 @@
               }
             ],
             "default": "cash",
-            "title": "Payment type"
+            "title": "Ödeme tipi"
           }
         },
         "required": [
@@ -10531,18 +10627,18 @@
               }
             ],
             "default": "TRY",
-            "title": "Currency"
+            "title": "Para birimi"
           },
           "additional_info": {
             "type": "string",
             "nullable": true,
-            "title": "Additional info"
+            "title": "Ek bilgi"
           },
           "due_date": {
             "type": "string",
             "format": "date",
             "nullable": true,
-            "title": "Due date"
+            "title": "Son ödeme tarihi"
           },
           "payment_type": {
             "allOf": [
@@ -10551,7 +10647,7 @@
               }
             ],
             "default": "cash",
-            "title": "Payment type"
+            "title": "Ödeme tipi"
           }
         },
         "required": ["amount", "created_by", "payer", "receiver", "updated_by"]
@@ -10561,11 +10657,11 @@
         "properties": {
           "payer": {
             "type": "integer",
-            "title": "Payer"
+            "title": "Ödeyen"
           },
           "receiver": {
             "type": "integer",
-            "title": "Receiver"
+            "title": "Tahsildar"
           },
           "amount": {
             "type": "string",
@@ -10580,18 +10676,18 @@
               }
             ],
             "default": "TRY",
-            "title": "Currency"
+            "title": "Para birimi"
           },
           "additional_info": {
             "type": "string",
             "nullable": true,
-            "title": "Additional info"
+            "title": "Ek bilgi"
           },
           "due_date": {
             "type": "string",
             "format": "date",
             "nullable": true,
-            "title": "Due date"
+            "title": "Son ödeme tarihi"
           },
           "payment_type": {
             "allOf": [
@@ -10600,7 +10696,7 @@
               }
             ],
             "default": "cash",
-            "title": "Payment type"
+            "title": "Ödeme tipi"
           }
         },
         "required": ["amount", "payer", "receiver"]
@@ -10651,7 +10747,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Full name",
+            "title": "Tam ad",
             "maxLength": 400
           },
           "role": {
@@ -10660,7 +10756,7 @@
                 "$ref": "#/components/schemas/RoleEnum"
               }
             ],
-            "title": "Role"
+            "title": "Rol"
           },
           "shortname": {
             "type": "string",
@@ -10677,7 +10773,7 @@
             "type": "string",
             "format": "email",
             "nullable": true,
-            "title": "E-posta",
+            "title": "Eposta",
             "maxLength": 100
           },
           "vkntckn": {
@@ -10728,7 +10824,7 @@
           },
           "name": {
             "type": "string",
-            "title": "Full name",
+            "title": "Tam ad",
             "maxLength": 400
           },
           "role": {
@@ -10737,7 +10833,7 @@
                 "$ref": "#/components/schemas/RoleEnum"
               }
             ],
-            "title": "Role"
+            "title": "Rol"
           },
           "shortname": {
             "type": "string",
@@ -10754,7 +10850,7 @@
             "type": "string",
             "format": "email",
             "nullable": true,
-            "title": "E-posta",
+            "title": "Eposta",
             "maxLength": 100
           },
           "vkntckn": {
@@ -10778,7 +10874,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Full name",
+            "title": "Tam ad",
             "maxLength": 400
           },
           "role": {
@@ -10787,7 +10883,7 @@
                 "$ref": "#/components/schemas/RoleEnum"
               }
             ],
-            "title": "Role"
+            "title": "Rol"
           },
           "shortname": {
             "type": "string",
@@ -10805,7 +10901,7 @@
             "type": "string",
             "format": "email",
             "nullable": true,
-            "title": "E-posta",
+            "title": "Eposta",
             "maxLength": 100
           },
           "vkntckn": {
@@ -10896,7 +10992,7 @@
           "name": {
             "type": "string",
             "minLength": 1,
-            "title": "Full name",
+            "title": "Tam ad",
             "maxLength": 400
           },
           "role": {
@@ -10905,7 +11001,7 @@
                 "$ref": "#/components/schemas/RoleEnum"
               }
             ],
-            "title": "Role"
+            "title": "Rol"
           },
           "shortname": {
             "type": "string",
@@ -10923,7 +11019,7 @@
             "type": "string",
             "format": "email",
             "nullable": true,
-            "title": "E-posta",
+            "title": "Eposta",
             "maxLength": 100
           },
           "vkntckn": {

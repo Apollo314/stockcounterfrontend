@@ -35,7 +35,7 @@ export class PaymentsService {
     offset,
   }: {
     /**
-     * Ara: Bank name
+     * Ara: Banka adı
      */
     search?: string;
     /**
@@ -163,6 +163,60 @@ export class PaymentsService {
       url: '/payments/banks/{id}/',
       path: {
         id: id,
+      },
+    });
+  }
+
+  /**
+   * @returns void
+   * @throws ApiError
+   */
+  public paymentsBulkBanksDestroy({
+    pk,
+  }: {
+    pk: Array<string>;
+  }): CancelablePromise<void> {
+    return this.httpRequest.request({
+      method: 'DELETE',
+      url: '/payments/bulk/banks/',
+      query: {
+        pk: pk,
+      },
+    });
+  }
+
+  /**
+   * @returns void
+   * @throws ApiError
+   */
+  public paymentsBulkPaymentAccountsDestroy({
+    pk,
+  }: {
+    pk: Array<string>;
+  }): CancelablePromise<void> {
+    return this.httpRequest.request({
+      method: 'DELETE',
+      url: '/payments/bulk/payment-accounts/',
+      query: {
+        pk: pk,
+      },
+    });
+  }
+
+  /**
+   * @returns void
+   * @throws ApiError
+   */
+  public paymentsBulkPaymentsDestroy({
+    pk,
+  }: {
+    pk: Array<string>;
+  }): CancelablePromise<void> {
+    return this.httpRequest.request({
+      method: 'DELETE',
+      url: '/payments/bulk/payments/',
+      query: {
+        pk: pk,
       },
     });
   }
@@ -370,7 +424,7 @@ export class PaymentsService {
       | '-created_by'
       | '-updated_by';
     /**
-     * Ara: Payment account name
+     * Ara: Ödeme hesabı adı
      */
     search?: string;
     /**
@@ -589,7 +643,7 @@ export class PaymentsService {
       | '-created_by'
       | '-updated_by';
     /**
-     * Ara: Payment account name, Full name, IBAN, Payer, Full name, IBAN, Account number
+     * Ara: Ödeme hesabı adı, Tam ad, IBAN, Ödeyen, Tam ad, IBAN, Hesap numarası
      */
     search?: string;
     /**
