@@ -166,13 +166,16 @@ watch(
     if (newval === null && !props.nullable) {
       value.value = undefined;
     }
-    if (
-      newval instanceof Object &&
-      !Array.isArray(newval) &&
-      !props.emitFullObject
-    ) {
-      options.value = [newval];
-      value.value = (newval as Record<string, unknown>)[props.primaryKeyField];
+    if (newval instanceof Object && !props.emitFullObject) {
+      if (!Array.isArray(newval)) {
+        options.value = [newval];
+        value.value = (newval as Record<string, unknown>)[
+          props.primaryKeyField
+        ];
+      } else if (newval.length > 0 && newval[0] instanceof Object) {
+        options.value = newval;
+        value.value = newval.map((nv) => nv[props.primaryKeyField]);
+      }
     }
   }
 );
