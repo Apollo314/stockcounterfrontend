@@ -1,15 +1,10 @@
 <template>
   <div>
     <div class="bg-negative">I am undefined, please, define me.</div>
-    <div class="bg-negative">{{ props }}</div>
+    <div class="bg-negative">{{ $attrs }}</div>
   </div>
 </template>
 
-<script setup lang="ts">
-const props = defineProps<{
-  label: string;
-  name: string;
-}>();
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>

@@ -2,8 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Group = {
+export type ContentType = {
   readonly id: number;
-  name: string;
-  permissions?: Array<number>;
+  app_label: string;
+  model: string;
+  readonly name: string;
 };

@@ -233,5 +233,42 @@ export const menuItems = (): MenuItem[] => {
         },
       ],
     },
+    {
+      title: $t('menu.users_and_groups'),
+      shrinkable: true,
+      icon: 'badge',
+      defaultClosed: true,
+      iconColor: 'blue-8',
+      children: [
+        {
+          shrinkable: true,
+          title: $t('menu.group', 2),
+          bgColor: 'negative',
+          icon: 'diversity_3',
+          to: { name: 'group-list' },
+          children: [
+            {
+              title: $t('commons.new', ['menu.group']),
+              icon: 'add',
+              to: { name: 'group-create' },
+            },
+          ],
+        },
+        // {
+        //   shrinkable: true,
+        //   title: $t('menu.user', 2),
+        //   bgColor: 'negative',
+        //   icon: 'account_circle',
+        //   to: { name: 'group-list' },
+        //   children: [
+        //     {
+        //       title: $t('commons.new', ['menu.user']),
+        //       icon: 'add',
+        //       to: { name: 'group-create' },
+        //     },
+        //   ],
+        // },
+      ],
+    },
   ];
 };

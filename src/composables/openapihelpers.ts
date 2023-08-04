@@ -11,11 +11,11 @@ import type {
   DiscriminatorObject,
   ExternalDocumentationObject,
   MediaTypeObject,
+  OperationObject as WrongOperationObject,
   ParameterObject,
   ReferenceObject,
   RequestBodyObject,
   ResponseObject,
-  OperationObject as WrongOperationObject,
   XMLObject,
 } from 'openapi-typescript';
 
@@ -365,9 +365,16 @@ export function create_form<
         if (xcomp?.component) {
           comp = xcomp.component;
         } else if (hasAllOf(property)) {
-          comp = 'enum-selector';
+          if ((property.allOf[0] as SchemaObject).enum) {
+            comp = 'enum-selector';
+          } else {
+            comp = 'undefined';
+          }
         } else {
           comp = 'text-input';
+        }
+        if (isArray(property)) {
+          props.multiple = true;
         }
         const formComp = {
           componentString: comp as ComponentStrings,

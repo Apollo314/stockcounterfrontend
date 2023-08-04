@@ -2,11 +2,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Group } from './Group';
+import type { GroupDetail } from './GroupDetail';
 
-export type PaginatedGroupList = {
+export type PaginatedGroupDetailList = {
   count?: number;
   next?: string | null;
   previous?: string | null;
-  results?: Array<Group>;
+  results?: Array<GroupDetail>;
 };

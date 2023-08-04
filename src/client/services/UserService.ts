@@ -1,11 +1,16 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { Group } from '../models/Group';
+import type { GroupDetail } from '../models/GroupDetail';
+import type { GroupRequest } from '../models/GroupRequest';
 import type { Login } from '../models/Login';
 import type { LoginRequest } from '../models/LoginRequest';
 import type { LogoutRequest } from '../models/LogoutRequest';
-import type { PaginatedGroupList } from '../models/PaginatedGroupList';
+import type { PaginatedGroupDetailList } from '../models/PaginatedGroupDetailList';
+import type { PaginatedPermissionList } from '../models/PaginatedPermissionList';
 import type { PaginatedUserList } from '../models/PaginatedUserList';
+import type { PatchedGroupRequest } from '../models/PatchedGroupRequest';
 import type { PatchedUserRequest } from '../models/PatchedUserRequest';
 import type { User } from '../models/User';
 import type { UserRequest } from '../models/UserRequest';
@@ -202,13 +207,54 @@ export class UserService {
   }
 
   /**
-   * @returns PaginatedGroupList
+   * @returns void
+   * @throws ApiError
+   */
+  public userBulkAccountsDestroy({
+    pk,
+  }: {
+    pk: Array<string>;
+  }): CancelablePromise<void> {
+    return this.httpRequest.request({
+      method: 'DELETE',
+      url: '/user/bulk/accounts/',
+      query: {
+        pk: pk,
+      },
+    });
+  }
+
+  /**
+   * @returns void
+   * @throws ApiError
+   */
+  public userBulkGroupsDestroy({
+    pk,
+  }: {
+    pk: Array<string>;
+  }): CancelablePromise<void> {
+    return this.httpRequest.request({
+      method: 'DELETE',
+      url: '/user/bulk/groups/',
+      query: {
+        pk: pk,
+      },
+    });
+  }
+
+  /**
+   * @returns PaginatedGroupDetailList
    * @throws ApiError
    */
   public userGroupsList({
+    search,
     limit,
     offset,
   }: {
+    /**
+     * Ara: adı, adı
+     */
+    search?: string;
     /**
      * Number of results to return per page.
      */
@@ -217,13 +263,123 @@ export class UserService {
      * The initial index from which to return the results.
      */
     offset?: number;
-  }): CancelablePromise<PaginatedGroupList> {
+  }): CancelablePromise<PaginatedGroupDetailList> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/user/groups/',
       query: {
+        search: search,
         limit: limit,
         offset: offset,
+      },
+    });
+  }
+
+  /**
+   * @returns Group
+   * @throws ApiError
+   */
+  public userGroupsCreate({
+    requestBody,
+  }: {
+    requestBody: GroupRequest;
+  }): CancelablePromise<Group> {
+    return this.httpRequest.request({
+      method: 'POST',
+      url: '/user/groups/',
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns GroupDetail
+   * @throws ApiError
+   */
+  public userGroupsRetrieve({
+    id,
+  }: {
+    /**
+     * A unique integer value identifying this grup.
+     */
+    id: number;
+  }): CancelablePromise<GroupDetail> {
+    return this.httpRequest.request({
+      method: 'GET',
+      url: '/user/groups/{id}/',
+      path: {
+        id: id,
+      },
+    });
+  }
+
+  /**
+   * @returns Group
+   * @throws ApiError
+   */
+  public userGroupsUpdate({
+    id,
+    requestBody,
+  }: {
+    /**
+     * A unique integer value identifying this grup.
+     */
+    id: number;
+    requestBody: GroupRequest;
+  }): CancelablePromise<Group> {
+    return this.httpRequest.request({
+      method: 'PUT',
+      url: '/user/groups/{id}/',
+      path: {
+        id: id,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns Group
+   * @throws ApiError
+   */
+  public userGroupsPartialUpdate({
+    id,
+    requestBody,
+  }: {
+    /**
+     * A unique integer value identifying this grup.
+     */
+    id: number;
+    requestBody?: PatchedGroupRequest;
+  }): CancelablePromise<Group> {
+    return this.httpRequest.request({
+      method: 'PATCH',
+      url: '/user/groups/{id}/',
+      path: {
+        id: id,
+      },
+      body: requestBody,
+      mediaType: 'application/json',
+    });
+  }
+
+  /**
+   * @returns void
+   * @throws ApiError
+   */
+  public userGroupsDestroy({
+    id,
+  }: {
+    /**
+     * A unique integer value identifying this grup.
+     */
+    id: number;
+  }): CancelablePromise<void> {
+    return this.httpRequest.request({
+      method: 'DELETE',
+      url: '/user/groups/{id}/',
+      path: {
+        id: id,
       },
     });
   }
@@ -283,6 +439,39 @@ export class UserService {
     return this.httpRequest.request({
       method: 'GET',
       url: '/user/me/',
+    });
+  }
+
+  /**
+   * @returns PaginatedPermissionList
+   * @throws ApiError
+   */
+  public userPermissionsList({
+    search,
+    limit,
+    offset,
+  }: {
+    /**
+     * Ara: adı, kod adı
+     */
+    search?: string;
+    /**
+     * Number of results to return per page.
+     */
+    limit?: number;
+    /**
+     * The initial index from which to return the results.
+     */
+    offset?: number;
+  }): CancelablePromise<PaginatedPermissionList> {
+    return this.httpRequest.request({
+      method: 'GET',
+      url: '/user/permissions/',
+      query: {
+        search: search,
+        limit: limit,
+        offset: offset,
+      },
     });
   }
 }

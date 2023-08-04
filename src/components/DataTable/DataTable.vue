@@ -102,6 +102,17 @@
                     :name="`td-inner-sibling-${column.id}`"
                     v-bind="{ row: row, column: column }"
                   />
+                  <q-tooltip v-if="column.hint !== undefined">
+                    <div
+                      style="
+                         {
+                          max-width: 400px;
+                        }
+                      "
+                    >
+                      {{ getColHint(column, row) }}
+                    </div>
+                  </q-tooltip>
                 </td>
               </template>
               <slot name="body-tr-inner" v-bind="{ row }" />
@@ -162,6 +173,9 @@
                         <div>
                           {{ getColValue(column, row) }}
                         </div>
+                        <q-tooltip v-if="column.hint !== undefined">
+                          {{ getColHint(column, row) }}
+                        </q-tooltip>
                       </q-item-section>
                     </q-item>
                   </template>
@@ -288,6 +302,7 @@ export type BaseRow = {
 export type BaseColumn<Row> = {
   id: keyof Row & string;
   field: keyof Row | ((row: Row) => string | number | undefined | null);
+  hint?: keyof Row | ((row: Row) => string);
   label: string | ((column: BaseColumn<Row>) => string);
   align?: 'left' | 'center' | 'right';
   /**
@@ -463,6 +478,12 @@ const lastSelectedRow = ref<Row>();
 
 function getColValue(col: Column, row: Row) {
   return col.field instanceof Function ? col.field(row) : row[col.field];
+}
+
+function getColHint(col: Column, row: Row) {
+  if (col.hint) {
+    return col.hint instanceof Function ? col.hint(row) : row[col.hint];
+  }
 }
 
 function toggleSelection(row: Row, value?: boolean, event?: MouseEvent) {

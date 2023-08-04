@@ -36,6 +36,7 @@ export const componentStrings = [
   'multi-stockunit-selector',
   'payment-account-select',
   'payment-type-select',
+  'permissions-selector',
   'hidden',
   'undefined',
 ] as const;
@@ -200,6 +201,13 @@ export const componentMap: ComponentMap = {
   'barcode-scanner': {
     component: BarcodeScanner,
     props: {},
+  },
+  'permissions-selector': {
+    component: SearchSelector,
+    props: {
+      queryService: queryServiceFactory('user', 'userPermissionsList'),
+      optionLabel: (option) => option.name as string,
+    },
   },
   hidden: {
     component: DefaultField,

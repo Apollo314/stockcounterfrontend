@@ -377,16 +377,31 @@ const routes: RouteRecordRawExtended[] = [
       },
       // payments
 
+      // Users and Groups
       {
-        path: '/:id(\\d+)',
-        component: () => import('pages/Index/IndexPage.vue'),
-        name: 'nest',
+        path: 'groups',
+        component: () => import('src/pages/UsersAndGroups/Groups/ListView.vue'),
+        name: 'group-list',
+        meta: { key: 'group-list' },
       },
       {
-        path: 'another/',
-        component: () => import('pages/Index/IndexPage2.vue'),
-        name: 'another',
+        path: 'groups/create',
+        component: () =>
+          import('src/pages/UsersAndGroups/Groups/DetailView.vue'),
+        name: 'group-create',
+        meta: {
+          key: 'group-create',
+        },
       },
+      {
+        path: 'groups/:id([\\w-]+)',
+        component: () =>
+          import('src/pages/UsersAndGroups/Groups/DetailView.vue'),
+        name: 'group-update',
+        meta: { pathAsKey: true },
+        props: true,
+      },
+
       {
         path: 'settings/',
         component: () => import('pages/Settings/SettingsPage.vue'),

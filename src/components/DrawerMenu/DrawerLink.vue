@@ -1,6 +1,9 @@
 <template>
   <q-expansion-item
-    v-if="item.children && item.children.length > 1"
+    v-if="
+      (item.children && item.children.length > 1) ||
+      item.children?.[0]?.children?.length > 0
+    "
     v-show="item.visible"
     :to="item.to"
     class="border-radius no-user-select-wildcard menu-item accordion-item"
