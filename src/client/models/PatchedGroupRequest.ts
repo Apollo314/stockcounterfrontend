@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type GroupRequest = {
-  name: string;
+export type PatchedGroupRequest = {
+  name?: string;
   permissions?: Array<number>;
 };

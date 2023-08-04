@@ -6666,10 +6666,83 @@
         }
       }
     },
+    "/user/bulk/accounts/": {
+      "delete": {
+        "operationId": "user_bulk_accounts_destroy",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pk",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": true
+          }
+        ],
+        "tags": ["user"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
+    "/user/bulk/groups/": {
+      "delete": {
+        "operationId": "user_bulk_groups_destroy",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pk",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required": true
+          }
+        ],
+        "tags": ["user"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
     "/user/groups/": {
       "get": {
         "operationId": "user_groups_list",
         "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Ara: adı, adı",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "limit",
             "required": false,
@@ -6703,14 +6776,218 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PaginatedGroupList"
+                  "$ref": "#/components/schemas/PaginatedGroupDetailList"
                 }
               }
             },
             "description": ""
           }
         },
-        "x-filters": {}
+        "x-filters": {
+          "SearchFilter": [
+            {
+              "name": "search",
+              "required": false,
+              "in": "query",
+              "description": "Ara: adı, adı",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "post": {
+        "operationId": "user_groups_create",
+        "tags": ["user"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/user/groups/{id}/": {
+      "get": {
+        "operationId": "user_groups_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this grup.",
+            "required": true
+          }
+        ],
+        "tags": ["user"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "operationId": "user_groups_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this grup.",
+            "required": true
+          }
+        ],
+        "tags": ["user"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "operationId": "user_groups_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this grup.",
+            "required": true
+          }
+        ],
+        "tags": ["user"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedGroupRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "user_groups_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this grup.",
+            "required": true
+          }
+        ],
+        "tags": ["user"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
       }
     },
     "/user/login/": {
@@ -6807,6 +7084,74 @@
             },
             "description": ""
           }
+        }
+      }
+    },
+    "/user/permissions/": {
+      "get": {
+        "operationId": "user_permissions_list",
+        "parameters": [
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Ara: adı, kod adı",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": ["user"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedPermissionList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "x-filters": {
+          "SearchFilter": [
+            {
+              "name": "search",
+              "required": false,
+              "in": "query",
+              "description": "Ara: adı, kod adı",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
         }
       }
     }
@@ -7129,6 +7474,32 @@
         },
         "required": ["username"]
       },
+      "ContentType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "app_label": {
+            "type": "string",
+            "title": "App label",
+            "maxLength": 100
+          },
+          "model": {
+            "type": "string",
+            "title": "Python model sınıfı adı",
+            "maxLength": 100
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true,
+            "title": "Name"
+          }
+        },
+        "required": ["app_label", "id", "model", "name"]
+      },
       "CurrencyEnum": {
         "enum": ["TRY", "USD", "EUR", "GBP"],
         "type": "string"
@@ -7145,6 +7516,17 @@
             "type": "string",
             "title": "Adı",
             "maxLength": 150
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": "Izinler"
+            },
+            "title": "Izinler",
+            "x-components": {
+              "component": "permissions-selector"
+            }
           }
         },
         "required": ["id", "name"]
@@ -7165,13 +7547,12 @@
           "permissions": {
             "type": "array",
             "items": {
-              "type": "integer",
-              "title": "Izinler"
+              "$ref": "#/components/schemas/Permission"
             },
-            "title": "Izinler"
+            "title": "izinler"
           }
         },
-        "required": ["id", "name"]
+        "required": ["id", "name", "permissions"]
       },
       "GroupRequest": {
         "type": "object",
@@ -7181,6 +7562,17 @@
             "minLength": 1,
             "title": "Adı",
             "maxLength": 150
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": "Izinler"
+            },
+            "title": "Izinler",
+            "x-components": {
+              "component": "permissions-selector"
+            }
           }
         },
         "required": ["name"]
@@ -9116,7 +9508,7 @@
           }
         }
       },
-      "PaginatedGroupList": {
+      "PaginatedGroupDetailList": {
         "type": "object",
         "properties": {
           "count": {
@@ -9138,7 +9530,7 @@
           "results": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Group"
+              "$ref": "#/components/schemas/GroupDetail"
             }
           }
         }
@@ -9301,6 +9693,33 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PaymentOut"
+            }
+          }
+        }
+      },
+      "PaginatedPermissionList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=400&limit=100"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=200&limit=100"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Permission"
             }
           }
         }
@@ -9520,6 +9939,28 @@
             "nullable": true,
             "x-components": {
               "component": "category-selector"
+            }
+          }
+        }
+      },
+      "PatchedGroupRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Adı",
+            "maxLength": 150
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": "Izinler"
+            },
+            "title": "Izinler",
+            "x-components": {
+              "component": "permissions-selector"
             }
           }
         }
@@ -10704,6 +11145,35 @@
       "PaymentTypeEnum": {
         "enum": ["cash", "cheque"],
         "type": "string"
+      },
+      "Permission": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Adı",
+            "maxLength": 255
+          },
+          "content_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ContentType"
+              }
+            ],
+            "title": "içerik türü"
+          },
+          "codename": {
+            "type": "string",
+            "title": "Kod adı",
+            "maxLength": 100
+          }
+        },
+        "required": ["codename", "content_type", "id", "name"]
       },
       "RoleEnum": {
         "enum": ["Satıcı", "Müşteri", "Müşteri ve Satıcı"],
