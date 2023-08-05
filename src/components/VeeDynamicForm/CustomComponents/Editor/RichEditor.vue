@@ -31,7 +31,8 @@
       <q-fab
         v-if="isFullscreen"
         v-touch-pan.prevent.mouse="moveFab"
-        style="position: absolute; bottom: 20px; right: 20px"
+        style="position: absolute"
+        :style="{ bottom: `${fabPos[1]}px`, right: `${fabPos[0]}px` }"
         color="accent"
         icon="close"
         :label="$t('commons.close')"
@@ -53,7 +54,7 @@ import TextAlignExt from '@tiptap/extension-text-align';
 import { StarterKit } from '@tiptap/starter-kit';
 import { EditorContent, useEditor } from '@tiptap/vue-3';
 import { useFullscreen, useEventListener } from '@vueuse/core';
-import { useQuasar } from 'quasar';
+import { TouchPanValue, useQuasar } from 'quasar';
 import { useField } from 'vee-validate';
 import { ref, toRef, watch } from 'vue';
 
@@ -92,7 +93,7 @@ const editor = useEditor({
       types: ['heading', 'paragraph'],
     }),
     PlaceholderExt.configure({
-      placeholder: props.placeholder,
+      placeholder: toRef(props, 'placeholder').value,
     }),
   ],
   onUpdate: () => {
@@ -118,16 +119,15 @@ watch(value, () => {
     localvaluecopy.value = value.value;
   }
 });
-
 const fabPos = ref([18, 18]);
 const draggingFab = ref(false);
-const moveFab = (ev: {
-  isFirst: boolean;
-  isFinal: boolean;
-  delta: { x: number; y: number };
-}) => {
+const moveFab: TouchPanValue = (ev) => {
+  console.log(ev);
   draggingFab.value = ev.isFirst !== true && ev.isFinal !== true;
-  fabPos.value = [fabPos.value[0] - ev.delta.x, fabPos.value[1] - ev.delta.y];
+  fabPos.value = [
+    fabPos.value[0] - (ev?.delta?.x || 0),
+    fabPos.value[1] - (ev?.delta?.y || 0),
+  ];
 };
 </script>
 
