@@ -1,5 +1,3 @@
-/*eslint sort-keys: "warn"*/
-
 const ajvErrors = {
   const: 'sabite eşit olmalı: {allowedValue}',
   dependentRequired: '{property} varsa {deps} mevcut olmalı',

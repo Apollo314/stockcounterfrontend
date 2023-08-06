@@ -1,5 +1,3 @@
-/*eslint sort-keys: "warn"*/
-
 const ajvErrors = {
   const: 'must be equal to constant: {allowedValue}',
   dependentRequired:
