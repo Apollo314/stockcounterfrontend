@@ -595,7 +595,7 @@ provide('card', toRef(props, 'card'));
 provide('toggleCardView', toggleCardView);
 provide('request', request);
 provide('requestDone', requestDone);
-provide('columns', props.columns);
+provide('columns', toRef(props, 'columns'));
 provide('activeColumns', activeColumns);
 provide('orderedColumns', orderedColumns);
 </script>

@@ -89,7 +89,7 @@
   lang="ts"
   generic="Row extends BaseRow, Column extends BaseColumn<Row>"
 >
-import { PropType, Ref, computed, inject, provide, ref } from 'vue';
+import { PropType, Ref, computed, inject, provide, ref, toRef } from 'vue';
 
 import { callOrGet } from 'src/composables/utilities';
 
@@ -114,7 +114,7 @@ defineEmits<{
   ): void;
 }>();
 
-const columnWidth = ref<number | undefined>(props.column.width);
+const columnWidth = ref<number | undefined>(toRef(props, 'column').value.width);
 const orderedColumns =
   inject<
     Ref<Map<string, { column: Column; order: 'ascending' | 'descending' }>>

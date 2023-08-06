@@ -57,7 +57,7 @@
 import camelCase from 'camelcase';
 import { QDialogOptions, QNotifyCreateOptions, useQuasar } from 'quasar';
 import { Path, useForm } from 'vee-validate';
-import { PropType, onBeforeMount, ref } from 'vue';
+import { PropType, onBeforeMount, ref, toRef } from 'vue';
 import { RouteLocationRaw, useRouter } from 'vue-router';
 
 import { api } from 'boot/axios';
@@ -219,12 +219,12 @@ function requestService<
 }
 
 type Req = Parameters<typeof get_operation>[1];
-const postOp = get_operation(props.createPath, 'post' as Req);
+const postOp = get_operation(toRef(props, 'createPath').value, 'post' as Req);
 const createSchema = extractRequestSchemaFromOperation(postOp);
 
 const { formComponents, hiddenFormComponents, validator } = create_form(
   createSchema,
-  props.hiddenFields
+  toRef(props, 'hiddenFields').value
 );
 
 const {

@@ -6480,7 +6480,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRequest"
+                "$ref": "#/components/schemas/ConciseUserRequest"
               }
             }
           },
@@ -6499,7 +6499,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/ConciseUser"
                 }
               }
             },
@@ -6564,7 +6564,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRequest"
+                "$ref": "#/components/schemas/ConciseUserRequest"
               }
             }
           },
@@ -6583,7 +6583,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/ConciseUser"
                 }
               }
             },
@@ -6610,7 +6610,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchedUserRequest"
+                "$ref": "#/components/schemas/PatchedConciseUserRequest"
               }
             }
           }
@@ -6628,7 +6628,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/ConciseUser"
                 }
               }
             },
@@ -7399,6 +7399,15 @@
             "format": "uri",
             "nullable": true,
             "title": "Kullanıcı Resmi"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": ""
+            },
+            "description": "The groups this user belongs to. A user will get all permissions granted to each of their groups.",
+            "title": "Groups"
           }
         },
         "required": ["id", "username"]
@@ -7470,6 +7479,15 @@
             "format": "binary",
             "nullable": true,
             "title": "Kullanıcı Resmi"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": ""
+            },
+            "description": "The groups this user belongs to. A user will get all permissions granted to each of their groups.",
+            "title": "Groups"
           }
         },
         "required": ["username"]
@@ -9943,6 +9961,85 @@
           }
         }
       },
+      "PatchedConciseUserRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
+            "title": "Username",
+            "pattern": "^[\\w.@+-]+$",
+            "maxLength": 150
+          },
+          "first_name": {
+            "type": "string",
+            "title": "First name",
+            "maxLength": 150
+          },
+          "last_name": {
+            "type": "string",
+            "title": "Last name",
+            "maxLength": 150
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email address",
+            "maxLength": 254
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "title": "Telefon",
+            "maxLength": 15
+          },
+          "date_joined": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Date joined"
+          },
+          "last_login": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Last login"
+          },
+          "is_active": {
+            "type": "boolean",
+            "default": true,
+            "title": "Active",
+            "description": "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."
+          },
+          "is_staff": {
+            "type": "boolean",
+            "default": false,
+            "title": "Staff status",
+            "description": "Designates whether the user can log into this admin site."
+          },
+          "is_superuser": {
+            "type": "boolean",
+            "default": false,
+            "title": "Superuser status",
+            "description": "Designates that this user has all permissions without explicitly assigning them."
+          },
+          "avatar": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true,
+            "title": "Kullanıcı Resmi"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": ""
+            },
+            "description": "The groups this user belongs to. A user will get all permissions granted to each of their groups.",
+            "title": "Groups"
+          }
+        }
+      },
       "PatchedGroupRequest": {
         "type": "object",
         "properties": {
@@ -10449,83 +10546,6 @@
             "minLength": 1,
             "title": "Stock unit",
             "maxLength": 20
-          }
-        }
-      },
-      "PatchedUserRequest": {
-        "type": "object",
-        "properties": {
-          "username": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
-            "title": "Username",
-            "pattern": "^[\\w.@+-]+$",
-            "maxLength": 150
-          },
-          "first_name": {
-            "type": "string",
-            "title": "First name",
-            "maxLength": 150
-          },
-          "last_name": {
-            "type": "string",
-            "title": "Last name",
-            "maxLength": 150
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "title": "Email address",
-            "maxLength": 254
-          },
-          "phone": {
-            "type": "string",
-            "nullable": true,
-            "title": "Telefon",
-            "maxLength": 15
-          },
-          "date_joined": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Date joined"
-          },
-          "last_login": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
-            "title": "Last login"
-          },
-          "is_active": {
-            "type": "boolean",
-            "default": true,
-            "title": "Active",
-            "description": "Designates whether this user should be treated as active. Unselect this instead of deleting accounts."
-          },
-          "is_staff": {
-            "type": "boolean",
-            "default": false,
-            "title": "Staff status",
-            "description": "Designates whether the user can log into this admin site."
-          },
-          "is_superuser": {
-            "type": "boolean",
-            "default": false,
-            "title": "Superuser status",
-            "description": "Designates that this user has all permissions without explicitly assigning them."
-          },
-          "avatar": {
-            "type": "string",
-            "format": "binary",
-            "nullable": true,
-            "title": "Kullanıcı Resmi"
-          },
-          "groups": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GroupRequest"
-            },
-            "title": "Groups"
           }
         }
       },

@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, provide, Ref } from 'vue';
+import { computed, provide, Ref, toRef } from 'vue';
 
 import Ellipses from './EllipsesButton.vue';
 
@@ -148,12 +148,12 @@ const pages = computed(() => {
   return page_list;
 });
 
-provide('count', props.count);
-provide('rowsPerPage', props.limit);
+provide('count', toRef(props, 'count'));
+provide('rowsPerPage', toRef(props, 'limit'));
 provide('maxPage', maxPage);
-provide('minPage', props.minPage);
-provide('modelValue', props.modelValue);
-provide('color', props.color);
+provide('minPage', toRef(props, 'minPage'));
+provide('modelValue', toRef(props, 'modelValue'));
+provide('color', toRef(props, 'color'));
 </script>
 
 <style scoped></style>

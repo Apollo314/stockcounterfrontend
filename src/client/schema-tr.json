@@ -6480,7 +6480,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRequest"
+                "$ref": "#/components/schemas/ConciseUserRequest"
               }
             }
           },
@@ -6499,7 +6499,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/ConciseUser"
                 }
               }
             },
@@ -6564,7 +6564,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRequest"
+                "$ref": "#/components/schemas/ConciseUserRequest"
               }
             }
           },
@@ -6583,7 +6583,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/ConciseUser"
                 }
               }
             },
@@ -6610,7 +6610,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PatchedUserRequest"
+                "$ref": "#/components/schemas/PatchedConciseUserRequest"
               }
             }
           }
@@ -6628,7 +6628,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/ConciseUser"
                 }
               }
             },
@@ -7399,6 +7399,15 @@
             "format": "uri",
             "nullable": true,
             "title": "Kullanıcı Resmi"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": "Gruplar"
+            },
+            "title": "Gruplar",
+            "description": "Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak."
           }
         },
         "required": ["id", "username"]
@@ -7470,6 +7479,15 @@
             "format": "binary",
             "nullable": true,
             "title": "Kullanıcı Resmi"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": "Gruplar"
+            },
+            "title": "Gruplar",
+            "description": "Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak."
           }
         },
         "required": ["username"]
@@ -9943,6 +9961,85 @@
           }
         }
       },
+      "PatchedConciseUserRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Kullanıcı adı",
+            "description": "Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.",
+            "pattern": "^[\\w.@+-]+$",
+            "maxLength": 150
+          },
+          "first_name": {
+            "type": "string",
+            "title": "Adı",
+            "maxLength": 150
+          },
+          "last_name": {
+            "type": "string",
+            "title": "Soyadı",
+            "maxLength": 150
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "E-posta adresi",
+            "maxLength": 254
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "title": "Telefon",
+            "maxLength": 15
+          },
+          "date_joined": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Katılma tarihi"
+          },
+          "last_login": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Son oturum açma"
+          },
+          "is_active": {
+            "type": "boolean",
+            "default": true,
+            "title": "Etkin",
+            "description": "Bu kullanıcının etkin olarak işlem görüp görmediğini belirler. Hesapları silmek yerine bunun işaretini kaldırın."
+          },
+          "is_staff": {
+            "type": "boolean",
+            "default": false,
+            "title": "Görev durumu",
+            "description": "Kullanıcının bu yönetici sitesine oturum açıp açamayacağını belirler."
+          },
+          "is_superuser": {
+            "type": "boolean",
+            "default": false,
+            "title": "Süper kullanıcı durumu",
+            "description": "Bu kullanıcıya ayrı ayrı izin atamadan tüm izinlerin verilip verilmeyeceğini belirler."
+          },
+          "avatar": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true,
+            "title": "Kullanıcı Resmi"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": "Gruplar"
+            },
+            "title": "Gruplar",
+            "description": "Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak."
+          }
+        }
+      },
       "PatchedGroupRequest": {
         "type": "object",
         "properties": {
@@ -10449,83 +10546,6 @@
             "minLength": 1,
             "title": "Birim",
             "maxLength": 20
-          }
-        }
-      },
-      "PatchedUserRequest": {
-        "type": "object",
-        "properties": {
-          "username": {
-            "type": "string",
-            "minLength": 1,
-            "title": "Kullanıcı adı",
-            "description": "Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.",
-            "pattern": "^[\\w.@+-]+$",
-            "maxLength": 150
-          },
-          "first_name": {
-            "type": "string",
-            "title": "Adı",
-            "maxLength": 150
-          },
-          "last_name": {
-            "type": "string",
-            "title": "Soyadı",
-            "maxLength": 150
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "title": "E-posta adresi",
-            "maxLength": 254
-          },
-          "phone": {
-            "type": "string",
-            "nullable": true,
-            "title": "Telefon",
-            "maxLength": 15
-          },
-          "date_joined": {
-            "type": "string",
-            "format": "date-time",
-            "title": "Katılma tarihi"
-          },
-          "last_login": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true,
-            "title": "Son oturum açma"
-          },
-          "is_active": {
-            "type": "boolean",
-            "default": true,
-            "title": "Etkin",
-            "description": "Bu kullanıcının etkin olarak işlem görüp görmediğini belirler. Hesapları silmek yerine bunun işaretini kaldırın."
-          },
-          "is_staff": {
-            "type": "boolean",
-            "default": false,
-            "title": "Görev durumu",
-            "description": "Kullanıcının bu yönetici sitesine oturum açıp açamayacağını belirler."
-          },
-          "is_superuser": {
-            "type": "boolean",
-            "default": false,
-            "title": "Süper kullanıcı durumu",
-            "description": "Bu kullanıcıya ayrı ayrı izin atamadan tüm izinlerin verilip verilmeyeceğini belirler."
-          },
-          "avatar": {
-            "type": "string",
-            "format": "binary",
-            "nullable": true,
-            "title": "Kullanıcı Resmi"
-          },
-          "groups": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GroupRequest"
-            },
-            "title": "Groups"
           }
         }
       },

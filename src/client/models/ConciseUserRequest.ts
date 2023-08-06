@@ -26,4 +26,8 @@ export type ConciseUserRequest = {
    */
   is_superuser?: boolean;
   avatar?: Blob | null;
+  /**
+   * Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak.
+   */
+  groups?: Array<number>;
 };
