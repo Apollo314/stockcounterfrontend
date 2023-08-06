@@ -1,6 +1,18 @@
 import { api } from 'boot/axios';
 import { $t } from 'boot/i18n';
-import { CancelablePromise, PaymentTypeEnum } from 'src/client';
+import {
+  Bank,
+  CancelablePromise,
+  Category,
+  ItemOut,
+  PaymentAccountOut,
+  PaymentTypeEnum,
+  Permission,
+  Stakeholder,
+  StockUnit,
+  User,
+  Warehouse,
+} from 'src/client';
 import { FormComponent } from 'src/composables/openapihelpers';
 
 import BarcodeScanner from './CustomComponents/BarcodeScanner.vue';
@@ -78,7 +90,7 @@ type ComponentMap = {
       | Record<string, unknown>
       | {
           queryService: ReturnType<typeof queryServiceFactory>;
-          optionLabel: (option: Record<string, unknown>) => string;
+          optionLabel: <T>(option: T) => string;
         };
   };
 };
@@ -92,7 +104,7 @@ export const componentMap: ComponentMap = {
         'payments',
         'paymentsPaymentAccountsList'
       ),
-      optionLabel: (option) => option.name,
+      optionLabel: (option: PaymentAccountOut) => option.name,
     },
   },
   'payment-type-select': {
@@ -107,14 +119,14 @@ export const componentMap: ComponentMap = {
     component: SearchSelector,
     props: {
       queryService: queryServiceFactory('inventory', 'inventoryCategoryList'),
-      optionLabel: (option) => option?.name as string,
+      optionLabel: (option: Category) => option?.name,
     },
   },
   'multi-category-selector': {
     component: SearchSelector,
     props: {
       queryService: queryServiceFactory('inventory', 'inventoryCategoryList'),
-      optionLabel: (option) => option?.name as string,
+      optionLabel: (option: Category) => option?.name,
       multiple: true,
       useChips: true,
     },
@@ -123,14 +135,14 @@ export const componentMap: ComponentMap = {
     component: SearchSelector,
     props: {
       queryService: queryServiceFactory('inventory', 'inventoryStockUnitList'),
-      optionLabel: (option) => option?.name as string,
+      optionLabel: (option: StockUnit) => option?.name,
     },
   },
   'multi-stockunit-selector': {
     component: SearchSelector,
     props: {
       queryService: queryServiceFactory('inventory', 'inventoryStockUnitList'),
-      optionLabel: (option) => option?.name as string,
+      optionLabel: (option: StockUnit) => option?.name,
       multiple: true,
       useChips: true,
     },
@@ -139,28 +151,28 @@ export const componentMap: ComponentMap = {
     component: SearchSelector,
     props: {
       queryService: queryServiceFactory('user', 'userAccountsList'),
-      optionLabel: (option) => option?.username as string,
+      optionLabel: (option: User) => option?.username,
     },
   },
   'item-select': {
     component: SearchSelector,
     props: {
       queryService: queryServiceFactory('inventory', 'inventoryItemList'),
-      optionLabel: (option) => option?.name as string,
+      optionLabel: (option: ItemOut) => option?.name,
     },
   },
   'warehouse-selector': {
     component: SearchSelector,
     props: {
       queryService: queryServiceFactory('inventory', 'inventoryWarehouseList'),
-      optionLabel: (option) => option.name as string,
+      optionLabel: (option: Warehouse) => option.name,
     },
   },
   'bank-selector': {
     component: SearchSelector,
     props: {
       queryService: queryServiceFactory('payments', 'paymentsBanksList'),
-      optionLabel: (option) => option.name as string,
+      optionLabel: (option: Bank) => option.name,
     },
   },
   'stakeholder-selector': {
@@ -170,7 +182,7 @@ export const componentMap: ComponentMap = {
         'stakeholder',
         'stakeholderStakeholdersList'
       ),
-      optionLabel: (option) => option.name as string,
+      optionLabel: (option: Stakeholder) => option.name,
     },
   },
   'enum-selector': {
@@ -206,7 +218,9 @@ export const componentMap: ComponentMap = {
     component: SearchSelector,
     props: {
       queryService: queryServiceFactory('user', 'userPermissionsList'),
-      optionLabel: (option) => option.name as string,
+      optionLabel: (option: Permission) => {
+        return `${option.content_type.app_label} / ${option.content_type.name} / ${option.name}`;
+      },
     },
   },
   hidden: {
