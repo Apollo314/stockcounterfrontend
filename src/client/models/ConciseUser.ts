@@ -27,4 +27,8 @@ export type ConciseUser = {
    */
   is_superuser?: boolean;
   avatar?: string | null;
+  /**
+   * Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak.
+   */
+  groups?: Array<number>;
 };

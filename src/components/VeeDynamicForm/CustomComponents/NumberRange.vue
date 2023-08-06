@@ -103,7 +103,7 @@ watch(
   () => {
     valueToRanges(value.value);
   },
-  { deep: props.watchDeep }
+  { deep: toRef(props, 'watchDeep').value }
 );
 
 const { useFieldModel } = useForm();

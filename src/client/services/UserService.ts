@@ -1,6 +1,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { ConciseUser } from '../models/ConciseUser';
+import type { ConciseUserRequest } from '../models/ConciseUserRequest';
 import type { Group } from '../models/Group';
 import type { GroupDetail } from '../models/GroupDetail';
 import type { GroupRequest } from '../models/GroupRequest';
@@ -10,10 +12,9 @@ import type { LogoutRequest } from '../models/LogoutRequest';
 import type { PaginatedGroupDetailList } from '../models/PaginatedGroupDetailList';
 import type { PaginatedPermissionList } from '../models/PaginatedPermissionList';
 import type { PaginatedUserList } from '../models/PaginatedUserList';
+import type { PatchedConciseUserRequest } from '../models/PatchedConciseUserRequest';
 import type { PatchedGroupRequest } from '../models/PatchedGroupRequest';
-import type { PatchedUserRequest } from '../models/PatchedUserRequest';
 import type { User } from '../models/User';
-import type { UserRequest } from '../models/UserRequest';
 import type { UserWithGroupDetail } from '../models/UserWithGroupDetail';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -98,14 +99,14 @@ export class UserService {
   }
 
   /**
-   * @returns User
+   * @returns ConciseUser
    * @throws ApiError
    */
   public userAccountsCreate({
     requestBody,
   }: {
-    requestBody: UserRequest;
-  }): CancelablePromise<User> {
+    requestBody: ConciseUserRequest;
+  }): CancelablePromise<ConciseUser> {
     return this.httpRequest.request({
       method: 'POST',
       url: '/user/accounts/',
@@ -136,7 +137,7 @@ export class UserService {
   }
 
   /**
-   * @returns User
+   * @returns ConciseUser
    * @throws ApiError
    */
   public userAccountsUpdate({
@@ -147,8 +148,8 @@ export class UserService {
      * A unique integer value identifying this kullanıcı.
      */
     id: number;
-    requestBody: UserRequest;
-  }): CancelablePromise<User> {
+    requestBody: ConciseUserRequest;
+  }): CancelablePromise<ConciseUser> {
     return this.httpRequest.request({
       method: 'PUT',
       url: '/user/accounts/{id}/',
@@ -161,7 +162,7 @@ export class UserService {
   }
 
   /**
-   * @returns User
+   * @returns ConciseUser
    * @throws ApiError
    */
   public userAccountsPartialUpdate({
@@ -172,8 +173,8 @@ export class UserService {
      * A unique integer value identifying this kullanıcı.
      */
     id: number;
-    requestBody?: PatchedUserRequest;
-  }): CancelablePromise<User> {
+    requestBody?: PatchedConciseUserRequest;
+  }): CancelablePromise<ConciseUser> {
     return this.httpRequest.request({
       method: 'PATCH',
       url: '/user/accounts/{id}/',

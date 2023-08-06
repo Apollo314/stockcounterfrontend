@@ -73,6 +73,7 @@ export type { PaginatedWarehouseItemStockInfoList } from './models/PaginatedWare
 export type { PaginatedWarehouseList } from './models/PaginatedWarehouseList';
 export type { PatchedBankRequest } from './models/PatchedBankRequest';
 export type { PatchedCategoryRequest } from './models/PatchedCategoryRequest';
+export type { PatchedConciseUserRequest } from './models/PatchedConciseUserRequest';
 export type { PatchedGroupRequest } from './models/PatchedGroupRequest';
 export type { PatchedInvoiceConditionTemplateOutRequest } from './models/PatchedInvoiceConditionTemplateOutRequest';
 export type { PatchedInvoiceListRequest } from './models/PatchedInvoiceListRequest';
@@ -84,7 +85,6 @@ export type { PatchedStakeholderEmployeeRequest } from './models/PatchedStakehol
 export type { PatchedStakeholderRequest } from './models/PatchedStakeholderRequest';
 export type { PatchedStockMovementWithoutItemRequest } from './models/PatchedStockMovementWithoutItemRequest';
 export type { PatchedStockUnitRequest } from './models/PatchedStockUnitRequest';
-export type { PatchedUserRequest } from './models/PatchedUserRequest';
 export type { PatchedWarehouseRequest } from './models/PatchedWarehouseRequest';
 export type { Payment } from './models/Payment';
 export type { PaymentAccountForStakeholder } from './models/PaymentAccountForStakeholder';
