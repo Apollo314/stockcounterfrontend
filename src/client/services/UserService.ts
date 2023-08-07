@@ -2,7 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { ConciseUser } from '../models/ConciseUser';
-import type { ConciseUserRequest } from '../models/ConciseUserRequest';
 import type { Group } from '../models/Group';
 import type { GroupDetail } from '../models/GroupDetail';
 import type { GroupRequest } from '../models/GroupRequest';
@@ -15,6 +14,8 @@ import type { PaginatedUserList } from '../models/PaginatedUserList';
 import type { PatchedConciseUserRequest } from '../models/PatchedConciseUserRequest';
 import type { PatchedGroupRequest } from '../models/PatchedGroupRequest';
 import type { User } from '../models/User';
+import type { UserIn } from '../models/UserIn';
+import type { UserInRequest } from '../models/UserInRequest';
 import type { UserWithGroupDetail } from '../models/UserWithGroupDetail';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -99,14 +100,14 @@ export class UserService {
   }
 
   /**
-   * @returns ConciseUser
+   * @returns UserIn
    * @throws ApiError
    */
   public userAccountsCreate({
     requestBody,
   }: {
-    requestBody: ConciseUserRequest;
-  }): CancelablePromise<ConciseUser> {
+    requestBody: UserInRequest;
+  }): CancelablePromise<UserIn> {
     return this.httpRequest.request({
       method: 'POST',
       url: '/user/accounts/',
@@ -137,7 +138,7 @@ export class UserService {
   }
 
   /**
-   * @returns ConciseUser
+   * @returns UserIn
    * @throws ApiError
    */
   public userAccountsUpdate({
@@ -148,8 +149,8 @@ export class UserService {
      * A unique integer value identifying this kullanıcı.
      */
     id: number;
-    requestBody: ConciseUserRequest;
-  }): CancelablePromise<ConciseUser> {
+    requestBody: UserInRequest;
+  }): CancelablePromise<UserIn> {
     return this.httpRequest.request({
       method: 'PUT',
       url: '/user/accounts/{id}/',

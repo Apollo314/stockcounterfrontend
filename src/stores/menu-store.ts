@@ -254,20 +254,20 @@ export const menuItems = (): MenuItem[] => {
             },
           ],
         },
-        // {
-        //   shrinkable: true,
-        //   title: $t('menu.user', 2),
-        //   bgColor: 'negative',
-        //   icon: 'account_circle',
-        //   to: { name: 'group-list' },
-        //   children: [
-        //     {
-        //       title: $t('commons.new', ['menu.user']),
-        //       icon: 'add',
-        //       to: { name: 'group-create' },
-        //     },
-        //   ],
-        // },
+        {
+          shrinkable: true,
+          title: $t('menu.user', 2),
+          bgColor: 'negative',
+          icon: 'account_circle',
+          to: { name: 'user-account-list' },
+          children: [
+            {
+              title: $t('commons.new', ['menu.user']),
+              icon: 'add',
+              to: { name: 'user-account-create' },
+            },
+          ],
+        },
       ],
     },
   ];

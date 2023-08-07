@@ -118,6 +118,8 @@ export default {
       item_update: 'Ürün Güncelleme Formu',
       create_user_group: 'Kullanıcı grubu oluştur',
       update_user_group: 'Kullanıcı grubunu güncelle',
+      update_user_account: 'Kullanıcı hesabını güncelle',
+      create_user_account: 'Kullanıcı hesabını güncelle',
     },
     username: 'Kullanıcı adı',
   },

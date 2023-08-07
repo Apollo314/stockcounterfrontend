@@ -2,7 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ConciseUserRequest = {
+export type UserIn = {
+  readonly id: number;
   /**
    * Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.
    */
@@ -11,12 +12,6 @@ export type ConciseUserRequest = {
   last_name?: string;
   email: string;
   phone?: string | null;
-  date_joined?: string;
-  last_login?: string | null;
-  /**
-   * Bu kullanıcının etkin olarak işlem görüp görmediğini belirler. Hesapları silmek yerine bunun işaretini kaldırın.
-   */
-  is_active?: boolean;
   /**
    * Kullanıcının bu yönetici sitesine oturum açıp açamayacağını belirler.
    */
@@ -25,7 +20,7 @@ export type ConciseUserRequest = {
    * Bu kullanıcıya ayrı ayrı izin atamadan tüm izinlerin verilip verilmeyeceğini belirler.
    */
   is_superuser?: boolean;
-  avatar?: Blob | null;
+  avatar?: string | null;
   /**
    * Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak.
    */

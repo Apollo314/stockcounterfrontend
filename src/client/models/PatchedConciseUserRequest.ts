@@ -2,14 +2,14 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ConciseUserRequest = {
+export type PatchedConciseUserRequest = {
   /**
    * Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.
    */
-  username: string;
+  username?: string;
   first_name?: string;
   last_name?: string;
-  email: string;
+  email?: string;
   phone?: string | null;
   date_joined?: string;
   last_login?: string | null;

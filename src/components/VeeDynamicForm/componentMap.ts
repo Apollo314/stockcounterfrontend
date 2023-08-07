@@ -4,6 +4,7 @@ import {
   Bank,
   CancelablePromise,
   Category,
+  Group,
   ItemOut,
   PaymentAccountOut,
   PaymentTypeEnum,
@@ -49,6 +50,7 @@ export const componentStrings = [
   'payment-account-select',
   'payment-type-select',
   'permissions-selector',
+  'group-selector',
   'hidden',
   'undefined',
 ] as const;
@@ -220,6 +222,15 @@ export const componentMap: ComponentMap = {
       queryService: queryServiceFactory('user', 'userPermissionsList'),
       optionLabel: (option: Permission) => {
         return `${option.content_type.app_label} / ${option.content_type.name} / ${option.name}`;
+      },
+    },
+  },
+  'group-selector': {
+    component: SearchSelector,
+    props: {
+      queryService: queryServiceFactory('user', 'userGroupsList'),
+      optionLabel: (option: Group) => {
+        return option.name;
       },
     },
   },
