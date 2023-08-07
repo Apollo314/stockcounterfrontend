@@ -69,6 +69,7 @@ import { CancelablePromise } from 'src/client';
 import { paths } from 'src/client/schema.json';
 import { parseDRFErrors } from 'src/components/VeeDynamicForm/drfErrorToYup';
 import {
+  FormComponent,
   NestedRecord,
   OperationObject,
   create_form,
@@ -220,12 +221,36 @@ function requestService<
 
 type Req = Parameters<typeof get_operation>[1];
 const postOp = get_operation(toRef(props, 'createPath').value, 'post' as Req);
-const createSchema = extractRequestSchemaFromOperation(postOp);
-
-const { formComponents, hiddenFormComponents, validator } = create_form(
-  createSchema,
-  toRef(props, 'hiddenFields').value
+const putOp = get_operation(
+  toRef(props, 'updateRetrieveDestroyPath').value,
+  'put' as Req
 );
+
+let formComponents: Map<string, FormComponent>;
+let hiddenFormComponents: unknown;
+let validator: unknown;
+
+if (!props.query) {
+  const createSchema = extractRequestSchemaFromOperation(postOp);
+  const {
+    formComponents: fc,
+    hiddenFormComponents: hfc,
+    validator: v,
+  } = create_form(createSchema, toRef(props, 'hiddenFields').value);
+  formComponents = fc as Map<string, FormComponent>;
+  hiddenFormComponents = hfc;
+  validator = v;
+} else {
+  const updateSchema = extractRequestSchemaFromOperation(putOp);
+  const {
+    formComponents: fc,
+    hiddenFormComponents: hfc,
+    validator: v,
+  } = create_form(updateSchema, toRef(props, 'hiddenFields').value);
+  formComponents = fc as Map<string, FormComponent>;
+  hiddenFormComponents = hfc;
+  validator = v;
+}
 
 const {
   values,
