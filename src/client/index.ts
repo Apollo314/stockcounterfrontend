@@ -117,6 +117,8 @@ export type { StockUnitNested } from './models/StockUnitNested';
 export type { StockUnitNestedRequest } from './models/StockUnitNestedRequest';
 export type { StockUnitRequest } from './models/StockUnitRequest';
 export type { User } from './models/User';
+export type { UserIn } from './models/UserIn';
+export type { UserInRequest } from './models/UserInRequest';
 export type { UserRequest } from './models/UserRequest';
 export type { UserWithGroupDetail } from './models/UserWithGroupDetail';
 export type { Warehouse } from './models/Warehouse';

@@ -11,7 +11,7 @@ export type UserRequest = {
   username: string;
   first_name?: string;
   last_name?: string;
-  email?: string;
+  email: string;
   phone?: string | null;
   date_joined?: string;
   last_login?: string | null;

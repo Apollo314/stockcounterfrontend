@@ -1,4 +1,4 @@
-import { RouteRecordRaw, RouteLocationNormalizedLoaded } from 'vue-router';
+import { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router';
 
 type Extension = {
   meta?: {
@@ -378,6 +378,7 @@ const routes: RouteRecordRawExtended[] = [
       // payments
 
       // Users and Groups
+      // groups
       {
         path: 'groups',
         component: () => import('src/pages/UsersAndGroups/Groups/ListView.vue'),
@@ -401,6 +402,36 @@ const routes: RouteRecordRawExtended[] = [
         meta: { pathAsKey: true },
         props: true,
       },
+      // groups
+
+      // users
+      {
+        path: 'accounts',
+        component: () => import('src/pages/UsersAndGroups/Users/ListView.vue'),
+        name: 'user-account-list',
+        meta: { key: 'user-account-list' },
+      },
+      {
+        path: 'accounts/create',
+        component: () =>
+          import('src/pages/UsersAndGroups/Users/DetailView.vue'),
+        name: 'user-account-create',
+        meta: {
+          key: 'user-account-create',
+        },
+      },
+      {
+        path: 'accounts/:id([\\w-]+)',
+        component: () =>
+          import('src/pages/UsersAndGroups/Users/DetailView.vue'),
+        name: 'user-account-update',
+        meta: { pathAsKey: true },
+        props: true,
+      },
+
+      // users
+
+      // Users and Groups
 
       {
         path: 'settings/',

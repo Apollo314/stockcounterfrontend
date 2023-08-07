@@ -121,6 +121,8 @@ export default {
       item_update: 'Item Update Form',
       create_user_group: 'Create user group',
       update_user_group: 'Update user group',
+      update_user_account: 'Create user account',
+      create_user_account: 'Update user account',
     },
     username: 'Username',
   },

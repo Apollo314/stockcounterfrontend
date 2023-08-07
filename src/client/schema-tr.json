@@ -6480,7 +6480,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConciseUserRequest"
+                "$ref": "#/components/schemas/UserInRequest"
               }
             }
           },
@@ -6499,7 +6499,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConciseUser"
+                  "$ref": "#/components/schemas/UserIn"
                 }
               }
             },
@@ -6564,7 +6564,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConciseUserRequest"
+                "$ref": "#/components/schemas/UserInRequest"
               }
             }
           },
@@ -6583,7 +6583,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConciseUser"
+                  "$ref": "#/components/schemas/UserIn"
                 }
               }
             },
@@ -7398,7 +7398,7 @@
             "type": "string",
             "format": "uri",
             "nullable": true,
-            "title": "Kullanıcı Resmi"
+            "title": "Kullanıcı resmi"
           },
           "groups": {
             "type": "array",
@@ -7410,7 +7410,7 @@
             "description": "Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak."
           }
         },
-        "required": ["id", "username"]
+        "required": ["email", "id", "username"]
       },
       "ConciseUserRequest": {
         "type": "object",
@@ -7436,6 +7436,7 @@
           "email": {
             "type": "string",
             "format": "email",
+            "minLength": 1,
             "title": "E-posta adresi",
             "maxLength": 254
           },
@@ -7478,7 +7479,7 @@
             "type": "string",
             "format": "binary",
             "nullable": true,
-            "title": "Kullanıcı Resmi"
+            "title": "Kullanıcı resmi"
           },
           "groups": {
             "type": "array",
@@ -7490,7 +7491,7 @@
             "description": "Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak."
           }
         },
-        "required": ["username"]
+        "required": ["email", "username"]
       },
       "ContentType": {
         "type": "object",
@@ -7539,9 +7540,9 @@
             "type": "array",
             "items": {
               "type": "integer",
-              "title": "Izinler"
+              "title": "Yetkiler"
             },
-            "title": "Izinler",
+            "title": "Yetkiler",
             "x-components": {
               "component": "permissions-selector"
             }
@@ -7567,7 +7568,7 @@
             "items": {
               "$ref": "#/components/schemas/Permission"
             },
-            "title": "izinler"
+            "title": "Yetkiler"
           }
         },
         "required": ["id", "name", "permissions"]
@@ -7585,9 +7586,9 @@
             "type": "array",
             "items": {
               "type": "integer",
-              "title": "Izinler"
+              "title": "Yetkiler"
             },
-            "title": "Izinler",
+            "title": "Yetkiler",
             "x-components": {
               "component": "permissions-selector"
             }
@@ -9985,6 +9986,7 @@
           "email": {
             "type": "string",
             "format": "email",
+            "minLength": 1,
             "title": "E-posta adresi",
             "maxLength": 254
           },
@@ -10027,7 +10029,7 @@
             "type": "string",
             "format": "binary",
             "nullable": true,
-            "title": "Kullanıcı Resmi"
+            "title": "Kullanıcı resmi"
           },
           "groups": {
             "type": "array",
@@ -10053,9 +10055,9 @@
             "type": "array",
             "items": {
               "type": "integer",
-              "title": "Izinler"
+              "title": "Yetkiler"
             },
-            "title": "Izinler",
+            "title": "Yetkiler",
             "x-components": {
               "component": "permissions-selector"
             }
@@ -11766,7 +11768,7 @@
             "type": "string",
             "format": "uri",
             "nullable": true,
-            "title": "Kullanıcı Resmi"
+            "title": "Kullanıcı resmi"
           },
           "groups": {
             "type": "array",
@@ -11776,7 +11778,174 @@
             "title": "Groups"
           }
         },
-        "required": ["id", "username"]
+        "required": ["email", "id", "username"]
+      },
+      "UserIn": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "username": {
+            "type": "string",
+            "title": "Kullanıcı adı",
+            "description": "Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.",
+            "pattern": "^[\\w.@+-]+$",
+            "maxLength": 150
+          },
+          "first_name": {
+            "type": "string",
+            "title": "Adı",
+            "maxLength": 150
+          },
+          "last_name": {
+            "type": "string",
+            "title": "Soyadı",
+            "maxLength": 150
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "E-posta adresi",
+            "maxLength": 254
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "title": "Telefon",
+            "maxLength": 15
+          },
+          "is_staff": {
+            "type": "boolean",
+            "default": false,
+            "title": "Görev durumu",
+            "description": "Kullanıcının bu yönetici sitesine oturum açıp açamayacağını belirler.",
+            "x-components": {
+              "component": "checkbox",
+              "props": {
+                "label": "Kullanıcı bir çalışan"
+              }
+            }
+          },
+          "is_superuser": {
+            "type": "boolean",
+            "default": false,
+            "title": "Süper kullanıcı durumu",
+            "description": "Bu kullanıcıya ayrı ayrı izin atamadan tüm izinlerin verilip verilmeyeceğini belirler.",
+            "x-components": {
+              "component": "checkbox",
+              "props": {
+                "label": "Kullanıcı bir yönetici"
+              }
+            }
+          },
+          "avatar": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Kullanıcı resmi",
+            "x-components": {
+              "component": "single-image-selector"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": "Gruplar"
+            },
+            "title": "Gruplar",
+            "description": "Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak.",
+            "x-components": {
+              "component": "group-selector"
+            }
+          }
+        },
+        "required": ["email", "id", "username"]
+      },
+      "UserInRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Kullanıcı adı",
+            "description": "Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.",
+            "pattern": "^[\\w.@+-]+$",
+            "maxLength": 150
+          },
+          "first_name": {
+            "type": "string",
+            "title": "Adı",
+            "maxLength": 150
+          },
+          "last_name": {
+            "type": "string",
+            "title": "Soyadı",
+            "maxLength": 150
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 1,
+            "title": "E-posta adresi",
+            "maxLength": 254
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "title": "Telefon",
+            "maxLength": 15
+          },
+          "is_staff": {
+            "type": "boolean",
+            "default": false,
+            "title": "Görev durumu",
+            "description": "Kullanıcının bu yönetici sitesine oturum açıp açamayacağını belirler.",
+            "x-components": {
+              "component": "checkbox",
+              "props": {
+                "label": "Kullanıcı bir çalışan"
+              }
+            }
+          },
+          "is_superuser": {
+            "type": "boolean",
+            "default": false,
+            "title": "Süper kullanıcı durumu",
+            "description": "Bu kullanıcıya ayrı ayrı izin atamadan tüm izinlerin verilip verilmeyeceğini belirler.",
+            "x-components": {
+              "component": "checkbox",
+              "props": {
+                "label": "Kullanıcı bir yönetici"
+              }
+            }
+          },
+          "avatar": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true,
+            "title": "Kullanıcı resmi",
+            "x-components": {
+              "component": "single-image-selector"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": "Gruplar"
+            },
+            "title": "Gruplar",
+            "description": "Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak.",
+            "x-components": {
+              "component": "group-selector"
+            }
+          }
+        },
+        "required": ["email", "username"]
       },
       "UserRequest": {
         "type": "object",
@@ -11802,6 +11971,7 @@
           "email": {
             "type": "string",
             "format": "email",
+            "minLength": 1,
             "title": "E-posta adresi",
             "maxLength": 254
           },
@@ -11844,7 +12014,7 @@
             "type": "string",
             "format": "binary",
             "nullable": true,
-            "title": "Kullanıcı Resmi"
+            "title": "Kullanıcı resmi"
           },
           "groups": {
             "type": "array",
@@ -11854,7 +12024,7 @@
             "title": "Groups"
           }
         },
-        "required": ["username"]
+        "required": ["email", "username"]
       },
       "UserWithGroupDetail": {
         "type": "object",
@@ -11926,7 +12096,7 @@
             "type": "string",
             "format": "uri",
             "nullable": true,
-            "title": "Kullanıcı Resmi"
+            "title": "Kullanıcı resmi"
           },
           "groups": {
             "type": "array",
@@ -11936,7 +12106,7 @@
             "title": "Groups"
           }
         },
-        "required": ["id", "username"]
+        "required": ["email", "id", "username"]
       },
       "Warehouse": {
         "type": "object",
