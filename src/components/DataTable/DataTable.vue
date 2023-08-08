@@ -95,13 +95,21 @@
                   v-if="activeColumns.get(column.id)"
                   :class="getAlignClass(column.align)"
                 >
-                  <div class="cell">
-                    {{ getColValue(column, row) }}
-                  </div>
-                  <slot
-                    :name="`td-inner-sibling-${column.id}`"
-                    v-bind="{ row: row, column: column }"
-                  />
+                  <span v-if="!$slots[`td-replace-${column.id}`]">
+                    <div class="cell">
+                      {{ getColValue(column, row) }}
+                    </div>
+                    <slot
+                      :name="`td-inner-sibling-${column.id}`"
+                      v-bind="{ row: row, column: column }"
+                    />
+                  </span>
+                  <span v-else>
+                    <slot
+                      :name="`td-replace-${column.id}`"
+                      v-bind="{ row: row, column: column }"
+                    />
+                  </span>
                   <q-tooltip v-if="column.hint !== undefined">
                     <div
                       style="
@@ -124,7 +132,7 @@
             v-for="row in data"
             :key="row.id"
             :class="{ selected: selectedMap.has(row.id) }"
-            class="data-card-container q-pa-sm col-xs-12 col-sm-6 col-md-4 col-lg-3"
+            class="data-card-container q-pa-sm col-xs-12 col-md-6 col-xl-3"
             @dblclick="toggleSelection(row)"
           >
             <div class="data-card-parent" style="width: 100%; height: 100%">
@@ -161,18 +169,32 @@
                 <q-list dense separator>
                   <template v-for="column in computedcolumns" :key="column.id">
                     <q-item v-if="activeColumns.get(column.id)">
-                      <q-item-section style="min-width: unset !important">
+                      <q-item-section side>
                         <q-item-label>{{
                           callOrGet(column.label, [column])
                         }}</q-item-label>
                       </q-item-section>
                       <q-item-section
-                        side
-                        style="color: inherit !important; font-weight: 900"
+                        style="
+                          color: inherit !important;
+                          font-weight: 900;
+                          word-break: break-all;
+                        "
                       >
-                        <div>
-                          {{ getColValue(column, row) }}
-                        </div>
+                        <span
+                          v-if="!$slots[`card-replace-${column.id}`]"
+                          class="row justify-end"
+                        >
+                          <div>
+                            {{ getColValue(column, row) }}
+                          </div>
+                        </span>
+                        <span v-else class="row justify-end">
+                          <slot
+                            :name="`card-replace-${column.id}`"
+                            v-bind="{ row: row, column: column }"
+                          />
+                        </span>
                         <q-tooltip v-if="column.hint !== undefined">
                           {{ getColHint(column, row) }}
                         </q-tooltip>
