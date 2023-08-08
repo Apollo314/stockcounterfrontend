@@ -44,7 +44,7 @@ type Row = BaseRow & ListType;
 
 type Column = BaseColumn<Row>;
 
-const operation = get_operation('/user/groups/', 'get');
+const operation = get_operation('/user/accounts/', 'get');
 const formComponents = create_filters(operation);
 
 type Filters = Record<keyof typeof formComponents, string>;
@@ -57,10 +57,22 @@ const co: ColumnsOverride<Column, Row> = {
   username: {},
   phone: {},
   email: {},
-  groups: {},
+  groups: {
+    field(row) {
+      return row.groups?.map((group) => group.name).join(', ');
+    },
+  },
   is_superuser: {},
-  is_staff: {},
-  is_active: {},
+  is_staff: {
+    field(row) {
+      return row.is_staff ? $t('yes') : $t('no');
+    },
+  },
+  is_active: {
+    field(row) {
+      return row.is_staff ? $t('yes') : $t('no');
+    },
+  },
   first_name: {},
   last_name: {},
   avatar: {},
