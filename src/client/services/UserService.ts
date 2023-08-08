@@ -14,8 +14,10 @@ import type { PaginatedUserList } from '../models/PaginatedUserList';
 import type { PatchedConciseUserRequest } from '../models/PatchedConciseUserRequest';
 import type { PatchedGroupRequest } from '../models/PatchedGroupRequest';
 import type { User } from '../models/User';
-import type { UserIn } from '../models/UserIn';
-import type { UserInRequest } from '../models/UserInRequest';
+import type { UserCreate } from '../models/UserCreate';
+import type { UserCreateRequest } from '../models/UserCreateRequest';
+import type { UserUpdate } from '../models/UserUpdate';
+import type { UserUpdateRequest } from '../models/UserUpdateRequest';
 import type { UserWithGroupDetail } from '../models/UserWithGroupDetail';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -100,14 +102,14 @@ export class UserService {
   }
 
   /**
-   * @returns UserIn
+   * @returns UserCreate
    * @throws ApiError
    */
   public userAccountsCreate({
     requestBody,
   }: {
-    requestBody: UserInRequest;
-  }): CancelablePromise<UserIn> {
+    requestBody: UserCreateRequest;
+  }): CancelablePromise<UserCreate> {
     return this.httpRequest.request({
       method: 'POST',
       url: '/user/accounts/',
@@ -138,7 +140,7 @@ export class UserService {
   }
 
   /**
-   * @returns UserIn
+   * @returns UserUpdate
    * @throws ApiError
    */
   public userAccountsUpdate({
@@ -149,8 +151,8 @@ export class UserService {
      * A unique integer value identifying this kullanıcı.
      */
     id: number;
-    requestBody: UserInRequest;
-  }): CancelablePromise<UserIn> {
+    requestBody: UserUpdateRequest;
+  }): CancelablePromise<UserUpdate> {
     return this.httpRequest.request({
       method: 'PUT',
       url: '/user/accounts/{id}/',

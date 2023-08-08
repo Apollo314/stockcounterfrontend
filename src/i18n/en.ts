@@ -53,6 +53,8 @@ export default {
     back: 'Back',
     forgotmypassword: 'Forgot my password',
     login: 'Log in',
+    generate_random: 'Generate random',
+    show_password: 'Show password',
   },
   commons: {
     add_new: 'Add new',
