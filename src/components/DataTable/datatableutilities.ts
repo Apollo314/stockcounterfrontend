@@ -2,9 +2,9 @@ import { Ref, ref } from 'vue';
 
 import {
   ExtendedParameterObject,
+  extractResponseSchemaFromOperation,
   OperationObject,
   SchemaObject,
-  extractResponseSchemaFromOperation,
 } from 'src/composables/openapihelpers';
 
 import { BaseColumn, BaseRow, ColumnsOverride } from './DataTable.vue';
