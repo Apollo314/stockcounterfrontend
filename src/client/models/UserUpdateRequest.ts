@@ -2,8 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UserIn = {
-  readonly id: number;
+export type UserUpdateRequest = {
   /**
    * Zorunlu. 150 karakter ya da daha az olmalı. Sadece harfler, rakamlar ve @/./+/-/_ karakterleri kullanılabilir.
    */
@@ -20,7 +19,7 @@ export type UserIn = {
    * Bu kullanıcıya ayrı ayrı izin atamadan tüm izinlerin verilip verilmeyeceğini belirler.
    */
   is_superuser?: boolean;
-  avatar?: string | null;
+  avatar?: Blob | null;
   /**
    * Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak.
    */

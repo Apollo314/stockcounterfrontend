@@ -6480,7 +6480,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserInRequest"
+                "$ref": "#/components/schemas/UserCreateRequest"
               }
             }
           },
@@ -6499,7 +6499,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserIn"
+                  "$ref": "#/components/schemas/UserCreate"
                 }
               }
             },
@@ -6564,7 +6564,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserInRequest"
+                "$ref": "#/components/schemas/UserUpdateRequest"
               }
             }
           },
@@ -6583,7 +6583,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserIn"
+                  "$ref": "#/components/schemas/UserUpdate"
                 }
               }
             },
@@ -11780,7 +11780,7 @@
         },
         "required": ["email", "id", "username"]
       },
-      "UserIn": {
+      "UserCreate": {
         "type": "object",
         "properties": {
           "id": {
@@ -11865,7 +11865,7 @@
         },
         "required": ["email", "id", "username"]
       },
-      "UserInRequest": {
+      "UserCreateRequest": {
         "type": "object",
         "properties": {
           "username": {
@@ -11943,9 +11943,34 @@
             "x-components": {
               "component": "group-selector"
             }
+          },
+          "password": {
+            "type": "string",
+            "writeOnly": true,
+            "minLength": 1,
+            "title": "Password",
+            "maxLength": 128,
+            "x-components": {
+              "component": "password-input",
+              "props": {
+                "suggest": true
+              }
+            }
+          },
+          "password2": {
+            "type": "string",
+            "writeOnly": true,
+            "minLength": 1,
+            "title": "Reenter the password",
+            "x-components": {
+              "component": "password-input",
+              "props": {
+                "suggest": false
+              }
+            }
           }
         },
-        "required": ["email", "username"]
+        "required": ["email", "password", "password2", "username"]
       },
       "UserRequest": {
         "type": "object",
@@ -12022,6 +12047,173 @@
               "$ref": "#/components/schemas/GroupRequest"
             },
             "title": "Groups"
+          }
+        },
+        "required": ["email", "username"]
+      },
+      "UserUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "username": {
+            "type": "string",
+            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
+            "title": "Username",
+            "pattern": "^[\\w.@+-]+$",
+            "maxLength": 150
+          },
+          "first_name": {
+            "type": "string",
+            "title": "First name",
+            "maxLength": 150
+          },
+          "last_name": {
+            "type": "string",
+            "title": "Last name",
+            "maxLength": 150
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "title": "Email address",
+            "maxLength": 254
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "title": "Phone",
+            "maxLength": 15
+          },
+          "is_staff": {
+            "type": "boolean",
+            "default": false,
+            "title": "Staff status",
+            "description": "Designates whether the user can log into this admin site.",
+            "x-components": {
+              "component": "checkbox",
+              "props": {
+                "label": "User is staff"
+              }
+            }
+          },
+          "is_superuser": {
+            "type": "boolean",
+            "default": false,
+            "title": "Superuser status",
+            "description": "Designates that this user has all permissions without explicitly assigning them.",
+            "x-components": {
+              "component": "checkbox",
+              "props": {
+                "label": "User is admin"
+              }
+            }
+          },
+          "avatar": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "User profile picture",
+            "x-components": {
+              "component": "single-image-selector"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": ""
+            },
+            "description": "The groups this user belongs to. A user will get all permissions granted to each of their groups.",
+            "title": "Groups",
+            "x-components": {
+              "component": "group-selector"
+            }
+          }
+        },
+        "required": ["email", "id", "username"]
+      },
+      "UserUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
+            "title": "Username",
+            "pattern": "^[\\w.@+-]+$",
+            "maxLength": 150
+          },
+          "first_name": {
+            "type": "string",
+            "title": "First name",
+            "maxLength": 150
+          },
+          "last_name": {
+            "type": "string",
+            "title": "Last name",
+            "maxLength": 150
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 1,
+            "title": "Email address",
+            "maxLength": 254
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "title": "Phone",
+            "maxLength": 15
+          },
+          "is_staff": {
+            "type": "boolean",
+            "default": false,
+            "title": "Staff status",
+            "description": "Designates whether the user can log into this admin site.",
+            "x-components": {
+              "component": "checkbox",
+              "props": {
+                "label": "User is staff"
+              }
+            }
+          },
+          "is_superuser": {
+            "type": "boolean",
+            "default": false,
+            "title": "Superuser status",
+            "description": "Designates that this user has all permissions without explicitly assigning them.",
+            "x-components": {
+              "component": "checkbox",
+              "props": {
+                "label": "User is admin"
+              }
+            }
+          },
+          "avatar": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true,
+            "title": "User profile picture",
+            "x-components": {
+              "component": "single-image-selector"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "title": ""
+            },
+            "description": "The groups this user belongs to. A user will get all permissions granted to each of their groups.",
+            "title": "Groups",
+            "x-components": {
+              "component": "group-selector"
+            }
           }
         },
         "required": ["email", "username"]

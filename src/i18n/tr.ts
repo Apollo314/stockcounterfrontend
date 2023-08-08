@@ -51,6 +51,8 @@ export default {
     back: 'Geri',
     forgotmypassword: 'Şifremi unuttum',
     login: 'Giriş yap',
+    generate_random: 'Rastgele oluştur',
+    show_password: 'Parolayı göster',
   },
   commons: {
     add_new: 'Yeni ekle',

@@ -24,6 +24,7 @@ import EnumSelector from './CustomComponents/EnumSelector.vue';
 import ImageSelector from './CustomComponents/ImageSelector.vue';
 import NumberInput from './CustomComponents/NumberInput.vue';
 import NumberRange from './CustomComponents/NumberRange.vue';
+import PasswordInput from './CustomComponents/PasswordInput.vue';
 import SearchSelector from './CustomComponents/SearchSelector.vue';
 import UndefinedWarningComponent from './CustomComponents/UndefinedWarningComponent.vue';
 
@@ -51,6 +52,7 @@ export const componentStrings = [
   'payment-type-select',
   'permissions-selector',
   'group-selector',
+  'password-input',
   'hidden',
   'undefined',
 ] as const;
@@ -233,6 +235,10 @@ export const componentMap: ComponentMap = {
         return option.name;
       },
     },
+  },
+  'password-input': {
+    component: PasswordInput,
+    props: {},
   },
   hidden: {
     component: DefaultField,
