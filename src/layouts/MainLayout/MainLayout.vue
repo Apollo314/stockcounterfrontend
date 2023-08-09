@@ -27,15 +27,15 @@
     </StickyHeader>
     <LeftDrawer v-model="leftDrawerOpen"></LeftDrawer>
     <q-page-container
-      class="perspective"
       style="display: grid; grid-template-columns: 100%"
       :class="{
         'page-in-transition': !transitioned || transitioning,
+        perspective: !transitioned || transitioning,
       }"
     >
-      <router-view v-slot="{ Component, route }">
+      <router-view v-slot="{ Component }">
         <Transition
-          :name="getTransition(route)"
+          :name="componentTransition"
           @before-enter="transitioning = true"
           @enter="transitioning = true"
           @after-enter="transitioning = false"
@@ -44,7 +44,7 @@
           @after-leave="transitioned = true"
         >
           <KeepAlive :max="10">
-            <Component :is="Component" :key="getKey(route)" />
+            <component :is="Component" :key="componentKey" />
           </KeepAlive>
         </Transition>
       </router-view>
@@ -54,8 +54,8 @@
 
 <script setup lang="ts">
 import { useQuasar } from 'quasar';
-import { Ref, provide, ref } from 'vue';
-import { RouteLocationNormalizedLoaded } from 'vue-router';
+import { Ref, computed, provide, ref } from 'vue';
+import { RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 
 import StickyHeader from 'components/Header/StickyHeader.vue';
 import { useSettingsStore } from 'src/stores/settings-store';
@@ -67,6 +67,7 @@ const subHeader = ref();
 const replacementFooterRef = ref();
 
 const settings = useSettingsStore();
+const route = useRoute();
 
 $q.dark.set('auto');
 
@@ -84,9 +85,7 @@ function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 
-const getKey = (
-  route: RouteLocationNormalizedLoaded
-): string | number | symbol => {
+const componentKey = computed(() => {
   if (route.meta.key) {
     return route.meta.key as string;
   } else if (route.meta.keyFunc) {
@@ -100,11 +99,9 @@ const getKey = (
   } else {
     return Math.random();
   }
-};
+});
 
-const getTransition = (
-  route: RouteLocationNormalizedLoaded
-): string | undefined => {
+const componentTransition = computed(() => {
   if (!settings.ui.showTransitionAnimations) return undefined;
   let transition: string = settings.ui.genericAnimation;
   if (route.meta.transition) {
@@ -113,7 +110,7 @@ const getTransition = (
     transition = route.params.transition as string;
   }
   return transition;
-};
+});
 
 provide<Ref<boolean>>('showHeader', showHeader);
 provide<Ref<HTMLElement>>('replacementFooterRef', replacementFooterRef);
