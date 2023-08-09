@@ -75,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import dayjs from 'dayjs';
+import { DateTime } from 'luxon';
 import { QInput } from 'quasar';
 import { useField } from 'vee-validate';
 import { ref, watch, toRef } from 'vue';
@@ -173,10 +173,9 @@ const selectLast = (
     weeks: number;
   }>
 ) => {
-  dateRange.value.from = dayjs()
-    .subtract(dayjs.duration(duration))
-    .format('YYYY-MM-DD');
-  dateRange.value.to = dayjs().format('YYYY-MM-DD');
+  console.log(duration);
+  dateRange.value.from = DateTime.now().minus(duration).toFormat('yyyy-LL-dd');
+  dateRange.value.to = DateTime.now().toFormat('yyyy-LL-dd');
 };
 </script>
 
