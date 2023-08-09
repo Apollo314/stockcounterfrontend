@@ -79,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import dayjs from 'dayjs';
+import { DateTime } from 'luxon';
 import { QInput } from 'quasar';
 import { useField } from 'vee-validate';
 import { ref, toRef, watch } from 'vue';
@@ -169,7 +169,7 @@ const selectDate = (
     weeks: number;
   }>
 ) => {
-  date.value = dayjs().add(dayjs.duration(duration)).format('YYYY-MM-DD');
+  date.value = DateTime.now().plus(duration).toFormat('yyyy-LL-dd');
 };
 </script>
 
