@@ -6213,8 +6213,8 @@
               "x-components": {
                 "component": "text-input",
                 "props": {
-                  "label": "Kullanıcı Adı",
-                  "placeholder": "Kullanıcı Adı"
+                  "label": "kullanıcı adı",
+                  "placeholder": "kullanıcı adı"
                 }
               }
             }
@@ -6229,23 +6229,24 @@
               "x-components": {
                 "component": "text-input",
                 "props": {
-                  "label": "Soy İsim",
-                  "placeholder": "Soy İsim"
+                  "label": "adı",
+                  "placeholder": "adı"
                 }
               }
             }
           },
           {
-            "name": "groups__in",
+            "name": "last_name__icontains",
             "required": false,
             "in": "query",
-            "description": "groups__in",
+            "description": "last_name__icontains",
             "schema": {
               "type": "string",
               "x-components": {
-                "component": "user-group-selector",
+                "component": "text-input",
                 "props": {
-                  "label": "Kullanıcı Grubu"
+                  "label": "soyadı",
+                  "placeholder": "soyadı"
                 }
               }
             }
@@ -6260,7 +6261,8 @@
               "x-components": {
                 "component": "checkbox",
                 "props": {
-                  "label": "Yetkili Çalışan"
+                  "label": "görev durumu",
+                  "toggleIndeterminate": true
                 }
               }
             }
@@ -6275,7 +6277,8 @@
               "x-components": {
                 "component": "checkbox",
                 "props": {
-                  "label": "Admin"
+                  "label": "süper kullanıcı durumu",
+                  "toggleIndeterminate": true
                 }
               }
             }
@@ -6290,7 +6293,8 @@
               "x-components": {
                 "component": "checkbox",
                 "props": {
-                  "label": "Etkin"
+                  "label": "etkin",
+                  "toggleIndeterminate": true
                 }
               }
             }
@@ -6305,7 +6309,23 @@
               "x-components": {
                 "component": "date-time-range",
                 "props": {
-                  "label": "Kayıt Tarihi"
+                  "label": "katılma tarihi"
+                }
+              }
+            }
+          },
+          {
+            "name": "groups__in",
+            "required": false,
+            "in": "query",
+            "description": "groups__in",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "group-selector",
+                "props": {
+                  "label": "gruplar",
+                  "multiple": true
                 }
               }
             }
@@ -6373,8 +6393,8 @@
                 "x-components": {
                   "component": "text-input",
                   "props": {
-                    "label": "Kullanıcı Adı",
-                    "placeholder": "Kullanıcı Adı"
+                    "label": "kullanıcı adı",
+                    "placeholder": "kullanıcı adı"
                   }
                 }
               }
@@ -6389,23 +6409,24 @@
                 "x-components": {
                   "component": "text-input",
                   "props": {
-                    "label": "Soy İsim",
-                    "placeholder": "Soy İsim"
+                    "label": "adı",
+                    "placeholder": "adı"
                   }
                 }
               }
             },
             {
-              "name": "groups__in",
+              "name": "last_name__icontains",
               "required": false,
               "in": "query",
-              "description": "groups__in",
+              "description": "last_name__icontains",
               "schema": {
                 "type": "string",
                 "x-components": {
-                  "component": "user-group-selector",
+                  "component": "text-input",
                   "props": {
-                    "label": "Kullanıcı Grubu"
+                    "label": "soyadı",
+                    "placeholder": "soyadı"
                   }
                 }
               }
@@ -6420,7 +6441,8 @@
                 "x-components": {
                   "component": "checkbox",
                   "props": {
-                    "label": "Yetkili Çalışan"
+                    "label": "görev durumu",
+                    "toggleIndeterminate": true
                   }
                 }
               }
@@ -6435,7 +6457,8 @@
                 "x-components": {
                   "component": "checkbox",
                   "props": {
-                    "label": "Admin"
+                    "label": "süper kullanıcı durumu",
+                    "toggleIndeterminate": true
                   }
                 }
               }
@@ -6450,7 +6473,8 @@
                 "x-components": {
                   "component": "checkbox",
                   "props": {
-                    "label": "Etkin"
+                    "label": "etkin",
+                    "toggleIndeterminate": true
                   }
                 }
               }
@@ -6465,7 +6489,23 @@
                 "x-components": {
                   "component": "date-time-range",
                   "props": {
-                    "label": "Kayıt Tarihi"
+                    "label": "katılma tarihi"
+                  }
+                }
+              }
+            },
+            {
+              "name": "groups__in",
+              "required": false,
+              "in": "query",
+              "description": "groups__in",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "group-selector",
+                  "props": {
+                    "label": "gruplar",
+                    "multiple": true
                   }
                 }
               }
@@ -11775,7 +11815,7 @@
             "items": {
               "$ref": "#/components/schemas/Group"
             },
-            "title": "Groups"
+            "title": "gruplar"
           }
         },
         "required": ["email", "id", "username"]
@@ -12046,7 +12086,7 @@
             "items": {
               "$ref": "#/components/schemas/GroupRequest"
             },
-            "title": "Groups"
+            "title": "gruplar"
           }
         },
         "required": ["email", "username"]
