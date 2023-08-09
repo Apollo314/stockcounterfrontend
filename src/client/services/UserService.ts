@@ -34,11 +34,12 @@ export class UserService {
     search,
     usernameIcontains,
     firstNameIcontains,
-    groupsIn,
+    lastNameIcontains,
     isStaff,
     isSuperuser,
     isActive,
     dateJoinedRange,
+    groupsIn,
     limit,
     offset,
   }: {
@@ -55,9 +56,9 @@ export class UserService {
      */
     firstNameIcontains?: string;
     /**
-     * groups__in
+     * last_name__icontains
      */
-    groupsIn?: string;
+    lastNameIcontains?: string;
     /**
      * is_staff
      */
@@ -75,6 +76,10 @@ export class UserService {
      */
     dateJoinedRange?: string;
     /**
+     * groups__in
+     */
+    groupsIn?: string;
+    /**
      * Number of results to return per page.
      */
     limit?: number;
@@ -90,11 +95,12 @@ export class UserService {
         search: search,
         username__icontains: usernameIcontains,
         first_name__icontains: firstNameIcontains,
-        groups__in: groupsIn,
+        last_name__icontains: lastNameIcontains,
         is_staff: isStaff,
         is_superuser: isSuperuser,
         is_active: isActive,
         date_joined__range: dateJoinedRange,
+        groups__in: groupsIn,
         limit: limit,
         offset: offset,
       },

@@ -9,6 +9,44 @@
       :filter-components="formComponents"
       @request="fetcher"
     >
+      <template #td-replace-groups="{ row }">
+        <div class="row justify-center">
+          <q-chip v-for="group in row.groups" :key="group.id" color="primary">
+            <router-link
+              :to="{ name: 'group-update', params: { id: group.id } }"
+            >
+              {{ group.name }}
+            </router-link>
+          </q-chip>
+        </div>
+      </template>
+      <template #card-replace-groups="{ row }">
+        <div class="row justify-center">
+          <q-chip v-for="group in row.groups" :key="group.id" color="primary">
+            <router-link
+              :to="{ name: 'group-update', params: { id: group.id } }"
+            >
+              {{ group.name }}
+            </router-link>
+          </q-chip>
+        </div>
+      </template>
+      <template #td-replace-avatar="{ row }">
+        <q-img
+          v-if="row.avatar"
+          fit="contain"
+          height="100px"
+          :src="row.avatar"
+        ></q-img>
+      </template>
+      <template #card-replace-avatar="{ row }">
+        <q-img
+          v-if="row.avatar"
+          fit="contain"
+          height="100px"
+          :src="row.avatar"
+        ></q-img>
+      </template>
     </DataTable>
   </FullHeightPage>
 </template>
@@ -49,7 +87,7 @@ const formComponents = create_filters(operation);
 
 type Filters = Record<keyof typeof formComponents, string>;
 
-const { t: $t } = useI18n();
+const { t: $t, d: $d } = useI18n();
 const card = ref(false);
 
 const co: ColumnsOverride<Column, Row> = {
@@ -58,25 +96,37 @@ const co: ColumnsOverride<Column, Row> = {
   phone: {},
   email: {},
   groups: {
+    width: 250,
+  },
+  first_name: {
+    width: 150,
+  },
+  last_name: {
+    width: 150,
+  },
+  avatar: {},
+  date_joined: {
+    hidden: true,
+    field: (row) => $d(row.date_joined || ''),
+  },
+  is_superuser: {
+    hidden: true,
     field(row) {
-      return row.groups?.map((group) => group.name).join(', ');
+      return row.is_staff ? $t('yes') : $t('no');
     },
   },
-  is_superuser: {},
   is_staff: {
+    hidden: true,
     field(row) {
       return row.is_staff ? $t('yes') : $t('no');
     },
   },
   is_active: {
+    hidden: true,
     field(row) {
       return row.is_staff ? $t('yes') : $t('no');
     },
   },
-  first_name: {},
-  last_name: {},
-  avatar: {},
-  date_joined: { hidden: true },
 };
 
 const columns = ColumnsGenerator<Column, Row>(co, operation);
