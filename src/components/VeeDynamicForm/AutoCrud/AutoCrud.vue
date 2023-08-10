@@ -227,7 +227,7 @@ const putOp = get_operation(
 );
 
 let formComponents: Map<string, FormComponent>;
-let hiddenFormComponents: unknown;
+let hiddenFormComponents: Map<string, FormComponent> | undefined;
 let validator: unknown;
 
 if (!props.query) {
