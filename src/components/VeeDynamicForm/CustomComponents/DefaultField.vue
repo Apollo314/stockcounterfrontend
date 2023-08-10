@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-input
-      v-model="value"
+      :model-value="value"
       :standout="standout"
       :outlined="outlined"
       :type="type"
@@ -14,6 +14,13 @@
       :dense="dense"
       autocomplete="new-password"
       :bg-color="highlight ? 'primary' : undefined"
+      @update:model-value="
+        if (type !== 'number') {
+          value = $event || '';
+        } else if ($event !== null) {
+          value = +$event;
+        }
+      "
       @blur="validate()"
     >
       <template v-if="icon" #prepend>
@@ -57,7 +64,7 @@ const props = withDefaults(
   }
 );
 
-const { value, validate, errorMessage } = useField<string>(
+const { value, validate, errorMessage } = useField<string | number>(
   toRef(props, 'name')
 );
 </script>
