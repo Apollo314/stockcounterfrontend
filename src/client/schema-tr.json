@@ -8750,14 +8750,17 @@
             "title": "Satış para birimi"
           },
           "kdv": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/KdvEnum"
-              }
-            ],
-            "title": "Katma Değer Vergisi",
+            "type": "integer",
+            "maximum": 2147483647,
             "minimum": -2147483648,
-            "maximum": 2147483647
+            "title": "Katma Değer Vergisi",
+            "x-components": {
+              "component": "text-input",
+              "props": {
+                "type": "number",
+                "prefix": "%"
+              }
+            }
           },
           "stock_code": {
             "type": "string",
@@ -8924,14 +8927,17 @@
             "title": "Satış para birimi"
           },
           "kdv": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/KdvEnum"
-              }
-            ],
-            "title": "Katma Değer Vergisi",
+            "type": "integer",
+            "maximum": 2147483647,
             "minimum": -2147483648,
-            "maximum": 2147483647
+            "title": "Katma Değer Vergisi",
+            "x-components": {
+              "component": "text-input",
+              "props": {
+                "type": "number",
+                "prefix": "%"
+              }
+            }
           },
           "stock_code": {
             "type": "string",
@@ -9059,14 +9065,17 @@
             "title": "Satış para birimi"
           },
           "kdv": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/KdvEnum"
-              }
-            ],
-            "title": "Katma Değer Vergisi",
+            "type": "integer",
+            "maximum": 2147483647,
             "minimum": -2147483648,
-            "maximum": 2147483647
+            "title": "Katma Değer Vergisi",
+            "x-components": {
+              "component": "text-input",
+              "props": {
+                "type": "number",
+                "prefix": "%"
+              }
+            }
           },
           "stock_code": {
             "type": "string",
@@ -9133,14 +9142,10 @@
             "maxLength": 20
           },
           "kdv": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/KdvEnum"
-              }
-            ],
-            "title": "Katma Değer Vergisi",
+            "type": "integer",
+            "maximum": 2147483647,
             "minimum": -2147483648,
-            "maximum": 2147483647
+            "title": "Katma Değer Vergisi"
           },
           "stocks": {
             "type": "array",
@@ -9229,14 +9234,10 @@
             "maxLength": 20
           },
           "kdv": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/KdvEnum"
-              }
-            ],
-            "title": "Katma Değer Vergisi",
+            "type": "integer",
+            "maximum": 2147483647,
             "minimum": -2147483648,
-            "maximum": 2147483647
+            "title": "Katma Değer Vergisi"
           },
           "stocks": {
             "type": "array",
@@ -9361,14 +9362,17 @@
             "title": "Satış para birimi"
           },
           "kdv": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/KdvEnum"
-              }
-            ],
-            "title": "Katma Değer Vergisi",
+            "type": "integer",
+            "maximum": 2147483647,
             "minimum": -2147483648,
-            "maximum": 2147483647
+            "title": "Katma Değer Vergisi",
+            "x-components": {
+              "component": "text-input",
+              "props": {
+                "type": "number",
+                "prefix": "%"
+              }
+            }
           },
           "stock_code": {
             "type": "string",
@@ -9454,10 +9458,6 @@
           "updated_at",
           "updated_by"
         ]
-      },
-      "KdvEnum": {
-        "enum": [0, 1, 8, 18],
-        "type": "integer"
       },
       "Login": {
         "type": "object",
@@ -10305,14 +10305,17 @@
             "title": "Satış para birimi"
           },
           "kdv": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/KdvEnum"
-              }
-            ],
-            "title": "Katma Değer Vergisi",
+            "type": "integer",
+            "maximum": 2147483647,
             "minimum": -2147483648,
-            "maximum": 2147483647
+            "title": "Katma Değer Vergisi",
+            "x-components": {
+              "component": "text-input",
+              "props": {
+                "type": "number",
+                "prefix": "%"
+              }
+            }
           },
           "stock_code": {
             "type": "string",

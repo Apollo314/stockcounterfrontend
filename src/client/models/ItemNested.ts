@@ -3,7 +3,6 @@
 /* eslint-disable */
 
 import type { CurrencyEnum } from './CurrencyEnum';
-import type { KdvEnum } from './KdvEnum';
 import type { StockUnitNested } from './StockUnitNested';
 import type { WarehouseItemStockINFO_ONLY } from './WarehouseItemStockINFO_ONLY';
 
@@ -13,7 +12,7 @@ export type ItemNested = {
   description?: string | null;
   stock_unit: StockUnitNested;
   barcode?: string | null;
-  kdv: KdvEnum;
+  kdv: number;
   stocks: Array<WarehouseItemStockINFO_ONLY>;
   stock_code?: string | null;
   buyprice: string;
