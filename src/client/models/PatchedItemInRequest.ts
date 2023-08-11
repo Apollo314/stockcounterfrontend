@@ -3,7 +3,6 @@
 /* eslint-disable */
 
 import type { CurrencyEnum } from './CurrencyEnum';
-import type { KdvEnum } from './KdvEnum';
 
 export type PatchedItemInRequest = {
   name?: string;
@@ -13,7 +12,7 @@ export type PatchedItemInRequest = {
   buycurrency?: CurrencyEnum;
   sellprice?: string;
   sellcurrency?: CurrencyEnum;
-  kdv?: KdvEnum;
+  kdv?: number;
   stock_code?: string | null;
   barcode?: string | null;
   description?: string | null;

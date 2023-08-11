@@ -3,7 +3,6 @@
 /* eslint-disable */
 
 import type { CurrencyEnum } from './CurrencyEnum';
-import type { KdvEnum } from './KdvEnum';
 import type { WarehouseItemStock } from './WarehouseItemStock';
 
 export type ItemIn = {
@@ -15,7 +14,7 @@ export type ItemIn = {
   buycurrency?: CurrencyEnum;
   sellprice: string;
   sellcurrency?: CurrencyEnum;
-  kdv: KdvEnum;
+  kdv: number;
   stock_code?: string | null;
   readonly stocks: Array<WarehouseItemStock>;
   barcode?: string | null;

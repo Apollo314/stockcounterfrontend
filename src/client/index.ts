@@ -50,7 +50,6 @@ export type { ItemInRequest } from './models/ItemInRequest';
 export type { ItemNested } from './models/ItemNested';
 export type { ItemNestedRequest } from './models/ItemNestedRequest';
 export type { ItemOut } from './models/ItemOut';
-export type { KdvEnum } from './models/KdvEnum';
 export type { Login } from './models/Login';
 export type { LoginRequest } from './models/LoginRequest';
 export type { LogoutRequest } from './models/LogoutRequest';

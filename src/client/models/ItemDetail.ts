@@ -5,7 +5,6 @@
 import type { Category } from './Category';
 import type { ConciseUser } from './ConciseUser';
 import type { CurrencyEnum } from './CurrencyEnum';
-import type { KdvEnum } from './KdvEnum';
 import type { StockUnit } from './StockUnit';
 import type { WarehouseItemStock } from './WarehouseItemStock';
 
@@ -21,7 +20,7 @@ export type ItemDetail = {
   buycurrency?: CurrencyEnum;
   sellprice: string;
   sellcurrency?: CurrencyEnum;
-  kdv: KdvEnum;
+  kdv: number;
   stock_code?: string | null;
   readonly stocks: Array<WarehouseItemStock>;
   barcode?: string | null;
