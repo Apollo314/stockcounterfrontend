@@ -47,6 +47,8 @@ onActivated(() => {
           response as NestedRecord
         );
       });
+  } else {
+    autoCrudRef.value?.setFieldValue('stakeholder', null);
   }
 });
 </script>
