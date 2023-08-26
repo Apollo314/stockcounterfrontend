@@ -28,9 +28,12 @@ export const defaultChartOptions = computed<DeepPartial<ChartOptions>>(() => {
       background: { color: 'transparent' },
       textColor: Dark.isActive ? 'white' : 'black',
     },
+    rightPriceScale: {
+      borderVisible: false,
+    },
     grid: {
       vertLines: { visible: false },
-      horzLines: { color: '#999' },
+      horzLines: { color: '#888' },
     },
     timeScale: {
       lockVisibleTimeRangeOnResize: true,
