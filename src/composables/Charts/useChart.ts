@@ -32,7 +32,11 @@ export const defaultChartOptions = computed<DeepPartial<ChartOptions>>(() => {
       vertLines: { visible: false },
       horzLines: { color: '#999' },
     },
-    timeScale: { fixLeftEdge: true, fixRightEdge: true },
+    timeScale: {
+      lockVisibleTimeRangeOnResize: true,
+      fixLeftEdge: true,
+      fixRightEdge: true,
+    },
   };
 });
 
@@ -109,7 +113,10 @@ export function useAddSeries<
     series.value = chart.value[seriesConstructorName](
       unref(seriesOptions)
     ) as SeriesApi;
-    series.value.setData(unref(data));
+    const seriesdata = unref(data);
+    if (seriesdata && seriesdata.length) {
+      series.value.setData(unref(data));
+    }
   });
 
   if (watchOptions) {
@@ -133,8 +140,8 @@ export function useAddSeries<
       () => unref(data),
       (newData) => {
         series.value?.setData(newData);
-      },
-      { deep: true }
+        chart.value?.timeScale().fitContent();
+      }
     );
   }
   return { series };
