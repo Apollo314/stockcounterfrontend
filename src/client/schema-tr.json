@@ -171,7 +171,7 @@
     },
     "/dashboard/": {
       "get": {
-        "operationId": "dashboard_retrieve",
+        "operationId": "dashboard_list",
         "tags": ["dashboard"],
         "security": [
           {
@@ -186,13 +186,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Dashboard"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Dashboard"
+                  }
                 }
               }
             },
             "description": ""
           }
-        }
+        },
+        "x-filters": {}
       }
     },
     "/inventory/bulk/category/": {
@@ -7739,57 +7743,42 @@
       },
       "Dashboard": {
         "type": "object",
+        "description": "This doesn't really do anything other than hinting openapi.",
         "properties": {
-          "leftover_items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ItemWidget"
-            },
-            "title": "Leftover items"
+          "id": {
+            "type": "integer",
+            "title": "Id"
           },
-          "last_items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ItemWidget"
-            },
-            "title": "Last items"
+          "widget_index": {
+            "type": "integer",
+            "title": "Widget index"
           },
-          "last_invoices": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoiceWidget"
-            },
-            "title": "Last invoices"
+          "user_settings": {
+            "type": "object",
+            "additionalProperties": {},
+            "title": "User settings"
           },
-          "best_customers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BestCustomerWidget"
-            },
-            "title": "Best customers"
+          "widget_name": {
+            "type": "string",
+            "title": "Widget name"
           },
-          "balance": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BalanceWidget"
-            },
-            "title": "Balance"
-          },
-          "balange_graph": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BalanceGraphWidget"
-            },
-            "title": "Balange graph"
-          },
-          "last_users": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/User"
-            },
-            "title": "Last users"
+          "widget_data": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/widget_data"
+              }
+            ],
+            "title": "Widget data",
+            "readOnly": true
           }
-        }
+        },
+        "required": [
+          "id",
+          "user_settings",
+          "widget_data",
+          "widget_index",
+          "widget_name"
+        ]
       },
       "Group": {
         "type": "object",
@@ -10662,14 +10651,14 @@
             "type": "string",
             "format": "binary",
             "nullable": true,
-            "title": "Thumbnail",
+            "title": "Önizleme resmi",
             "x-components": {
               "component": "single-image-selector"
             }
           },
           "stock_unit": {
             "type": "integer",
-            "title": "Stock unit",
+            "title": "Birim",
             "x-components": {
               "component": "unit-selector"
             }
@@ -10726,13 +10715,13 @@
           "stock_code": {
             "type": "string",
             "nullable": true,
-            "title": "Stock code",
+            "title": "Birim kodu",
             "maxLength": 40
           },
           "barcode": {
             "type": "string",
             "nullable": true,
-            "title": "Barcode",
+            "title": "Barkod",
             "maxLength": 20,
             "x-components": {
               "component": "barcode-scanner"
@@ -10741,12 +10730,12 @@
           "description": {
             "type": "string",
             "nullable": true,
-            "title": "Description",
+            "title": "Açıklama",
             "maxLength": 2000
           },
           "category": {
             "type": "integer",
-            "title": "Category",
+            "title": "Kategori",
             "nullable": true,
             "x-components": {
               "component": "category-selector"
@@ -12963,6 +12952,39 @@
           }
         },
         "required": ["name"]
+      },
+      "widget_data": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ItemWidget"
+          },
+          {
+            "$ref": "#/components/schemas/InvoiceWidget"
+          },
+          {
+            "$ref": "#/components/schemas/BestCustomerWidget"
+          },
+          {
+            "$ref": "#/components/schemas/BalanceWidget"
+          },
+          {
+            "$ref": "#/components/schemas/BalanceGraphWidget"
+          },
+          {
+            "$ref": "#/components/schemas/User"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "ItemWidget": "#/components/schemas/ItemWidget",
+            "InvoiceWidget": "#/components/schemas/InvoiceWidget",
+            "BestCustomerWidget": "#/components/schemas/BestCustomerWidget",
+            "BalanceWidget": "#/components/schemas/BalanceWidget",
+            "BalanceGraphWidget": "#/components/schemas/BalanceGraphWidget",
+            "User": "#/components/schemas/User"
+          }
+        }
       }
     },
     "securitySchemes": {

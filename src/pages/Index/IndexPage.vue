@@ -1,15 +1,12 @@
 <template>
   <FullHeightPage padding :fit="$q.screen.gt.sm">
     <div class="dashboard-grid">
-      <div class="comp1"></div>
-      <div class="comp2"></div>
-      <div class="comp3"></div>
-      <BalanceGraph :data="balanceGraphData"></BalanceGraph>
-      <div class="comp5"></div>
-      <div class="comp6"></div>
-      <div class="comp7"></div>
-      <div class="comp8"></div>
-      <div class="comp9"></div>
+      <component
+        :is="get_widget_component(dashboard_component.widget_name)"
+        v-for="dashboard_component in data"
+        :key="dashboard_component.id"
+        :data="dashboard_component.widget_data"
+      />
     </div>
   </FullHeightPage>
 </template>
@@ -18,16 +15,27 @@
 import { onActivated, ref } from 'vue';
 
 import { api } from 'src/boot/axios';
+import { Dashboard } from 'src/client';
 import BalanceGraph from 'src/components/Dashboard/Widgets/BalanceGraph.vue';
+import UnknownWidget from 'src/components/Dashboard/Widgets/UnknownWidget.vue';
 import FullHeightPage from 'src/components/Page/FullHeightPage.vue';
 
-const data = ref();
-const balanceGraphData = ref();
+import type { Component } from 'vue';
+
+const data = ref<Dashboard[]>();
+
+const WidgetMap: Record<string, Component> = {
+  balance_graph: BalanceGraph,
+};
+
+const get_widget_component = (widget_name: string) => {
+  const widget_component = WidgetMap[widget_name] || UnknownWidget;
+  return widget_component;
+};
 
 onActivated(() => {
-  api.dashboard.dashboardRetrieve().then((dashboardData) => {
+  api.dashboard.dashboardList().then((dashboardData) => {
     data.value = dashboardData;
-    balanceGraphData.value = data.value.widget_data.balance_graph_6;
   });
 });
 </script>

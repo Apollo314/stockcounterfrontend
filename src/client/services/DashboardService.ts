@@ -13,7 +13,7 @@ export class DashboardService {
    * @returns Dashboard
    * @throws ApiError
    */
-  public dashboardRetrieve(): CancelablePromise<Dashboard> {
+  public dashboardList(): CancelablePromise<Array<Dashboard>> {
     return this.httpRequest.request({
       method: 'GET',
       url: '/dashboard/',
