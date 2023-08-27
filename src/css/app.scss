@@ -1,6 +1,7 @@
 @use './scrollbar.scss';
 @use './transition-animations.scss';
 @use './datatable-styles.scss';
+@use './dashboardgrid.scss';
 
 $light-page: lighten($primary, 35%);
 
@@ -348,4 +349,8 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   appearance: textfield;
   -moz-appearance: textfield;
+}
+
+.rounded-borders {
+  border-radius: $generic-border-radius;
 }

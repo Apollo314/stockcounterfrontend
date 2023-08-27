@@ -169,6 +169,32 @@
         }
       }
     },
+    "/dashboard/": {
+      "get": {
+        "operationId": "dashboard_retrieve",
+        "tags": ["dashboard"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dashboard"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
     "/inventory/bulk/category/": {
       "delete": {
         "operationId": "inventory_bulk_category_destroy",
@@ -7198,6 +7224,112 @@
   },
   "components": {
     "schemas": {
+      "BalanceGraphWidget": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Ödeme hesabı adı",
+            "maxLength": 50
+          },
+          "bank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Bank"
+              }
+            ],
+            "title": "Bank"
+          },
+          "account_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "Hesap numarası"
+          },
+          "iban": {
+            "type": "string",
+            "nullable": true,
+            "title": "IBAN"
+          },
+          "balances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Balances"
+            },
+            "title": "Balances",
+            "readOnly": true
+          }
+        },
+        "required": ["balances", "bank", "id", "name"]
+      },
+      "BalanceWidget": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Ödeme hesabı adı",
+            "maxLength": 50
+          },
+          "bank": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Bank"
+              }
+            ],
+            "title": "Bank"
+          },
+          "account_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "Hesap numarası"
+          },
+          "iban": {
+            "type": "string",
+            "nullable": true,
+            "title": "IBAN"
+          },
+          "balance": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "title": "Balance"
+          }
+        },
+        "required": ["balance", "bank", "id", "name"]
+      },
+      "Balances": {
+        "type": "object",
+        "description": "this exist to fill openapi schema correctly. no other reason",
+        "properties": {
+          "balance": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "title": "Balance"
+          },
+          "range": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date",
+              "title": ""
+            },
+            "title": "Range",
+            "maxItems": 2,
+            "minItems": 2
+          }
+        },
+        "required": ["balance", "range"]
+      },
       "Bank": {
         "type": "object",
         "properties": {
@@ -7315,6 +7447,66 @@
           }
         },
         "required": ["name"]
+      },
+      "BestCustomerWidget": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Tam ad",
+            "maxLength": 400
+          },
+          "role": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RoleEnum"
+              }
+            ],
+            "title": "Rol"
+          },
+          "shortname": {
+            "type": "string",
+            "title": "Short name",
+            "maxLength": 100
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "title": "Telefon",
+            "maxLength": 20
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true,
+            "title": "Eposta",
+            "maxLength": 100
+          },
+          "vkntckn": {
+            "type": "string",
+            "nullable": true,
+            "title": "VKN/TCKN",
+            "maxLength": 40
+          },
+          "address": {
+            "type": "string",
+            "nullable": true,
+            "title": "Adres",
+            "maxLength": 1000
+          },
+          "cash_in": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "title": "Cash in"
+          }
+        },
+        "required": ["cash_in", "id", "name", "role", "shortname"]
       },
       "Category": {
         "type": "object",
@@ -7439,15 +7631,6 @@
             "format": "uri",
             "nullable": true,
             "title": "Kullanıcı resmi"
-          },
-          "groups": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "title": "Gruplar"
-            },
-            "title": "Gruplar",
-            "description": "Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak."
           }
         },
         "required": ["email", "id", "username"]
@@ -7520,15 +7703,6 @@
             "format": "binary",
             "nullable": true,
             "title": "Kullanıcı resmi"
-          },
-          "groups": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "title": "Gruplar"
-            },
-            "title": "Gruplar",
-            "description": "Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak."
           }
         },
         "required": ["email", "username"]
@@ -7562,6 +7736,60 @@
       "CurrencyEnum": {
         "enum": ["TRY", "USD", "EUR", "GBP"],
         "type": "string"
+      },
+      "Dashboard": {
+        "type": "object",
+        "properties": {
+          "leftover_items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemWidget"
+            },
+            "title": "Leftover items"
+          },
+          "last_items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemWidget"
+            },
+            "title": "Last items"
+          },
+          "last_invoices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceWidget"
+            },
+            "title": "Last invoices"
+          },
+          "best_customers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BestCustomerWidget"
+            },
+            "title": "Best customers"
+          },
+          "balance": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BalanceWidget"
+            },
+            "title": "Balance"
+          },
+          "balange_graph": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BalanceGraphWidget"
+            },
+            "title": "Balange graph"
+          },
+          "last_users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            },
+            "title": "Last users"
+          }
+        }
       },
       "Group": {
         "type": "object",
@@ -8679,6 +8907,86 @@
         "enum": ["purchase", "sale", "refund-purchase", "refund-sale"],
         "type": "string"
       },
+      "InvoiceWidget": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "invoice_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvoiceTypeEnum"
+              }
+            ],
+            "title": "Fatura tipi"
+          },
+          "name": {
+            "type": "string",
+            "title": "Fatura adı",
+            "maxLength": 100
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Açıklama"
+          },
+          "last_payment_date": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Son ödeme tarihi"
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Fatura para birimi"
+          },
+          "currency_exchange_rate": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "nullable": true,
+            "title": "Fatura döviz kuru"
+          },
+          "stakeholder": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StakeholderBasic"
+              }
+            ],
+            "title": "Stakeholder"
+          },
+          "created_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConciseUser"
+              }
+            ],
+            "title": "Oluşturan"
+          },
+          "total": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "nullable": true,
+            "title": "Vergisiz toplam"
+          },
+          "total_with_tax": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "nullable": true,
+            "title": "Vergiler dahil toplam"
+          }
+        },
+        "required": ["created_by", "id", "invoice_type", "name", "stakeholder"]
+      },
       "ItemDetail": {
         "type": "object",
         "description": "For individual actions, create, update, delete...",
@@ -9459,6 +9767,113 @@
           "updated_by"
         ]
       },
+      "ItemWidget": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Ürün/Hizmet",
+            "maxLength": 200
+          },
+          "thumbnail": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Önizleme resmi",
+            "x-components": {
+              "component": "single-image-selector"
+            }
+          },
+          "stock_unit": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StockUnit"
+              }
+            ],
+            "title": "Birim",
+            "x-components": {
+              "component": "unit-selector"
+            }
+          },
+          "stocks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WarehouseItemStock"
+            },
+            "readOnly": true,
+            "title": "Stocks"
+          },
+          "buyprice": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "title": "Alış fiyatı",
+            "x-components": {
+              "component": "money-input"
+            }
+          },
+          "sellprice": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "title": "Satış fiyatı",
+            "x-components": {
+              "component": "money-input"
+            }
+          },
+          "buycurrency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Alış para birimi"
+          },
+          "sellcurrency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Satış para birimi"
+          },
+          "created_by": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ConciseUser"
+              }
+            ],
+            "title": "Oluşturan"
+          },
+          "category": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Category"
+              }
+            ],
+            "title": "Kategori",
+            "x-components": {
+              "component": "category-selector"
+            }
+          }
+        },
+        "required": [
+          "buyprice",
+          "created_by",
+          "id",
+          "name",
+          "sellprice",
+          "stock_unit",
+          "stocks"
+        ]
+      },
       "Login": {
         "type": "object",
         "properties": {
@@ -10070,15 +10485,6 @@
             "format": "binary",
             "nullable": true,
             "title": "Kullanıcı resmi"
-          },
-          "groups": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "title": "Gruplar"
-            },
-            "title": "Gruplar",
-            "description": "Bu kullanıcının ait olduğu gruplar. Bir kullanıcı kendi gruplarının her birine verilmiş olan tüm izinleri alacak."
           }
         }
       },
@@ -10256,14 +10662,14 @@
             "type": "string",
             "format": "binary",
             "nullable": true,
-            "title": "Önizleme resmi",
+            "title": "Thumbnail",
             "x-components": {
               "component": "single-image-selector"
             }
           },
           "stock_unit": {
             "type": "integer",
-            "title": "Birim",
+            "title": "Stock unit",
             "x-components": {
               "component": "unit-selector"
             }
@@ -10320,13 +10726,13 @@
           "stock_code": {
             "type": "string",
             "nullable": true,
-            "title": "Birim kodu",
+            "title": "Stock code",
             "maxLength": 40
           },
           "barcode": {
             "type": "string",
             "nullable": true,
-            "title": "Barkod",
+            "title": "Barcode",
             "maxLength": 20,
             "x-components": {
               "component": "barcode-scanner"
@@ -10335,12 +10741,12 @@
           "description": {
             "type": "string",
             "nullable": true,
-            "title": "Açıklama",
+            "title": "Description",
             "maxLength": 2000
           },
           "category": {
             "type": "integer",
-            "title": "Kategori",
+            "title": "Category",
             "nullable": true,
             "x-components": {
               "component": "category-selector"

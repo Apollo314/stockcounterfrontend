@@ -47,6 +47,16 @@ const editor = {
 };
 
 export default {
+  dashboard: {
+    'account-balance': 'Account Balance',
+    'balance-graph': {
+      all_accounts: 'All Accounts',
+      cumulative: 'Cumulative',
+      daily: 'Daily',
+      weekly: 'Weekly',
+      monthly: 'Monthly',
+    },
+  },
   'ajv-errors': ajvErrors,
   appName: 'Stock Counter',
   buttons: {

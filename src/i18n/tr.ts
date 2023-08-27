@@ -45,6 +45,16 @@ const editor = {
 };
 
 export default {
+  dashboard: {
+    'account-balance': 'Hesap Bakiyesi',
+    'balance-graph': {
+      all_accounts: 'Tüm Hesaplar',
+      cumulative: 'Kümülatif',
+      daily: 'Günlük',
+      weekly: 'Haftalık',
+      monthly: 'Aylık',
+    },
+  },
   'ajv-errors': ajvErrors,
   appName: 'Stok Takibi',
   buttons: {

@@ -31,17 +31,18 @@ const routes: RouteRecordRawExtended[] = [
         path: '',
         component: () => import('pages/Index/IndexPage.vue'),
         name: 'home',
-        meta: { key: 'Index' },
+        meta: { key: 'home' },
       },
       {
-        path: '/login',
+        path: 'login',
         component: () => import('pages/Login/LoginPage.vue'),
-        name: 'home',
+        name: 'login',
+        meta: { key: 'login' },
       },
 
       // Item
       {
-        path: 'items/',
+        path: 'items',
         component: () => import('src/pages/Items/ListView.vue'),
         name: 'items-list',
         meta: { key: 'items-list' },
@@ -65,7 +66,7 @@ const routes: RouteRecordRawExtended[] = [
 
       // Stockunit
       {
-        path: 'stockunits/',
+        path: 'stockunits',
         component: () => import('src/pages/StockUnits/ListView.vue'),
         name: 'stockunit-list',
         meta: { key: 'stockunit-list' },
@@ -89,7 +90,7 @@ const routes: RouteRecordRawExtended[] = [
 
       // Category
       {
-        path: 'categories/',
+        path: 'categories',
         component: () => import('src/pages/Categories/ListView.vue'),
         name: 'category-list',
         meta: { key: 'category-list' },
@@ -113,7 +114,7 @@ const routes: RouteRecordRawExtended[] = [
 
       // Warehouse
       {
-        path: 'warehouses/',
+        path: 'warehouses',
         component: () => import('src/pages/Warehouses/ListView.vue'),
         name: 'warehouse-list',
         meta: { key: 'warehouse-list' },
@@ -137,7 +138,7 @@ const routes: RouteRecordRawExtended[] = [
 
       // Stakeholder / Customer
       {
-        path: 'customers/',
+        path: 'customers',
         component: () => import('src/pages/Stakeholders/ListView.vue'),
         name: 'customer-list',
         meta: { key: 'customer-list', role: 'customer' },
@@ -162,7 +163,7 @@ const routes: RouteRecordRawExtended[] = [
 
       // Stakeholder / Supplier
       {
-        path: 'suppliers/',
+        path: 'suppliers',
         component: () => import('src/pages/Stakeholders/ListView.vue'),
         name: 'supplier-list',
         meta: { key: 'supplier-list' },
@@ -186,7 +187,7 @@ const routes: RouteRecordRawExtended[] = [
 
       // Invoice
       {
-        path: 'sale-invoices/',
+        path: 'sale-invoices',
         component: () => import('pages/Invoices/ListView.vue'),
         name: 'sale-invoice-list',
         meta: { key: 'sale-invoice-list' },
@@ -210,7 +211,7 @@ const routes: RouteRecordRawExtended[] = [
         },
       },
       {
-        path: 'purchase-invoices/',
+        path: 'purchase-invoices',
         component: () => import('pages/Invoices/ListView.vue'),
         name: 'purchase-invoice-list',
         meta: { key: 'purchase-invoice-list' },
@@ -234,7 +235,7 @@ const routes: RouteRecordRawExtended[] = [
         },
       },
       {
-        path: 'refund-sale-invoices/',
+        path: 'refund-sale-invoices',
         component: () => import('pages/Invoices/ListView.vue'),
         name: 'refund-sale-invoice-list',
         meta: { key: 'refund-sale-invoice-list' },
@@ -258,7 +259,7 @@ const routes: RouteRecordRawExtended[] = [
         },
       },
       {
-        path: 'refund-purchase-invoices/',
+        path: 'refund-purchase-invoices',
         component: () => import('pages/Invoices/ListView.vue'),
         name: 'refund-purchase-invoice-list',
         meta: { key: 'refund-purchase-invoice-list' },
@@ -434,7 +435,7 @@ const routes: RouteRecordRawExtended[] = [
       // Users and Groups
 
       {
-        path: 'settings/',
+        path: 'settings',
         component: () => import('pages/Settings/SettingsPage.vue'),
         name: 'settings',
       },
