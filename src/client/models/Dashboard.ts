@@ -2,19 +2,15 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { BalanceGraphWidget } from './BalanceGraphWidget';
-import type { BalanceWidget } from './BalanceWidget';
-import type { BestCustomerWidget } from './BestCustomerWidget';
-import type { InvoiceWidget } from './InvoiceWidget';
-import type { ItemWidget } from './ItemWidget';
-import type { User } from './User';
+import type { widget_data } from './widget_data';
 
+/**
+ * This doesn't really do anything other than hinting openapi.
+ */
 export type Dashboard = {
-  leftover_items?: Array<ItemWidget>;
-  last_items?: Array<ItemWidget>;
-  last_invoices?: Array<InvoiceWidget>;
-  best_customers?: Array<BestCustomerWidget>;
-  balance?: Array<BalanceWidget>;
-  balange_graph?: Array<BalanceGraphWidget>;
-  last_users?: Array<User>;
+  id: number;
+  widget_index: number;
+  user_settings: Record<string, any>;
+  widget_name: string;
+  readonly widget_data: widget_data;
 };

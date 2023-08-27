@@ -139,6 +139,7 @@ export type { WarehouseItemStockNested } from './models/WarehouseItemStockNested
 export type { WarehouseItemStockNestedRequest } from './models/WarehouseItemStockNestedRequest';
 export type { WarehouseItemStockRequest } from './models/WarehouseItemStockRequest';
 export type { WarehouseRequest } from './models/WarehouseRequest';
+export type { widget_data } from './models/widget_data';
 
 export { ApiService } from './services/ApiService';
 export { DashboardService } from './services/DashboardService';
