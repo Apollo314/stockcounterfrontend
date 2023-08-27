@@ -6,6 +6,7 @@ import type { OpenAPIConfig } from './core/OpenAPI';
 import { AxiosHttpRequest } from './core/AxiosHttpRequest';
 
 import { ApiService } from './services/ApiService';
+import { DashboardService } from './services/DashboardService';
 import { InventoryService } from './services/InventoryService';
 import { InvoiceService } from './services/InvoiceService';
 import { PaymentsService } from './services/PaymentsService';
@@ -16,6 +17,7 @@ type HttpRequestConstructor = new (config: OpenAPIConfig) => BaseHttpRequest;
 
 export class AppClient {
   public readonly api: ApiService;
+  public readonly dashboard: DashboardService;
   public readonly inventory: InventoryService;
   public readonly invoice: InvoiceService;
   public readonly payments: PaymentsService;
@@ -41,6 +43,7 @@ export class AppClient {
     });
 
     this.api = new ApiService(this.request);
+    this.dashboard = new DashboardService(this.request);
     this.inventory = new InventoryService(this.request);
     this.invoice = new InvoiceService(this.request);
     this.payments = new PaymentsService(this.request);
