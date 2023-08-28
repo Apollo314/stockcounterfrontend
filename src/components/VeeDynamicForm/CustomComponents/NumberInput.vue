@@ -42,6 +42,7 @@ const props = withDefaults(
     suffix?: string;
     highlight?: boolean;
     focusOnHighlight?: boolean;
+    pattern?: string;
   }>(),
   {
     prefix: undefined,

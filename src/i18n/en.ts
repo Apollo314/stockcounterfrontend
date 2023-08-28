@@ -48,6 +48,7 @@ const editor = {
 
 export default {
   dashboard: {
+    'leftover-items': 'Unsold Items',
     'last-invoices': 'Last Invoices',
     'invoice-name': 'Invoice name',
     'invoice-total': 'Total',
