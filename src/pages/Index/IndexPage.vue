@@ -1,13 +1,15 @@
 <template>
-  <FullHeightPage padding :fit="$q.screen.gt.sm">
-    <div class="dashboard-grid">
-      <component
-        :is="get_widget_component(dashboard_component.widget_name)"
-        v-for="dashboard_component in data"
-        :key="dashboard_component.id"
-        :data="dashboard_component.widget_data"
-      />
-    </div>
+  <FullHeightPage padding>
+    <q-card class="my-card">
+      <div class="dashboard-grid">
+        <component
+          :is="get_widget_component(dashboard_component.widget_name)"
+          v-for="dashboard_component in data"
+          :key="dashboard_component.id"
+          :data="dashboard_component.widget_data"
+        />
+      </div>
+    </q-card>
   </FullHeightPage>
 </template>
 
@@ -19,6 +21,7 @@ import { Dashboard, WidgetNameEnum } from 'src/client';
 import AccountBalance from 'src/components/Dashboard/Widgets/AccountBalance.vue';
 import BalanceGraph from 'src/components/Dashboard/Widgets/BalanceGraph.vue';
 import BestCustomers from 'src/components/Dashboard/Widgets/BestCustomers.vue';
+import DuePayments from 'src/components/Dashboard/Widgets/DuePayments/DuePayments.vue';
 import LastItems from 'src/components/Dashboard/Widgets/LastItems.vue';
 import UnknownWidget from 'src/components/Dashboard/Widgets/UnknownWidget.vue';
 import FullHeightPage from 'src/components/Page/FullHeightPage.vue';
@@ -32,9 +35,9 @@ const WidgetMap: Record<WidgetNameEnum, Component> = {
   balance: AccountBalance,
   last_items: LastItems,
   best_customers: BestCustomers,
+  due_payments: DuePayments,
 
   last_users: UnknownWidget,
-  due_payments: UnknownWidget,
   last_invoices: UnknownWidget,
   leftover_items: UnknownWidget,
 };
