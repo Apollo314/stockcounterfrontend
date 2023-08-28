@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { Bank } from './Bank';
+import type { CurrencyEnum } from './CurrencyEnum';
 import type { Stakeholder } from './Stakeholder';
 import type { User } from './User';
 
@@ -17,4 +18,5 @@ export type PaymentAccountOut = {
   account_number?: string | null;
   iban?: string | null;
   stakeholder?: Stakeholder;
+  account_currency?: CurrencyEnum;
 };

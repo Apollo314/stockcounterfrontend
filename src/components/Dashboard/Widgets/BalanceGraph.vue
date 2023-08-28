@@ -69,22 +69,30 @@ const lwchartContainer = ref<HTMLElement>();
 const chosenAccount = ref<BalanceGraphWidget>();
 const cumulative = ref(true);
 
-type WidgetData = Pick<BalanceGraphWidget, 'name' | 'balances'>;
-type DecimalWidgetData = Omit<WidgetData, 'balances'> & {
+type WidgetData = Pick<
+  BalanceGraphWidget,
+  'name' | 'balances' | 'balance_before'
+>;
+type DecimalWidgetData = Omit<WidgetData, 'balances' | 'balance_before'> & {
   balances: (Omit<WidgetData['balances'][number], 'balance'> & {
     balance: Decimal;
   })[];
+  balance_before: Decimal;
 };
 
 const combineAllAccounts = () => {
   let result: DecimalWidgetData = {
     balances: [],
     name: $t('dashboard.balance-graph.all_accounts'),
+    balance_before: new Decimal(0),
   };
   if (!props.data) return;
   for (let index = 0; index < props.data.length; index++) {
     const account_data = props.data?.[index];
     if (!account_data) return;
+    result.balance_before = result.balance_before.plus(
+      new Decimal(account_data.balance_before)
+    );
     for (let j = 0; j < account_data.balances.length; j++) {
       const balance_data = account_data.balances[j];
       if (!balance_data) return;
@@ -109,6 +117,7 @@ const stringToDecimal = (input: BalanceGraphWidget) => {
   const result: DecimalWidgetData = {
     balances: [],
     name: input.name,
+    balance_before: new Decimal(input.balance_before),
   };
   for (let index = 0; index < input.balances.length; index++) {
     const balance_data = input.balances[index];
@@ -124,8 +133,9 @@ const accumulate = (input: DecimalWidgetData) => {
   const result: DecimalWidgetData = {
     balances: [],
     name: input.name,
+    balance_before: input.balance_before,
   };
-  let accumulated_balance = new Decimal(0);
+  let accumulated_balance = result.balance_before;
   for (let index = 0; index < input.balances.length; index++) {
     const balance_data = input.balances[index];
     accumulated_balance = accumulated_balance.plus(balance_data.balance);

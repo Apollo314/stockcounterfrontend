@@ -2,9 +2,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { StakeholderRequest } from './StakeholderRequest';
+import type { CurrencyEnum } from './CurrencyEnum';
+import type { StakeholderBasicRequest } from './StakeholderBasicRequest';
 
 export type PaymentAccountOutSimpleRequest = {
   name: string;
-  stakeholder?: StakeholderRequest;
+  stakeholder?: StakeholderBasicRequest;
+  account_currency?: CurrencyEnum;
 };

@@ -7266,9 +7266,24 @@
             },
             "title": "Balances",
             "readOnly": true
+          },
+          "balance_before": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
+            "title": "Balance before"
+          },
+          "account_currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Account currency"
           }
         },
-        "required": ["balances", "bank", "id", "name"]
+        "required": ["balance_before", "balances", "bank", "id", "name"]
       },
       "BalanceWidget": {
         "type": "object",
@@ -7306,6 +7321,15 @@
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
             "title": "Balance"
+          },
+          "account_currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Account currency"
           }
         },
         "required": ["balance", "bank", "id", "name"]
@@ -10793,6 +10817,15 @@
               }
             ],
             "title": "Stakeholder"
+          },
+          "account_currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Account currency"
           }
         }
       },
@@ -11211,6 +11244,15 @@
             "x-components": {
               "component": "stakeholder-selector"
             }
+          },
+          "account_currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Account currency"
           }
         },
         "required": [
@@ -11256,6 +11298,15 @@
             "x-components": {
               "component": "stakeholder-selector"
             }
+          },
+          "account_currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Account currency"
           }
         },
         "required": ["bank", "name", "stakeholder"]
@@ -11328,6 +11379,15 @@
               }
             ],
             "title": "Stakeholder"
+          },
+          "account_currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Account currency"
           }
         },
         "required": [
@@ -11351,10 +11411,19 @@
           "stakeholder": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/Stakeholder"
+                "$ref": "#/components/schemas/StakeholderBasic"
               }
             ],
             "title": "Stakeholder"
+          },
+          "account_currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Account currency"
           }
         },
         "required": ["name"]
@@ -11371,10 +11440,19 @@
           "stakeholder": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/StakeholderRequest"
+                "$ref": "#/components/schemas/StakeholderBasicRequest"
               }
             ],
             "title": "Stakeholder"
+          },
+          "account_currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "TRY",
+            "title": "Account currency"
           }
         },
         "required": ["name"]
