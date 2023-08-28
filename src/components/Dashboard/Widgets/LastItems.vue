@@ -16,6 +16,15 @@
           class="full-width rounded-borders"
           style="overflow: hidden"
         >
+          <q-item>
+            <q-item-section>{{ $t('dashboard.item-name') }}</q-item-section>
+            <q-item-section align="center">{{
+              $t('dashboard.item-stock')
+            }}</q-item-section>
+            <q-item-section align="right">
+              {{ $t('dashboard.item-buy-sell') }}
+            </q-item-section>
+          </q-item>
           <q-item
             v-for="item in data"
             :key="item.id"
@@ -23,36 +32,44 @@
             clickable
             :to="{ name: 'items-update', params: { id: item.id } }"
           >
-            <q-item-section v-if="item.thumbnail" avatar>
+            <q-tooltip
+              v-if="item.thumbnail"
+              class="bg-transparent"
+              style="overflow: visible"
+            >
               <q-img
+                class="rounded-borders shadow-10"
+                style="height: 200px; width: 200px"
                 :src="item.thumbnail"
                 spinner-color="primary"
                 spinner-size="82px"
               />
-            </q-item-section>
+            </q-tooltip>
             <q-item-section>{{ item.name }}</q-item-section>
-            <q-item-section
-              >{{
+            <q-item-section align="center">
+              {{
                 item.stocks.reduce(
                   (sum, stock) => sum + parseFloat(stock.amount),
                   0
                 )
               }}
-              {{ item.stock_unit.name }}</q-item-section
-            >
-            <q-item-section
-              >{{
+              {{ item.stock_unit.name }}
+            </q-item-section>
+            <q-item-section align="right">
+              {{
                 $n(parseFloat(item.buyprice), {
                   style: 'currency',
                   currency: item.buycurrency,
                 })
-              }}-{{
+              }}
+              -
+              {{
                 $n(parseFloat(item.sellprice), {
                   style: 'currency',
                   currency: item.sellcurrency,
                 })
-              }}</q-item-section
-            >
+              }}
+            </q-item-section>
           </q-item>
         </q-list>
       </q-card>
