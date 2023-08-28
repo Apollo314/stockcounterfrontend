@@ -46,6 +46,10 @@ const editor = {
 
 export default {
   dashboard: {
+    'due-payments': 'Vadesi Gelmiş Ödemeler',
+    'payment-amount': 'Miktar',
+    'other-side': 'Diğer taraf',
+    'due-date': 'Son ödeme',
     'best-customers': 'En İyi Müşteriler',
     'customer-name': 'Müşteri adı',
     'customer-cash-in': 'Müşteri getirisi',

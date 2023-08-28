@@ -48,6 +48,10 @@ const editor = {
 
 export default {
   dashboard: {
+    'due-payments': 'Due Payments',
+    'payment-amount': 'Amount',
+    'other-side': 'Other side',
+    'due-date': 'Due date',
     'best-customers': 'Best Customers',
     'customer-name': 'Customer name',
     'customer-cash-in': 'Customer Cash In',
