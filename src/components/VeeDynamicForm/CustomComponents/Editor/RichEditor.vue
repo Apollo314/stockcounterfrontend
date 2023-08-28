@@ -122,7 +122,6 @@ watch(value, () => {
 const fabPos = ref([18, 18]);
 const draggingFab = ref(false);
 const moveFab: TouchPanValue = (ev) => {
-  console.log(ev);
   draggingFab.value = ev.isFirst !== true && ev.isFinal !== true;
   fabPos.value = [
     fabPos.value[0] - (ev?.delta?.x || 0),

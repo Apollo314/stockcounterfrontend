@@ -106,9 +106,7 @@ const parseNumber = (strnumber: string) => {
   let cleaned_number = strnumber.replaceAll(thousandsSep, '');
   cleaned_number = cleaned_number.replace(decimalSep, '.');
   const decimalSepCount = cleaned_number.match(/\./g)?.length || 0;
-  if (decimalSepCount > 1) {
-    console.log('wopsie daisy');
-  } else {
+  if (!(decimalSepCount > 1)) {
     return parseFloat(cleaned_number);
   }
   return 0;

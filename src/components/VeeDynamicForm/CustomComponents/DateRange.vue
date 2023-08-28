@@ -173,7 +173,6 @@ const selectLast = (
     weeks: number;
   }>
 ) => {
-  console.log(duration);
   dateRange.value.from = DateTime.now().minus(duration).toFormat('yyyy-LL-dd');
   dateRange.value.to = DateTime.now().toFormat('yyyy-LL-dd');
 };
