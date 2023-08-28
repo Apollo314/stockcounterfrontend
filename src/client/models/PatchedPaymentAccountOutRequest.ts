@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { BankRequest } from './BankRequest';
+import type { CurrencyEnum } from './CurrencyEnum';
 import type { StakeholderRequest } from './StakeholderRequest';
 import type { UserRequest } from './UserRequest';
 
@@ -14,4 +15,5 @@ export type PatchedPaymentAccountOutRequest = {
   account_number?: string | null;
   iban?: string | null;
   stakeholder?: StakeholderRequest;
+  account_currency?: CurrencyEnum;
 };

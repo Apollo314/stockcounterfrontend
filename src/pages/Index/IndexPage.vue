@@ -16,6 +16,7 @@ import { onActivated, ref } from 'vue';
 
 import { api } from 'src/boot/axios';
 import { Dashboard } from 'src/client';
+import AccountBalance from 'src/components/Dashboard/Widgets/AccountBalance.vue';
 import BalanceGraph from 'src/components/Dashboard/Widgets/BalanceGraph.vue';
 import UnknownWidget from 'src/components/Dashboard/Widgets/UnknownWidget.vue';
 import FullHeightPage from 'src/components/Page/FullHeightPage.vue';
@@ -26,6 +27,7 @@ const data = ref<Dashboard[]>();
 
 const WidgetMap: Record<string, Component> = {
   balance_graph: BalanceGraph,
+  balance: AccountBalance,
 };
 
 const get_widget_component = (widget_name: string) => {
