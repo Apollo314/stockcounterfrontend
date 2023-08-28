@@ -1,13 +1,13 @@
 <template>
-  <div
-    class="q-pt-md q-px-lg q-pb-lg g-cs-1 g-rs-1 bg-warning rounded-borders"
+  <q-card
+    class="q-pt-md q-px-lg q-pb-lg g-cs-1 g-rs-1 rounded-borders"
     style="overflow-x: hidden"
   >
     <div class="column full-height">
-      <div class="title row q-mb-md text-grey-10">
+      <div class="title row q-mb-md">
         <div class="column col-shrink">
           <div class="text-h4">{{ $t('dashboard.account-balance') }}</div>
-          <div class="text-h6 text-grey-9">
+          <div class="text-h6">
             {{
               chosenAccount?.id
                 ? chosenAccount.name
@@ -18,11 +18,11 @@
       </div>
       <div
         class="row col justify-center items-center rounded-borders"
-        style="border: 2px solid #222"
+        :class="{ 'bg-green-3': balance >= 0, 'bg-red-8': balance < 0 }"
       >
         <div
-          class="text-h3 text-bold"
-          style="color: #222; border-bottom: 4px solid"
+          class="text-h4 text-bold text-black"
+          style="border-bottom: 4px solid"
         >
           {{
             $n(balance, {
@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </q-card>
 </template>
 
 <script setup lang="ts">
