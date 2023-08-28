@@ -46,6 +46,9 @@ const editor = {
 
 export default {
   dashboard: {
+    'best-customers': 'En İyi Müşteriler',
+    'customer-name': 'Müşteri adı',
+    'customer-cash-in': 'Müşteri getirisi',
     'last-users': 'Son Kullanıcılar',
     'last-items': 'Son Ürünler',
     'account-balance': 'Hesap Bakiyesi',
