@@ -46,6 +46,10 @@ const editor = {
 
 export default {
   dashboard: {
+    'last-invoices': 'Son Faturalar',
+    'invoice-name': 'Fatura adı',
+    'invoice-total': 'Tutar',
+    'invoice-type': 'Fatura tipi',
     'due-payments': 'Vadesi Gelmiş Ödemeler',
     'payment-amount': 'Miktar',
     'other-side': 'Diğer taraf',
@@ -149,6 +153,12 @@ export default {
   },
   fourofour: 'Aradık bulamadık.',
   gohome: 'Anasayfaya dön',
+  invoice_types: {
+    sale: 'Satış',
+    purchase: 'Alış',
+    'refund-sale': 'Satış iade',
+    'refund-purchase': 'Alış iade',
+  },
   invoice_labels: {
     customer: 'Müşteri adı',
     invoice_condition_label: 'Şablonlar',

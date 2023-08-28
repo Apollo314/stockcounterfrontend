@@ -22,6 +22,7 @@ import AccountBalance from 'src/components/Dashboard/Widgets/AccountBalance.vue'
 import BalanceGraph from 'src/components/Dashboard/Widgets/BalanceGraph.vue';
 import BestCustomers from 'src/components/Dashboard/Widgets/BestCustomers.vue';
 import DuePayments from 'src/components/Dashboard/Widgets/DuePayments/DuePayments.vue';
+import LastInvoices from 'src/components/Dashboard/Widgets/LastInvoices.vue';
 import LastItems from 'src/components/Dashboard/Widgets/LastItems.vue';
 import UnknownWidget from 'src/components/Dashboard/Widgets/UnknownWidget.vue';
 import FullHeightPage from 'src/components/Page/FullHeightPage.vue';
@@ -36,9 +37,9 @@ const WidgetMap: Record<WidgetNameEnum, Component> = {
   last_items: LastItems,
   best_customers: BestCustomers,
   due_payments: DuePayments,
+  last_invoices: LastInvoices,
 
   last_users: UnknownWidget,
-  last_invoices: UnknownWidget,
   leftover_items: UnknownWidget,
 };
 

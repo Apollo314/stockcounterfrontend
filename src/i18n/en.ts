@@ -48,6 +48,10 @@ const editor = {
 
 export default {
   dashboard: {
+    'last-invoices': 'Last Invoices',
+    'invoice-name': 'Invoice name',
+    'invoice-total': 'Total',
+    'invoice-type': 'Invoice type',
     'due-payments': 'Due Payments',
     'payment-amount': 'Amount',
     'other-side': 'Other side',
@@ -152,6 +156,12 @@ export default {
   },
   fourofour: 'Oops. Nothing here...',
   gohome: 'Go home',
+  invoice_types: {
+    sale: 'Sale',
+    purchase: 'Purchase',
+    'refund-sale': 'Refund sale',
+    'refund-purchase': 'Refund purchase',
+  },
   invoice_labels: {
     customer: 'Customer name',
     invoice_condition_label: 'Templates',
