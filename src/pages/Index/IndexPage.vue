@@ -18,6 +18,7 @@ import { api } from 'src/boot/axios';
 import { Dashboard, WidgetNameEnum } from 'src/client';
 import AccountBalance from 'src/components/Dashboard/Widgets/AccountBalance.vue';
 import BalanceGraph from 'src/components/Dashboard/Widgets/BalanceGraph.vue';
+import BestCustomers from 'src/components/Dashboard/Widgets/BestCustomers.vue';
 import LastItems from 'src/components/Dashboard/Widgets/LastItems.vue';
 import UnknownWidget from 'src/components/Dashboard/Widgets/UnknownWidget.vue';
 import FullHeightPage from 'src/components/Page/FullHeightPage.vue';
@@ -30,11 +31,11 @@ const WidgetMap: Record<WidgetNameEnum, Component> = {
   balance_graph: BalanceGraph,
   balance: AccountBalance,
   last_items: LastItems,
+  best_customers: BestCustomers,
 
   last_users: UnknownWidget,
   due_payments: UnknownWidget,
   last_invoices: UnknownWidget,
-  best_customers: UnknownWidget,
   leftover_items: UnknownWidget,
 };
 

@@ -48,6 +48,9 @@ const editor = {
 
 export default {
   dashboard: {
+    'best-customers': 'Best Customers',
+    'customer-name': 'Customer name',
+    'customer-cash-in': 'Customer Cash In',
     'last-users': 'Last Users',
     'last-items': 'Last Items',
     'account-balance': 'Account Balance',
