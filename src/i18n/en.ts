@@ -53,6 +53,9 @@ export default {
     'customer-cash-in': 'Customer Cash In',
     'last-users': 'Last Users',
     'last-items': 'Last Items',
+    'item-name': 'Name',
+    'item-stock': 'Stock',
+    'item-buy-sell': 'Buy - Sell',
     'account-balance': 'Account Balance',
     'balance-graph': {
       all_accounts: 'All Accounts',

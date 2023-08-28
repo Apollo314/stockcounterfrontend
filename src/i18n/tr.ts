@@ -51,6 +51,9 @@ export default {
     'customer-cash-in': 'Müşteri getirisi',
     'last-users': 'Son Kullanıcılar',
     'last-items': 'Son Ürünler',
+    'item-name': 'Adı',
+    'item-stock': 'Stok',
+    'item-buy-sell': 'Alış - Satış',
     'account-balance': 'Hesap Bakiyesi',
     'balance-graph': {
       all_accounts: 'Tüm Hesaplar',
