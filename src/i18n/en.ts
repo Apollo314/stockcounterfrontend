@@ -48,6 +48,8 @@ const editor = {
 
 export default {
   dashboard: {
+    'last-users': 'Last Users',
+    'last-items': 'Last Items',
     'account-balance': 'Account Balance',
     'balance-graph': {
       all_accounts: 'All Accounts',
