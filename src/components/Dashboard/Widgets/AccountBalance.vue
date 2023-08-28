@@ -1,6 +1,6 @@
 <template>
-  <q-card
-    class="q-pt-md q-px-lg q-pb-lg g-cs-1 g-rs-1 rounded-borders"
+  <div
+    class="q-pt-md q-px-lg q-pb-lg g-cs-1 g-rs-1 bg-accent rounded-borders"
     style="overflow-x: hidden"
   >
     <div class="column full-height">
@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-  </q-card>
+  </div>
 </template>
 
 <script setup lang="ts">
