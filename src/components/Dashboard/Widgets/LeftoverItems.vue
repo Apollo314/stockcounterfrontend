@@ -1,5 +1,5 @@
 <template>
-  <ItemsList :data="data" :title="$t('dashboard.last-items')" />
+  <ItemsList :data="data" :title="$t('dashboard.leftover-items')" />
 </template>
 
 <script setup lang="ts">

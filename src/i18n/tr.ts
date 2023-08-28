@@ -46,6 +46,7 @@ const editor = {
 
 export default {
   dashboard: {
+    'leftover-items': 'Satılamayan Ürünler',
     'last-invoices': 'Son Faturalar',
     'invoice-name': 'Fatura adı',
     'invoice-total': 'Tutar',
