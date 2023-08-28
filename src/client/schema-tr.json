@@ -199,6 +199,245 @@
         "x-filters": {}
       }
     },
+    "/dashboard/subscribed_widgets/": {
+      "get": {
+        "operationId": "dashboard_subscribed_widgets_list",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The initial index from which to return the results.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "tags": ["dashboard"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedSubscribedWidgetList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "x-filters": {}
+      },
+      "post": {
+        "operationId": "dashboard_subscribed_widgets_create",
+        "tags": ["dashboard"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribedWidgetRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscribedWidget"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      }
+    },
+    "/dashboard/subscribed_widgets/{id}/": {
+      "get": {
+        "operationId": "dashboard_subscribed_widgets_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this subscribed widget.",
+            "required": true
+          }
+        ],
+        "tags": ["dashboard"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscribedWidget"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "operationId": "dashboard_subscribed_widgets_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this subscribed widget.",
+            "required": true
+          }
+        ],
+        "tags": ["dashboard"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscribedWidgetRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscribedWidget"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "operationId": "dashboard_subscribed_widgets_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this subscribed widget.",
+            "required": true
+          }
+        ],
+        "tags": ["dashboard"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedSubscribedWidgetRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscribedWidget"
+                }
+              }
+            },
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "dashboard_subscribed_widgets_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "title": "ID"
+            },
+            "description": "A unique integer value identifying this subscribed widget.",
+            "required": true
+          }
+        ],
+        "tags": ["dashboard"],
+        "security": [
+          {
+            "knoxTokenAuth": []
+          },
+          {
+            "cookieAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        }
+      }
+    },
     "/inventory/bulk/category/": {
       "delete": {
         "operationId": "inventory_bulk_category_destroy",
@@ -7783,7 +8022,11 @@
             "title": "User settings"
           },
           "widget_name": {
-            "type": "string",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WidgetNameEnum"
+              }
+            ],
             "title": "Widget name"
           },
           "widget_data": {
@@ -10319,6 +10562,33 @@
           }
         }
       },
+      "PaginatedSubscribedWidgetList": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=400&limit=100"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?offset=200&limit=100"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscribedWidget"
+            }
+          }
+        }
+      },
       "PaginatedUserList": {
         "type": "object",
         "properties": {
@@ -10675,14 +10945,14 @@
             "type": "string",
             "format": "binary",
             "nullable": true,
-            "title": "Önizleme resmi",
+            "title": "Thumbnail",
             "x-components": {
               "component": "single-image-selector"
             }
           },
           "stock_unit": {
             "type": "integer",
-            "title": "Birim",
+            "title": "Stock unit",
             "x-components": {
               "component": "unit-selector"
             }
@@ -10739,13 +11009,13 @@
           "stock_code": {
             "type": "string",
             "nullable": true,
-            "title": "Birim kodu",
+            "title": "Stock code",
             "maxLength": 40
           },
           "barcode": {
             "type": "string",
             "nullable": true,
-            "title": "Barkod",
+            "title": "Barcode",
             "maxLength": 20,
             "x-components": {
               "component": "barcode-scanner"
@@ -10754,12 +11024,12 @@
           "description": {
             "type": "string",
             "nullable": true,
-            "title": "Açıklama",
+            "title": "Description",
             "maxLength": 2000
           },
           "category": {
             "type": "integer",
-            "title": "Kategori",
+            "title": "Category",
             "nullable": true,
             "x-components": {
               "component": "category-selector"
@@ -11019,6 +11289,32 @@
             "minLength": 1,
             "title": "Birim",
             "maxLength": 20
+          }
+        }
+      },
+      "PatchedSubscribedWidgetRequest": {
+        "type": "object",
+        "properties": {
+          "widget_index": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "default": 1,
+            "title": "Widget index"
+          },
+          "user_settings": {
+            "type": "object",
+            "additionalProperties": {},
+            "nullable": true,
+            "title": "User settings"
+          },
+          "widget_name": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WidgetNameEnum"
+              }
+            ],
+            "title": "Araç Adı"
           }
         }
       },
@@ -12214,6 +12510,65 @@
         },
         "required": ["name"]
       },
+      "SubscribedWidget": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
+          "widget_index": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "default": 1,
+            "title": "Widget index"
+          },
+          "user_settings": {
+            "type": "object",
+            "additionalProperties": {},
+            "nullable": true,
+            "title": "User settings"
+          },
+          "widget_name": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WidgetNameEnum"
+              }
+            ],
+            "title": "Araç Adı"
+          }
+        },
+        "required": ["id", "widget_name"]
+      },
+      "SubscribedWidgetRequest": {
+        "type": "object",
+        "properties": {
+          "widget_index": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "default": 1,
+            "title": "Widget index"
+          },
+          "user_settings": {
+            "type": "object",
+            "additionalProperties": {},
+            "nullable": true,
+            "title": "User settings"
+          },
+          "widget_name": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WidgetNameEnum"
+              }
+            ],
+            "title": "Araç Adı"
+          }
+        },
+        "required": ["widget_name"]
+      },
       "User": {
         "type": "object",
         "properties": {
@@ -13030,6 +13385,19 @@
           }
         },
         "required": ["name"]
+      },
+      "WidgetNameEnum": {
+        "enum": [
+          "balance",
+          "balance_graph",
+          "best_customers",
+          "due_payments",
+          "last_invoices",
+          "last_items",
+          "leftover_items",
+          "last_users"
+        ],
+        "type": "string"
       },
       "widget_data": {
         "oneOf": [

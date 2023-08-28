@@ -74,6 +74,7 @@ export type { PaginatedStakeholderEmployeeList } from './models/PaginatedStakeho
 export type { PaginatedStakeholderList } from './models/PaginatedStakeholderList';
 export type { PaginatedStockMovementWithoutItemList } from './models/PaginatedStockMovementWithoutItemList';
 export type { PaginatedStockUnitList } from './models/PaginatedStockUnitList';
+export type { PaginatedSubscribedWidgetList } from './models/PaginatedSubscribedWidgetList';
 export type { PaginatedUserList } from './models/PaginatedUserList';
 export type { PaginatedWarehouseItemStockInfoList } from './models/PaginatedWarehouseItemStockInfoList';
 export type { PaginatedWarehouseList } from './models/PaginatedWarehouseList';
@@ -91,6 +92,7 @@ export type { PatchedStakeholderEmployeeRequest } from './models/PatchedStakehol
 export type { PatchedStakeholderRequest } from './models/PatchedStakeholderRequest';
 export type { PatchedStockMovementWithoutItemRequest } from './models/PatchedStockMovementWithoutItemRequest';
 export type { PatchedStockUnitRequest } from './models/PatchedStockUnitRequest';
+export type { PatchedSubscribedWidgetRequest } from './models/PatchedSubscribedWidgetRequest';
 export type { PatchedWarehouseRequest } from './models/PatchedWarehouseRequest';
 export type { Payment } from './models/Payment';
 export type { PaymentAccountForStakeholder } from './models/PaymentAccountForStakeholder';
@@ -122,6 +124,8 @@ export type { StockUnit } from './models/StockUnit';
 export type { StockUnitNested } from './models/StockUnitNested';
 export type { StockUnitNestedRequest } from './models/StockUnitNestedRequest';
 export type { StockUnitRequest } from './models/StockUnitRequest';
+export type { SubscribedWidget } from './models/SubscribedWidget';
+export type { SubscribedWidgetRequest } from './models/SubscribedWidgetRequest';
 export type { User } from './models/User';
 export type { UserCreate } from './models/UserCreate';
 export type { UserCreateRequest } from './models/UserCreateRequest';
@@ -140,6 +144,7 @@ export type { WarehouseItemStockNestedRequest } from './models/WarehouseItemStoc
 export type { WarehouseItemStockRequest } from './models/WarehouseItemStockRequest';
 export type { WarehouseRequest } from './models/WarehouseRequest';
 export type { widget_data } from './models/widget_data';
+export type { WidgetNameEnum } from './models/WidgetNameEnum';
 
 export { ApiService } from './services/ApiService';
 export { DashboardService } from './services/DashboardService';

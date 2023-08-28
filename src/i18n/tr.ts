@@ -46,6 +46,8 @@ const editor = {
 
 export default {
   dashboard: {
+    'last-users': 'Son Kullanıcılar',
+    'last-items': 'Son Ürünler',
     'account-balance': 'Hesap Bakiyesi',
     'balance-graph': {
       all_accounts: 'Tüm Hesaplar',
