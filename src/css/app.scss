@@ -3,11 +3,11 @@
 @use './datatable-styles.scss';
 @use './dashboardgrid.scss';
 
-$light-page: lighten($primary, 35%);
+$light-page: darken($primary, 5%);
 
 .body--light {
   background: black;
-  background: linear-gradient($light-page, darken($light-page, 10%));
+  background: linear-gradient(135deg, #41a3d0, #186286);
   background-attachment: fixed;
 }
 
@@ -286,6 +286,16 @@ $bg-colors: (
   }
   .body--light & {
     background: $light-page;
+  }
+}
+
+.header-blurry {
+  backdrop-filter: blur(12px);
+  .body--dark & {
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+  .body--light & {
+    background-color: rgba(white, 0.85);
   }
 }
 

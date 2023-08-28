@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hhh LpR lfr">
     <StickyHeader>
-      <div ref="subHeader" class="row full-width items-center bg-page">
+      <div ref="subHeader" class="row full-width items-center header-blurry">
         <q-toolbar style="min-height: 40px" class="q-py-xs">
           <q-btn
             flat
