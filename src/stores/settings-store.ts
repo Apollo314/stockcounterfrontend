@@ -20,7 +20,7 @@ export const useSettingsStore = defineStore('SettingsStore', {
   state: (): State => ({
     ui: {
       showTransitionAnimations: true,
-      genericAnimation: 'zoom-out-in',
+      genericAnimation: 'zoom-out-out',
       negativeMenuGutter: false,
     },
   }),

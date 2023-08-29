@@ -18,13 +18,13 @@
 .zoom-out-out-enter-from,
 .zoom-out-out-leave-to {
   opacity: 0;
-  transform: scale(1.2);
+  transform: scale(0.8);
 }
 
 // zoom-out-in
 .zoom-out-in-enter-active,
 .zoom-out-in-leave-active {
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease, filter, 0.25s ease;
 }
 
 .zoom-out-in-enter-from {

@@ -130,11 +130,11 @@ const settingComponents = computed<SettingComponent[]>(() => {
         options: [
           {
             label: $t('settings.transitionAnimations.standard'),
-            value: 'zoom-out-in',
+            value: 'zoom-out-out',
           },
           {
             label: $t('settings.transitionAnimations.alternative'),
-            value: 'zoom-out-out',
+            value: 'zoom-out-in',
           },
           {
             label: $t('settings.transitionAnimations.aroundZ'),
