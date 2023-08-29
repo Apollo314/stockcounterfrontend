@@ -87,6 +87,7 @@ watch(
 const style = computed(() => {
   return {
     height: `${headerContainerHeight.value}px !important`,
+    left: `${$layout.left.offset}px`,
   };
 });
 </script>
@@ -97,7 +98,6 @@ const style = computed(() => {
   position: absolute;
   top: 0;
   right: 0;
-  left: 0;
   transition: left 0.1s ease-out;
   .header-parent {
     pointer-events: initial;
