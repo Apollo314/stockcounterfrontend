@@ -22,6 +22,7 @@ import BestCustomers from 'src/components/Dashboard/Widgets/BestCustomers.vue';
 import DuePayments from 'src/components/Dashboard/Widgets/DuePayments/DuePayments.vue';
 import LastInvoices from 'src/components/Dashboard/Widgets/LastInvoices.vue';
 import LastItems from 'src/components/Dashboard/Widgets/LastItems.vue';
+import LastUsers from 'src/components/Dashboard/Widgets/LastUsers.vue';
 import LeftoverItems from 'src/components/Dashboard/Widgets/LeftoverItems.vue';
 import UnknownWidget from 'src/components/Dashboard/Widgets/UnknownWidget.vue';
 import FullHeightPage from 'src/components/Page/FullHeightPage.vue';
@@ -38,8 +39,7 @@ const WidgetMap: Record<WidgetNameEnum, Component> = {
   due_payments: DuePayments,
   last_invoices: LastInvoices,
   leftover_items: LeftoverItems,
-
-  last_users: UnknownWidget,
+  last_users: LastUsers,
 };
 
 const get_widget_component = (widget_name: WidgetNameEnum) => {
