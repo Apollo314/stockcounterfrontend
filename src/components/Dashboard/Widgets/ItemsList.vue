@@ -1,22 +1,23 @@
 <template>
   <div
-    class="q-pt-md q-px-lg q-pb-lg g-cs-1 g-rs-2 bg-orange-8 rounded-borders"
+    class="q-pt-md q-px-lg q-pb-lg g-cs-1 g-rs-2 rounded-borders"
     style="overflow-x: hidden"
   >
     <div class="column full-height">
-      <div class="title col-shrink row q-mb-md text-grey-10">
+      <div class="title col-shrink row q-mb-md text-black">
         <div class="column col-shrink">
           <div class="text-h4">{{ title }}</div>
         </div>
       </div>
-      <q-card class="col" style="overflow: auto">
+      <q-card class="col bg-transparent" flat style="overflow: auto">
         <q-list
           separator
           bordered
           class="full-width rounded-borders"
           style="overflow: hidden"
+          :dark="false"
         >
-          <q-item>
+          <q-item class="text-black">
             <q-item-section>{{ $t('dashboard.item-name') }}</q-item-section>
             <q-item-section align="center">{{
               $t('dashboard.item-stock')
@@ -31,6 +32,7 @@
             v-ripple
             clickable
             :to="{ name: 'items-update', params: { id: item.id } }"
+            class="text-black"
           >
             <q-tooltip
               v-if="item.thumbnail"

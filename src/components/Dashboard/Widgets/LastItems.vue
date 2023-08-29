@@ -1,5 +1,9 @@
 <template>
-  <ItemsList :data="data" :title="$t('dashboard.last-items')" />
+  <ItemsList
+    class="bg-orange-7"
+    :data="data"
+    :title="$t('dashboard.last-items')"
+  />
 </template>
 
 <script setup lang="ts">

@@ -1,15 +1,13 @@
 <template>
   <FullHeightPage padding>
-    <q-card class="my-card">
-      <div class="dashboard-grid">
-        <component
-          :is="get_widget_component(dashboard_component.widget_name)"
-          v-for="dashboard_component in data"
-          :key="dashboard_component.id"
-          :data="dashboard_component.widget_data"
-        />
-      </div>
-    </q-card>
+    <div class="dashboard-grid">
+      <component
+        :is="get_widget_component(dashboard_component.widget_name)"
+        v-for="dashboard_component in data"
+        :key="dashboard_component.id"
+        :data="dashboard_component.widget_data"
+      />
+    </div>
   </FullHeightPage>
 </template>
 

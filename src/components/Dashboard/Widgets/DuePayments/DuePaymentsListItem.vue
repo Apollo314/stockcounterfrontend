@@ -1,22 +1,27 @@
 <template>
   <q-item
     v-ripple
-    :class="{
-      'bg-red-6': !paymentIsCashIn,
-      'bg-blue-6': paymentIsCashIn,
-    }"
     clickable
     :to="{
       name: paymentIsCashIn ? 'customer-update' : 'supplier-update',
       params: { id: otherSide?.stakeholder?.id },
     }"
   >
-    <q-item-section>{{
-      $n(parseFloat(payment.amount), {
-        style: 'currency',
-        currency: payment.currency,
-      })
-    }}</q-item-section>
+    <q-item-section>
+      <span
+        style="width: max-content"
+        :style="{
+          borderBottom: `3px solid ${paymentIsCashIn ? '#22ff00' : '#ee2222'}`,
+        }"
+      >
+        {{
+          $n(parseFloat(payment.amount), {
+            style: 'currency',
+            currency: payment.currency,
+          })
+        }}
+      </span>
+    </q-item-section>
     <q-item-section align="center">
       {{ otherSide?.stakeholder?.name }}
     </q-item-section>
