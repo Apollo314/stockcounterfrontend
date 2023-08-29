@@ -123,9 +123,11 @@ main.q-page {
   grid-row: 1;
 }
 
-.page-in-transition {
-  height: 100vh;
-  width: 100vw;
-  overflow: clip;
+// to avoid scrollbars during transition in chromium based browsers
+// firefox doesn't have this problem nor does it have :has() so it's fine
+body:has(.page-in-transition) {
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 </style>
