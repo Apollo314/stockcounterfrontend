@@ -1,22 +1,23 @@
 <template>
   <div
-    class="q-pt-md q-px-lg q-pb-lg g-cs-1 g-rs-2 bg-secondary rounded-borders"
+    class="q-pt-md q-px-lg q-pb-lg g-cs-1 g-rs-2 bg-blue-5 rounded-borders"
     style="overflow-x: hidden"
   >
     <div class="column full-height">
       <div class="title col-shrink row q-mb-md">
-        <div class="column col-shrink">
+        <div class="column col-shrink text-black">
           <div class="text-h4">{{ $t('dashboard.due-payments') }}</div>
         </div>
       </div>
-      <q-card class="col q-pa-sm" style="overflow: auto">
+      <q-card class="col bg-transparent" flat style="overflow: auto">
         <q-list
+          :dark="false"
           separator
           bordered
           class="full-width rounded-borders"
           style="overflow: hidden"
         >
-          <q-item>
+          <q-item class="text-black">
             <q-item-section>{{
               $t('dashboard.payment-amount')
             }}</q-item-section>
@@ -30,6 +31,7 @@
           <DuePaymentsListItem
             v-for="payment in data"
             :key="payment.id"
+            class="text-black"
             :payment="payment"
           />
         </q-list>

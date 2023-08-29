@@ -1,5 +1,9 @@
 <template>
-  <ItemsList :data="data" :title="$t('dashboard.leftover-items')" />
+  <ItemsList
+    style="background: #59cdf2"
+    :data="data"
+    :title="$t('dashboard.leftover-items')"
+  />
 </template>
 
 <script setup lang="ts">

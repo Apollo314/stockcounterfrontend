@@ -1,11 +1,11 @@
 <template>
   <div
-    class="q-pt-md q-px-lg q-pb-lg g-cs-1 g-rs-1 bg-accent rounded-borders"
-    style="overflow-x: hidden"
+    class="q-pt-md q-px-lg q-pb-lg g-cs-1 g-rs-1 rounded-borders"
+    style="overflow-x: hidden; background: #ee58b2"
   >
     <div class="column full-height">
       <div class="title row q-mb-md">
-        <div class="column col-shrink">
+        <div class="column col-shrink text-black">
           <div class="text-h4">{{ $t('dashboard.account-balance') }}</div>
           <div class="text-h6">
             {{
@@ -16,14 +16,8 @@
           </div>
         </div>
       </div>
-      <div
-        class="row col justify-center items-center rounded-borders"
-        :class="{ 'bg-green-3': balance >= 0, 'bg-red-8': balance < 0 }"
-      >
-        <div
-          class="text-h4 text-bold text-black"
-          style="border-bottom: 4px solid"
-        >
+      <div class="row col justify-center items-center rounded-borders">
+        <div class="text-h4 text-bold text-black">
           {{
             $n(balance, {
               style: 'currency',
