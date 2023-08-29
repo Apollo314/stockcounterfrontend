@@ -6,9 +6,7 @@
 $light-page: darken($primary, 5%);
 
 .body--light {
-  background: black;
-  background: linear-gradient(135deg, #41a3d0, #186286);
-  background-attachment: fixed;
+  background: #fcfcfc;
 }
 
 @media (max-width: 599.98px) {
@@ -295,7 +293,7 @@ $bg-colors: (
     background-color: rgba(0, 0, 0, 0.65);
   }
   .body--light & {
-    background-color: rgba(white, 0.85);
+    background-color: rgba(#fcfcfc, 0.85);
   }
 }
 
