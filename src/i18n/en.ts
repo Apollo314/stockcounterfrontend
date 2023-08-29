@@ -48,6 +48,10 @@ const editor = {
 
 export default {
   dashboard: {
+    'last-users': 'Last Users',
+    username: 'Username',
+    fullname: 'Full name',
+    email: 'Email',
     'leftover-items': 'Unsold Items',
     'last-invoices': 'Last Invoices',
     'invoice-name': 'Invoice name',
@@ -60,7 +64,6 @@ export default {
     'best-customers': 'Best Customers',
     'customer-name': 'Customer name',
     'customer-cash-in': 'Customer Cash In',
-    'last-users': 'Last Users',
     'last-items': 'Last Items',
     'item-name': 'Name',
     'item-stock': 'Stock',
