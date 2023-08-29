@@ -1,57 +1,39 @@
 <template>
   <div>
-    <draggable
-      ref="draggableRef"
-      v-model="fields"
-      class="list-group"
-      :component-data="{
-        tag: 'div',
-        type: 'transition-group',
-        name: !drag ? 'flip-list' : null,
-      }"
-      handle=".handle"
-      v-bind="dragOptions"
-      item-key="key"
-      @change="handleMove"
-      @start="drag = true"
-      @end="drag = false"
-    >
-      <template #item="{ element, index }">
-        <div class="list-group-item row items-center">
-          <div class="row handle full-width justify-end q-pt-md q-px-sm">
-            <div class="handle-bar" />
-            <div>
-              <q-btn color="positive" icon="refresh" flat />
-            </div>
-            <div>
-              <q-btn
-                color="negative"
-                icon="delete"
-                flat
-                @click="deleteLine(index)"
-              />
-            </div>
-            <div>
-              <q-btn
-                v-if="(element.value as InvoiceItemType)?.stock_movement?.warehouse_item_stock?.item?.id"
-                color="primary"
-                icon="conveyor_belt"
-                :to="{
+    <template v-for="(element, index) in fields" :key="index">
+      <div class="list-group-item row items-center">
+        <div class="row full-width justify-end q-pt-md q-px-sm">
+          <div>
+            <q-btn color="positive" icon="refresh" flat />
+          </div>
+          <div>
+            <q-btn
+              color="negative"
+              icon="delete"
+              flat
+              @click="deleteLine(index)"
+            />
+          </div>
+          <div>
+            <q-btn
+              v-if="(element.value as InvoiceItemType)?.stock_movement?.warehouse_item_stock?.item?.id"
+              color="primary"
+              icon="conveyor_belt"
+              :to="{
                   name: 'items-update',
                   params: { id: (element.value as InvoiceItemType)?.stock_movement.warehouse_item_stock.item.id },
                 }"
-                flat
-              />
-            </div>
+              flat
+            />
           </div>
-          <InvoiceItem
-            class="col-xs-12 q-pa-sm"
-            :name="`items[${index}]`"
-            @delete="remove(index)"
-          ></InvoiceItem>
         </div>
-      </template>
-    </draggable>
+        <InvoiceItem
+          class="col-xs-12 q-pa-sm"
+          :name="`items[${index}]`"
+          @delete="remove(index)"
+        ></InvoiceItem>
+      </div>
+    </template>
     <q-btn
       class="q-mt-md"
       push
