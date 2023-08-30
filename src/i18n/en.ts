@@ -187,6 +187,9 @@ export default {
       payments: 'Payments',
     },
     payments: {
+      quarter: 'Quarter',
+      half: 'Half',
+      remaining: 'Remaining',
       progress: 'Payment progress',
       amount: 'Amount',
       type: 'Payment Type',

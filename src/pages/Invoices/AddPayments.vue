@@ -1,5 +1,9 @@
 <template>
-  <Form ref="formRef" :validation-schema="validator" @submit="onSubmit($event)">
+  <Form
+    ref="formRef"
+    :validation-schema="validator"
+    @submit="onSubmit($event as PaymentRequest)"
+  >
     <DynamicForm :form-components="formComponents">
       <template #payer>
         <SearchSelector
@@ -18,6 +22,36 @@
           :extra-params="receiverParams"
           :label="getProps(formComponents?.get('receiver')).label"
         />
+      </template>
+      <template #amount="{ formComponent }">
+        <component
+          :is="getComponent(formComponent)"
+          name="amount"
+          v-bind="getProps(formComponent)"
+        />
+        <div class="q-mt-sm q-gutter-xs">
+          <q-btn
+            flat
+            color="blue-6"
+            no-caps
+            :label="$t('invoice_labels.payments.quarter')"
+            @click="setAmount(new Decimal('0.25'))"
+          />
+          <q-btn
+            flat
+            color="blue-7"
+            no-caps
+            :label="$t('invoice_labels.payments.half')"
+            @click="setAmount(new Decimal('0.50'))"
+          />
+          <q-btn
+            flat
+            color="blue-8"
+            no-caps
+            :label="$t('invoice_labels.payments.remaining')"
+            @click="setAmount(new Decimal('1'))"
+          />
+        </div>
       </template>
       <template #due_date>
         <DateField
@@ -51,6 +85,7 @@
 </template>
 
 <script setup lang="ts">
+import Decimal from 'decimal.js';
 import { useQuasar } from 'quasar';
 import { Form } from 'vee-validate';
 import { computed, ref } from 'vue';
@@ -65,6 +100,7 @@ import {
   PaymentRequest,
 } from 'src/client';
 import {
+  getComponent,
   getProps,
   queryServiceFactory,
 } from 'src/components/VeeDynamicForm/componentMap';
@@ -72,9 +108,13 @@ import DateField from 'src/components/VeeDynamicForm/CustomComponents/DateField.
 import SearchSelector from 'src/components/VeeDynamicForm/CustomComponents/SearchSelector.vue';
 import { parseDRFErrors } from 'src/components/VeeDynamicForm/drfErrorToYup';
 import DynamicForm from 'src/components/VeeDynamicForm/DynamicForm.vue';
-import { create_form } from 'src/composables/openapihelpers';
+import { create_form, FormComponent } from 'src/composables/openapihelpers';
 
-const props = defineProps<{ invoice: InvoiceDetailOut; popup: boolean }>();
+const props = defineProps<{
+  invoice: InvoiceDetailOut;
+  popup: boolean;
+  currentlyPaid: Decimal;
+}>();
 
 const emit = defineEmits<{
   (e: 'newPayment', value: InvoicePayment): void;
@@ -114,6 +154,17 @@ const receiverParams = computed(() => {
     return { stakeholder: props.invoice.stakeholder.id };
   }
 });
+
+const setAmount = (percentage: Decimal) => {
+  const totalWithTax = new Decimal(props.invoice.total_with_tax || 0);
+  const remaining = totalWithTax.minus(props.currentlyPaid);
+  const amount = percentage.mul(totalWithTax);
+  if (remaining.lt(amount)) {
+    formRef.value?.setFieldValue('amount', remaining.toString());
+  } else {
+    formRef.value?.setFieldValue('amount', amount.toString());
+  }
+};
 
 const onSubmit = (values: PaymentRequest) => {
   const payment = values;

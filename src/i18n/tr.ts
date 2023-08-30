@@ -184,6 +184,9 @@ export default {
       payments: 'Ödemeler',
     },
     payments: {
+      quarter: 'Çeyrek',
+      half: 'Yarım',
+      remaining: 'Kalan',
       progress: 'Tamamlanmış ödeme',
       amount: 'Miktar',
       type: 'Ödeme tipi',

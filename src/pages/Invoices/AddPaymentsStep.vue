@@ -118,6 +118,7 @@
         <AddPayments
           v-model:popup="showAddPaymentDialog"
           :invoice="invoice"
+          :currently-paid="totalPayments"
           @new-payment="atNewPayment"
         ></AddPayments>
       </q-card>
