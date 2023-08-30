@@ -176,6 +176,7 @@ const {
   validateField,
   handleSubmit,
   useFieldModel,
+  resetForm,
 } = useForm<InvoiceDetailInRequest | InvoiceDetailOut>({
   validationSchema: validator,
   initialValues: initialValues,
@@ -299,6 +300,7 @@ const submit = (payload: InvoiceDetailInRequest, done: () => void) => {
         }
       })
       .finally(() => {
+        resetForm();
         done();
       });
   } else {
