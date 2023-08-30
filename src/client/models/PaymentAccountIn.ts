@@ -9,7 +9,7 @@ export type PaymentAccountIn = {
   readonly created_at: string | null;
   readonly updated_at: string | null;
   name: string;
-  bank: number | null;
+  bank?: number | null;
   account_number?: string | null;
   iban?: string | null;
   stakeholder: number | null;

@@ -87,6 +87,7 @@ export default {
     show_password: 'Show password',
   },
   commons: {
+    actions: 'Actions',
     add_new: 'Add new',
     'are-you-sure-you-want-to-delete': 'Are you sure you want to delete this?',
     cancel: 'Cancel',
@@ -183,7 +184,19 @@ export default {
       conditions: 'Conditions',
       'general-information': 'General invoice information',
       items: 'Items/Services',
+      payments: 'Payments',
     },
+    payments: {
+      progress: 'Payment progress',
+      amount: 'Amount',
+      type: 'Payment Type',
+      cash: 'Cash',
+      cheque: 'Cheque',
+      is_concluded: 'Payment is concluded',
+      isnot_concluded: "Payment isn't concluded",
+    },
+    'no-payment-yet': 'There is no payment yet',
+    new_payment: 'New payment',
     template_is_modified:
       'Different than the template. Either template or invoice condition is modified.',
   },

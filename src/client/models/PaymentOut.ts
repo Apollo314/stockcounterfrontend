@@ -20,4 +20,5 @@ export type PaymentOut = {
   additional_info?: string | null;
   due_date?: string | null;
   payment_type?: PaymentTypeEnum;
+  payment_done?: boolean;
 };

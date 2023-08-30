@@ -55,7 +55,7 @@ const co: ColumnsOverride<Column, Row> = {
   name: { width: 400 },
   bank: {
     field(row) {
-      return row.bank.name;
+      return row.bank?.name;
     },
   },
   account_number: {},
@@ -69,13 +69,13 @@ const co: ColumnsOverride<Column, Row> = {
     field: (row) => $d(row.updated_at || ''),
   },
   updated_by: {
-    field: (row) => row.updated_by.username,
+    field: (row) => row.updated_by?.username,
   },
   created_at: {
     field: (row) => $d(row.created_at || ''),
   },
   created_by: {
-    field: (row) => row.created_by.username,
+    field: (row) => row.created_by?.username,
   },
 };
 

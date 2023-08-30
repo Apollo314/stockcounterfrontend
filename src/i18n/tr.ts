@@ -85,6 +85,7 @@ export default {
     show_password: 'Parolayı göster',
   },
   commons: {
+    actions: 'Aksiyonlar',
     add_new: 'Yeni ekle',
     'are-you-sure-you-want-to-delete':
       'Bu ögenin silinmesini istediğinize emin misiniz?',
@@ -180,7 +181,19 @@ export default {
       conditions: 'Koşullar',
       'general-information': 'Genel fatura bilgileri',
       items: 'Ürünler/Hizmetler',
+      payments: 'Ödemeler',
     },
+    payments: {
+      progress: 'Tamamlanmış ödeme',
+      amount: 'Miktar',
+      type: 'Ödeme tipi',
+      cash: 'Nakit',
+      cheque: 'Çek',
+      is_concluded: 'Ödeme tamamlandı',
+      isnot_concluded: 'Ödeme tamamlanmadı',
+    },
+    'no-payment-yet': 'Henüz bir ödeme yok',
+    new_payment: 'Yeni ödeme',
     template_is_modified:
       'Şablondan farklılık gösteriyor. Ya şablon ya da fatura koşulları değiştirilmiş.',
   },

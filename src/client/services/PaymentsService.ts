@@ -226,9 +226,14 @@ export class PaymentsService {
    * @throws ApiError
    */
   public paymentsInvoicePaymentsList({
+    invoice,
     limit,
     offset,
   }: {
+    /**
+     * invoice
+     */
+    invoice?: string;
     /**
      * Number of results to return per page.
      */
@@ -242,6 +247,7 @@ export class PaymentsService {
       method: 'GET',
       url: '/payments/invoice-payments/',
       query: {
+        invoice: invoice,
         limit: limit,
         offset: offset,
       },
@@ -368,6 +374,7 @@ export class PaymentsService {
     createdBy,
     updatedBy,
     stakeholder,
+    stakeholderIsnull,
     accountNumberContains,
     bank,
     ordering,
@@ -399,6 +406,10 @@ export class PaymentsService {
      * stakeholder
      */
     stakeholder?: string;
+    /**
+     * stakeholder__isnull
+     */
+    stakeholderIsnull?: string;
     /**
      * account_number__contains
      */
@@ -446,6 +457,7 @@ export class PaymentsService {
         created_by: createdBy,
         updated_by: updatedBy,
         stakeholder: stakeholder,
+        stakeholder__isnull: stakeholderIsnull,
         account_number__contains: accountNumberContains,
         bank: bank,
         ordering: ordering,

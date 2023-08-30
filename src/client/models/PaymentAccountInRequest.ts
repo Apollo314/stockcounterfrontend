@@ -6,7 +6,7 @@ import type { CurrencyEnum } from './CurrencyEnum';
 
 export type PaymentAccountInRequest = {
   name: string;
-  bank: number | null;
+  bank?: number | null;
   account_number?: string | null;
   iban?: string | null;
   stakeholder: number | null;

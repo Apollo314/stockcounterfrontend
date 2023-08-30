@@ -50,6 +50,18 @@
               ></InvoiceItemsStep>
             </q-step>
             <q-step
+              v-if="id"
+              name="payments"
+              :title="$t('invoice_labels.tabs.payments')"
+              icon="attach_money"
+              :error="shownSteps.InvoiceItemsStep && stepErros.InvoiceItemsStep"
+            >
+              <AddPaymentsStep
+                v-if="id"
+                :invoice="initialValues as InvoiceDetailOut"
+              />
+            </q-step>
+            <q-step
               name="conditions"
               :title="$t('invoice_labels.tabs.conditions')"
               class="full-height-step"
@@ -120,6 +132,7 @@ import { create_form } from 'src/composables/openapihelpers';
 
 import BackButton from '../../components/Commons/BackButton.vue';
 
+import AddPaymentsStep from './AddPaymentsStep.vue';
 import GeneralInformationStep from './GeneralInformationStep.vue';
 import InvoiceConditionsStep from './InvoiceConditionsStep.vue';
 import InvoiceItemsStep from './InvoiceItemsStep.vue';
@@ -151,6 +164,7 @@ const shownSteps = ref({
   GeneralInformationStep: false,
   InvoiceItemsStep: false,
   InvoiceConditionsStep: false,
+  PaymentsStep: false,
 });
 
 const {

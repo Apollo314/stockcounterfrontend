@@ -4380,6 +4380,21 @@
         "operationId": "payments_invoice_payments_list",
         "parameters": [
           {
+            "name": "invoice",
+            "required": false,
+            "in": "query",
+            "description": "invoice",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "invoice-select",
+                "props": {
+                  "label": "Invoice"
+                }
+              }
+            }
+          },
+          {
             "name": "limit",
             "required": false,
             "in": "query",
@@ -4419,7 +4434,25 @@
             "description": ""
           }
         },
-        "x-filters": {}
+        "x-filters": {
+          "DjangoFilterBackend": [
+            {
+              "name": "invoice",
+              "required": false,
+              "in": "query",
+              "description": "invoice",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "invoice-select",
+                  "props": {
+                    "label": "Invoice"
+                  }
+                }
+              }
+            }
+          ]
+        }
       },
       "post": {
         "operationId": "payments_invoice_payments_create",
@@ -4709,6 +4742,18 @@
             }
           },
           {
+            "name": "stakeholder__isnull",
+            "required": false,
+            "in": "query",
+            "description": "stakeholder__isnull",
+            "schema": {
+              "type": "string",
+              "x-components": {
+                "component": "checkbox"
+              }
+            }
+          },
+          {
             "name": "account_number__contains",
             "required": false,
             "in": "query",
@@ -4899,6 +4944,18 @@
                   "props": {
                     "label": "Stakeholder"
                   }
+                }
+              }
+            },
+            {
+              "name": "stakeholder__isnull",
+              "required": false,
+              "in": "query",
+              "description": "stakeholder__isnull",
+              "schema": {
+                "type": "string",
+                "x-components": {
+                  "component": "checkbox"
                 }
               }
             },
@@ -9126,6 +9183,11 @@
       "InvoicePayment": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
           "payment": {
             "allOf": [
               {
@@ -9139,7 +9201,7 @@
             "title": "Invoice"
           }
         },
-        "required": ["invoice", "payment"]
+        "required": ["id", "invoice", "payment"]
       },
       "InvoicePaymentRequest": {
         "type": "object",
@@ -11168,6 +11230,11 @@
             ],
             "default": "cash",
             "title": "Payment type"
+          },
+          "payment_done": {
+            "type": "boolean",
+            "default": false,
+            "title": "Payment is concluded"
           }
         }
       },
@@ -11350,6 +11417,11 @@
       "Payment": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID"
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -11376,7 +11448,10 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Amount"
+            "title": "Amount",
+            "x-components": {
+              "component": "money-input"
+            }
           },
           "currency": {
             "allOf": [
@@ -11406,9 +11481,24 @@
             ],
             "default": "cash",
             "title": "Payment type"
+          },
+          "payment_done": {
+            "type": "boolean",
+            "default": false,
+            "title": "Payment is concluded",
+            "x-components": {
+              "component": "checkbox"
+            }
           }
         },
-        "required": ["amount", "created_at", "payer", "receiver", "updated_at"]
+        "required": [
+          "amount",
+          "created_at",
+          "id",
+          "payer",
+          "receiver",
+          "updated_at"
+        ]
       },
       "PaymentAccountForStakeholder": {
         "type": "object",
@@ -11551,14 +11641,7 @@
             "title": "Account currency"
           }
         },
-        "required": [
-          "bank",
-          "created_at",
-          "id",
-          "name",
-          "stakeholder",
-          "updated_at"
-        ]
+        "required": ["created_at", "id", "name", "stakeholder", "updated_at"]
       },
       "PaymentAccountInRequest": {
         "type": "object",
@@ -11605,7 +11688,7 @@
             "title": "Account currency"
           }
         },
-        "required": ["bank", "name", "stakeholder"]
+        "required": ["name", "stakeholder"]
       },
       "PaymentAccountOut": {
         "type": "object",
@@ -11686,15 +11769,7 @@
             "title": "Account currency"
           }
         },
-        "required": [
-          "bank",
-          "created_at",
-          "created_by",
-          "id",
-          "name",
-          "updated_at",
-          "updated_by"
-        ]
+        "required": ["created_at", "id", "name", "updated_at"]
       },
       "PaymentAccountOutSimple": {
         "type": "object",
@@ -11841,6 +11916,11 @@
             ],
             "default": "cash",
             "title": "Payment type"
+          },
+          "payment_done": {
+            "type": "boolean",
+            "default": false,
+            "title": "Payment is concluded"
           }
         },
         "required": [
@@ -11923,6 +12003,11 @@
             ],
             "default": "cash",
             "title": "Payment type"
+          },
+          "payment_done": {
+            "type": "boolean",
+            "default": false,
+            "title": "Payment is concluded"
           }
         },
         "required": ["amount", "created_by", "payer", "receiver", "updated_by"]
@@ -11942,7 +12027,10 @@
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,15}(?:\\.\\d{0,4})?$",
-            "title": "Amount"
+            "title": "Amount",
+            "x-components": {
+              "component": "money-input"
+            }
           },
           "currency": {
             "allOf": [
@@ -11972,6 +12060,14 @@
             ],
             "default": "cash",
             "title": "Payment type"
+          },
+          "payment_done": {
+            "type": "boolean",
+            "default": false,
+            "title": "Payment is concluded",
+            "x-components": {
+              "component": "checkbox"
+            }
           }
         },
         "required": ["amount", "payer", "receiver"]
