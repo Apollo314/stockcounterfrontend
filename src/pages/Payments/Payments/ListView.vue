@@ -18,7 +18,6 @@ import { MaybeRef } from '@vueuse/shared';
 import { useQuasar } from 'quasar';
 import { onActivated, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useRouter } from 'vue-router';
 
 import { api } from 'boot/axios';
 import DataTable from 'components/DataTable/DataTable.vue';
@@ -86,24 +85,10 @@ const co: ColumnsOverride<Column, Row> = {
 };
 
 const columns = ColumnsGenerator<Column, Row>(co, operation);
-const router = useRouter();
 const $q = useQuasar();
 
 const contextmenuactions: ContextMenuGroup<Row>[] = [
   [
-    {
-      callback: (rows, done) => {
-        router.push({
-          name: 'payment-account-update',
-          params: { id: Array.from(rows)[0][1].id },
-        });
-        done(false);
-      },
-      label: $t('commons.editoropen'),
-      can_handle_single: true,
-      color: 'primary',
-      icon: 'edit',
-    },
     {
       callback: (rows, done) => {
         const names = Array.from(
