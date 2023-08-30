@@ -14,7 +14,9 @@
           :label="`${$t('invoice_labels.payments.progress')}: ${$n(
             paymentProgress.toNumber(),
             { style: 'percent', useGrouping: false }
-          )}`"
+          )} (${$n(totalPayments.toNumber())}/${$n(
+            parseFloat(invoice.total_with_tax || '0')
+          )})`"
         />
       </div>
     </q-linear-progress>
