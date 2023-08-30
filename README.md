@@ -2,6 +2,12 @@
 
 An Inventory Management System
 
+This repository is the frontend of this web/pc/mobile app.
+
+A video of how it looks: https://www.youtube.com/watch?v=5_4WT935gZM
+
+For backend: https://github.com/Apollo314/stock-counter-backend
+
 ## Install the dependencies
 
 ```bash
