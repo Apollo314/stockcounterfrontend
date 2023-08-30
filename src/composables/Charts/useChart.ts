@@ -13,7 +13,6 @@ import {
 import { Dark } from 'quasar';
 import {
   MaybeRef,
-  Ref,
   computed,
   onMounted,
   onUnmounted,
@@ -49,7 +48,7 @@ export function useAddChart(
   autosize = true,
   watchChartOptions = true
 ) {
-  const chart = ref<IChartApi>();
+  let chart: IChartApi | undefined = undefined;
 
   const { width, height } = useElementSize(container);
 
@@ -57,8 +56,8 @@ export function useAddChart(
     watch(
       () => [width.value, height.value],
       () => {
-        if (!chart.value) return;
-        chart.value.resize(width.value, height.value);
+        if (!chart) return;
+        chart.resize(width.value, height.value);
       }
     );
   }
@@ -66,25 +65,29 @@ export function useAddChart(
   onMounted(() => {
     const chartContainer = unref(container);
     if (!chartContainer) return;
-    chart.value = createChart(chartContainer, unref(chartOptions));
+    chart = createChart(chartContainer, unref(chartOptions));
   });
 
   onUnmounted(() => {
-    if (chart.value) {
-      chart.value.remove();
-      chart.value = undefined;
+    if (chart) {
+      chart.remove();
+      chart = undefined;
     }
   });
+
+  function getChart() {
+    return chart;
+  }
 
   if (watchChartOptions) {
     watch(
       () => unref(chartOptions),
       (newOptions) => {
-        if (!chart.value) return;
+        if (!chart) return;
         if (!newOptions) {
-          chart.value.applyOptions({});
+          chart.applyOptions({});
         } else {
-          chart.value.applyOptions(newOptions);
+          chart.applyOptions(newOptions);
         }
       },
       {
@@ -92,7 +95,7 @@ export function useAddChart(
       }
     );
   }
-  return { chart };
+  return { getChart };
 }
 
 export function useAddSeries<
@@ -100,7 +103,7 @@ export function useAddSeries<
   SeriesApi extends ISeriesApi<sType>,
   SeriesConstructor extends `add${sType}Series`
 >(
-  chart: Ref<IChartApi | undefined>,
+  getChart: () => IChartApi | undefined,
   type: sType,
   data: MaybeRef<(WhitespaceData | HistogramData)[]>,
   seriesOptions?: MaybeRef<SeriesPartialOptionsMap[sType]>,
@@ -108,18 +111,31 @@ export function useAddSeries<
   watchData = true
 ) {
   const series = ref<SeriesApi>();
-  onMounted(() => {
-    if (!chart.value) {
+  const retryCount = 0;
+  const maxRetry = 10;
+
+  function draw() {
+    const chart = getChart();
+    const seriesConstructorName = `add${type}Series` as SeriesConstructor;
+    if (!chart) {
+      if (retryCount < maxRetry) {
+        setTimeout(() => {
+          draw();
+        }, 20);
+      }
       return;
     }
-    const seriesConstructorName = `add${type}Series` as SeriesConstructor;
-    series.value = chart.value[seriesConstructorName](
+    series.value = chart[seriesConstructorName](
       unref(seriesOptions)
     ) as SeriesApi;
     const seriesdata = unref(data);
     if (seriesdata && seriesdata.length) {
       series.value.setData(unref(data));
     }
+  }
+
+  onMounted(() => {
+    draw();
   });
 
   if (watchOptions) {
@@ -143,7 +159,7 @@ export function useAddSeries<
       () => unref(data),
       (newData) => {
         series.value?.setData(newData);
-        chart.value?.timeScale().fitContent();
+        getChart()?.timeScale().fitContent();
       }
     );
   }

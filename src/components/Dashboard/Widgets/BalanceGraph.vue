@@ -183,8 +183,8 @@ if (chartOptions.layout && chartOptions.grid) {
   chartOptions.grid.horzLines = { color: '#22222240' };
 }
 
-const { chart } = useAddChart(lwchartContainer, chartOptions);
-useAddSeries(chart, 'Area', graphData, {
+const { getChart } = useAddChart(lwchartContainer, chartOptions);
+useAddSeries(getChart, 'Area', graphData, {
   lineColor: '#222',
   topColor: '#22222280',
   bottomColor: '#22222204',
