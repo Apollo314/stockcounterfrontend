@@ -2,6 +2,7 @@
   <FullHeightPage hide-back-button padding :fit="$q.screen.gt.sm">
     <AutoCrud
       ref="autoCrudRef"
+      style="max-width: 650px"
       create-path="/payments/payment-accounts/"
       update-retrieve-destroy-path="/payments/payment-accounts/{id}/"
       :query="id ? { id } : undefined"

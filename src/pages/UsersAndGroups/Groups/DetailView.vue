@@ -2,6 +2,7 @@
   <FullHeightPage hide-back-button padding :fit="$q.screen.gt.sm">
     <AutoCrud
       ref="autoCrudRef"
+      style="max-width: 650px"
       create-path="/user/groups/"
       update-retrieve-destroy-path="/user/groups/{id}/"
       :query="id ? { id } : undefined"
