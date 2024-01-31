@@ -5,8 +5,9 @@
 import type { InvoicePayment } from './InvoicePayment';
 
 export type PaginatedInvoicePaymentList = {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: Array<InvoicePayment>;
+    count?: number;
+    next?: string | null;
+    previous?: string | null;
+    results?: Array<InvoicePayment>;
 };
+

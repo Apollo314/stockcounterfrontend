@@ -6,7 +6,8 @@ import type { InvoiceItemWithDetailedInvoiceRequest } from './InvoiceItemWithDet
 import type { WarehouseItemStockInfoRequest } from './WarehouseItemStockInfoRequest';
 
 export type StockMovementWithoutItemRequest = {
-  warehouse_item_stock: WarehouseItemStockInfoRequest;
-  amount: string;
-  invoice_item: InvoiceItemWithDetailedInvoiceRequest;
+    warehouse_item_stock: WarehouseItemStockInfoRequest;
+    amount: string;
+    invoice_item: InvoiceItemWithDetailedInvoiceRequest;
 };
+

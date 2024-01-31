@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 export type WarehouseItemStockINFO_ONLYRequest = {
-  id: number;
-  warehouse?: number;
+    id: number;
+    warehouse?: number;
 };
+

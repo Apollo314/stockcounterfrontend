@@ -5,8 +5,9 @@
 import type { StockUnit } from './StockUnit';
 
 export type PaginatedStockUnitList = {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: Array<StockUnit>;
+    count?: number;
+    next?: string | null;
+    previous?: string | null;
+    results?: Array<StockUnit>;
 };
+

@@ -3,8 +3,9 @@
 /* eslint-disable */
 
 export type WarehouseItemStock = {
-  readonly id: number;
-  item: number;
-  warehouse: number | null;
-  readonly amount: string;
+    readonly id: number;
+    item: number;
+    warehouse: number | null;
+    readonly amount: string;
 };
+

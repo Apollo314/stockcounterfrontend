@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 export type CategoryRequest = {
-  name: string;
-  parent?: number | null;
+    name: string;
+    parent?: number | null;
 };
+

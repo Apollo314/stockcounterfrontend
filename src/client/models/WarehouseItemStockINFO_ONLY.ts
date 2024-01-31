@@ -3,5 +3,6 @@
 /* eslint-disable */
 
 export type WarehouseItemStockINFO_ONLY = {
-  id: number;
+    id: number;
 };
+

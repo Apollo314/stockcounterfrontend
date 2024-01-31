@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 export type GroupRequest = {
-  name: string;
-  permissions?: Array<number>;
+    name: string;
+    permissions?: Array<number>;
 };
+

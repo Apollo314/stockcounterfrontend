@@ -9,15 +9,16 @@ import type { StockUnit } from './StockUnit';
 import type { WarehouseItemStock } from './WarehouseItemStock';
 
 export type ItemWidget = {
-  readonly id: number;
-  name: string;
-  thumbnail?: string | null;
-  stock_unit: StockUnit;
-  readonly stocks: Array<WarehouseItemStock>;
-  buyprice: string;
-  sellprice: string;
-  buycurrency?: CurrencyEnum;
-  sellcurrency?: CurrencyEnum;
-  created_by: ConciseUser;
-  category?: Category;
+    readonly id: number;
+    name: string;
+    thumbnail?: string | null;
+    stock_unit: StockUnit;
+    readonly stocks: Array<WarehouseItemStock>;
+    buyprice: string;
+    sellprice: string;
+    buycurrency?: CurrencyEnum;
+    sellcurrency?: CurrencyEnum;
+    created_by: ConciseUser;
+    category?: Category;
 };
+

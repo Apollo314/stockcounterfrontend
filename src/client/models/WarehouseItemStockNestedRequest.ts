@@ -8,6 +8,7 @@ import type { ItemNestedRequest } from './ItemNestedRequest';
  * for creating Item if needed from stock WarehouseItemStock
  */
 export type WarehouseItemStockNestedRequest = {
-  item: ItemNestedRequest;
-  warehouse?: number;
+    item: ItemNestedRequest;
+    warehouse?: number;
 };
+

@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 export type PatchedCategoryRequest = {
-  name?: string;
-  parent?: number | null;
+    name?: string;
+    parent?: number | null;
 };
+

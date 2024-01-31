@@ -11,15 +11,16 @@ import type { WarehouseRequest } from './WarehouseRequest';
  * For listview only
  */
 export type PatchedInvoiceListRequest = {
-  name?: string;
-  description?: string | null;
-  last_payment_date?: string;
-  created_by?: ConciseUserRequest;
-  updated_by?: ConciseUserRequest;
-  currency?: CurrencyEnum;
-  currency_exchange_rate?: string | null;
-  total?: string | null;
-  total_with_tax?: string | null;
-  stakeholder?: StakeholderBasicRequest;
-  warehouse?: WarehouseRequest;
+    name?: string;
+    description?: string | null;
+    last_payment_date?: string;
+    created_by?: ConciseUserRequest;
+    updated_by?: ConciseUserRequest;
+    currency?: CurrencyEnum;
+    currency_exchange_rate?: string | null;
+    total?: string | null;
+    total_with_tax?: string | null;
+    stakeholder?: StakeholderBasicRequest;
+    warehouse?: WarehouseRequest;
 };
+

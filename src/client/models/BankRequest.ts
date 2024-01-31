@@ -3,5 +3,6 @@
 /* eslint-disable */
 
 export type BankRequest = {
-  name: string;
+    name: string;
 };
+

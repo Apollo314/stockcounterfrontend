@@ -5,6 +5,7 @@
 import type { Warehouse } from './Warehouse';
 
 export type WarehouseItemStockInfo = {
-  warehouse: Warehouse;
-  amount_db?: string | null;
+    warehouse: Warehouse;
+    amount_db?: string | null;
 };
+

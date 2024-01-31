@@ -3,5 +3,6 @@
 /* eslint-disable */
 
 export type StockUnitRequest = {
-  name: string;
+    name: string;
 };
+

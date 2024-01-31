@@ -3,5 +3,6 @@
 /* eslint-disable */
 
 export type PatchedBankRequest = {
-  name?: string;
+    name?: string;
 };
+

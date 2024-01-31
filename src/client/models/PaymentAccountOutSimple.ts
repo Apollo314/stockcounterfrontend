@@ -6,7 +6,8 @@ import type { CurrencyEnum } from './CurrencyEnum';
 import type { StakeholderBasic } from './StakeholderBasic';
 
 export type PaymentAccountOutSimple = {
-  name: string;
-  stakeholder?: StakeholderBasic;
-  account_currency?: CurrencyEnum;
+    name: string;
+    stakeholder?: StakeholderBasic;
+    account_currency?: CurrencyEnum;
 };
+

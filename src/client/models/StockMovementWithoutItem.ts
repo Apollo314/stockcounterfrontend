@@ -6,8 +6,9 @@ import type { InvoiceItemWithDetailedInvoice } from './InvoiceItemWithDetailedIn
 import type { WarehouseItemStockInfo } from './WarehouseItemStockInfo';
 
 export type StockMovementWithoutItem = {
-  readonly id: number;
-  warehouse_item_stock: WarehouseItemStockInfo;
-  amount: string;
-  invoice_item: InvoiceItemWithDetailedInvoice;
+    readonly id: number;
+    warehouse_item_stock: WarehouseItemStockInfo;
+    amount: string;
+    invoice_item: InvoiceItemWithDetailedInvoice;
 };
+

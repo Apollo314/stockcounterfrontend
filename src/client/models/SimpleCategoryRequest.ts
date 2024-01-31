@@ -3,5 +3,6 @@
 /* eslint-disable */
 
 export type SimpleCategoryRequest = {
-  name: string;
+    name: string;
 };
+

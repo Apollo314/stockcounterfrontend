@@ -3,5 +3,6 @@
 /* eslint-disable */
 
 export type PatchedStockUnitRequest = {
-  name?: string;
+    name?: string;
 };
+

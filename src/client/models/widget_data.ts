@@ -9,10 +9,5 @@ import type { InvoiceWidget } from './InvoiceWidget';
 import type { ItemWidget } from './ItemWidget';
 import type { User } from './User';
 
-export type widget_data =
-  | ItemWidget
-  | InvoiceWidget
-  | BestCustomerWidget
-  | BalanceWidget
-  | BalanceGraphWidget
-  | User;
+export type widget_data = (ItemWidget | InvoiceWidget | BestCustomerWidget | BalanceWidget | BalanceGraphWidget | User);
+

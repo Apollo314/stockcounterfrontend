@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 export type StockUnit = {
-  readonly id: number;
-  name: string;
+    readonly id: number;
+    name: string;
 };
+

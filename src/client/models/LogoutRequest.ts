@@ -3,5 +3,6 @@
 /* eslint-disable */
 
 export type LogoutRequest = {
-  digest?: string;
+    digest?: string;
 };
+

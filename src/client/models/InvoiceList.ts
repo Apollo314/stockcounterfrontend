@@ -11,18 +11,19 @@ import type { Warehouse } from './Warehouse';
  * For listview only
  */
 export type InvoiceList = {
-  readonly id: number;
-  name: string;
-  description?: string | null;
-  last_payment_date?: string;
-  created_by: ConciseUser;
-  updated_by: ConciseUser;
-  readonly created_at: string | null;
-  readonly updated_at: string | null;
-  currency?: CurrencyEnum;
-  currency_exchange_rate?: string | null;
-  total?: string | null;
-  total_with_tax?: string | null;
-  stakeholder: StakeholderBasic;
-  warehouse: Warehouse;
+    readonly id: number;
+    name: string;
+    description?: string | null;
+    last_payment_date?: string;
+    created_by: ConciseUser;
+    updated_by: ConciseUser;
+    readonly created_at: string | null;
+    readonly updated_at: string | null;
+    currency?: CurrencyEnum;
+    currency_exchange_rate?: string | null;
+    total?: string | null;
+    total_with_tax?: string | null;
+    stakeholder: StakeholderBasic;
+    warehouse: Warehouse;
 };
+

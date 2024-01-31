@@ -5,6 +5,7 @@
 import type { PaymentRequest } from './PaymentRequest';
 
 export type InvoicePaymentRequest = {
-  payment: PaymentRequest;
-  invoice: number;
+    payment: PaymentRequest;
+    invoice: number;
 };
+

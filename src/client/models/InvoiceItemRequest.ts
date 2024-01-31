@@ -5,8 +5,9 @@
 import type { StockMovementNestedRequest } from './StockMovementNestedRequest';
 
 export type InvoiceItemRequest = {
-  id?: number;
-  invoice?: number;
-  stock_movement: StockMovementNestedRequest;
-  price: string;
+    id?: number;
+    invoice?: number;
+    stock_movement: StockMovementNestedRequest;
+    price: string;
 };
+

@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 export type WarehouseItemStockRequest = {
-  item: number;
-  warehouse: number | null;
+    item: number;
+    warehouse: number | null;
 };
+

@@ -3,5 +3,6 @@
 /* eslint-disable */
 
 export type BankForStakeholderPaymentAccountRequest = {
-  name: string;
+    name: string;
 };
+

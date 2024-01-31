@@ -5,6 +5,7 @@
 import type { InvoiceDetailOutForInvoiceItemRequest } from './InvoiceDetailOutForInvoiceItemRequest';
 
 export type InvoiceItemWithDetailedInvoiceRequest = {
-  invoice: InvoiceDetailOutForInvoiceItemRequest;
-  price: string;
+    invoice: InvoiceDetailOutForInvoiceItemRequest;
+    price: string;
 };
+

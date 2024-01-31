@@ -5,8 +5,9 @@
 import type { ItemOut } from './ItemOut';
 
 export type PaginatedItemOutList = {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: Array<ItemOut>;
+    count?: number;
+    next?: string | null;
+    previous?: string | null;
+    results?: Array<ItemOut>;
 };
+

@@ -2,8 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type InvoiceTypeEnum =
-  | 'purchase'
-  | 'sale'
-  | 'refund-purchase'
-  | 'refund-sale';
+export type InvoiceTypeEnum = 'purchase' | 'sale' | 'refund-purchase' | 'refund-sale';

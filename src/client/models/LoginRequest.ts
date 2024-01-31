@@ -3,7 +3,8 @@
 /* eslint-disable */
 
 export type LoginRequest = {
-  username: string;
-  password: string;
-  remember_me?: boolean;
+    username: string;
+    password: string;
+    remember_me?: boolean;
 };
+

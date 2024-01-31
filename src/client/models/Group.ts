@@ -3,7 +3,8 @@
 /* eslint-disable */
 
 export type Group = {
-  readonly id: number;
-  name: string;
-  permissions?: Array<number>;
+    readonly id: number;
+    name: string;
+    permissions?: Array<number>;
 };
+
