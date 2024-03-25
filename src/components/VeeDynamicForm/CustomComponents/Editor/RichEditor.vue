@@ -1,45 +1,44 @@
 <template>
-  <div ref="fullscrenParent">
-    <div
-      v-if="editor"
-      ref="editorRef"
-      class="editor"
-      style="height: 100%; position: relative"
-      :style="{
-        maxHeight: `${maxHeight}px`,
-        minHeight: isFullscreen ? `${maxHeight}px` : '500px',
-      }"
-      @click="
-        if (fullscreenOnClick && !isFullscreen && $q.platform.is.mobile) {
-          enter();
-        }
-      "
+  <div
+    v-if="editor"
+    ref="editorRef"
+    class="editor"
+    style="height: 100%; position: relative"
+    :style="{
+      maxHeight: `${maxHeight}px`,
+      minHeight: isFullscreen ? `${maxHeight}px` : '500px',
+    }"
+    @click="
+      if (fullscreenOnClick && !isFullscreen && $q.platform.is.mobile) {
+        enter();
+      }
+    "
+  >
+    <MenuBar class="editor__header" :editor="editor">
+      <template v-if="$slots['extra-buttons-before']" #extra-buttons-before>
+        <slot name="extra-buttons-before"></slot>
+      </template>
+      <template v-if="$slots['extra-buttons-after']" #extra-buttons-after>
+        <slot name="extra-buttons-after"></slot>
+      </template>
+    </MenuBar>
+    <editor-content
+      ref="editorContentRef"
+      class="editor__content"
+      spellcheck="false"
+      :editor="editor"
+    />
+    <q-fab
+      v-if="isFullscreen"
+      v-touch-pan.prevent.mouse="moveFab"
+      style="position: absolute"
+      :style="{ bottom: `${fabPos[1]}px`, right: `${fabPos[0]}px` }"
+      color="accent"
+      icon="close"
+      :label="$t('commons.close')"
+      @click.stop="exit()"
     >
-      <MenuBar class="editor__header" :editor="editor">
-        <template v-if="$slots['extra-buttons-before']" #extra-buttons-before>
-          <slot name="extra-buttons-before"></slot>
-        </template>
-        <template v-if="$slots['extra-buttons-after']" #extra-buttons-after>
-          <slot name="extra-buttons-after"></slot>
-        </template>
-      </MenuBar>
-      <editor-content
-        class="editor__content"
-        spellcheck="false"
-        :editor="editor"
-      />
-      <q-fab
-        v-if="isFullscreen"
-        v-touch-pan.prevent.mouse="moveFab"
-        style="position: absolute"
-        :style="{ bottom: `${fabPos[1]}px`, right: `${fabPos[0]}px` }"
-        color="accent"
-        icon="close"
-        :label="$t('commons.close')"
-        @click.stop="exit()"
-      >
-      </q-fab>
-    </div>
+    </q-fab>
   </div>
 </template>
 
@@ -56,7 +55,7 @@ import { EditorContent, useEditor } from '@tiptap/vue-3';
 import { useFullscreen, useEventListener } from '@vueuse/core';
 import { TouchPanValue, useQuasar } from 'quasar';
 import { useField } from 'vee-validate';
-import { ref, toRef, watch } from 'vue';
+import { computed, onMounted, ref, toRef, watch } from 'vue';
 
 import { height as maxHeight } from 'src/composables/maxViewportHeight';
 
@@ -70,21 +69,52 @@ const props = defineProps<{
 
 const editorRef = ref();
 const fullscrenParent = ref();
+const editorContentRef = ref<InstanceType<typeof EditorContent>>();
+
+const contentScale = ref(1);
+const contentTranslate = computed(() => {
+  return -((1 - contentScale.value) / 2) * (1 / contentScale.value);
+});
+
+const fitPage = () => {
+  const editorContentEl = editorContentRef.value?.$el as HTMLElement;
+  if (editorContentEl) {
+    const editableChild = editorContentEl.firstElementChild as HTMLElement;
+    if (editableChild) {
+      contentScale.value = Math.min(
+        editorContentEl.offsetWidth / editableChild.offsetWidth,
+        1
+      );
+      return true;
+    }
+  }
+  return false;
+};
+
+onMounted(() => {
+  window.addEventListener('resize', fitPage);
+  const handle = setInterval(() => {
+    const res = fitPage();
+    if (res) {
+      clearInterval(handle);
+    }
+  }, 50);
+});
 
 const { value } = useField<string | undefined>(toRef(props, 'name'));
 const localvaluecopy = ref();
 
 const editor = useEditor({
-  content: value.value || '',
+  content: JSON.parse(value.value || '') || '',
   extensions: [
     StarterKit.configure({
       heading: {
-        levels: [4, 5, 6],
+        levels: [1, 2, 3],
       },
     }),
     HighlightExt,
     TableExt.configure({
-      resizable: true,
+      resizable: false,
     }),
     TableCellExt,
     TableHeaderExt,
@@ -97,7 +127,8 @@ const editor = useEditor({
     }),
   ],
   onUpdate: () => {
-    value.value = editor.value?.getHTML();
+    const jsonContent = editor.value?.getJSON();
+    value.value = JSON.stringify(jsonContent);
     localvaluecopy.value = value.value;
   },
 });
@@ -141,11 +172,17 @@ $border-style: 2px solid $grey-8;
   height: 0;
 }
 
+.fullscrenParent {
+  display: flex;
+  justify-content: center;
+}
+
 .editor {
+  width: 100%;
   display: flex;
   flex-direction: column;
   color: #0d0d0d;
-  background-color: $almost-white;
+  background-color: $grey-3;
   border: $border-style;
   border-radius: 0.75rem;
 
@@ -159,14 +196,30 @@ $border-style: 2px solid $grey-8;
   }
 
   &__content {
-    flex: 1 1 auto;
-    overflow-x: hidden;
+    width: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+
     .ProseMirror {
-      height: 100%;
-      padding: 0.5rem 1rem;
+      transform: scale(v-bind(contentScale))
+        translate(
+          calc(v-bind(contentTranslate) * 100%),
+          calc(v-bind(contentTranslate) * 100%)
+        );
+      background: $almost-white;
+      padding: 0;
       outline: none;
+      width: 210mm;
+      margin-top: 1cm;
+      margin-bottom: 1cm;
+      box-shadow: 0 0 6px #80808080;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 2.5cm;
+      padding-right: 2.5cm;
+      padding-top: 2.5cm;
+      padding-bottom: 2.5cm;
     }
   }
 
@@ -192,10 +245,6 @@ $border-style: 2px solid $grey-8;
 <style lang="scss">
 /* Basic editor styles */
 .ProseMirror {
-  > * + * {
-    margin-top: 0.75em;
-  }
-
   ul,
   ol {
     padding: 0 1rem;
@@ -208,6 +257,19 @@ $border-style: 2px solid $grey-8;
   h5,
   h6 {
     line-height: 1.1;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1rem;
   }
 
   code {
@@ -251,7 +313,6 @@ $border-style: 2px solid $grey-8;
   hr {
     border: none;
     border-top: 2px solid rgba(#0d0d0d, 0.1);
-    margin: 2rem 0;
   }
 
   ul[data-type='taskList'] {
@@ -276,9 +337,10 @@ $border-style: 2px solid $grey-8;
 }
 
 .ProseMirror {
+  font-family: 'Noto Sans';
+
   table {
     border-collapse: collapse;
-    table-layout: fixed;
     width: 100%;
     margin: 0;
     overflow: hidden;
@@ -286,9 +348,11 @@ $border-style: 2px solid $grey-8;
     td,
     th {
       min-width: 1em;
-      border: 2px solid #ced4da;
-      padding: 3px 5px;
-      vertical-align: top;
+      border-bottom: 2px solid #000000;
+      border-top: 2px solid #000000;
+      border-left: 1px dashed #ee000080;
+      border-right: 1px dashed #ee000080;
+      padding: 1.4em 1em;
       box-sizing: border-box;
       position: relative;
 
@@ -300,7 +364,6 @@ $border-style: 2px solid $grey-8;
     th {
       font-weight: bold;
       text-align: left;
-      background-color: #f1f3f5;
     }
 
     .selectedCell:after {
@@ -312,16 +375,6 @@ $border-style: 2px solid $grey-8;
       top: 0;
       bottom: 0;
       background: rgba(200, 200, 255, 0.4);
-      pointer-events: none;
-    }
-
-    .column-resize-handle {
-      position: absolute;
-      right: -2px;
-      top: 0;
-      bottom: -2px;
-      width: 4px;
-      background-color: #adf;
       pointer-events: none;
     }
 

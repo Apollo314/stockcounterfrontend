@@ -77,25 +77,25 @@ const items: (Item | Divider)[] = [
     type: 'divider',
   },
   {
-    label: 'h4',
-    title: $t('editor.header4'),
+    label: 'h1',
+    title: $t('editor.header1'),
     action: () =>
-      props.editor.chain().focus().toggleHeading({ level: 4 }).run(),
-    isActive: () => props.editor.isActive('heading', { level: 4 }),
+      props.editor.chain().focus().toggleHeading({ level: 1 }).run(),
+    isActive: () => props.editor.isActive('heading', { level: 1 }),
   },
   {
-    label: 'h5',
-    title: $t('editor.header5'),
+    label: 'h2',
+    title: $t('editor.header2'),
     action: () =>
-      props.editor.chain().focus().toggleHeading({ level: 5 }).run(),
-    isActive: () => props.editor.isActive('heading', { level: 5 }),
+      props.editor.chain().focus().toggleHeading({ level: 2 }).run(),
+    isActive: () => props.editor.isActive('heading', { level: 2 }),
   },
   {
-    label: 'h6',
-    title: $t('editor.header6'),
+    label: 'h3',
+    title: $t('editor.header3'),
     action: () =>
-      props.editor.chain().focus().toggleHeading({ level: 6 }).run(),
-    isActive: () => props.editor.isActive('heading', { level: 6 }),
+      props.editor.chain().focus().toggleHeading({ level: 3 }).run(),
+    isActive: () => props.editor.isActive('heading', { level: 3 }),
   },
   {
     type: 'divider',
